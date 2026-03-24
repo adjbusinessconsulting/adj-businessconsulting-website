@@ -325,10 +325,6 @@
         <div class="content-inner">
           
       
-          <div class="takeaway-box sr sr-up">
-              <span class="takeaway-label">key takeaway</span>
-              <div class="takeaway-text">Only 4 customer segments — but Champions alone drive the majority of total revenue.</div>
-            </div>
           <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Perusahaan ritel online menghabiskan anggaran promosi secara merata ke semua pelanggan tanpa memahami siapa yang benar-benar berharga.</p></div>
           <div class="cleaning-box sr sr-up">
         <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
@@ -404,10 +400,6 @@
         <div class="content-inner">
           
       
-          <div class="takeaway-box sr sr-up">
-              <span class="takeaway-label">key takeaway</span>
-              <div class="takeaway-text">Only 36.47% of 485,875 items were ever sold — meaning 63% of capital sat idle in the warehouse.</div>
-            </div>
           <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Lebih dari 63% modal terikat di stok yang tidak bergerak. Bisnis perlu memahami produk mana yang menghasilkan profit dan distribution center mana yang paling efisien.</p></div>
           <div class="cleaning-box sr sr-up">
         <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
@@ -485,10 +477,6 @@
         <div class="content-inner">
           
       
-          <div class="takeaway-box sr sr-up">
-              <span class="takeaway-label">key takeaway</span>
-              <div class="takeaway-text">19.4% of customers (MVP cluster) generate the highest revenue — protecting them is the #1 business priority.</div>
-            </div>
           <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Segmentasi manual bersifat subjektif. Proyek ini menggunakan K-Means Clustering untuk menemukan pengelompokan pelanggan yang natural dan sepenuhnya berbasis data.</p></div>
           <div class="cleaning-box sr sr-up">
         <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
@@ -497,10 +485,10 @@
           <tbody><tr><td class="dc-step">Check dataset shape</td><td class="dc-result">1,062,989 rows × 10 columns before cleaning</td></tr><tr><td class="dc-step">Drop missing customer_id</td><td class="dc-result">238,625 rows with null customer_id dropped — cannot track segmentation without it</td></tr><tr><td class="dc-step">Convert data types</td><td class="dc-result">customer_id converted to string; invoicedate converted to datetime format</td></tr><tr><td class="dc-step">Check empty strings</td><td class="dc-result">All categorical columns (invoice, stockcode, description, customer_id, country) — no empty strings found</td></tr><tr><td class="dc-step">Remove negative & zero values</td><td class="dc-result">18,744 negative quantity rows and 71 zero-price rows removed — likely data entry errors</td></tr><tr><td class="dc-step">Check duplicate rows</td><td class="dc-result">26,124 duplicate rows found — kept intentionally as they represent different items in the same invoice</td></tr><tr><td class="dc-step">Outlier detection (IQR method)</td><td class="dc-result">Outliers found in quantity, price, and total_price — kept as they represent high-value customers</td></tr><tr><td class="dc-step">Final dataset shape</td><td class="dc-result">805,549 rows × 10 columns after cleaning</td></tr></tbody>
         </table>
         </div>
-          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">Menghitung fitur RFM, normalisasi dengan StandardScaler, menentukan k optimal dengan Elbow Method dan Silhouette Score, lalu menjalankan K-Means dengan k=3. Setiap cluster diinterpretasikan secara bisnis untuk strategi retensi yang actionable.</p></div>
+          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">Menghitung fitur RFM, normalisasi dengan StandardScaler, menentukan k optimal dengan Elbow Method dan Silhouette Score, lalu menjalankan K-Means dengan k=4. Setiap cluster diinterpretasikan secara bisnis untuk strategi retensi yang actionable.</p></div>
           
           <div class="results-grid sr sr-up">
-            <div class="result-card"><span class="result-num">3</span><span class="result-label">// optimal clusters</span></div>
+            <div class="result-card"><span class="result-num">4</span><span class="result-label">// optimal clusters</span></div>
             <div class="result-card"><span class="result-num">K-Means</span><span class="result-label">// algorithm used</span></div>
             <div class="result-card"><span class="result-num">40 pgs</span><span class="result-label">// full report</span></div>
           </div>
@@ -508,12 +496,45 @@
             
             <div class="sowhat-box">
               <div class="sowhat-title">So, <span>What Should the Business Do?</span></div>
-              <div class="sowhat-sub">cluster recommendations · 4-week action plan</div>
-              <div class="cluster-grid">
-                <div class="cluster-card"><div class="cluster-label">Cluster 1 · 19.40% · $5,599</div><div class="cluster-name">MVP Customers</div><div class="cluster-action">Introduce reward programs or membership tiers</div><div class="cluster-action">Provide VIP exclusive perks — early access, special discounts</div><div class="cluster-action">Personalized recommendations based on purchase history</div><div class="cluster-action">Promote higher-value or premium products</div><div class="cluster-action">Engage via exclusive events and newsletters</div></div>
-                <div class="cluster-card"><div class="cluster-label">Cluster 2 · 26.40% · $1,131</div><div class="cluster-name">Mid Value Customers</div><div class="cluster-action">Promote higher-value products (Upselling)</div><div class="cluster-action">Recommend complementary products (Cross-Selling)</div><div class="cluster-action">Offer bundles to encourage larger purchases</div><div class="cluster-action">Introduce loyalty rewards for frequent purchases</div><div class="cluster-action">Use targeted marketing to increase engagement</div></div>
-                <div class="cluster-card"><div class="cluster-label">Cluster 3 · 24.20% · $189</div><div class="cluster-name">Low Value Customers</div><div class="cluster-action">Encourage second purchase via welcome-back promos</div><div class="cluster-action">Offer discounts specifically for second purchase</div><div class="cluster-action">Send follow-up reminders and product recommendations</div><div class="cluster-action">Provide simple promotions to encourage engagement</div><div class="cluster-action">Use digital retargeting ads to bring them back</div></div>
-              </div>
+              <div class="sowhat-sub">4 cluster recommendations · action plan</div>
+              <div class="cluster-grid" style="grid-template-columns:repeat(4,1fr)">
+                <div class="cluster-card">
+                  <div class="cluster-label">Cluster 0 · 30.00% · $798</div>
+                  <div class="cluster-name">Seasonal Buyers</div>
+                  <div class="cluster-action">Customer Reactivation Campaigns — "We miss you" emails</div>
+                  <div class="cluster-action">Limited-Time Discounts to create urgency</div>
+                  <div class="cluster-action">Seasonal or Event-Based Promotions</div>
+                  <div class="cluster-action">Digital retargeting ads on social media</div>
+                  <div class="cluster-action">Loyalty or Incentive Programs</div>
+                </div>
+                <div class="cluster-card">
+                  <div class="cluster-label">Cluster 1 · 19.40% · $5,599</div>
+                  <div class="cluster-name">MVP Customers</div>
+                  <div class="cluster-action">Loyalty Programs — reward programs or membership tiers</div>
+                  <div class="cluster-action">VIP Benefits — early access, special discounts</div>
+                  <div class="cluster-action">Personalized Marketing based on purchase history</div>
+                  <div class="cluster-action">Premium Product Promotions</div>
+                  <div class="cluster-action">Customer Retention — exclusive events and newsletters</div>
+                </div>
+                <div class="cluster-card">
+                  <div class="cluster-label">Cluster 2 · 26.40% · $1,131</div>
+                  <div class="cluster-name">Mid Value Customers</div>
+                  <div class="cluster-action">Upselling — promote higher-value products</div>
+                  <div class="cluster-action">Cross-Selling — recommend complementary products</div>
+                  <div class="cluster-action">Product Bundling to encourage larger purchases</div>
+                  <div class="cluster-action">Loyalty Incentives for more frequent purchases</div>
+                  <div class="cluster-action">Personalized Recommendations</div>
+                </div>
+                <div class="cluster-card">
+                  <div class="cluster-label">Cluster 3 · 24.20% · $189</div>
+                  <div class="cluster-name">Low Value Customers</div>
+                  <div class="cluster-action">Customer Onboarding — welcome-back promotions</div>
+                  <div class="cluster-action">First Repeat Purchase Incentives</div>
+                  <div class="cluster-action">Follow-Up Marketing Emails</div>
+                  <div class="cluster-action">Targeted Promotions to encourage engagement</div>
+                  <div class="cluster-action">Retargeting Campaigns via digital ads</div>
+                </div>
+              </div></div>
               <div class="insight-why" style="font-family:var(--mono);font-size: 14px;color:#475569;margin-bottom:0.75rem;">4-week plan · protect 75% revenue · increase mid-value spending · reactivate dormant buyers</div>
               <div class="week-plan">
                 <div class="week-card"><div class="week-num">Week 1</div><div class="week-focus">Preparation</div><div class="week-action">Segment customers, prepare campaigns, design promotions.</div></div>
@@ -552,10 +573,6 @@
         <div class="content-inner">
           
       
-          <div class="takeaway-box sr sr-up">
-              <span class="takeaway-label">key takeaway</span>
-              <div class="takeaway-text">Linear Regression predicted food delivery time within ±6 minutes — with 82% accuracy.</div>
-            </div>
           <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Jika ETA tidak akurat, pelanggan kecewa, restoran dapat keluhan, dan tim operasional kesulitan mengalokasikan kurir. Model prediksi ML memungkinkan ETA yang lebih realistis.</p></div>
           <div class="cleaning-box sr sr-up">
         <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
