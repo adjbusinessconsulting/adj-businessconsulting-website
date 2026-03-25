@@ -65,8 +65,9 @@
     .scroll-hint span { font-family: var(--mono); font-size: 18px; color: #64748B; letter-spacing: 0.1em; }
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #64748B, transparent); animation: scrollAnim 1.5s ease infinite; }
 
-    .lang-toggle { font-family: var(--mono); font-size: 14px; font-weight: 600; color: #93C5FD; background: transparent; border: 1.5px solid rgba(147,197,253,0.35); padding: 5px 12px; border-radius: 4px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; margin-left: 0.75rem; }
+    .lang-toggle { font-family: var(--mono); font-size: 14px; font-weight: 600; color: #93C5FD; background: transparent; border: 1.5px solid rgba(147,197,253,0.35); padding: 5px 12px; border-radius: 4px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; }
     .lang-toggle:hover { background: rgba(147,197,253,0.1); border-color: #93C5FD; }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
     @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
     /* STATS */
@@ -139,8 +140,10 @@
     <li><a href="index.html" data-en="services" data-id="layanan">layanan</a></li>
     <li><a href="index.html" data-en="contact" data-id="kontak">kontak</a></li>
   </ul>
-  <a href="index.html" class="nav-cta" data-en="Consult Us" data-id="Konsultasi">Konsultasi</a>
-  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+  <div class="nav-right">
+    <a href="index.html" class="nav-cta" data-en="Consult" data-id="Konsultasi">Konsultasi</a>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+  </div>
 </nav>
 
 <section class="hero">
