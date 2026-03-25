@@ -88,6 +88,8 @@
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-navy { font-family: var(--mono); font-size: 15px; font-weight: 600; background: var(--navy); color: var(--white); padding: 11px 22px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; }
     .btn-navy:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .btn-streamlit { font-family: var(--mono); font-size: 15px; font-weight: 600; background: #FF4B4B; color: var(--white); padding: 11px 22px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .btn-streamlit:hover { background: #e03e3e; transform: translateY(-2px); }
     .btn-outline { font-family: var(--mono); font-size: 15px; color: var(--navy); border: 1.5px solid var(--gray-200); padding: 11px 22px; background: transparent; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; }
     .btn-outline:hover { border-color: var(--navy); transform: translateY(-2px); }
 
@@ -211,6 +213,27 @@
     .dashboard-box .block-title { margin-bottom: 1rem; }
     .dashboard-img { width: 100%; border-radius: 8px; border: 1px solid var(--gray-200); box-shadow: 0 8px 32px rgba(13,27,46,0.1); display: block; }
     .dashboard-caption { font-family: var(--mono); font-size: 12px; color: var(--gray-400); margin-top: 0.5rem; text-align: center; }
+
+    /* DA Project Picker Cards */
+    .da-proj-picker { background: var(--navy); padding: 2.5rem 6%; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .da-picker-label { font-family: var(--mono); font-size: 13px; color: #475569; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+    .da-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+    .da-proj-card { background: var(--navy-mid); border: 1.5px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.75rem 2rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
+    .da-proj-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: transparent; transition: background 0.25s; border-radius: 10px 0 0 10px; }
+    .da-proj-card.active::before { background: #93C5FD; }
+    .da-proj-card.active { border-color: rgba(147,197,253,0.35); background: var(--navy-light); }
+    .da-proj-card:hover:not(.active) { border-color: rgba(147,197,253,0.2); background: rgba(255,255,255,0.03); transform: translateY(-2px); }
+    .da-card-num { font-family: var(--mono); font-size: 12px; color: #475569; letter-spacing: 0.15em; margin-bottom: 0.6rem; }
+    .da-card-title { font-family: var(--h); font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .da-proj-card.active .da-card-title { color: #93C5FD; }
+    .da-card-desc { font-family: var(--h); font-size: 15px; font-weight: 300; color: #64748B; line-height: 1.6; margin-bottom: 1rem; }
+    .da-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .da-tag { font-family: var(--mono); font-size: 12px; color: #64748B; border: 1px solid rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 4px; }
+    .da-proj-card.active .da-tag { color: #93C5FD; border-color: rgba(147,197,253,0.2); }
+    .da-card-arrow { font-family: var(--mono); font-size: 13px; color: #475569; transition: color 0.2s; }
+    .da-proj-card.active .da-card-arrow { color: #93C5FD; }
+    .da-proj-card:hover .da-card-arrow { color: #94A3B8; }
+    @media(max-width:768px){ .da-cards-row { grid-template-columns: 1fr; } }
     @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     .sr { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -288,16 +311,23 @@
 
   <!-- DATA ANALYSIS -->
   <div class="sub-panel active" id="sub-analysis">
-    <div class="proj-switcher">
-      <div class="proj-tab active" data-proj="da1">
-        
-        <div class="proj-tab-name">RFM Segmentation</div>
-        <div class="proj-tab-sub">Unlocking Customer Value</div>
-      </div>
-      <div class="proj-tab" data-proj="da2">
-        
-        <div class="proj-tab-name">Inventory Analysis</div>
-        <div class="proj-tab-sub">Retail Profitability</div>
+    <div class="da-proj-picker" id="da-picker">
+      <div class="da-picker-label">Data Analysis — Pilih Project</div>
+      <div class="da-cards-row">
+        <div class="da-proj-card active" data-proj="da1">
+          <div class="da-card-num">Project 01</div>
+          <div class="da-card-title">RFM Segmentation</div>
+          <div class="da-card-desc">Unlocking Customer Value — RFM Analysis on 541,909 real transactions</div>
+          <div class="da-card-tags"><span class="da-tag">RFM</span><span class="da-tag">EDA</span><span class="da-tag">Power BI</span></div>
+          <div class="da-card-arrow">View Project →</div>
+        </div>
+        <div class="da-proj-card" data-proj="da2">
+          <div class="da-card-num">Project 02</div>
+          <div class="da-card-title">Inventory Analysis</div>
+          <div class="da-card-desc">Store Performance, Inventory Management and Profitability across 485,875 items</div>
+          <div class="da-card-tags"><span class="da-tag">EDA</span><span class="da-tag">ABC Analysis</span><span class="da-tag">Tableau</span></div>
+          <div class="da-card-arrow">View Project →</div>
+        </div>
       </div>
     </div>
 
@@ -310,7 +340,7 @@
               
               <h1 class="proj-title">Unlocking Customer Value Through <span>RFM Segmentation</span></h1>
               <p class="proj-summary">Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 541,909 data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi.</p>
-              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-da-project-1.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
               <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 541,909 rows</div></div>
@@ -384,7 +414,7 @@
               
               <h1 class="proj-title">Retail Inventory<br><span>Store Performance, Inventory Management and Profitability</span></h1>
               <p class="proj-summary">Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset — mengungkap kategori terlaris, brand paling menguntungkan, dan produk slow-moving.</p>
-              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-da-project-2.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
               
@@ -461,7 +491,7 @@
               
               <h1 class="proj-title">Customer Clustering with <span>K-Means Machine Learning</span></h1>
               <p class="proj-summary">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable.</p>
-              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-1.streamlit.app/" class="btn-navy" target="_blank">Streamlit</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-1.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
               
@@ -557,7 +587,7 @@
               
               <h1 class="proj-title">Predicting Food Delivery Time with <span>ML</span></h1>
               <p class="proj-summary">Platform delivery sering memberikan estimasi waktu yang tidak akurat. Proyek ini membangun model ML untuk memprediksi waktu pengiriman — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.</p>
-              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-2.streamlit.app/" class="btn-navy" target="_blank">Streamlit</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-2.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
               
@@ -665,17 +695,24 @@
     document.getElementById('sub-' + t.dataset.sub).classList.add('active');
   }));
 
-  // Project tabs - simple direct ID lookup
+  // DA Project Cards
+  document.querySelectorAll('.da-proj-card').forEach(card => card.addEventListener('click', () => {
+    const projId = card.dataset.proj;
+    document.querySelectorAll('.da-proj-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    const subPanel = card.closest('.sub-panel');
+    subPanel.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('proj-' + projId);
+    if (target) target.classList.add('active');
+  }));
+
+  // DS Project tabs (unchanged)
   document.querySelectorAll('.proj-tab').forEach(t => t.addEventListener('click', () => {
     const projId = t.dataset.proj;
-    // Find which sub-panel this tab belongs to
     const subPanel = t.closest('.sub-panel');
-    // Deactivate all tabs in this switcher
     t.closest('.proj-switcher').querySelectorAll('.proj-tab').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
-    // Hide all proj-panels in this sub-panel
     subPanel.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
-    // Show the target panel
     const target = document.getElementById('proj-' + projId);
     if (target) target.classList.add('active');
   }));
