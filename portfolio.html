@@ -19,46 +19,60 @@
 
     nav { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0 6%; height: 72px; position: sticky; top: 0; z-index: 100; transition: box-shadow 0.3s; }
     nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
-    .nav-logo { font-family: var(--h); font-size: 24px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-logo { font-family: var(--h); font-size: 28px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.05em; }
     .nav-logo span { color: #93C5FD; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 15px; color: #64748B; text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a { font-family: var(--mono); font-size: 19px; color: #64748B; text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta { font-family: var(--h); font-size: 19px; font-weight: 700; color: var(--navy); background: var(--white); padding: 10px 24px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.2s; letter-spacing: 0.02em; }
+    .nav-cta { font-family: var(--h); font-size: 23px; font-weight: 700; color: var(--navy); background: var(--white); padding: 10px 24px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.2s; letter-spacing: 0.02em; }
     .nav-cta:hover { background: #E2E8F0; transform: translateY(-1px); }
 
     .page-header { background: var(--navy); padding: 5rem 6% 4rem; position: relative; overflow: hidden; }
     .page-header::before { content: ''; position: absolute; top: -40%; right: -5%; width: 500px; height: 500px; border-radius: 50%; background: rgba(37,99,235,0.07); pointer-events: none; }
     .page-header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-    .breadcrumb { font-family: var(--mono); font-size: 15px; color: #64748B; margin-bottom: 1.5rem; }
+    .breadcrumb { font-family: var(--mono); font-size: 19px; color: #64748B; margin-bottom: 1.5rem; }
     .breadcrumb a { color: #64748B; text-decoration: none; transition: color 0.2s; }
     .breadcrumb a:hover { color: #93C5FD; }
     .breadcrumb span { color: #93C5FD; }
     .page-title { font-family: var(--h); font-size: clamp(36px,5vw,60px); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 0.75rem; opacity:0; animation: slideRight 0.8s ease 0.1s forwards; }
     .page-title span { color: #93C5FD; }
-    .page-sub { font-family: var(--h); font-size: 19px; font-weight: 300; color: #CBD5E1; max-width: 500px; opacity:0; animation: slideRight 0.8s ease 0.25s forwards; }
+    .page-sub { font-family: var(--h); font-size: 23px; font-weight: 300; color: #CBD5E1; max-width: 500px; opacity:0; animation: slideRight 0.8s ease 0.25s forwards; }
 
-    .cat-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(255,255,255,0.06); }
-    .cat-tile { background: var(--navy-mid); padding: 2rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s; position: relative; }
-    .cat-tile.active { border-bottom-color: #93C5FD; background: var(--navy-light); }
-    .cat-tile:hover:not(.active) { border-bottom-color: rgba(147,197,253,0.3); background: var(--navy-light); }
-    .cat-num { font-family: var(--mono); font-size: 14px; color: #94A3B8; margin-bottom: 0.75rem; display: block; }
-    .cat-name { font-family: var(--h); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
-    .cat-subs { font-family: var(--mono); font-size: 12px; color: #CBD5E1; line-height: 1.9; }
+    .cat-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; background: var(--navy); padding: 2.5rem 6%; }
+    .cat-tile { background: var(--navy-mid); border: 1.5px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 2rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0; }
+    .cat-tile::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: transparent; transition: background 0.25s; border-radius: 0 0 12px 12px; }
+    .cat-tile.active::after { background: #93C5FD; }
+    .cat-tile.active { border-color: rgba(147,197,253,0.35); background: var(--navy-light); }
+    .cat-tile:hover:not(.active) { border-color: rgba(147,197,253,0.2); background: rgba(255,255,255,0.03); transform: translateY(-3px); }
+    .cat-num { display: none; }
+    .cat-name { font-family: var(--h); font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .cat-tile.active .cat-name { color: #93C5FD; }
+    .cat-subs { font-family: var(--mono); font-size: 13px; color: #CBD5E1; line-height: 1.9; margin-bottom: 1.25rem; flex: 1; }
     .cat-subs span { display: block; }
-    .cat-count { position: absolute; top: 1.25rem; right: 1.25rem; font-family: var(--mono); font-size: 10px; color: #93C5FD; border: 1px solid rgba(147,197,253,0.25); padding: 2px 6px; border-radius: 4px; }
+    .cat-count { font-family: var(--mono); font-size: 12px; color: #64748B; border: 1px solid rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 4px; display: inline-block; align-self: flex-start; }
+    .cat-tile.active .cat-count { color: #93C5FD; border-color: rgba(147,197,253,0.2); }
+    .cat-arrow { font-family: var(--mono); font-size: 13px; color: #475569; margin-top: 1.25rem; display: block; transition: color 0.2s; }
+    .cat-tile.active .cat-arrow { color: #93C5FD; }
+    .cat-tile:hover .cat-arrow { color: #94A3B8; }
 
     .panel { display: none; }
     .panel.active { display: block; }
 
-    .sub-cat-selector { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5px; background: var(--gray-200); }
-    .sub-cat-tile { background: var(--gray-50); padding: 1.5rem 2rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-    .sub-cat-tile.active { border-bottom-color: var(--navy); background: var(--white); }
-    .sub-cat-tile:hover:not(.active) { background: var(--white); }
-    .sub-cat-num { font-family: var(--mono); font-size: 14px; color: var(--gray-400); margin-bottom: 0.3rem; display: block; }
-    .sub-cat-name { font-family: var(--h); font-size: 20px; font-weight: 700; margin-bottom: 0.2rem; color: var(--navy); }
-    .sub-cat-desc { font-family: var(--mono); font-size: 12px; color: var(--gray-400); }
-    .sub-cat-badge { font-family: var(--mono); font-size: 12px; color: var(--blue); border: 1px solid rgba(37,99,235,0.2); padding: 2px 7px; border-radius: 4px; display: inline-block; margin-top: 0.4rem; }
+    .sub-cat-selector { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; background: var(--navy); padding: 2rem 6%; border-top: 1px solid rgba(255,255,255,0.06); }
+    .sub-cat-tile { background: var(--navy-mid); border: 1.5px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.75rem 2rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
+    .sub-cat-tile::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: transparent; transition: background 0.25s; border-radius: 10px 0 0 10px; }
+    .sub-cat-tile.active::before { background: #93C5FD; }
+    .sub-cat-tile.active { border-color: rgba(147,197,253,0.35); background: var(--navy-light); }
+    .sub-cat-tile:hover:not(.active) { border-color: rgba(147,197,253,0.2); background: rgba(255,255,255,0.03); transform: translateY(-2px); }
+    .sub-cat-num { display: none; }
+    .sub-cat-name { font-family: var(--h); font-size: 22px; font-weight: 700; margin-bottom: 0.5rem; color: var(--white); }
+    .sub-cat-tile.active .sub-cat-name { color: #93C5FD; }
+    .sub-cat-desc { font-family: var(--mono); font-size: 13px; color: #94A3B8; line-height: 1.6; margin-bottom: 0.75rem; }
+    .sub-cat-badge { font-family: var(--mono); font-size: 12px; color: #64748B; border: 1px solid rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 4px; display: inline-block; margin-top: 0; }
+    .sub-cat-tile.active .sub-cat-badge { color: #93C5FD; border-color: rgba(147,197,253,0.2); }
+    .sub-cat-arrow { font-family: var(--mono); font-size: 13px; color: #475569; margin-top: 1.25rem; display: block; transition: color 0.2s; }
+    .sub-cat-tile.active .sub-cat-arrow { color: #93C5FD; }
+    .sub-cat-tile:hover .sub-cat-arrow { color: #94A3B8; }
 
     .sub-panel { display: none; }
     .sub-panel.active { display: block; }
@@ -191,9 +205,9 @@
     .cta-text p { font-family: var(--h); font-size: 18px; color: #64748B; font-weight: 300; }
 
     footer { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 2rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: var(--h); font-size: 22px; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .footer-logo { font-family: var(--h); font-size: 26px; font-weight: 700; color: var(--navy); text-decoration: none; }
     .footer-logo span { color: var(--blue); }
-    footer p { font-family: var(--mono); font-size: 15px; color: var(--gray-400); }
+    footer p { font-family: var(--mono); font-size: 19px; color: var(--gray-400); }
 
     
     .cleaning-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.75rem; margin-bottom: 2.5rem; }
@@ -243,7 +257,7 @@
     .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s}
 
     @media(max-width:768px){
-      .hero-grid{grid-template-columns:1fr} .cat-selector{grid-template-columns:1fr}
+      .hero-grid{grid-template-columns:1fr} .cat-selector{grid-template-columns:1fr; padding:1.5rem 4%;}
       .sub-cat-selector,.proj-switcher{grid-template-columns:1fr} .two-col{grid-template-columns:1fr}
       .cluster-grid{grid-template-columns:1fr} .week-plan{grid-template-columns:repeat(2,1fr)}
       .kpi-grid{grid-template-columns:repeat(3,1fr)} .nav-links{display:none}
@@ -273,22 +287,25 @@
 
 <div class="cat-selector">
   <div class="cat-tile active" data-cat="data">
-    
+    <span class="cat-num">01</span>
     <div class="cat-name">Data Analysis</div>
-    <div class="cat-subs"><span>* Data Analysis</span><span>* Data Science</span></div>
+    <div class="cat-subs"><span>→ Data Analysis</span><span>→ Data Science</span></div>
     <span class="cat-count">4 projects</span>
+    <span class="cat-arrow">Explore →</span>
   </div>
   <div class="cat-tile" data-cat="web">
-    
+    <span class="cat-num">02</span>
     <div class="cat-name">Website Design</div>
     <div class="cat-subs"><span>→ F&B</span><span>→ Housing</span></div>
     <span class="cat-count">coming soon</span>
+    <span class="cat-arrow">Explore →</span>
   </div>
   <div class="cat-tile" data-cat="tax">
-    
+    <span class="cat-num">03</span>
     <div class="cat-name">Perpajakan</div>
     <div class="cat-subs"><span>→ PPh 21</span></div>
     <span class="cat-count">coming soon</span>
+    <span class="cat-arrow">Explore →</span>
   </div>
 </div>
 
@@ -296,16 +313,18 @@
 <div class="panel active" id="panel-data">
   <div class="sub-cat-selector">
     <div class="sub-cat-tile active" data-sub="analysis">
-      
+      <span class="sub-cat-num">01</span>
       <div class="sub-cat-name">Data Analysis</div>
       <div class="sub-cat-desc">EDA · Business Insights · Dashboards</div>
       <span class="sub-cat-badge">DA Project 1 · DA Project 2</span>
+      <span class="sub-cat-arrow">View Projects →</span>
     </div>
     <div class="sub-cat-tile" data-sub="science">
-      
+      <span class="sub-cat-num">02</span>
       <div class="sub-cat-name">Data Science</div>
       <div class="sub-cat-desc">ML · Clustering · Regression</div>
       <span class="sub-cat-badge">DS Project 1 · DS Project 2</span>
+      <span class="sub-cat-arrow">View Projects →</span>
     </div>
   </div>
 
