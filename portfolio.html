@@ -120,6 +120,7 @@
     .badge-tableau { background: rgba(31,119,180,0.1); color: #1D4ED8; border: 1px solid rgba(29,78,216,0.3); }
 
     .content { padding: 2.5rem 6%; background: var(--white); }
+    .content:has(.content-inner:empty) { padding: 0; }
     .content-inner { max-width: 1100px; margin: 0 auto; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
     .content-block { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.75rem; }
