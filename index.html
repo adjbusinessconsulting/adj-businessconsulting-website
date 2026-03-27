@@ -113,7 +113,7 @@
     .section-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--blue); letter-spacing: 0.18em; margin-bottom: 0.75rem; display: block; text-transform: uppercase; }
     .section-title { font-family: var(--h); font-size: clamp(20px,3vw,32px); font-weight: 700; line-height: 1.2; color: var(--navy); max-width: 480px; margin-bottom: 3rem; }
     .section-title span { color: var(--blue); }
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
     .service-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); cursor: pointer; text-decoration: none; display: block; color: inherit; position: relative; overflow: hidden; }
     .service-card::before { content: ''; position: absolute; inset: -1px; border-radius: 8px; background: linear-gradient(135deg, rgba(34,211,238,0.08), transparent 60%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
     .service-card:hover::before { opacity: 1; }
@@ -435,25 +435,32 @@
     
     <h2 class="section-title sr sr-left d1" data-en="Complete Solutions for Your Business <span>Growth</span>" data-id="Solusi Lengkap untuk<br><span>Pertumbuhan</span> Bisnis Anda">Solusi Lengkap untuk<br><span>Pertumbuhan</span> Bisnis Anda</h2>
     <div class="services-grid">
-      <a href="portfolio.html#panel-web" class="service-card sr sr-up d1">
+      <a href="portfolio.html#panel-data" class="service-card sr sr-up d1">
+        
+        <div class="service-icon-wrap">≋</div>
+        <div class="service-name">Data Analysis</div>
+        <p class="service-desc" data-en="Turn business data into strategic insights. Make smarter, measurable, data-driven decisions." data-id="Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.">Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.</p>
+        <span class="service-tag">View Portfolio →</span>
+      </a>
+      <a href="portfolio.html#panel-web" class="service-card sr sr-up d2">
         
         <div class="service-icon-wrap">◈</div>
-        <div class="service-name">Website Creation & Design</div>
+        <div class="service-name">Website Design</div>
         <p class="service-desc" data-en="A professional website that reflects your business identity. Modern, fast, and competitive design." data-id="Website profesional yang mencerminkan identitas bisnis Anda. Desain modern, cepat, dan siap bersaing.">Website profesional yang mencerminkan identitas bisnis Anda. Desain modern, cepat, dan siap bersaing.</p>
         <span class="service-tag">View Portfolio →</span>
       </a>
-      <a href="portfolio.html#panel-tax" class="service-card sr sr-up d2">
+      <a href="portfolio.html#panel-tax" class="service-card sr sr-up d3">
         
         <div class="service-icon-wrap">§</div>
-        <div class="service-name" data-en="Tax Compliance" data-id="Kepatuhan Pajak">Kepatuhan Pajak</div>
-        <p class="service-desc" data-en="Accurate and timely management of PPh 21 and other tax obligations in compliance with Indonesian regulations." data-id="Pengelolaan PPh 21 dan kewajiban perpajakan lainnya secara akurat dan tepat waktu sesuai regulasi Indonesia.">Pengelolaan PPh 21 dan kewajiban perpajakan lainnya secara akurat dan tepat waktu sesuai regulasi Indonesia.</p>
+        <div class="service-name" data-en="Tax" data-id="Pajak">Pajak</div>
+        <p class="service-desc" data-en="PPh 21 calculation, SPT Tahunan reporting, and data input on Coretax — accurate and compliant with Indonesian tax regulations." data-id="Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.">Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.</p>
         <span class="service-tag">View Portfolio →</span>
       </a>
-      <a href="portfolio.html#panel-data" class="service-card sr sr-up d3">
+      <a href="portfolio.html#panel-akuntansi" class="service-card sr sr-up d4">
         
-        <div class="service-icon-wrap">≋</div>
-        <div class="service-name">Data Analytics & Science</div>
-        <p class="service-desc" data-en="Turn business data into strategic insights. Make smarter, measurable, data-driven decisions." data-id="Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.">Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.</p>
+        <div class="service-icon-wrap">⊞</div>
+        <div class="service-name" data-en="Accounting" data-id="Akuntansi">Akuntansi</div>
+        <p class="service-desc" data-en="Bookkeeping, financial reporting, payroll, and internal audit to keep your business finances accurate and compliant." data-id="Pembukuan, laporan keuangan, payroll, dan audit internal untuk menjaga keuangan bisnis Anda tetap akurat dan patuh.">Pembukuan, laporan keuangan, payroll, dan audit internal untuk menjaga keuangan bisnis Anda tetap akurat dan patuh.</p>
         <span class="service-tag">View Portfolio →</span>
       </a>
     </div>
