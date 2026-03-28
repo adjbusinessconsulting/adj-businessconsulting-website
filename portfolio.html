@@ -225,7 +225,7 @@
     .block-text { font-family: var(--h); font-size: 14px; font-weight: 400; color: #475569; line-height: 1.8; }
 
     .section-label { font-family: var(--mono); font-size: 14px; letter-spacing: 0.2em; color: var(--navy); display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
-    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--navy); }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: currentColor; }
 
     .j-btn { font-family: var(--mono); font-size: 13px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.12); background: transparent; color: #64748B; cursor: pointer; transition: all 0.2s; }
     .j-btn:hover { border-color: rgba(34,211,238,0.3); color: #94A3B8; }
@@ -690,8 +690,8 @@
 
   <!-- DATA CLEANING (dark themed) -->
   <div>
-    <div class="section-label">Data Cleaning Process</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Data Cleaning Process</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>
           <tr style="border-bottom:1px solid rgba(34,211,238,0.1);">
@@ -760,7 +760,7 @@
 
   <!-- SEGMENT ACTIONS -->
   <div>
-    <div class="section-label">Actionable Strategies per Segment</div>
+    <div class="section-label" style="color:#22D3EE;">Actionable Strategies per Segment</div>
     <div id="action-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;"></div>
   </div>
 
@@ -986,8 +986,8 @@ buildActionCards();
 
   <!-- DATA CLEANING -->
   <div>
-    <div class="section-label">Data Cleaning Process</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Data Cleaning Process</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>
           <tr style="border-bottom:1px solid rgba(34,211,238,0.1);">
@@ -1080,7 +1080,7 @@ buildActionCards();
 
   <!-- ACTIONABLE STRATEGIES -->
   <div>
-    <div class="section-label">Actionable Strategies</div>
+    <div class="section-label" style="color:#22D3EE;">Actionable Strategies</div>
     <div class="action-grid" id="da2-action-grid"></div>
   </div>
 
@@ -1369,24 +1369,6 @@ if(vizSection && 'IntersectionObserver' in window){
     </div>
 
     <div class="proj-panel active" style="display:block" id="proj-ds1" data-group="ds">
-      <div class="proj-hero">
-        <div class="proj-hero-inner">
-          <div class="proj-bc"><a href="index.html">home</a> / <a href="portfolio.html">portofolio</a> / data science / <span>DS Project 1</span></div>
-          <div class="hero-grid">
-            <div>
-              <h1 class="proj-title">Customer Clustering with <span>K-Means Machine Learning</span></h1>
-              <p class="proj-summary" data-en="Using machine learning to find hidden customer segments in online retail transaction data. RFM-based K-Means divides customers into 4 actionable groups." data-id="Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi 4 kelompok yang actionable.">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi 4 kelompok yang actionable.</p>
-              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-1.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
-            </div>
-            <div class="meta-card">
-              <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 1,062,989 rows</div></div>
-              <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Scikit-Learn · Pandas · Matplotlib</div></div>
-              <div class="meta-item"><div class="meta-key">method</div><div class="meta-val">K-Means · Elbow Method · Silhouette · PCA</div></div>
-              <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">K-Means</span><span class="tag">clustering</span><span class="tag">scikit-learn</span></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="content">
         <div class="content-inner">
 <!-- DS1 NEW CONTENT — DS2 FORMAT + INTERACTIVE -->
@@ -1501,8 +1483,8 @@ if(vizSection && 'IntersectionObserver' in window){
 
   <!-- DATA CLEANING -->
   <div>
-    <div class="section-label">Data Cleaning Process</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Data Cleaning Process</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>
           <tr style="border-bottom:1px solid rgba(34,211,238,0.1);">
@@ -1538,8 +1520,8 @@ if(vizSection && 'IntersectionObserver' in window){
 
   <!-- INTERACTIVE PCA SCATTER -->
   <div>
-    <div class="section-label">PCA Cluster Visualization</div>
     <div class="chart-box" style="padding:1.5rem;">
+      <div class="section-label" style="color:#22D3EE;">PCA Cluster Visualization</div>
       <div class="chart-title">2D PCA Projection — Hover over clusters to explore <span class="chart-badge">84.8% variance explained</span></div>
       <div class="pca-wrap">
         <canvas id="ds1-pca-canvas"></canvas>
@@ -1550,8 +1532,8 @@ if(vizSection && 'IntersectionObserver' in window){
 
   <!-- INTERACTIVE CLUSTER EXPLORER -->
   <div>
-    <div class="section-label">Interactive Cluster Explorer</div>
     <div class="chart-box">
+      <div class="section-label" style="color:#22D3EE;">Interactive Cluster Explorer</div>
       <div class="chart-title">Select a Cluster — See Profile &amp; Strategy <span class="chart-badge">k=4 segments</span></div>
       <div class="cluster-tabs" id="ds1-tabs"></div>
       <div id="ds1-panes"></div>
@@ -1572,8 +1554,8 @@ if(vizSection && 'IntersectionObserver' in window){
 
   <!-- BUSINESS RECOMMENDATIONS -->
   <div>
-    <div class="section-label">Business Recommendations</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Business Recommendations</div>
       <div id="ds1-insights"></div>
     </div>
   </div>
@@ -2037,8 +2019,8 @@ if(insEl){
 
   <!-- DATA CLEANING -->
   <div>
-    <div class="section-label">Data Cleaning Process</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Data Cleaning Process</div>
       <table style="width:100%;border-collapse:collapse;">
         <thead>
           <tr style="border-bottom:1px solid rgba(34,211,238,0.1);">
@@ -2078,8 +2060,8 @@ if(insEl){
 
   <!-- DELIVERY TIME PREDICTOR -->
   <div>
-    <div class="section-label">Interactive Delivery Time Predictor</div>
     <div class="chart-box">
+      <div class="section-label" style="color:#22D3EE;">Interactive Delivery Time Predictor</div>
       <div class="chart-title">Adjust Parameters &mdash; See Predicted ETA <span class="chart-badge">model simulation</span></div>
       <div style="display:grid;grid-template-columns:1fr 280px;gap:2rem;align-items:start;">
         <div>
@@ -2141,8 +2123,8 @@ if(insEl){
 
   <!-- BUSINESS RECOMMENDATIONS -->
   <div>
-    <div class="section-label">Business Recommendations</div>
     <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label" style="color:#22D3EE;">Business Recommendations</div>
       <div id="ds2-insights"></div>
     </div>
   </div>
