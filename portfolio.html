@@ -9955,8 +9955,8 @@ if(insightWrap){
     <h2 style="font-family:'JetBrains Mono',monospace;font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#fff;margin-bottom:1rem;">Explore the interactive dashboard</h2>
     <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#64748B;line-height:1.7;margin-bottom:2rem;">Explore the complete analysis, interactive charts, and full methodology.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;align-items:center;">
-      <a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:10px 22px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;transition:all 0.3s;display:inline-block;" onmouseover="this.style.borderColor='#22D3EE';this.style.color='#22D3EE'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#fff'">Github Repo</a>
-      <a href="https://adjbusinessconsulting-da-project-1.streamlit.app/" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;background:#FF4B4B;color:#fff;text-decoration:none;padding:10px 22px;border-radius:4px;transition:all 0.3s;display:inline-block;" onmouseover="this.style.background='#e03e3e'" onmouseout="this.style.background='#FF4B4B'">▶ Open Streamlit App</a>
+      <a id="cta-github-btn" href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:10px 22px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;transition:all 0.3s;display:inline-block;" onmouseover="this.style.borderColor='#22D3EE';this.style.color='#22D3EE'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#fff'">Github Repo</a>
+      <a id="cta-streamlit-btn" href="https://adjbusinessconsulting-da-project-1.streamlit.app/" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;background:#FF4B4B;color:#fff;text-decoration:none;padding:10px 22px;border-radius:4px;transition:all 0.3s;display:inline-block;" onmouseover="this.style.background='#e03e3e'" onmouseout="this.style.background='#FF4B4B'">▶ Open Streamlit App</a>
     </div>
   </div>
 </section>
@@ -10000,11 +10000,29 @@ if(insightWrap){
   }));
 
   // Project Cards — group-based switching
+  // CTA link map for DA/DS projects
+  const _ctaLinks = {
+    'da1': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1', streamlit: 'https://adjbusinessconsulting-da-project-1.streamlit.app/' },
+    'da2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2', streamlit: 'https://adjbusinessconsulting-da-project-2.streamlit.app/' },
+    'ds1': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1', streamlit: 'https://adjbusinessconsulting-ds-project-1.streamlit.app/' },
+    'ds2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2', streamlit: 'https://adjbusinessconsulting-ds-project-2.streamlit.app/' }
+  };
+  function _updateCtaLinks(projId) {
+    var links = _ctaLinks[projId];
+    if (!links) return;
+    var gh = document.getElementById('cta-github-btn');
+    var st = document.getElementById('cta-streamlit-btn');
+    if (gh) gh.href = links.github;
+    if (st) st.href = links.streamlit;
+  }
+
   document.querySelectorAll('.da-proj-card').forEach(card => {
     card.addEventListener('click', () => {
       const target = document.getElementById('proj-' + card.dataset.proj);
       if (!target) return;
       const group = target.dataset.group;
+      // Update CTA links for DA/DS groups
+      if (group === 'da' || group === 'ds') _updateCtaLinks(card.dataset.proj);
       // Hide ALL panels in this group
       document.querySelectorAll('.proj-panel').forEach(p => {
         if (p.dataset.group === group) {
