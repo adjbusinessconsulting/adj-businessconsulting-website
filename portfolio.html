@@ -496,36 +496,6 @@
       <div class="content">
         <div class="content-inner">
 
-          <!-- Presentation Section -->
-          <div style="max-width:1200px;margin:2.5rem auto 0;padding:0 5%;">
-            <div style="font-size:10px;color:#22D3EE;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;">
-              PRESENTATION
-              <span style="flex:1;height:1px;background:rgba(34,211,238,0.15);display:block;"></span>
-            </div>
-            <div style="background:#162440;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.5rem;margin-bottom:1rem;">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem;">
-                <div>
-                  <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;">Final Project Analysis</div>
-                  <div style="font-size:11px;color:#94A3B8;">Anthony Djaidy Djie · DS39+</div>
-                </div>
-                <a href="https://www.canva.com/design/DAG70PwbKyk/ylU9Bb9Eg6uP2ac7kYbRGw/view?utm_content=DAG70PwbKyk&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
-                   target="_blank" rel="noopener"
-                   style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#0D1B2E;background:#22D3EE;padding:8px 18px;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;"
-                   onmouseover="this.style.background='#67E8F9'" onmouseout="this.style.background='#22D3EE'">
-                  ↗ Open in Canva
-                </a>
-              </div>
-              <!-- Canva Embed -->
-              <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:6px;overflow:hidden;box-shadow:0 2px 16px 0 rgba(0,0,0,0.3);">
-                <iframe loading="lazy"
-                  style="position:absolute;width:100%;height:100%;top:0;left:0;border:none;padding:0;margin:0;"
-                  src="https://www.canva.com/design/DAG70PwbKyk/ylU9Bb9Eg6uP2ac7kYbRGw/view?embed"
-                  allowfullscreen="allowfullscreen" allow="fullscreen">
-                </iframe>
-              </div>
-            </div>
-          </div>
-
           <!-- RFM Dashboard Styles -->
           <style>
 
@@ -770,17 +740,11 @@
   <!-- ROW 1: Customer Count Bar + Donut -->
   <div class="two-col">
     <div class="chart-box">
-      <div class="chart-title">
-        Customer Count by Segment
-        <span class="chart-badge">n = 5,878</span>
-      </div>
+      <div class="section-label" style="color:#22D3EE;">Customer Count by Segment<span style="font-size:10px;color:#94A3B8;letter-spacing:.08em;text-transform:none;font-weight:400;margin-left:.75rem;">n = 5,878</span></div>
       <div id="count-bars"></div>
     </div>
     <div class="chart-box">
-      <div class="chart-title">
-        Segment Distribution
-        <span class="chart-badge">% of customers</span>
-      </div>
+      <div class="section-label" style="color:#22D3EE;">Segment Distribution<span style="font-size:10px;color:#94A3B8;letter-spacing:.08em;text-transform:none;font-weight:400;margin-left:.75rem;">% of customers</span></div>
       <div class="donut-wrap">
         <svg id="donut-svg" width="160" height="160" viewBox="0 0 160 160"></svg>
         <div class="legend-wrap donut-legend" id="donut-legend"></div>
@@ -789,12 +753,38 @@
   </div>
 
   <!-- SEGMENT ACTIONS -->
-  <div>
+  <div class="chart-box">
     <div class="section-label" style="color:#22D3EE;">Actionable Strategies per Segment</div>
     <div id="action-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;"></div>
   </div>
 
 </div><!-- end dash-body -->
+
+<!-- Presentation Section -->
+<div class="dash-body" style="padding-top:0;">
+  <div class="chart-box">
+    <div class="section-label" style="color:#22D3EE;">Presentation</div>
+    <div class="chart-title">
+      <span>AnthonyDjiadyDjie_DS39+_Final_Project_Analysis</span>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
+        <span class="chart-badge">Canva</span>
+        <a href="https://www.canva.com/design/DAG70PwbKyk/ylU9Bb9Eg6uP2ac7kYbRGw/view?utm_content=DAG70PwbKyk&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+           target="_blank" rel="noopener"
+           style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#0D1B2E;background:#22D3EE;padding:2px 10px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:background 0.2s;"
+           onmouseover="this.style.background='#67E8F9'" onmouseout="this.style.background='#22D3EE'">
+          ↗ Open in Canva
+        </a>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:6px;overflow:hidden;box-shadow:0 2px 16px 0 rgba(0,0,0,0.3);">
+      <iframe loading="lazy"
+        style="position:absolute;width:100%;height:100%;top:0;left:0;border:none;padding:0;margin:0;"
+        src="https://www.canva.com/design/DAG70PwbKyk/ylU9Bb9Eg6uP2ac7kYbRGw/view?embed"
+        allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+</div>
 
 <script>
 // ── DATA ────────────────────────────────────────────────────────
