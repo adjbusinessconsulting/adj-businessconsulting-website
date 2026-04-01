@@ -221,7 +221,7 @@
 </section>
 
 <!-- MAIN CONTENT -->
-<section class="klien-section">
+<section class="klien-section" id="klien-section">
   <div class="klien-inner">
     <div class="sector-label">PILIH SEKTOR</div>
     <div class="sector-grid">
@@ -477,7 +477,9 @@
       tab.classList.add('active');
       document.querySelectorAll('.sector-panel').forEach(p => p.classList.remove('active'));
       const target = document.getElementById('panel-' + key);
-      if (target) { target.classList.add('active'); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      if (target) target.classList.add('active');
+      const klienSection = document.getElementById('klien-section');
+      if (klienSection) klienSection.scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
 
