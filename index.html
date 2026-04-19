@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADJ Business Consulting</title>
   <meta name="description" content="ADJ Business Consulting — Website Design, Tax Compliance, dan Data Analytics untuk bisnis Anda." />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -14,6 +14,7 @@
       --gray-400: #A09890; --gray-600: #4D443D;
       --blue: #C9A567; --blue-light: rgba(201, 165, 103,0.08);
       --h: 'JetBrains Mono', monospace; --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--h); background: var(--navy); color: var(--white); margin: 0; overflow-x: hidden; animation: pageIn 0.6s ease-out; }
@@ -129,17 +130,79 @@
 
     /* CTA */
     .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
-    .cta-section { background: var(--navy); padding: 6rem 6%; position: relative; overflow: hidden; }
-    .cta-section::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); animation: scanLine 4s linear infinite; }
+    .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
+    .cta-section {
+      background: transparent;
+      padding: 4rem 5vw;
+      border-top: 1px solid rgba(201, 165, 103, 0.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A567, transparent);
+      animation: scanLine 4s linear infinite;
+    }
     @keyframes scanLine { 0%{transform:translateX(-50%)} 100%{transform:translateX(50%)} }
-    .cta-section::after { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(201, 165, 103,0.04); pointer-events: none; }
-    .cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; position: relative; z-index: 1; }
-    .cta-text h2 { font-family: var(--h); font-size: clamp(18px,2.5vw,28px); font-weight: 700; color: var(--white); margin-bottom: 0.75rem; text-shadow: 0 0 40px rgba(201, 165, 103,0.1); }
+    .cta-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .cta-text h2 {
+      font-family: var(--h);
+      font-size: clamp(20px, 2.6vw, 28px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.015em;
+    }
     .cta-text h2 span { color: #C9A567; }
-    .cta-text p { font-family: var(--h); font-size: 14px; color: #7A7068; font-weight: 400; }
-    .btn-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; background: #C9A567; color: var(--navy); padding: 12px 26px; border: none; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); white-space: nowrap; }
-    .btn-cta:hover { background: #D9B97C; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 165, 103,0.2); }
-    .btn-cta:active { transform: scale(0.97); }
+    .cta-text p {
+      font-family: var(--sans);
+      font-size: 14.5px;
+      color: #A09890;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+      margin: 0;
+    }
+    .btn-navy {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      background: #C9A567;
+      color: var(--navy);
+      padding: 11px 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .btn-navy:hover {
+      background: #D9B97C;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201, 165, 103, 0.3);
+    }
+    .btn-navy:active { transform: scale(0.97); }
+    @media (max-width: 720px) {
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
 
     /* ABOUT */
     .about-section { background: var(--navy-mid); padding: 6rem 6%; }
@@ -478,10 +541,10 @@
 <section class="cta-section">
   <div class="cta-inner sr sr-up">
     <div class="cta-text">
-      <h2 data-en="Ready to <span>Transform</span> Your Business?" data-id="Siap <span>Transform</span> Bisnis Anda?">Siap <span>Transform</span> Bisnis Anda?</h2>
+      <h2 data-en="Interested in <span>Working Together?</span>" data-id="Tertarik <span>Bekerja Sama?</span>">Tertarik <span>Bekerja Sama?</span></h2>
       <p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p>
     </div>
-    <a href="#contact" class="btn-cta" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+    <a href="#contact" class="btn-navy" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
   </div>
 </section>
 
