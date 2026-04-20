@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VLTG — Apparel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:    #050505;
+      --off-black:#0F0F0F;
+      --dark:     #1A1A1A;
+      --mid:      #2A2A2A;
+      --gray:     #888;
+      --gray-lt:  #BBB;
+      --white:    #F5F5F5;
+      --volt:     #D4FF00;
+      --volt-dim: #8FAF00;
+      --red:      #FF2D20;
+      --display: 'Bebas Neue', sans-serif;
+      --cond: 'Barlow Condensed', sans-serif;
+      --body: 'Barlow', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── PROMO BAR ── */
+    .promo-bar {
+      background: var(--volt);
+      padding: 10px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .promo-track {
+      display: inline-flex;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+    .promo-track span {
+      font-family: var(--cond);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--black);
+      padding: 0 32px;
+    }
+    .promo-track span::after { content: '◆'; margin-left: 32px; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 500;
+      background: rgba(5,5,5,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 32px; letter-spacing: 0.1em;
+      color: var(--volt);
+    }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links li a {
+      font-family: var(--cond);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gray-lt); text-decoration: none;
+      padding: 22px 18px;
+      display: block;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links li a::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 18px; right: 18px; height: 2px;
+      background: var(--volt); transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .nav-links li a:hover { color: var(--white); }
+    .nav-links li a:hover::after { transform: scaleX(1); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-icon {
+      font-size: 18px; color: var(--gray-lt);
+      transition: color 0.2s; position: relative;
+    }
+    .nav-icon:hover { color: var(--volt); }
+    .cart-count {
+      position: absolute; top: -6px; right: -8px;
+      background: var(--volt); color: var(--black);
+      font-family: var(--cond); font-size: 10px; font-weight: 700;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-cart-btn {
+      font-family: var(--cond);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--black); background: var(--volt);
+      border: none; padding: 10px 24px;
+      transition: all 0.2s;
+    }
+    .nav-cart-btn:hover { background: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      background: var(--off-black);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-num {
+      position: absolute;
+      font-family: var(--display);
+      font-size: 400px; color: rgba(212,255,0,0.03);
+      line-height: 1; bottom: -60px; left: -20px;
+      user-select: none; pointer-events: none;
+    }
+    .hero-season {
+      font-family: var(--cond);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--volt); margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(80px, 9vw, 140px);
+      line-height: 0.88;
+      color: var(--white);
+      margin-bottom: 28px;
+      position: relative; z-index: 1;
+    }
+    .hero-title .volt-word { color: var(--volt); }
+    .hero-desc {
+      font-size: 15px; font-weight: 300; line-height: 1.8;
+      color: var(--gray); max-width: 380px;
+      margin-bottom: 44px;
+      position: relative; z-index: 1;
+    }
+    .hero-actions { display: flex; gap: 12px; position: relative; z-index: 1; }
+    .btn-volt {
+      background: var(--volt); color: var(--black);
+      font-family: var(--cond); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      border: none; padding: 16px 40px;
+      transition: all 0.2s;
+    }
+    .btn-volt:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,255,0,0.25); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      font-family: var(--cond); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2); padding: 16px 40px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--volt); color: var(--volt); }
+    .hero-meta {
+      margin-top: 48px; display: flex; gap: 40px;
+      position: relative; z-index: 1;
+    }
+    .hero-meta-item { }
+    .hero-meta-num {
+      font-family: var(--display); font-size: 36px; color: var(--volt);
+      line-height: 1; margin-bottom: 4px;
+    }
+    .hero-meta-label {
+      font-family: var(--cond); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gray);
+    }
+
+    .hero-right {
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(212,255,0,0.08), transparent 60%);
+    }
+    .hero-product-display {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0;
+      position: relative;
+    }
+    .hero-product-icon { font-size: 180px; position: relative; z-index: 1; filter: drop-shadow(0 40px 80px rgba(212,255,0,0.15)); }
+    .hero-product-label {
+      position: absolute; bottom: 40px; left: 40px;
+      z-index: 10;
+    }
+    .hero-product-name {
+      font-family: var(--display);
+      font-size: 28px; letter-spacing: 0.08em; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .hero-product-price {
+      font-family: var(--cond); font-size: 22px; font-weight: 700;
+      color: var(--volt);
+    }
+    .hero-product-badge {
+      position: absolute; top: 32px; right: 32px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--volt); color: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      font-family: var(--cond); font-weight: 800;
+      animation: spin 8s linear infinite;
+    }
+    .hero-product-badge .badge-num { font-size: 20px; line-height: 1; }
+    .hero-product-badge .badge-text { font-size: 8px; letter-spacing: 0.1em; }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    /* ── CATEGORIES ── */
+    .categories { padding: 80px 40px 60px; }
+    .cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+    .cat-title {
+      font-family: var(--display);
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 0.05em; color: var(--white);
+    }
+    .cat-subtitle {
+      font-family: var(--cond); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gray); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cat-subtitle:hover { color: var(--volt); }
+    .cat-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; }
+    .cat-card {
+      position: relative; overflow: hidden;
+      background: var(--dark);
+      transition: all 0.4s;
+    }
+    .cat-card:hover .cat-card-img { transform: scale(1.05); }
+    .cat-card:hover .cat-card-overlay { opacity: 1; }
+    .cat-card-img {
+      width: 100%; aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px;
+      transition: transform 0.6s ease;
+      position: relative;
+    }
+    .cat-card--main .cat-card-img { aspect-ratio: 4/5; font-size: 140px; }
+    .cat-card-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(5,5,5,0.8), transparent 40%);
+      z-index: 1;
+    }
+    .cat-card-overlay {
+      position: absolute; inset: 0;
+      background: rgba(212,255,0,0.1);
+      opacity: 0; transition: opacity 0.4s; z-index: 2;
+    }
+    .cat-card-body {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px; z-index: 3;
+    }
+    .cat-name {
+      font-family: var(--display);
+      font-size: 32px; letter-spacing: 0.05em;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .cat-card--main .cat-name { font-size: 48px; }
+    .cat-count {
+      font-family: var(--cond); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .cat-arrow {
+      display: inline-block; margin-top: 12px;
+      font-family: var(--cond); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--volt);
+      opacity: 0; transform: translateX(-8px);
+      transition: all 0.3s;
+    }
+    .cat-card:hover .cat-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ── FEATURED PRODUCTS ── */
+    .products { padding: 80px 40px; }
+    .products-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .products-title-wrap { }
+    .products-label {
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--volt); margin-bottom: 8px;
+    }
+    .products-title {
+      font-family: var(--display);
+      font-size: clamp(40px, 4.5vw, 64px);
+      letter-spacing: 0.04em; color: var(--white); line-height: 1;
+    }
+    .filter-tabs { display: flex; gap: 0; }
+    .filter-tab {
+      font-family: var(--cond); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gray); background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-right: none; padding: 10px 20px;
+      transition: all 0.2s;
+    }
+    .filter-tab:last-child { border-right: 1px solid rgba(255,255,255,0.1); }
+    .filter-tab.active, .filter-tab:hover { background: var(--volt); color: var(--black); border-color: var(--volt); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .product-card {
+      background: var(--off-black);
+      position: relative; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .product-card:hover .product-img { transform: scale(1.04); }
+    .product-card:hover .product-actions { opacity: 1; transform: translateY(0); }
+    .product-img-wrap { overflow: hidden; position: relative; aspect-ratio: 3/4; }
+    .product-img {
+      width: 100%; height: 100%;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px;
+      transition: transform 0.5s ease;
+      position: relative;
+    }
+    .product-badge-new, .product-badge-sale {
+      position: absolute; top: 12px; left: 12px; z-index: 3;
+      font-family: var(--cond); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 5px 12px;
+    }
+    .product-badge-new { background: var(--volt); color: var(--black); }
+    .product-badge-sale { background: var(--red); color: var(--white); }
+    .product-actions {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
+      display: flex; gap: 0;
+      opacity: 0; transform: translateY(12px);
+      transition: all 0.3s;
+    }
+    .btn-add-cart {
+      flex: 1; background: var(--volt); color: var(--black);
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      border: none; padding: 14px 0;
+      transition: background 0.2s;
+    }
+    .btn-add-cart:hover { background: var(--white); }
+    .btn-wishlist {
+      background: rgba(5,5,5,0.8); color: var(--white);
+      border: none; padding: 14px 16px; font-size: 16px;
+      transition: background 0.2s;
+    }
+    .btn-wishlist:hover { background: var(--black); color: var(--volt); }
+    .product-body { padding: 16px 18px 20px; }
+    .product-brand {
+      font-family: var(--cond); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 6px;
+    }
+    .product-name {
+      font-family: var(--cond); font-size: 16px; font-weight: 600;
+      letter-spacing: 0.05em; color: var(--white);
+      margin-bottom: 6px; line-height: 1.2;
+    }
+    .product-price-row { display: flex; align-items: center; gap: 10px; }
+    .product-price {
+      font-family: var(--cond); font-size: 18px; font-weight: 700;
+      color: var(--volt);
+    }
+    .product-price-original {
+      font-size: 14px; color: var(--gray);
+      text-decoration: line-through;
+    }
+    .product-swatches { display: flex; gap: 6px; margin-top: 10px; }
+    .swatch {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid transparent; transition: border-color 0.2s;
+    }
+    .swatch:hover { border-color: var(--volt); }
+
+    /* ── FULL WIDTH BANNER ── */
+    .banner {
+      margin: 20px 40px;
+      background: var(--volt);
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      min-height: 340px;
+    }
+    .banner-left {
+      padding: 60px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .banner-eyebrow {
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: rgba(5,5,5,0.5); margin-bottom: 16px;
+    }
+    .banner-title {
+      font-family: var(--display);
+      font-size: clamp(48px, 5vw, 80px);
+      color: var(--black); line-height: 0.9;
+      margin-bottom: 24px;
+    }
+    .banner-desc {
+      font-size: 15px; font-weight: 300; line-height: 1.7;
+      color: rgba(5,5,5,0.65); max-width: 360px; margin-bottom: 32px;
+    }
+    .btn-banner {
+      background: var(--black); color: var(--volt);
+      font-family: var(--cond); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      border: none; padding: 16px 36px; align-self: flex-start;
+      transition: all 0.2s;
+    }
+    .btn-banner:hover { background: var(--off-black); transform: translateY(-2px); }
+    .banner-right {
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.08);
+      font-size: 150px;
+      position: relative; overflow: hidden;
+    }
+    .banner-right::before {
+      content: 'SALE';
+      position: absolute;
+      font-family: var(--display); font-size: 200px;
+      color: rgba(0,0,0,0.06); line-height: 1;
+    }
+
+    /* ── FEATURES ROW ── */
+    .features-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin: 40px 0;
+    }
+    .feat-item {
+      padding: 32px 40px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .feat-item:last-child { border-right: none; }
+    .feat-icon { font-size: 28px; }
+    .feat-text {}
+    .feat-title {
+      font-family: var(--cond); font-size: 14px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
+      margin-bottom: 2px;
+    }
+    .feat-sub { font-size: 12px; font-weight: 300; color: var(--gray); }
+
+    /* ── INSTAGRAM / SOCIAL GRID ── */
+    .social-section { padding: 80px 40px; }
+    .social-header { text-align: center; margin-bottom: 40px; }
+    .social-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 4vw, 56px);
+      letter-spacing: 0.04em;
+    }
+    .social-title .handle { color: var(--volt); }
+    .social-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+    .social-cell {
+      aspect-ratio: 1;
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      overflow: hidden; position: relative;
+      transition: all 0.3s;
+    }
+    .social-cell:hover::after {
+      content: '+ VIEW';
+      position: absolute; inset: 0;
+      background: rgba(212,255,0,0.85);
+      color: var(--black);
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.25em;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--off-black);
+      padding: 80px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(212,255,0,0.15);
+    }
+    .nl-text { }
+    .nl-label {
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--volt); margin-bottom: 12px;
+    }
+    .nl-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 4vw, 52px);
+      color: var(--white);
+    }
+    .nl-form {
+      display: flex; gap: 0;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .nl-input {
+      background: transparent; border: none;
+      font-family: var(--body); font-size: 14px; font-weight: 300;
+      color: var(--white); padding: 16px 28px;
+      width: 320px;
+    }
+    .nl-input::placeholder { color: var(--gray); }
+    .nl-input:focus { outline: none; }
+    .nl-submit {
+      background: var(--volt); color: var(--black);
+      font-family: var(--cond); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      border: none; padding: 16px 32px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nl-submit:hover { background: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 60px 40px 28px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 48px;
+    }
+    .footer-logo-wrap { }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 40px; letter-spacing: 0.1em; color: var(--volt);
+      margin-bottom: 12px;
+    }
+    .footer-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.8;
+      color: var(--gray); max-width: 240px; margin-bottom: 24px;
+    }
+    .footer-socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: var(--dark); border: none;
+      font-size: 14px; color: var(--gray);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--volt); color: var(--black); }
+    .footer-col-h {
+      font-family: var(--cond); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a {
+      font-size: 13px; font-weight: 300; color: var(--gray);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col-links a:hover { color: var(--volt); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .footer-pay { display: flex; gap: 8px; }
+    .pay-chip {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 10px; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.3);
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-inner { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vh; }
+      .hero-left { padding: 48px 24px; }
+      .categories { padding: 48px 20px; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .cat-card--main { grid-column: 1 / -1; }
+      .products { padding: 48px 20px; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .banner { margin: 0; grid-template-columns: 1fr; }
+      .banner-right { display: none; }
+      .features-row { grid-template-columns: 1fr 1fr; }
+      .social-grid { grid-template-columns: repeat(3, 1fr); }
+      .newsletter { flex-direction: column; gap: 32px; padding: 48px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      footer { padding: 48px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <div class="promo-track">
+      <span>Free Shipping Over $150</span><span>New Drop Every Friday</span>
+      <span>Use Code VOLT20 For 20% Off</span><span>Worldwide Shipping</span>
+      <span>Free Returns Within 30 Days</span><span>Members Get Early Access</span>
+      <span>Free Shipping Over $150</span><span>New Drop Every Friday</span>
+      <span>Use Code VOLT20 For 20% Off</span><span>Worldwide Shipping</span>
+      <span>Free Returns Within 30 Days</span><span>Members Get Early Access</span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">VLTG</div>
+      <ul class="nav-links">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Tops</a></li>
+        <li><a href="#">Bottoms</a></li>
+        <li><a href="#">Outerwear</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#" style="color:var(--volt)">Sale</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="nav-icon">🔍</div>
+        <div class="nav-icon" style="position:relative">🛒<span class="cart-count">3</span></div>
+        <button class="nav-cart-btn">Cart (3)</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-bg-num">SS</div>
+      <div class="hero-season">SS25 Collection</div>
+      <h1 class="hero-title">
+        DRESS<br/>
+        <span class="volt-word">LOUDER</span><br/>
+        THAN<br/>
+        WORDS.
+      </h1>
+      <p class="hero-desc">
+        Built for those who live at full voltage. Uncompromising cuts, premium fabrics, and designs that refuse to be ignored.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-volt">Shop The Drop</button>
+        <button class="btn-ghost">Lookbook →</button>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-num">240+</div>
+          <div class="hero-meta-label">Styles</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-num">50K+</div>
+          <div class="hero-meta-label">Customers</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-num">4.9★</div>
+          <div class="hero-meta-label">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-product-display">
+        <div class="hero-product-icon">👕</div>
+      </div>
+      <div class="hero-product-label">
+        <div class="hero-product-name">ARCH TEE SS25</div>
+        <div class="hero-product-price">$89.00</div>
+      </div>
+      <div class="hero-product-badge">
+        <div class="badge-num">NEW</div>
+        <div class="badge-text">DROP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <div class="cat-header">
+      <h2 class="cat-title">Shop By Category</h2>
+      <a href="#" class="cat-subtitle">View All →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card cat-card--main">
+        <div class="cat-card-img" style="background:linear-gradient(135deg,#1a1a1a,#0a0a0a)">
+          <span style="position:relative;z-index:1">🧥</span>
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-name">Outerwear</div>
+          <div class="cat-count">86 Styles</div>
+          <div class="cat-arrow">Shop Now →</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-img" style="background:linear-gradient(135deg,#111,#1d1d1d)">
+          <span style="position:relative;z-index:1">👕</span>
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-name">Tops</div>
+          <div class="cat-count">124 Styles</div>
+          <div class="cat-arrow">Shop Now →</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-img" style="background:linear-gradient(135deg,#161616,#222)">
+          <span style="position:relative;z-index:1">👖</span>
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-name">Bottoms</div>
+          <div class="cat-count">58 Styles</div>
+          <div class="cat-arrow">Shop Now →</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-img" style="background:linear-gradient(135deg,#131313,#1f1f1f)">
+          <span style="position:relative;z-index:1">🧢</span>
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-name">Accessories</div>
+          <div class="cat-count">44 Styles</div>
+          <div class="cat-arrow">Shop Now →</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-card-img" style="background:linear-gradient(135deg,#1c1c1c,#141414)">
+          <span style="position:relative;z-index:1">👟</span>
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-name">Footwear</div>
+          <div class="cat-count">32 Styles</div>
+          <div class="cat-arrow">Shop Now →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="products-header">
+      <div class="products-title-wrap">
+        <div class="products-label">New This Week</div>
+        <div class="products-title">Fresh Drops</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active">All</button>
+        <button class="filter-tab">Tops</button>
+        <button class="filter-tab">Bottoms</button>
+        <button class="filter-tab">Outerwear</button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-img" style="background:linear-gradient(135deg,#1a1a1a,#111)">👕</div>
+          <div class="product-badge-new">New</div>
+          <div class="product-actions">
+            <button class="btn-add-cart">Add to Cart</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-brand">VLTG Studio</div>
+          <div class="product-name">Arch Logo Oversized Tee</div>
+          <div class="product-price-row">
+            <div class="product-price">$89.00</div>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch" style="background:#111;border-color:#444"></div>
+            <div class="swatch" style="background:#f5f5f5;border-color:#666"></div>
+            <div class="swatch" style="background:#D4FF00;border-color:#444"></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-img" style="background:linear-gradient(135deg,#111,#1d1d1d)">🧥</div>
+          <div class="product-badge-sale">−30%</div>
+          <div class="product-actions">
+            <button class="btn-add-cart">Add to Cart</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-brand">VLTG</div>
+          <div class="product-name">Track Jacket Volt Edition</div>
+          <div class="product-price-row">
+            <div class="product-price">$126.00</div>
+            <div class="product-price-original">$179.00</div>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch" style="background:#D4FF00;border-color:#444"></div>
+            <div class="swatch" style="background:#333;border-color:#555"></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-img" style="background:linear-gradient(135deg,#1a1a1a,#222)">👖</div>
+          <div class="product-badge-new">New</div>
+          <div class="product-actions">
+            <button class="btn-add-cart">Add to Cart</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-brand">VLTG Studio</div>
+          <div class="product-name">Cargo Wide-Leg Trousers</div>
+          <div class="product-price-row">
+            <div class="product-price">$149.00</div>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch" style="background:#3d3d3d;border-color:#555"></div>
+            <div class="swatch" style="background:#1a2a1a;border-color:#444"></div>
+            <div class="swatch" style="background:#f5f5f5;border-color:#666"></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-img" style="background:linear-gradient(135deg,#161616,#0d0d0d)">🧢</div>
+          <div class="product-actions">
+            <button class="btn-add-cart">Add to Cart</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-brand">VLTG</div>
+          <div class="product-name">6-Panel Structured Cap</div>
+          <div class="product-price-row">
+            <div class="product-price">$55.00</div>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch" style="background:#111;border-color:#444"></div>
+            <div class="swatch" style="background:#f5f5f5;border-color:#666"></div>
+            <div class="swatch" style="background:#8B0000;border-color:#555"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <div class="banner-left">
+      <div class="banner-eyebrow">Limited Time</div>
+      <div class="banner-title">END OF<br/>SEASON<br/>SALE.</div>
+      <p class="banner-desc">Up to 50% off selected styles. Don't sleep — limited stock. Final sale, no returns.</p>
+      <button class="btn-banner">Shop Sale →</button>
+    </div>
+    <div class="banner-right">
+      <span style="position:relative;z-index:1;font-size:120px">🔥</span>
+    </div>
+  </div>
+
+  <!-- FEATURES ROW -->
+  <div class="features-row">
+    <div class="feat-item"><div class="feat-icon">🚚</div><div class="feat-text"><div class="feat-title">Free Shipping</div><div class="feat-sub">On orders over $150</div></div></div>
+    <div class="feat-item"><div class="feat-icon">↩️</div><div class="feat-text"><div class="feat-title">Free Returns</div><div class="feat-sub">30-day return policy</div></div></div>
+    <div class="feat-item"><div class="feat-icon">🔒</div><div class="feat-text"><div class="feat-title">Secure Checkout</div><div class="feat-sub">256-bit SSL encryption</div></div></div>
+    <div class="feat-item"><div class="feat-icon">💬</div><div class="feat-text"><div class="feat-title">24/7 Support</div><div class="feat-sub">We're here to help</div></div></div>
+  </div>
+
+  <!-- SOCIAL GRID -->
+  <section class="social-section">
+    <div class="social-header">
+      <h2 class="social-title">Tag Us <span class="handle">@VLTG</span></h2>
+    </div>
+    <div class="social-grid">
+      <div class="social-cell">👕</div>
+      <div class="social-cell">🧥</div>
+      <div class="social-cell">👟</div>
+      <div class="social-cell">🧢</div>
+      <div class="social-cell">👖</div>
+      <div class="social-cell">🎽</div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <div class="nl-text">
+      <div class="nl-label">Stay Wired In</div>
+      <div class="nl-title">Get Early Access.<br/>Drop Alerts. Codes.</div>
+    </div>
+    <div>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="Enter your email..."/>
+        <button class="nl-submit">Subscribe →</button>
+      </div>
+      <div style="font-size:11px;color:var(--gray);margin-top:10px;font-weight:300">No spam. Unsubscribe any time. Members get 15% off first order.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo-wrap">
+        <div class="footer-logo">VLTG</div>
+        <div class="footer-desc">High-voltage streetwear for those who refuse to go unnoticed. Designed in LA. Shipped worldwide.</div>
+        <div class="footer-socials">
+          <button class="social-btn">𝕏</button>
+          <button class="social-btn">📸</button>
+          <button class="social-btn">▶</button>
+          <button class="social-btn">🎵</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-h">Shop</div>
+        <div class="footer-col-links">
+          <a href="#">New Arrivals</a>
+          <a href="#">Best Sellers</a>
+          <a href="#">Sale</a>
+          <a href="#">Lookbook</a>
+          <a href="#">Collaborations</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-h">Help</div>
+        <div class="footer-col-links">
+          <a href="#">Sizing Guide</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns</a>
+          <a href="#">Track Order</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-h">Company</div>
+        <div class="footer-col-links">
+          <a href="#">About VLTG</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Affiliate Program</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 VLTG Apparel. All rights reserved.</div>
+      <div class="footer-pay">
+        <div class="pay-chip">VISA</div>
+        <div class="pay-chip">MASTERCARD</div>
+        <div class="pay-chip">AMEX</div>
+        <div class="pay-chip">PAYPAL</div>
+        <div class="pay-chip">KLARNA</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Filter tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

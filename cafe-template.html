@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRÛLÉ — Specialty Coffee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:       #1C1208;
+      --espresso:  #2E1A0E;
+      --roast:     #5C3317;
+      --caramel:   #C8841A;
+      --cream:     #F2E8D5;
+      --cream-dim: #D4C5A9;
+      --offwhite:  #FAF6EE;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Outfit', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: linear-gradient(to bottom, rgba(28,18,8,0.95), transparent);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--caramel);
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--caramel); }
+    .nav-cta {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink); background: var(--caramel);
+      border: none; cursor: pointer;
+      padding: 10px 24px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--cream); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 120px 60px 80px;
+      background: var(--espresso);
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--caramel), transparent);
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--caramel); margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(64px, 7vw, 110px);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--offwhite);
+      margin-bottom: 32px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--caramel);
+    }
+    .hero-desc {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      max-width: 360px;
+      margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-primary {
+      background: var(--caramel); color: var(--ink);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 16px 36px; border: none; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,132,26,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid rgba(242,232,213,0.25); cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--caramel); color: var(--caramel); }
+
+    .hero-right {
+      position: relative;
+      background: var(--roast);
+      overflow: hidden;
+    }
+    .hero-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #3d2010 0%, #1c0e05 40%, #5c3317 80%, #2e1a0e 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-img-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(200,132,26,0.2), transparent 60%);
+    }
+    .coffee-icon {
+      font-size: 120px; opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-16px); }
+    }
+    .hero-img-label {
+      position: absolute; bottom: 40px; left: 40px;
+      font-family: var(--serif); font-style: italic;
+      font-size: 14px; color: rgba(242,232,213,0.5);
+      letter-spacing: 0.05em;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 40px; right: 40px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .hero-scroll span {
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--cream-dim); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--caramel), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--caramel);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ink);
+      padding: 0 40px;
+    }
+    .marquee-track span::after {
+      content: '✦';
+      margin-left: 40px;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+      padding: 120px 60px;
+      border-bottom: 1px solid rgba(200,132,26,0.15);
+    }
+    .about-number {
+      font-family: var(--serif);
+      font-size: 160px; font-weight: 300;
+      color: rgba(200,132,26,0.08);
+      line-height: 1;
+      user-select: none;
+    }
+    .about-content { padding-left: 60px; }
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--caramel); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--caramel);
+    }
+    .about-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300; line-height: 1.15;
+      color: var(--offwhite);
+      margin-bottom: 32px;
+    }
+    .about-title em { font-style: italic; color: var(--caramel); }
+    .about-body {
+      font-size: 16px; font-weight: 300; line-height: 1.9;
+      color: var(--cream-dim); max-width: 580px;
+      margin-bottom: 48px;
+    }
+    .stats-row { display: flex; gap: 60px; }
+    .stat { border-top: 1px solid rgba(200,132,26,0.25); padding-top: 20px; min-width: 120px; }
+    .stat-num {
+      font-family: var(--serif); font-size: 48px; font-weight: 300;
+      color: var(--caramel); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+
+    /* ── MENU ── */
+    .menu { padding: 120px 60px; }
+    .menu-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 80px;
+      border-bottom: 1px solid rgba(200,132,26,0.15);
+      padding-bottom: 48px;
+    }
+    .menu-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 5vw, 80px);
+      font-weight: 300; line-height: 1;
+      color: var(--offwhite);
+    }
+    .menu-title em { font-style: italic; color: var(--caramel); }
+    .menu-subtitle {
+      font-size: 14px; font-weight: 300;
+      color: var(--cream-dim); max-width: 280px;
+      text-align: right; line-height: 1.7;
+    }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .menu-item {
+      background: var(--espresso);
+      padding: 40px 36px;
+      cursor: pointer;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-item::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,132,26,0.1), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .menu-item:hover { background: var(--roast); }
+    .menu-item:hover::before { opacity: 1; }
+    .menu-item:hover .menu-item-arrow { transform: translate(4px, -4px); opacity: 1; }
+    .item-category {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--caramel); margin-bottom: 16px;
+    }
+    .item-name {
+      font-family: var(--serif);
+      font-size: 28px; font-weight: 400;
+      color: var(--offwhite); line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .item-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.7;
+      color: var(--cream-dim); margin-bottom: 24px;
+    }
+    .item-footer { display: flex; align-items: center; justify-content: space-between; }
+    .item-price {
+      font-family: var(--serif);
+      font-size: 22px; font-weight: 400;
+      color: var(--caramel);
+    }
+    .menu-item-arrow {
+      font-size: 18px; color: var(--caramel);
+      opacity: 0; transition: all 0.3s;
+    }
+
+    /* ── EXPERIENCE ── */
+    .experience {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+    }
+    .exp-visual {
+      background: linear-gradient(135deg, #3d1f08, #1c0a02, #4a2812);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .exp-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(200,132,26,0.25), transparent 55%);
+    }
+    .exp-visual-text {
+      font-family: var(--serif);
+      font-size: 200px; font-weight: 700;
+      color: rgba(200,132,26,0.06);
+      line-height: 1; user-select: none;
+      position: absolute;
+    }
+    .exp-beans {
+      font-size: 80px; position: relative; z-index: 1;
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .exp-content {
+      background: var(--cream);
+      color: var(--ink);
+      padding: 80px 60px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .exp-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--roast); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .exp-label::before { content: ''; display: block; width: 40px; height: 1px; background: var(--roast); }
+    .exp-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 3.5vw, 52px);
+      font-weight: 400; line-height: 1.15;
+      color: var(--ink); margin-bottom: 28px;
+    }
+    .exp-body {
+      font-size: 15px; font-weight: 300; line-height: 1.9;
+      color: #5C4A35; margin-bottom: 40px;
+    }
+    .features-list { display: flex; flex-direction: column; gap: 16px; }
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      font-size: 14px; color: #3d2a16;
+    }
+    .feature-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--caramel); margin-top: 6px; flex-shrink: 0;
+    }
+
+    /* ── HOURS / LOCATION ── */
+    .info-section {
+      background: var(--roast);
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      padding: 80px 60px;
+      gap: 60px;
+    }
+    .info-col { }
+    .info-heading {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--caramel); margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(200,132,26,0.3);
+    }
+    .hours-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; font-weight: 300; line-height: 1;
+      color: var(--cream); padding: 10px 0;
+      border-bottom: 1px solid rgba(242,232,213,0.08);
+    }
+    .hours-row .day { color: var(--cream-dim); }
+    .address-text, .contact-text {
+      font-size: 15px; font-weight: 300; line-height: 1.8;
+      color: var(--cream);
+    }
+    .contact-text a { color: var(--caramel); text-decoration: none; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 120px 60px; border-top: 1px solid rgba(200,132,26,0.12); }
+    .testi-header { text-align: center; margin-bottom: 80px; }
+    .testi-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 300; color: var(--offwhite);
+      margin-bottom: 16px;
+    }
+    .testi-title em { font-style: italic; color: var(--caramel); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .testi-card {
+      background: var(--espresso);
+      padding: 40px 36px;
+    }
+    .testi-quote {
+      font-family: var(--serif); font-style: italic;
+      font-size: 20px; font-weight: 300; line-height: 1.6;
+      color: var(--cream); margin-bottom: 32px;
+    }
+    .testi-quote::before { content: '"'; color: var(--caramel); font-size: 48px; line-height: 0; vertical-align: -0.4em; margin-right: 6px; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--roast);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 18px; color: var(--caramel);
+    }
+    .testi-name { font-size: 13px; font-weight: 500; color: var(--cream); }
+    .testi-role { font-size: 11px; color: var(--cream-dim); margin-top: 2px; }
+    .testi-stars { color: var(--caramel); font-size: 12px; margin-top: 4px; letter-spacing: 2px; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--caramel);
+      padding: 80px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cta-strip-text { }
+    .cta-strip-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400; color: var(--ink);
+      line-height: 1.1; margin-bottom: 8px;
+    }
+    .cta-strip-sub { font-size: 15px; font-weight: 300; color: rgba(28,18,8,0.7); }
+    .btn-dark {
+      background: var(--ink); color: var(--caramel);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 20px 48px; border: none; cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    .btn-dark:hover { background: var(--espresso); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(28,18,8,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(200,132,26,0.15);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 28px; font-weight: 600;
+      letter-spacing: 0.1em; color: var(--caramel);
+      text-transform: uppercase;
+    }
+    .footer-tagline {
+      font-family: var(--serif); font-style: italic;
+      font-size: 14px; color: var(--cream-dim);
+      margin-top: 4px;
+    }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cream-dim); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--caramel); }
+    .footer-copy { font-size: 12px; color: rgba(212,197,169,0.4); }
+
+    /* ── PAGE LOAD ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.25s; }
+    .fade-up:nth-child(3) { animation-delay: 0.4s; }
+    .fade-up:nth-child(4) { animation-delay: 0.55s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 40vh; }
+      .hero-left { padding: 100px 24px 60px; }
+      .about { grid-template-columns: 1fr; padding: 80px 24px; }
+      .about-number { font-size: 80px; }
+      .about-content { padding-left: 0; padding-top: 0; }
+      .menu { padding: 80px 24px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .experience { grid-template-columns: 1fr; }
+      .info-section { grid-template-columns: 1fr; padding: 60px 24px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .cta-strip { flex-direction: column; gap: 32px; text-align: center; padding: 60px 24px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 24px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Brûlé</div>
+    <ul class="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Story</a></li>
+      <li><a href="#">Experience</a></li>
+      <li><a href="#">Visit</a></li>
+    </ul>
+    <button class="nav-cta">Reserve a Table</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="fade-up">
+        <div class="hero-eyebrow">Est. 2019 · Specialty Coffee & Cuisine</div>
+      </div>
+      <h1 class="hero-title fade-up">
+        Where<br/>
+        <em>Coffee</em><br/>
+        Becomes<br/>
+        Art.
+      </h1>
+      <p class="hero-desc fade-up">
+        Every cup is a conversation. Every visit, a ritual. We source single-origin beans from across the world and craft each drink with obsessive care.
+      </p>
+      <div class="hero-actions fade-up">
+        <button class="btn-primary">Explore Menu</button>
+        <button class="btn-outline">Our Story</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-placeholder">
+        <div class="coffee-icon">☕</div>
+      </div>
+      <div class="hero-img-label">Signature Brûlé Latte — 2024</div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>Single Origin</span><span>Pour Over</span><span>Cold Brew</span>
+      <span>Seasonal Menu</span><span>Farm to Cup</span><span>Artisan Roast</span>
+      <span>Third Wave Coffee</span><span>Live Music Fridays</span>
+      <span>Single Origin</span><span>Pour Over</span><span>Cold Brew</span>
+      <span>Seasonal Menu</span><span>Farm to Cup</span><span>Artisan Roast</span>
+      <span>Third Wave Coffee</span><span>Live Music Fridays</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-number">01</div>
+    <div class="about-content">
+      <div class="section-label">Our Philosophy</div>
+      <h2 class="about-title">Coffee is a <em>craft,</em><br/>not a commodity.</h2>
+      <p class="about-body">
+        We believe the best cup of coffee tells a story — of the farmer who grew it, the land that shaped it, and the hands that prepared it. At Brûlé, every element from bean selection to brewing temperature is intentional.
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Origins</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4k</div>
+          <div class="stat-label">Daily Cups</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5yr</div>
+          <div class="stat-label">Roasting</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu">
+    <div class="menu-header">
+      <h2 class="menu-title">Our <em>Menu</em></h2>
+      <p class="menu-subtitle">Carefully crafted drinks and food, each with a story behind the ingredients.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="item-category">Signature</div>
+        <div class="item-name">Brûlé Latte</div>
+        <div class="item-desc">Caramelized sugar crust atop our house espresso blend with steamed oat milk and vanilla extract.</div>
+        <div class="item-footer">
+          <div class="item-price">$7.50</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="item-category">Pour Over</div>
+        <div class="item-name">Ethiopian Yirgacheffe</div>
+        <div class="item-desc">Bright jasmine florals with notes of lemon curd and bergamot. Light roast, single origin.</div>
+        <div class="item-footer">
+          <div class="item-price">$9.00</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="item-category">Cold</div>
+        <div class="item-name">Nitro Cold Brew</div>
+        <div class="item-desc">24-hour steeped cold brew, nitrogen-infused for a velvety smooth cascading pour.</div>
+        <div class="item-footer">
+          <div class="item-price">$8.00</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="item-category">Food</div>
+        <div class="item-name">Avocado Toast</div>
+        <div class="item-desc">Sourdough from local bakery, whipped ricotta, heirloom tomatoes, dukkah crust.</div>
+        <div class="item-footer">
+          <div class="item-price">$14.00</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="item-category">Pastry</div>
+        <div class="item-name">Almond Croissant</div>
+        <div class="item-desc">Laminated in-house, filled with frangipane, finished with toasted almonds and powdered sugar.</div>
+        <div class="item-footer">
+          <div class="item-price">$6.00</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="item-category">Seasonal</div>
+        <div class="item-name">Rose Cardamom Cortado</div>
+        <div class="item-desc">Our seasonal special. Rosewater, ground cardamom, split-pulled double espresso.</div>
+        <div class="item-footer">
+          <div class="item-price">$8.50</div>
+          <div class="menu-item-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience">
+    <div class="exp-visual">
+      <div class="exp-visual-text">☕</div>
+      <div class="exp-beans">🫘</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-label">The Space</div>
+      <h2 class="exp-title">A place to slow down, think, and savour.</h2>
+      <p class="exp-body">
+        Designed in collaboration with local artisans, our café is a sanctuary from the noise of the city. Natural light, reclaimed timber, hand-thrown ceramics, and the constant perfume of fresh roast.
+      </p>
+      <div class="features-list">
+        <div class="feature-item"><div class="feature-dot"></div><span>Private event space for up to 40 guests</span></div>
+        <div class="feature-item"><div class="feature-dot"></div><span>Weekly cuppings every Saturday morning</span></div>
+        <div class="feature-item"><div class="feature-dot"></div><span>Barista masterclasses — book online</span></div>
+        <div class="feature-item"><div class="feature-dot"></div><span>Free high-speed WiFi · Dog friendly terrace</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS / LOCATION -->
+  <div class="info-section">
+    <div class="info-col">
+      <div class="info-heading">Opening Hours</div>
+      <div class="hours-row"><span class="day">Monday – Friday</span><span>07:00 – 20:00</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span>08:00 – 21:00</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span>09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="day">Public Holidays</span><span>10:00 – 16:00</span></div>
+    </div>
+    <div class="info-col">
+      <div class="info-heading">Find Us</div>
+      <div class="address-text">
+        42 Roastery Lane<br/>
+        Fitzroy North<br/>
+        Melbourne VIC 3068<br/>
+        Australia
+      </div>
+    </div>
+    <div class="info-col">
+      <div class="info-heading">Get In Touch</div>
+      <div class="contact-text">
+        <a href="tel:+61312345678">+61 3 1234 5678</a><br/>
+        <a href="mailto:hello@brulecafe.com">hello@brulecafe.com</a><br/><br/>
+        Follow us for daily specials<br/>
+        @brule.coffee
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testi-header">
+      <h2 class="testi-title">What our <em>guests</em> say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">The best latte I've ever had. Full stop. The atmosphere alone is worth the visit — it feels like a living room designed by someone with impeccable taste.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sarah Mitchell</div>
+            <div class="testi-role">Food Writer, The Weekend Edition</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">I come here every morning before work. The Ethiopian pour over changed how I think about coffee. These people genuinely care about every cup.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div>
+            <div class="testi-name">James Okafor</div>
+            <div class="testi-role">Regular since 2021</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">Hosted our team offsite here. The private event space was gorgeous, the catering exceeded expectations, and staff were exceptional throughout.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Amira Hassan</div>
+            <div class="testi-role">Operations Director, Lightwave Co.</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <div class="cta-strip-text">
+      <div class="cta-strip-title">Come in. Stay a while.</div>
+      <div class="cta-strip-sub">Reserve your table or join us for a weekend cupping.</div>
+    </div>
+    <button class="btn-dark">Reserve Now →</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">Brûlé</div>
+      <div class="footer-tagline">Specialty Coffee & Cuisine, Melbourne</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Menu</a>
+      <a href="#">Events</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2024 Brûlé. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

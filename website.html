@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Design — ADJ Business Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0D1117; --navy-mid: #131820; --navy-light: #1C232D;
+      --navy-line: rgba(201,165,103,0.10);
+      --cyan: #C9A567; --cyan-dim: #8B6914;
+      --cyan-glow: rgba(201,165,103,0.15);
+      --white: #F4EFE6;
+      --gray-1: #D6D0C8; --gray-2: #A09890; --gray-3: #7A7068; --gray-4: #4D443D;
+      --h: 'JetBrains Mono', monospace;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--mono); background: var(--navy); color: var(--gray-1); font-size: 14px; line-height: 1.6; overflow-x: hidden; animation: pageIn 0.6s ease-out; }
+    @keyframes pageIn { from{opacity:0} to{opacity:1} }
+
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.10; background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); mix-blend-mode:overlay; }
+    body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:0; background-image: linear-gradient(rgba(201,165,103,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,165,103,0.025) 1px, transparent 1px); background-size:64px 64px; }
+    body > * { position:relative; z-index:2; }
+
+    ::selection { background:rgba(201,165,103,0.25); color:var(--white); }
+    ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:var(--navy); } ::-webkit-scrollbar-thumb { background:var(--navy-light); } ::-webkit-scrollbar-thumb:hover { background:var(--cyan-dim); }
+
+    /* ── NAV ── */
+    nav { position:sticky; top:0; z-index:50; background:rgba(13,17,23,0.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--navy-line); display:flex; align-items:center; justify-content:space-between; padding:0 5vw; height:56px; font-size:13px; transition:box-shadow 0.3s, background 0.3s; }
+    nav.scrolled { box-shadow:0 4px 30px rgba(0,0,0,0.4); background:rgba(13,17,23,0.95); }
+    .nav-logo { display:flex; align-items:center; color:var(--white); font-weight:700; text-decoration:none; letter-spacing:0.02em; font-family:var(--h); font-size:14px; position:relative; padding-left:32px; }
+    .nav-logo::before { content:'A'; position:absolute; left:0; top:50%; transform:translateY(-50%); width:22px; height:22px; border:1.5px solid var(--cyan); display:grid; place-items:center; font-size:11px; font-weight:800; color:var(--cyan); }
+    .nav-logo::after { content:''; position:absolute; left:-3px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:1px solid var(--cyan); opacity:0.3; animation:logoPulse 2.4s ease-in-out infinite; }
+    @keyframes logoPulse { 0%,100%{opacity:0.1;transform:translateY(-50%) scale(1)} 50%{opacity:0.4;transform:translateY(-50%) scale(1.08)} }
+    .nav-logo span { color:var(--gray-3); font-weight:400; margin-left:6px; }
+    .nav-links { display:flex; gap:0; list-style:none; font-size:13px; }
+    .nav-links a { font-family:var(--mono); color:var(--gray-2); text-decoration:none; padding:8px 14px; border-radius:3px; transition:all 0.15s; position:relative; letter-spacing:0; }
+    .nav-links a:hover { color:var(--white); background:rgba(201,165,103,0.06); }
+    .nav-links a.active { color:var(--cyan); }
+    .nav-links a.active::after { content:''; position:absolute; left:8px; right:8px; bottom:2px; height:1px; background:var(--cyan); box-shadow:0 0 8px var(--cyan); }
+    .nav-cta { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--navy); background:var(--cyan); padding:8px 16px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; transition:all 0.2s; }
+    .nav-cta:hover { background:#D9B97C; transform:translateY(-1px); }
+    .nav-right { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--gray-2); background:rgba(255,255,255,0.03); border:1px solid var(--navy-line); padding:5px 10px; border-radius:3px; cursor:pointer; letter-spacing:0.08em; transition:all 0.2s; }
+    .lang-toggle:hover { border-color:var(--cyan); color:var(--cyan); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:1.5px; background:var(--gray-2); border-radius:1px; transition:all 0.3s; }
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)} .hamburger.open span:nth-child(2){opacity:0} .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+    .mobile-menu { display:none; position:absolute; top:56px; left:0; right:0; background:var(--navy-mid); border-bottom:1px solid rgba(201,165,103,0.1); padding:1.5rem 5vw; flex-direction:column; gap:1rem; z-index:99; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:var(--mono); font-size:15px; color:var(--gray-2); text-decoration:none; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); transition:color 0.2s; }
+    .mobile-menu a:hover, .mobile-menu a.active { color:var(--cyan); }
+    .mobile-menu .nav-cta { margin-top:0.5rem; text-align:center; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { background:transparent; padding:4rem 5vw 3rem; position:relative; overflow:hidden; }
+    .page-header-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+    .breadcrumb { font-family:var(--mono); font-size:12px; color:var(--gray-3); margin-bottom:1.5rem; letter-spacing:0.02em; }
+    .breadcrumb a { color:var(--gray-3); text-decoration:none; transition:color 0.2s; } .breadcrumb a:hover { color:var(--white); } .breadcrumb span { color:var(--white); }
+    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; }
+    .page-title::before { content:''; position:absolute; left:-8%; top:50%; width:70%; height:280%; transform:translateY(-50%); background:radial-gradient(ellipse at center, rgba(201,165,103,0.22) 0%, rgba(201,165,103,0.10) 35%, rgba(201,165,103,0) 70%); filter:blur(40px); z-index:-1; pointer-events:none; animation:haloBreath 6s ease-in-out infinite; }
+    @keyframes haloBreath { 0%,100%{opacity:0.85;transform:translateY(-50%) scale(1)} 50%{opacity:1;transform:translateY(-50%) scale(1.05)} }
+    .page-title .cursor { display:inline-block; color:var(--cyan); animation:blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cyan-glow { text-shadow:0 0 40px rgba(201,165,103,0.15); }
+    .hero-positioning { font-family:var(--sans); font-size:clamp(16px,1.7vw,20px); font-weight:400; color:var(--gray-1); max-width:540px; line-height:1.6; margin-bottom:2.5rem; margin-top:0.5rem; }
+    .hero-positioning em { font-style:normal; color:var(--white); font-weight:600; }
+    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; }
+    .hero-stat { flex:1; display:flex; flex-direction:column; gap:3px; }
+    .hero-stat-num { font-family:var(--mono); font-size:clamp(28px,3.2vw,36px); font-weight:600; color:var(--white); line-height:1; letter-spacing:-0.02em; }
+    .hero-stat-unit { font-size:0.55em; color:var(--cyan); font-weight:500; margin-left:1px; }
+    .hero-stat-label { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px; }
+    .hero-stat-divider { width:1px; height:40px; background:var(--navy-line); margin:0 1.25rem; }
+
+    /* ── RIGHT COLUMN SERVICES ── */
+    .page-header-right { padding-top:3.5rem; }
+    .services-label-header { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1rem; }
+    .services-list-header { display:flex; flex-direction:column; gap:8px; }
+    .service-row { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.02); border:1px solid rgba(201,165,103,0.08); border-radius:5px; transition:all 0.2s; }
+    .service-row:hover { border-color:rgba(201,165,103,0.22); background:rgba(201,165,103,0.04); }
+    .service-row-dot { width:5px; height:5px; border-radius:50%; background:var(--cyan); flex-shrink:0; box-shadow:0 0 6px rgba(201,165,103,0.5); margin-top:5px; }
+    .service-row-body { display:flex; flex-direction:column; gap:3px; }
+    .service-row-name { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); }
+    .service-row-desc { font-family:var(--mono); font-size:11px; color:var(--gray-3); line-height:1.5; }
+
+    .glow-line { height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:0.2; margin:0; }
+
+    /* ── SHOWCASE SECTION ── */
+    .showcase-section { padding:4rem 5vw 6rem; }
+    .showcase-inner { max-width:1200px; margin:0 auto; }
+    .section-eyebrow { font-family:var(--mono); font-size:10px; color:var(--cyan); letter-spacing:0.18em; margin-bottom:0.75rem; display:block; text-transform:uppercase; }
+    .section-title { font-family:var(--h); font-size:clamp(18px,2.5vw,28px); font-weight:700; color:var(--white); margin-bottom:3rem; }
+
+    /* ── TEMPLATE CARDS ── */
+    .template-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:2rem; }
+    .template-card { background:var(--navy-mid); border:1px solid var(--navy-line); border-radius:10px; overflow:hidden; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .template-card:hover { border-color:rgba(201,165,103,0.25); transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,0.35); }
+
+    /* browser chrome */
+    .browser-chrome { background:#1a2030; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .browser-dots { display:flex; gap:6px; }
+    .browser-dot { width:10px; height:10px; border-radius:50%; }
+    .browser-dot.red { background:#FF5F57; }
+    .browser-dot.yellow { background:#FEBC2E; }
+    .browser-dot.green { background:#28C840; }
+    .browser-bar { flex:1; background:rgba(255,255,255,0.05); border-radius:4px; padding:5px 10px; font-family:var(--mono); font-size:10px; color:var(--gray-3); display:flex; align-items:center; gap:6px; }
+    .browser-bar::before { content:'🔒'; font-size:9px; }
+
+    /* iframe preview */
+    .template-preview { position:relative; height:320px; overflow:hidden; background:#0a0a0a; }
+    .template-preview iframe { width:160%; height:160%; transform:scale(0.625); transform-origin:top left; border:none; pointer-events:none; }
+    .template-preview-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 60%, var(--navy-mid) 100%); pointer-events:none; }
+
+    /* card info */
+    .template-info { padding:1.25rem 1.5rem 1.5rem; }
+    .template-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.6rem; }
+    .template-name { font-family:var(--h); font-size:16px; font-weight:700; color:var(--white); }
+    .template-tag { font-family:var(--mono); font-size:10px; color:var(--cyan); background:rgba(201,165,103,0.08); border:1px solid rgba(201,165,103,0.15); padding:3px 9px; border-radius:3px; letter-spacing:0.08em; text-transform:uppercase; }
+    .template-desc { font-family:var(--mono); font-size:12px; color:var(--gray-3); line-height:1.6; margin-bottom:1.25rem; }
+    .template-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.25rem; }
+    .template-pill { font-family:var(--mono); font-size:10px; color:var(--gray-2); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:3px 8px; border-radius:3px; }
+    .template-actions { display:flex; gap:10px; }
+    .btn-preview { font-family:var(--mono); font-size:12px; font-weight:600; background:var(--cyan); color:var(--navy); padding:9px 18px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
+    .btn-preview:hover { background:#D9B97C; transform:translateY(-1px); }
+    .btn-order { font-family:var(--mono); font-size:12px; color:var(--gray-1); border:1px solid rgba(201,165,103,0.2); padding:9px 18px; background:transparent; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
+    .btn-order:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(201,165,103,0.04); }
+
+    /* ── CTA ── */
+    .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); position:relative; overflow:hidden; }
+    .cta-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .cta-text h2 { font-family:var(--h); font-size:clamp(18px,2.5vw,26px); font-weight:700; color:var(--white); margin-bottom:0.5rem; }
+    .cta-text h2 span { color:var(--cyan); }
+    .cta-text p { font-family:var(--sans); font-size:14px; color:var(--gray-2); line-height:1.6; }
+    .btn-navy { font-family:var(--mono); font-size:13px; font-weight:600; background:var(--cyan); color:var(--navy); padding:11px 22px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s; white-space:nowrap; }
+    .btn-navy:hover { background:#D9B97C; transform:translateY(-1px); box-shadow:0 8px 24px rgba(201,165,103,0.25); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--navy-mid); border-top:1px solid var(--navy-line); padding:2.5rem 5vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .footer-logo { font-family:var(--h); font-size:16px; font-weight:700; color:var(--white); text-decoration:none; }
+    .footer-logo span { color:var(--cyan); }
+    footer p { font-family:var(--mono); font-size:12px; color:var(--gray-3); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .page-header-inner { grid-template-columns:1fr; gap:2rem; }
+      .page-header-right { padding-top:0; }
+      .template-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .cta-inner { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">ADJ <span>Business Consulting</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
+    <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
+    <li><a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
+    <li><a href="tax.html" data-en="tax" data-id="pajak">pajak</a></li>
+    <li><a href="website.html" class="active" data-en="website" data-id="website">website</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="home" data-id="beranda">beranda</a>
+  <a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a>
+  <a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a>
+  <a href="tax.html" data-en="tax" data-id="pajak">pajak</a>
+  <a href="website.html" class="active" data-en="website" data-id="website">website</a>
+  <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-left">
+      <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="website" data-id="website">website</span></div>
+      <h1 class="page-title cyan-glow" data-en="Website Design" data-id="Website Design">Website Design<span class="cursor">_</span></h1>
+      <p class="hero-positioning"
+         data-en="<em>Professional websites built for your business</em> — fast, modern, and designed to convert visitors into clients."
+         data-id="<em>Website profesional untuk bisnis Anda</em> — cepat, modern, dan dirancang untuk mengubah pengunjung menjadi klien.">
+        Website profesional untuk bisnis Anda — cepat, modern, dan dirancang untuk mengubah pengunjung menjadi klien.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">3<span class="hero-stat-unit">+</span></div>
+          <div class="hero-stat-label" data-en="templates ready" data-id="template siap">template siap</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100<span class="hero-stat-unit">%</span></div>
+          <div class="hero-stat-label" data-en="custom design" data-id="desain custom">desain custom</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6<span class="hero-stat-unit">y</span></div>
+          <div class="hero-stat-label" data-en="experience" data-id="pengalaman">pengalaman</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-header-right">
+      <div class="services-label-header" data-en="// services" data-id="// layanan">// layanan</div>
+      <div class="services-list-header">
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Business Profile Website" data-id="Website Profil Bisnis">Website Profil Bisnis</span>
+            <span class="service-row-desc" data-en="A clean, professional site that tells clients who you are and what you do." data-id="Website bersih dan profesional yang menjelaskan siapa Anda dan apa yang Anda tawarkan.">Website bersih dan profesional yang menjelaskan siapa Anda dan apa yang Anda tawarkan.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="E-Commerce Store" data-id="Toko Online (E-Commerce)">Toko Online (E-Commerce)</span>
+            <span class="service-row-desc" data-en="Sell your products online with a storefront built to drive purchases." data-id="Jual produk Anda secara online dengan tampilan yang mendorong transaksi.">Jual produk Anda secara online dengan tampilan yang mendorong transaksi.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Landing Page" data-id="Landing Page">Landing Page</span>
+            <span class="service-row-desc" data-en="One focused page designed to capture leads or promote a single offer." data-id="Satu halaman terfokus untuk menangkap prospek atau mempromosikan satu penawaran.">Satu halaman terfokus untuk menangkap prospek atau mempromosikan satu penawaran.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Redesign & Revamp" data-id="Redesain & Pembaruan Website">Redesain &amp; Pembaruan Website</span>
+            <span class="service-row-desc" data-en="Already have a site but it looks outdated? I'll modernize it." data-id="Sudah punya website tapi tampilannya sudah usang? Saya akan modernisasikannya.">Sudah punya website tapi tampilannya sudah usang? Saya akan modernisasikannya.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- TEMPLATE SHOWCASE -->
+<section class="showcase-section">
+  <div class="showcase-inner">
+    <span class="section-eyebrow" data-en="// template showcase" data-id="// template showcase">// template showcase</span>
+    <h2 class="section-title" data-en="Live Website Templates" data-id="Template Website Langsung">Template Website Langsung</h2>
+
+    <div class="template-grid">
+
+      <!-- E-COMMERCE -->
+      <div class="template-card">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="browser-bar">vltg-apparel.com</div>
+        </div>
+        <div class="template-preview">
+          <iframe src="ecommerce-template.html" title="E-Commerce Template" scrolling="no" loading="lazy"></iframe>
+          <div class="template-preview-overlay"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-meta">
+            <span class="template-name">VLTG — Apparel</span>
+            <span class="template-tag" data-en="e-commerce" data-id="toko online">toko online</span>
+          </div>
+          <p class="template-desc" data-en="A high-energy streetwear storefront with product grid, cart interactions, and promo marquee. Built for fashion & retail brands that want to stand out." data-id="Toko streetwear berenergi tinggi dengan grid produk, interaksi keranjang, dan marquee promo. Cocok untuk brand fashion & retail yang ingin tampil beda.">Toko streetwear berenergi tinggi dengan grid produk, interaksi keranjang, dan marquee promo. Cocok untuk brand fashion &amp; retail yang ingin tampil beda.</p>
+          <div class="template-pills">
+            <span class="template-pill">Product Grid</span>
+            <span class="template-pill">Cart</span>
+            <span class="template-pill">Promo Banner</span>
+            <span class="template-pill">Animations</span>
+          </div>
+          <div class="template-actions">
+            <a href="ecommerce-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
+            <a href="index.html#contact" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROPERTY -->
+      <div class="template-card">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="browser-bar">haven-realestate.com</div>
+        </div>
+        <div class="template-preview">
+          <iframe src="property-template.html" title="Property Template" scrolling="no" loading="lazy"></iframe>
+          <div class="template-preview-overlay"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-meta">
+            <span class="template-name">HAVEN — Real Estate</span>
+            <span class="template-tag" data-en="property" data-id="properti">properti</span>
+          </div>
+          <p class="template-desc" data-en="A luxury real estate showcase with property listings, gallery, and inquiry form. Elegant typography and a refined warm palette for premium brands." data-id="Showcase properti mewah dengan listing, galeri, dan form pertanyaan. Tipografi elegan dan palet hangat premium untuk brand berkelas.">Showcase properti mewah dengan listing, galeri, dan form pertanyaan. Tipografi elegan dan palet hangat premium untuk brand berkelas.</p>
+          <div class="template-pills">
+            <span class="template-pill">Property Listings</span>
+            <span class="template-pill">Gallery</span>
+            <span class="template-pill">Inquiry Form</span>
+            <span class="template-pill">Luxury Feel</span>
+          </div>
+          <div class="template-actions">
+            <a href="property-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
+            <a href="index.html#contact" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAFE -->
+      <div class="template-card">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="browser-bar">brule-coffee.com</div>
+        </div>
+        <div class="template-preview">
+          <iframe src="cafe-template.html" title="Cafe Template" scrolling="no" loading="lazy"></iframe>
+          <div class="template-preview-overlay"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-meta">
+            <span class="template-name">BRÛLÉ — Coffee</span>
+            <span class="template-tag" data-en="F&B / cafe" data-id="F&B / kafe">F&amp;B / kafe</span>
+          </div>
+          <p class="template-desc" data-en="A moody specialty coffee shop site with menu, origin stories, and reservation section. Perfect for cafes, restaurants, and F&B brands." data-id="Website kedai kopi spesialti dengan menu, cerita origin, dan bagian reservasi. Sempurna untuk kafe, restoran, dan brand F&B.">Website kedai kopi spesialti dengan menu, cerita origin, dan bagian reservasi. Sempurna untuk kafe, restoran, dan brand F&amp;B.</p>
+          <div class="template-pills">
+            <span class="template-pill">Menu Section</span>
+            <span class="template-pill">Reservations</span>
+            <span class="template-pill">Story Section</span>
+            <span class="template-pill">Dark Aesthetic</span>
+          </div>
+          <div class="template-actions">
+            <a href="cafe-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
+            <a href="index.html#contact" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2 data-en="Want a Website Like <span>This?</span>" data-id="Mau Website Seperti <span>Ini?</span>">Mau Website Seperti <span>Ini?</span></h2>
+      <p data-en="Tell me about your business and I'll suggest the right design direction. First consultation is free." data-id="Ceritakan bisnis Anda dan saya akan sarankan arah desain yang tepat. Konsultasi pertama gratis.">Ceritakan bisnis Anda dan saya akan sarankan arah desain yang tepat. Konsultasi pertama gratis.</p>
+    </div>
+    <a href="index.html#contact" class="btn-navy" data-en="Let's Talk →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">ADJ <span>Business Consulting</span></a>
+  <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en][data-id]').forEach(el => {
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.id;
+    });
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'id';
+    localStorage.setItem('adj_lang', lang);
+  }
+  function toggleLang() {
+    const cur = localStorage.getItem('adj_lang') || 'id';
+    applyLang(cur === 'id' ? 'en' : 'id');
+  }
+  (function() {
+    const saved = localStorage.getItem('adj_lang') || 'id';
+    if (saved === 'en') applyLang('en');
+  })();
+</script>
+</body>
+</html>
