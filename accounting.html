@@ -61,15 +61,18 @@
     .page-header-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
     .breadcrumb { font-family:var(--mono); font-size:12px; color:var(--gray-3); margin-bottom:1.5rem; letter-spacing:0.02em; }
     .breadcrumb a { color:var(--gray-3); text-decoration:none; transition:color 0.2s; } .breadcrumb a:hover { color:var(--white); } .breadcrumb span { color:var(--white); }
-    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; }
+    @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes slideLeft  { from{opacity:0;transform:translateX(40px)}  to{opacity:1;transform:translateX(0)} }
+    @keyframes fadeUp     { from{opacity:0;transform:translateY(24px)}  to{opacity:1;transform:translateY(0)} }
+    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; opacity:0; animation:slideRight 0.8s ease 0.15s forwards; }
     .page-title::before { content:''; position:absolute; left:-8%; top:50%; width:70%; height:280%; transform:translateY(-50%); background:radial-gradient(ellipse at center, rgba(201,165,103,0.22) 0%, rgba(201,165,103,0.10) 35%, rgba(201,165,103,0) 70%); filter:blur(40px); z-index:-1; pointer-events:none; animation:haloBreath 6s ease-in-out infinite; }
     @keyframes haloBreath { 0%,100%{opacity:0.85;transform:translateY(-50%) scale(1)} 50%{opacity:1;transform:translateY(-50%) scale(1.05)} }
     .page-title .cursor { display:inline-block; color:var(--cyan); animation:blink 1s step-end infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .cyan-glow { text-shadow:0 0 40px rgba(201,165,103,0.15); }
-    .hero-positioning { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; max-width:540px; line-height:1.9; margin-bottom:2.5rem; margin-top:0.5rem; }
+    .hero-positioning { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; max-width:540px; line-height:1.9; margin-bottom:2.5rem; margin-top:0.5rem; opacity:0; animation:slideRight 0.8s ease 0.3s forwards; }
     .hero-positioning em { font-style:normal; color:#A09890; font-weight:400; }
-    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; }
+    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; opacity:0; animation:fadeUp 0.7s ease 0.45s forwards; }
     .hero-stat { flex:1; display:flex; flex-direction:column; gap:3px; }
     .hero-stat-num { font-family:var(--mono); font-size:clamp(28px,3.2vw,36px); font-weight:600; color:var(--white); line-height:1; letter-spacing:-0.02em; }
     .hero-stat-unit { font-size:0.55em; color:var(--cyan); font-weight:500; margin-left:1px; }
@@ -77,7 +80,7 @@
     .hero-stat-divider { width:1px; height:40px; background:var(--navy-line); margin:0 1.25rem; }
 
     /* ── RIGHT COLUMN SERVICES ── */
-    .page-header-right { padding-top:3.5rem; }
+    .page-header-right { padding-top:3.5rem; opacity:0; animation:slideLeft 0.8s ease 0.3s forwards; }
     .services-label-header { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1rem; }
     .services-list-header { display:flex; flex-direction:column; gap:8px; }
     .service-row { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.02); border:1px solid rgba(201,165,103,0.08); border-radius:5px; transition:all 0.2s; }
@@ -204,7 +207,6 @@
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-header-left">
-      <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="accounting" data-id="akuntansi">akuntansi</span></div>
       <h1 class="page-title cyan-glow" data-en="Accounting" data-id="Akuntansi">Akuntansi<span class="cursor">_</span></h1>
       <p class="hero-positioning"
          data-en="Professional bookkeeping, financial reporting, payroll, and internal audit — keeping your business finances accurate and compliant."
