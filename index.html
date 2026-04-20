@@ -65,9 +65,8 @@
     .nav-links a:hover { color: var(--white); background: rgba(201, 165, 103,0.06); }
     .nav-links a.active { color: #C9A567; }
     .nav-links a.active::after { content: ''; position: absolute; left: 8px; right: 8px; bottom: 2px; height: 1px; background: #C9A567; box-shadow: 0 0 8px #C9A567; }
-    .nav-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--navy); background: #C9A567; padding: 8px 16px; border: none; cursor: pointer; border-radius: 3px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; letter-spacing: 0.01em; }
+    .nav-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--navy); background: #C9A567; padding: 8px 16px; border: none; cursor: pointer; border-radius: 3px; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.2s; }
     .nav-cta:hover { background: #D9B97C; transform: translateY(-1px); }
-    .nav-cta:active { transform: scale(0.97); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
     .hamburger span { display: block; width: 22px; height: 1.5px; background: #A09890; border-radius: 1px; transition: all 0.3s; }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
@@ -125,7 +124,7 @@
 
     .lang-toggle { font-family: var(--mono); font-size: 11px; font-weight: 600; color: #A09890; background: rgba(255,255,255,0.03); border: 1px solid rgba(201, 165, 103,0.10); padding: 5px 10px; border-radius: 3px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; }
     .lang-toggle:hover { border-color: #C9A567; color: #C9A567; background: rgba(201, 165, 103,0.04); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
     @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
     /* STATS */
