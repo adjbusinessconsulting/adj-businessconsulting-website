@@ -343,6 +343,40 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .page-header-left {}
+    .page-header-right { padding-top: 3.5rem; }
+    .services-label-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gray-3);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .services-list-header { display: flex; flex-direction: column; gap: 8px; }
+    .service-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(201,165,103,0.08);
+      border-radius: 5px;
+      transition: all 0.2s;
+    }
+    .service-row:hover { border-color: rgba(201,165,103,0.22); background: rgba(201,165,103,0.04); }
+    .service-row-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; box-shadow: 0 0 6px rgba(201,165,103,0.5); margin-top: 5px; }
+    .service-row-body { display: flex; flex-direction: column; gap: 3px; }
+    .service-row-name { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); }
+    .service-row-desc { font-family: var(--mono); font-size: 11px; color: var(--gray-3); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .page-header-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .page-header-right { padding-top: 0; }
     }
     .breadcrumb {
       font-family: var(--mono);
@@ -2936,23 +2970,65 @@
 
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="data analysis" data-id="data analysis">data analysis</span></div>
-    <h1 class="page-title cyan-glow" data-en="Data Analysis" data-id="Data Analysis">Data Analysis<span class="cursor">_</span></h1>
-    <p class="hero-positioning" data-en="<em>Dashboards that answer business questions</em> — from <em>RFM segmentation</em> and <em>inventory profitability</em> to <em>ML clustering</em> and <em>predictive modeling</em>." data-id="<em>Dashboard yang menjawab pertanyaan bisnis</em> — dari <em>segmentasi RFM</em> dan <em>profitabilitas inventaris</em> hingga <em>clustering ML</em> dan <em>model prediktif</em>.">Dashboard yang menjawab pertanyaan bisnis — dari segmentasi RFM dan profitabilitas inventaris hingga clustering ML dan model prediktif.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num"><span data-count-to="18" data-divisor="10" data-decimals="1" data-suffix="M+">0</span></div>
-        <div class="hero-stat-label" data-en="data points analyzed" data-id="data dianalisis">data dianalisis</div>
+    <div class="page-header-left">
+      <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="data analysis" data-id="data analysis">data analysis</span></div>
+      <h1 class="page-title cyan-glow" data-en="Data Analysis" data-id="Data Analysis">Data Analysis<span class="cursor">_</span></h1>
+      <p class="hero-positioning" data-en="<em>Dashboards that answer business questions</em> — from <em>RFM segmentation</em> and <em>inventory profitability</em> to <em>ML clustering</em> and <em>predictive modeling</em>." data-id="<em>Dashboard yang menjawab pertanyaan bisnis</em> — dari <em>segmentasi RFM</em> dan <em>profitabilitas inventaris</em> hingga <em>clustering ML</em> dan <em>model prediktif</em>.">Dashboard yang menjawab pertanyaan bisnis — dari segmentasi RFM dan profitabilitas inventaris hingga clustering ML dan model prediktif.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-count-to="18" data-divisor="10" data-decimals="1" data-suffix="M+">0</span></div>
+          <div class="hero-stat-label" data-en="data points analyzed" data-id="data dianalisis">data dianalisis</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-count-to="4">0</span></div>
+          <div class="hero-stat-label" data-en="projects shipped" data-id="proyek selesai">proyek selesai</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-count-to="6">0</span><span class="hero-stat-unit">y</span></div>
+          <div class="hero-stat-label" data-en="hands-on experience" data-id="pengalaman langsung">pengalaman langsung</div>
+        </div>
       </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num"><span data-count-to="4">0</span></div>
-        <div class="hero-stat-label" data-en="projects shipped" data-id="proyek selesai">proyek selesai</div>
-      </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num"><span data-count-to="6">0</span><span class="hero-stat-unit">y</span></div>
-        <div class="hero-stat-label" data-en="hands-on experience" data-id="pengalaman langsung">pengalaman langsung</div>
+    </div>
+    <div class="page-header-right">
+      <div class="services-label-header" data-en="// services" data-id="// layanan">// layanan</div>
+      <div class="services-list-header">
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Business Dashboard" data-id="Dashboard Bisnis">Dashboard Bisnis</span>
+            <span class="service-row-desc" data-en="Turn your raw data into an interactive dashboard your team can actually use." data-id="Ubah data mentah Anda menjadi dashboard interaktif yang bisa langsung dipakai tim.">Ubah data mentah Anda menjadi dashboard interaktif yang bisa langsung dipakai tim.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Sales Prediction Model" data-id="Model Prediksi Penjualan">Model Prediksi Penjualan</span>
+            <span class="service-row-desc" data-en="Forecast next month's revenue so you can plan stock, budget, and staffing in advance." data-id="Prediksi pendapatan bulan depan agar stok, anggaran, dan tenaga kerja bisa direncanakan lebih awal.">Prediksi pendapatan bulan depan agar stok, anggaran, dan tenaga kerja bisa direncanakan lebih awal.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Customer Segmentation" data-id="Segmentasi Pelanggan">Segmentasi Pelanggan</span>
+            <span class="service-row-desc" data-en="Find out who your best customers are and who's about to leave — before it's too late." data-id="Temukan siapa pelanggan terbaik Anda dan siapa yang hampir pergi — sebelum terlambat.">Temukan siapa pelanggan terbaik Anda dan siapa yang hampir pergi — sebelum terlambat.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="KPI Reporting" data-id="Laporan KPI">Laporan KPI</span>
+            <span class="service-row-desc" data-en="Define and track the numbers that actually matter for your business — automated weekly or monthly." data-id="Tentukan dan pantau angka yang benar-benar penting untuk bisnis Anda — otomatis setiap minggu atau bulan.">Tentukan dan pantau angka yang benar-benar penting untuk bisnis Anda — otomatis setiap minggu atau bulan.</span>
+          </div>
+        </div>
+        <div class="service-row">
+          <div class="service-row-dot"></div>
+          <div class="service-row-body">
+            <span class="service-row-name" data-en="Data Cleaning & Structuring" data-id="Pembersihan & Penataan Data">Pembersihan &amp; Penataan Data</span>
+            <span class="service-row-desc" data-en="Got messy spreadsheets or inconsistent records? I'll clean, merge, and structure it so it's actually usable." data-id="Punya spreadsheet berantakan atau data yang tidak konsisten? Saya akan bersihkan, gabungkan, dan rapikan agar bisa langsung digunakan.">Punya spreadsheet berantakan atau data yang tidak konsisten? Saya akan bersihkan, gabungkan, dan rapikan agar bisa langsung digunakan.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
