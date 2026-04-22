@@ -677,7 +677,7 @@
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
       <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
     </div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
+    <iframe id="resumeFrame" src="" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
   </div>
 </div>
 
@@ -690,6 +690,10 @@
   function openResumeModal(e) {
     e.preventDefault();
     var modal = document.getElementById('resumeModal');
+    var frame = document.getElementById('resumeFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = 'ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1';
+    }
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
