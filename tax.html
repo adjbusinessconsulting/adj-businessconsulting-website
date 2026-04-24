@@ -361,6 +361,56 @@
       .wf-val { min-width: 80px; font-size: 10.5px; }
     }
 
+    /* ── Makmur-specific: PPN reconciliation split-flow ── */
+    .ppn-split { display:grid; grid-template-columns:1fr 1fr; gap:0; background:rgba(201,165,103,0.05); border:1px solid rgba(201,165,103,0.12); border-radius:10px; overflow:hidden; }
+    .ppn-side { padding:1.5rem; position:relative; }
+    .ppn-side.in { background:linear-gradient(135deg, rgba(248,113,113,0.04), transparent); border-right:1px dashed rgba(201,165,103,0.18); }
+    .ppn-side.out { background:linear-gradient(135deg, transparent, rgba(52,211,153,0.04)); }
+    .ppn-side-label { font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; margin-bottom:.5rem; display:flex; align-items:center; gap:.5rem; }
+    .ppn-side.in .ppn-side-label { color:#F87171; }
+    .ppn-side.out .ppn-side-label { color:#34D399; }
+    .ppn-side-subtitle { font-family:var(--mono); font-size:11.5px; color:var(--gray-2); margin-bottom:1.25rem; line-height:1.5; }
+    .ppn-flow-list { display:grid; gap:.4rem; max-height:280px; overflow-y:auto; padding-right:.3rem; }
+    .ppn-flow-list::-webkit-scrollbar { width:4px; }
+    .ppn-flow-list::-webkit-scrollbar-thumb { background:rgba(201,165,103,0.2); border-radius:2px; }
+    .ppn-flow-row { display:grid; grid-template-columns:auto 1fr auto; gap:.6rem; align-items:center; padding:.5rem .7rem; background:rgba(255,255,255,0.015); border-radius:4px; font-family:var(--mono); font-size:11px; transition:background .2s; }
+    .ppn-flow-row:hover { background:rgba(255,255,255,0.03); }
+    .ppn-flow-date { color:var(--gray-3); white-space:nowrap; font-size:10px; letter-spacing:.02em; }
+    .ppn-flow-desc { color:var(--gray-1); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .ppn-flow-amt { font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
+    .ppn-side.in .ppn-flow-amt { color:#F87171; }
+    .ppn-side.out .ppn-flow-amt { color:#34D399; }
+    .ppn-side-total { margin-top:1rem; padding-top:.75rem; border-top:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; }
+    .ppn-side-total-label { font-family:var(--mono); font-size:10px; color:var(--gray-2); letter-spacing:.1em; text-transform:uppercase; }
+    .ppn-side-total-val { font-family:var(--mono); font-size:18px; font-weight:700; font-variant-numeric:tabular-nums; }
+    .ppn-side.in .ppn-side-total-val { color:#F87171; }
+    .ppn-side.out .ppn-side-total-val { color:#34D399; }
+
+    .ppn-settle { margin-top:1.25rem; padding:1.5rem; background:linear-gradient(135deg, rgba(201,165,103,0.1), rgba(201,165,103,0.02)); border:1px solid rgba(201,165,103,0.25); border-radius:10px; text-align:center; }
+    .ppn-settle-eq { font-family:var(--mono); font-size:13.5px; color:var(--gray-1); line-height:1.8; letter-spacing:.02em; }
+    .ppn-settle-eq .pos { color:#34D399; font-weight:600; }
+    .ppn-settle-eq .neg { color:#F87171; font-weight:600; }
+    .ppn-settle-eq .result { color:var(--cyan); font-weight:700; font-size:20px; padding:0 .25rem; }
+    .ppn-settle-note { font-family:var(--mono); font-size:11px; color:var(--gray-3); margin-top:.75rem; letter-spacing:.02em; }
+
+    /* ── Inventory movement horizontal timeline ── */
+    .inv-timeline { padding:.5rem 0; }
+    .inv-tl-row { display:flex; align-items:center; gap:1rem; margin-bottom:.7rem; font-family:var(--mono); font-size:11.5px; }
+    .inv-tl-label { min-width:170px; color:var(--gray-2); line-height:1.3; }
+    .inv-tl-label.strong { color:var(--white); font-weight:600; }
+    .inv-tl-track { flex:1; position:relative; height:22px; background:rgba(255,255,255,0.03); border-radius:3px; }
+    .inv-tl-bar { position:absolute; top:0; bottom:0; border-radius:3px; transition:width 1.2s cubic-bezier(.25,.46,.45,.94); display:flex; align-items:center; padding:0 .6rem; font-size:10.5px; color:var(--white); font-weight:600; }
+    .inv-tl-bar.start { background:linear-gradient(90deg, rgba(129,140,248,0.5), rgba(129,140,248,0.25)); }
+    .inv-tl-bar.in { background:linear-gradient(90deg, rgba(52,211,153,0.5), rgba(52,211,153,0.25)); }
+    .inv-tl-bar.out { background:linear-gradient(90deg, rgba(251,146,60,0.5), rgba(251,146,60,0.25)); }
+    .inv-tl-bar.end { background:linear-gradient(90deg, rgba(201,165,103,0.55), rgba(201,165,103,0.30)); border:1px solid rgba(201,165,103,0.4); }
+    .inv-tl-val { font-size:11.5px; color:var(--white); font-variant-numeric:tabular-nums; min-width:120px; text-align:right; font-weight:600; }
+
+    /* ── 5-card obligation calendar layout on tax page ── */
+    .obl-grid-5 { display:grid; grid-template-columns:repeat(5, 1fr); gap:.8rem; }
+    @media(max-width:1024px) { .obl-grid-5 { grid-template-columns:repeat(3, 1fr); } }
+    @media(max-width:768px)  { .obl-grid-5 { grid-template-columns:1fr; } }
+
     /* ── CTA ── */
     .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); }
     .cta-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
@@ -626,17 +676,16 @@
                data-id="Lihat analisis →">Lihat analisis →</div>
         </div>
 
-        <div class="cb-card placeholder" data-cb="makmur">
+        <div class="cb-card" data-cb="makmur">
           <div class="cb-card-num">Case 02</div>
           <div class="cb-card-name">Toko Makmur</div>
           <div class="cb-card-type"
                data-en="Sembako retail · FIFO"
                data-id="Toko sembako · FIFO">Toko sembako · FIFO</div>
-          <div class="cb-card-tag ph">PKP · PPN 11%</div>
+          <div class="cb-card-tag">PKP · PPN 11%</div>
           <div class="cb-card-arrow"
-               style="color: var(--gray-3)"
-               data-en="In progress"
-               data-id="Segera hadir">Segera hadir</div>
+               data-en="View tax analysis →"
+               data-id="Lihat analisis →">Lihat analisis →</div>
         </div>
 
         <div class="cb-card placeholder" data-cb="solusi">
@@ -1046,17 +1095,447 @@
     </div><!-- /cb-panel kopi -->
 
     <!-- Placeholder panels -->
+    <!-- ═════════════════════════════════════════════════════════════════
+         PANEL 02 — TOKO MAKMUR · TAX DASHBOARD
+         ═════════════════════════════════════════════════════════════════ -->
     <div class="cb-panel" id="cb-makmur">
-      <div class="cb-placeholder-panel">
-        <div class="cb-placeholder-icon">§</div>
-        <div class="cb-placeholder-title">Toko Makmur</div>
-        <div class="cb-placeholder-desc"
-             data-en="PKP sembako retailer with PPN input/output reconciliation, FIFO inventory taxation, and monthly SPT Masa PPN — tax analysis in progress."
-             data-id="Toko sembako PKP dengan rekonsiliasi PPN masukan/keluaran, perpajakan persediaan FIFO, dan SPT Masa PPN bulanan — analisis pajak sedang disusun.">
-          Toko sembako PKP dengan rekonsiliasi PPN masukan/keluaran, perpajakan persediaan FIFO, dan SPT Masa PPN bulanan — analisis pajak sedang disusun.
-        </div>
+
+      <!-- Back-link to accounting -->
+      <div class="cb-backlink-wrap">
+        <a href="accounting.html#casebook" class="cb-backlink">
+          <span class="arrow">←</span>
+          <span data-en="Back to Toko Makmur bookkeeping"
+                data-id="Kembali ke pembukuan Toko Makmur">Kembali ke pembukuan Toko Makmur</span>
+        </a>
       </div>
-    </div>
+
+      <!-- EMBEDDED DASHBOARD -->
+      <div class="tax-dash-wrapper" id="casebook-makmur">
+
+        <!-- File window bar -->
+        <div class="tax-dash-wrapper-bar">
+          <div class="dwb-dots"><span class="dwb-dot dwb-r"></span><span class="dwb-dot dwb-a"></span><span class="dwb-dot dwb-g"></span></div>
+          <div class="dwb-file"><span class="dwb-path">~/tax_casebook/</span><span class="dwb-name">02_toko_makmur.html</span></div>
+          <div class="dwb-right">
+            <span>Jan 2025 · 36 entries</span>
+            <span class="dwb-status" data-en="compliant" data-id="patuh">patuh</span>
+          </div>
+        </div>
+
+        <!-- HEADER -->
+        <div class="tax-dash-header">
+          <div class="header-inner">
+            <div>
+              <div class="regime-badge"
+                   data-en="PKP · WP OP · Progressive Rate Regime"
+                   data-id="PKP · WP OP · Rezim Tarif Progresif">PKP · WP OP · Rezim Tarif Progresif</div>
+              <div class="header-label">CASE 02 · TAX ANALYSIS · PKP RETAILER</div>
+              <h1 class="header-title"
+                  data-en="PKP Compliance &amp; VAT Reconciliation for<br><span>Toko Makmur — Palu</span>"
+                  data-id="Kepatuhan PKP &amp; Rekonsiliasi PPN untuk<br><span>Toko Makmur — Palu</span>">
+                Kepatuhan PKP &amp; Rekonsiliasi PPN untuk<br><span>Toko Makmur — Palu</span>
+              </h1>
+              <p class="header-sub"
+                 data-en="An established PKP sembako retailer with Rp 27.5M monthly DPP revenue. Unlike Kopi Tadulako, there is no 0.5% shortcut — Toko Makmur must run the full PKP machinery: faktur pajak discipline, monthly PPN reconciliation, progressive PPh 21 for Tono, and five separate filing deadlines each month. This case showcases the tax-compliance complexity that makes PKP operators most in need of professional help."
+                 data-id="Pengecer sembako PKP mapan dengan omzet DPP Rp 27,5 jt/bulan. Tidak seperti Kopi Tadulako, tidak ada jalan pintas 0,5% — Toko Makmur harus menjalankan mesin PKP penuh: disiplin faktur pajak, rekonsiliasi PPN bulanan, PPh 21 progresif untuk Tono, dan lima tenggat pelaporan terpisah tiap bulan. Kasus ini memperlihatkan kompleksitas kepatuhan pajak yang paling butuh bantuan profesional.">
+                Pengecer sembako PKP mapan dengan omzet DPP Rp 27,5 jt/bulan. Tidak seperti Kopi Tadulako, tidak ada jalan pintas 0,5% — Toko Makmur harus menjalankan mesin PKP penuh: disiplin faktur pajak, rekonsiliasi PPN bulanan, PPh 21 progresif untuk Tono, dan lima tenggat pelaporan terpisah tiap bulan. Kasus ini memperlihatkan kompleksitas kepatuhan pajak yang paling butuh bantuan profesional.
+              </p>
+            </div>
+            <div class="header-meta">
+              <div class="meta-chip" data-en="Business <span>Sembako retail</span>" data-id="Jenis <span>Toko sembako</span>">Jenis <span>Toko sembako</span></div>
+              <div class="meta-chip" data-en="Location <span>Palu, Sulteng</span>" data-id="Lokasi <span>Palu, Sulteng</span>">Lokasi <span>Palu, Sulteng</span></div>
+              <div class="meta-chip" data-en="Period <span>January 2025</span>" data-id="Periode <span>Januari 2025</span>">Periode <span>Januari 2025</span></div>
+              <div class="meta-chip" data-en="Regime <span>PKP · FIFO · OP</span>" data-id="Rezim <span>PKP · FIFO · OP</span>">Rezim <span>PKP · FIFO · OP</span></div>
+              <div class="meta-chip" data-en="Employees <span>3 staff · 1 owner</span>" data-id="Karyawan <span>3 staff · 1 pemilik</span>">Karyawan <span>3 staff · 1 pemilik</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI ROW -->
+        <div class="tax-kpi-row">
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="revenue (DPP)" data-id="omzet (DPP)">omzet (DPP)</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 27,46<span>jt</span></div>
+            <div class="tax-kpi-desc" data-en="10 sales transactions · PPN collected separately" data-id="10 transaksi jual · PPN dipungut terpisah">10 transaksi jual · PPN dipungut terpisah</div>
+          </div>
+          <div class="tax-kpi-cell" style="background:rgba(201,165,103,0.04);border-right:1px solid rgba(201,165,103,0.12);">
+            <div class="tax-kpi-label" style="color:var(--cyan)" data-en="VAT underpayment" data-id="PPN kurang bayar">PPN kurang bayar</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 1.009.250</div>
+            <div class="tax-kpi-desc" data-en="setor by 28 Feb 2025 · SSP code 411211-100" data-id="setor paling lambat 28 Feb 2025 · kode 411211-100">setor paling lambat 28 Feb 2025 · kode 411211-100</div>
+          </div>
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="net profit" data-id="laba bersih">laba bersih</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 2,23<span>jt</span></div>
+            <div class="tax-kpi-desc" data-en="58% GM · 8.1% NM · PPh OP = 0 this year" data-id="58% GM · 8,1% NM · PPh OP = 0 tahun ini">58% GM · 8,1% NM · PPh OP = 0 tahun ini</div>
+          </div>
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="PPh 21 withheld" data-id="PPh 21 dipotong">PPh 21 dipotong</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 117.500</div>
+            <div class="tax-kpi-desc" data-en="Tono only · progressive 5% bracket" data-id="hanya Tono · lapis progresif 5%">hanya Tono · lapis progresif 5%</div>
+          </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="tax-dash-body">
+
+          <!-- 1. TAX REGIME CLASSIFICATION -->
+          <div>
+            <div class="tax-chart-box" style="padding:1.75rem;">
+              <div class="tax-section-label" data-en="Step 1 — Tax Regime Classification" data-id="Langkah 1 — Klasifikasi Rezim Pajak">Langkah 1 — Klasifikasi Rezim Pajak</div>
+              <p style="font-family:var(--mono);font-size:12px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;max-width:820px;"
+                 data-en="Toko Makmur is already PKP — the defining fact that shapes every subsequent obligation. This classification confirms which tax machinery applies and which doesn&rsquo;t."
+                 data-id="Toko Makmur sudah dikukuhkan PKP — fakta penentu yang membentuk seluruh kewajiban berikutnya. Klasifikasi ini menegaskan mesin pajak mana yang berlaku dan mana yang tidak.">
+                Toko Makmur sudah dikukuhkan PKP — fakta penentu yang membentuk seluruh kewajiban berikutnya. Klasifikasi ini menegaskan mesin pajak mana yang berlaku dan mana yang tidak.
+              </p>
+              <table class="kt-table">
+                <thead>
+                  <tr>
+                    <th data-en="Check" data-id="Pemeriksaan">Pemeriksaan</th>
+                    <th data-en="Criterion" data-id="Kriteria">Kriteria</th>
+                    <th data-en="Finding" data-id="Hasil">Hasil</th>
+                    <th data-en="Conclusion" data-id="Kesimpulan">Kesimpulan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="td-label" data-en="Legal form" data-id="Bentuk hukum">Bentuk hukum</td><td data-en="OP (sole proprietor) / Badan?" data-id="OP (orang pribadi) / Badan?">OP (orang pribadi) / Badan?</td><td data-en="Sole proprietor — owner Bapak Rahmat" data-id="Orang Pribadi — pemilik Bapak Rahmat">Orang Pribadi — pemilik Bapak Rahmat</td><td class="td-label">→ WP OP</td></tr>
+                  <tr><td class="td-label" data-en="PKP status" data-id="Status PKP">Status PKP</td><td data-en="Registered as PKP?" data-id="Sudah dikukuhkan PKP?">Sudah dikukuhkan PKP?</td><td data-en="Yes — crossed Rp 4.8B threshold in prior year" data-id="Ya — lewati ambang Rp 4,8M di tahun sebelumnya">Ya — lewati ambang Rp 4,8M di tahun sebelumnya</td><td class="td-label" style="color:var(--cyan)" data-en="→ Must collect &amp; credit VAT" data-id="→ Wajib pungut &amp; kredit PPN">→ Wajib pungut &amp; kredit PPN</td></tr>
+                  <tr><td class="td-label" data-en="PP 23/2018 eligibility" data-id="Kelayakan PP 23/2018">Kelayakan PP 23/2018</td><td data-en="Can elect 0.5% Final?" data-id="Bisa pilih PPh Final 0,5%?">Bisa pilih PPh Final 0,5%?</td><td data-en="No — PKP disqualifies from Final 0.5% regime" data-id="Tidak — status PKP menggugurkan rezim Final 0,5%">Tidak — status PKP menggugurkan rezim Final 0,5%</td><td class="td-neg" data-en="→ Progressive PPh OP applies" data-id="→ PPh OP Progresif berlaku">→ PPh OP Progresif berlaku</td></tr>
+                  <tr><td class="td-label" data-en="Bookkeeping obligation" data-id="Kewajiban pembukuan">Kewajiban pembukuan</td><td data-en="Article 28(1) UU KUP" data-id="Pasal 28(1) UU KUP">Pasal 28(1) UU KUP</td><td data-en="Double-entry, accrual basis, IDR" data-id="Double-entry, basis akrual, Rupiah">Double-entry, basis akrual, Rupiah</td><td class="td-label" data-en="→ Pembukuan penuh" data-id="→ Pembukuan penuh">→ Pembukuan penuh</td></tr>
+                  <tr><td class="td-label" data-en="Withholding obligation" data-id="Kewajiban pemotongan">Kewajiban pemotongan</td><td data-en="Any employee above PTKP?" data-id="Ada karyawan di atas PTKP?">Ada karyawan di atas PTKP?</td><td data-en="Yes — Tono (K/1) at Rp 96M/yr exceeds PTKP Rp 63M" data-id="Ya — Tono (K/1) Rp 96jt/thn lewat PTKP Rp 63jt">Ya — Tono (K/1) Rp 96jt/thn lewat PTKP Rp 63jt</td><td class="td-neg" data-en="→ PPh 21 withholding agent" data-id="→ Wajib Pemotong PPh 21">→ Wajib Pemotong PPh 21</td></tr>
+                  <tr><td class="td-label" data-en="Inventory method" data-id="Metode persediaan">Metode persediaan</td><td data-en="FIFO / Avg / Specific" data-id="FIFO / Rata-rata / Spesifik">FIFO / Rata-rata / Spesifik</td><td data-en="FIFO (consistent with prior years)" data-id="FIFO (konsisten tahun lalu)">FIFO (konsisten tahun lalu)</td><td class="td-label" data-en="→ FIFO locked for 5 yr" data-id="→ FIFO dikunci 5 thn">→ FIFO dikunci 5 thn</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 2. PPN RECONCILIATION — the heart of this dashboard -->
+          <div>
+            <div class="tax-section-label" data-en="Step 2 — Monthly VAT Reconciliation (the core of PKP compliance)" data-id="Langkah 2 — Rekonsiliasi PPN Bulanan (inti kepatuhan PKP)">Langkah 2 — Rekonsiliasi PPN Bulanan (inti kepatuhan PKP)</div>
+
+            <div class="ppn-split">
+              <!-- LEFT: PPN Masukan -->
+              <div class="ppn-side in">
+                <div class="ppn-side-label"><span>◀</span><span data-en="PPN MASUKAN · VAT PAID ON PURCHASES" data-id="PPN MASUKAN · DIBAYAR SAAT BELI">PPN MASUKAN · DIBAYAR SAAT BELI</span></div>
+                <div class="ppn-side-subtitle"
+                     data-en="6 supplier invoices · credited against output VAT"
+                     data-id="6 faktur pemasok · dikreditkan terhadap PPN keluaran">6 faktur pemasok · dikreditkan terhadap PPN keluaran</div>
+                <div class="ppn-flow-list">
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">03/01</span><span class="ppn-flow-desc" data-en="Rice 200kg" data-id="Beras 200kg">Beras 200kg</span><span class="ppn-flow-amt">264.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">07/01</span><span class="ppn-flow-desc" data-en="Cooking oil 100L" data-id="Minyak 100L">Minyak 100L</span><span class="ppn-flow-amt">203.500</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">10/01</span><span class="ppn-flow-desc" data-en="Sugar 150kg" data-id="Gula 150kg">Gula 150kg</span><span class="ppn-flow-amt">239.250</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">14/01</span><span class="ppn-flow-desc" data-en="Mixed sembako" data-id="Sembako campuran">Sembako campuran</span><span class="ppn-flow-amt">495.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">20/01</span><span class="ppn-flow-desc" data-en="Rice 300kg" data-id="Beras 300kg">Beras 300kg</span><span class="ppn-flow-amt">402.600</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">26/01</span><span class="ppn-flow-desc" data-en="Sugar &amp; sembako" data-id="Gula &amp; sembako">Gula &amp; sembako</span><span class="ppn-flow-amt">407.000</span></div>
+                </div>
+                <div class="ppn-side-total">
+                  <span class="ppn-side-total-label" data-en="Total VAT In" data-id="Total PPN Masukan">Total PPN Masukan</span>
+                  <span class="ppn-side-total-val">Rp 2.011.350</span>
+                </div>
+              </div>
+
+              <!-- RIGHT: PPN Keluaran -->
+              <div class="ppn-side out">
+                <div class="ppn-side-label"><span data-en="VAT OUT · COLLECTED FROM BUYERS · PPN KELUARAN" data-id="PPN KELUARAN · DIPUNGUT DARI PEMBELI">PPN KELUARAN · DIPUNGUT DARI PEMBELI</span><span>▶</span></div>
+                <div class="ppn-side-subtitle"
+                     data-en="10 customer invoices · this is a liability, not income"
+                     data-id="10 faktur pembeli · ini liabilitas, bukan pendapatan">10 faktur pembeli · ini liabilitas, bukan pendapatan</div>
+                <div class="ppn-flow-list">
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">05/01</span><span class="ppn-flow-desc" data-en="Rice sale" data-id="Jual beras">Jual beras</span><span class="ppn-flow-amt">237.600</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">08/01</span><span class="ppn-flow-desc" data-en="Oil sale" data-id="Jual minyak">Jual minyak</span><span class="ppn-flow-amt">237.600</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">12/01</span><span class="ppn-flow-desc" data-en="Sugar sale" data-id="Jual gula">Jual gula</span><span class="ppn-flow-amt">308.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">16/01</span><span class="ppn-flow-desc" data-en="Rice sale" data-id="Jual beras">Jual beras</span><span class="ppn-flow-amt">330.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">18/01</span><span class="ppn-flow-desc" data-en="Mixed sembako" data-id="Sembako campuran">Sembako campuran</span><span class="ppn-flow-amt">363.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">22/01</span><span class="ppn-flow-desc" data-en="Oil sale" data-id="Jual minyak">Jual minyak</span><span class="ppn-flow-amt">162.800</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">24/01</span><span class="ppn-flow-desc" data-en="Rice sale" data-id="Jual beras">Jual beras</span><span class="ppn-flow-amt">369.600</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">28/01</span><span class="ppn-flow-desc" data-en="Mixed sembako" data-id="Sembako campuran">Sembako campuran</span><span class="ppn-flow-amt">495.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">30/01</span><span class="ppn-flow-desc" data-en="Rice &amp; sugar" data-id="Beras &amp; gula">Beras &amp; gula</span><span class="ppn-flow-amt">286.000</span></div>
+                  <div class="ppn-flow-row"><span class="ppn-flow-date">31/01</span><span class="ppn-flow-desc" data-en="End-of-month" data-id="Akhir bulan">Akhir bulan</span><span class="ppn-flow-amt">231.000</span></div>
+                </div>
+                <div class="ppn-side-total">
+                  <span class="ppn-side-total-label" data-en="Total VAT Out" data-id="Total PPN Keluaran">Total PPN Keluaran</span>
+                  <span class="ppn-side-total-val">Rp 3.020.600</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Settlement row -->
+            <div class="ppn-settle">
+              <div class="ppn-settle-eq">
+                <span class="pos">Rp 3.020.600</span>
+                <span> &nbsp;−&nbsp; </span>
+                <span class="neg">Rp 2.011.350</span>
+                <span> &nbsp;=&nbsp; </span>
+                <span class="result">Rp 1.009.250</span>
+              </div>
+              <div class="ppn-settle-note"
+                   data-en="SPT Masa PPN — filed &amp; remitted via Coretax by 28 Feb 2025 (end of following month)"
+                   data-id="SPT Masa PPN — dilapor &amp; disetor via Coretax paling lambat 28 Feb 2025 (akhir bulan berikutnya)">SPT Masa PPN — dilapor &amp; disetor via Coretax paling lambat 28 Feb 2025 (akhir bulan berikutnya)</div>
+            </div>
+          </div>
+
+          <!-- 3. INVENTORY MOVEMENT -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 3 — FIFO Inventory Movement (DPP basis)" data-id="Langkah 3 — Mutasi Persediaan FIFO (basis DPP)">Langkah 3 — Mutasi Persediaan FIFO (basis DPP)</span></div>
+              <span class="tax-chart-badge" data-en="inventory → COGS" data-id="persediaan → HPP">persediaan → HPP</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;"
+               data-en="Purchases enter inventory at DPP (PPN flows separately). Outflow value is imputed at 58% gross margin, since the source &lsquo;Nilai Keluar&rsquo; column contains selling prices rather than FIFO cost layers (see reconciliation finding in the accounting casebook)."
+               data-id="Pembelian masuk persediaan pada DPP (PPN mengalir terpisah). Nilai keluar diimputasi pada gross margin 58%, karena kolom &lsquo;Nilai Keluar&rsquo; sumber berisi harga jual, bukan layer biaya FIFO (lihat temuan rekonsiliasi di casebook akuntansi).">
+              Pembelian masuk persediaan pada DPP (PPN mengalir terpisah). Nilai keluar diimputasi pada gross margin 58%, karena kolom &lsquo;Nilai Keluar&rsquo; sumber berisi harga jual, bukan layer biaya FIFO (lihat temuan rekonsiliasi di casebook akuntansi).
+            </p>
+
+            <div class="inv-timeline">
+              <!-- Scale: max value is 32,085,000 (in) → 100% -->
+              <div class="inv-tl-row">
+                <div class="inv-tl-label strong" data-en="Opening (01 Jan)" data-id="Saldo Awal (01 Jan)">Saldo Awal (01 Jan)</div>
+                <div class="inv-tl-track"><div class="inv-tl-bar start" style="width:43%">Rp 13,80 jt</div></div>
+                <div class="inv-tl-val">Rp 13.800.000</div>
+              </div>
+              <div class="inv-tl-row">
+                <div class="inv-tl-label" data-en="+ Purchases (6× transactions)" data-id="+ Pembelian (6× transaksi)">+ Pembelian (6× transaksi)</div>
+                <div class="inv-tl-track"><div class="inv-tl-bar in" style="width:57%">+ Rp 18,29 jt</div></div>
+                <div class="inv-tl-val" style="color:#34D399">+ 18.285.000</div>
+              </div>
+              <div class="inv-tl-row">
+                <div class="inv-tl-label strong" data-en="= Available for sale" data-id="= Tersedia untuk Dijual">= Tersedia untuk Dijual</div>
+                <div class="inv-tl-track"><div class="inv-tl-bar start" style="width:100%;opacity:0.8">Rp 32,09 jt</div></div>
+                <div class="inv-tl-val">Rp 32.085.000</div>
+              </div>
+              <div class="inv-tl-row">
+                <div class="inv-tl-label" data-en="− COGS (imputed @ 58% GM)" data-id="− HPP (imputasi @ 58% GM)">− HPP (imputasi @ 58% GM)</div>
+                <div class="inv-tl-track"><div class="inv-tl-bar out" style="width:36%">− Rp 11,53 jt</div></div>
+                <div class="inv-tl-val" style="color:#FB923C">− 11.533.200</div>
+              </div>
+              <div class="inv-tl-row">
+                <div class="inv-tl-label strong" data-en="= Closing (31 Jan)" data-id="= Saldo Akhir (31 Jan)">= Saldo Akhir (31 Jan)</div>
+                <div class="inv-tl-track"><div class="inv-tl-bar end" style="width:64%">Rp 20,57 jt</div></div>
+                <div class="inv-tl-val" style="color:var(--cyan)">Rp 20.551.800</div>
+              </div>
+            </div>
+
+            <div style="margin-top:1.2rem;padding:.9rem 1.1rem;background:rgba(251,146,60,0.04);border-left:2px solid #FB923C;border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+              <span data-en="<strong>Practitioner note:</strong> For the first year&rsquo;s SPT, DJP may accept HPP derived from stock-opname + purchase records. Going forward, full FIFO cost-layer tracking should be implemented in the Kartu Persediaan — each outflow tagged with the purchase batch it draws from."
+                    data-id="<strong>Catatan praktisi:</strong> Untuk SPT tahun pertama, DJP umumnya menerima HPP yang diturunkan dari stock-opname + catatan pembelian. Ke depan, pelacakan layer biaya FIFO penuh harus diterapkan di Kartu Persediaan — setiap pengeluaran ditandai dengan batch pembelian sumbernya.">
+                <strong>Catatan praktisi:</strong> Untuk SPT tahun pertama, DJP umumnya menerima HPP yang diturunkan dari stock-opname + catatan pembelian. Ke depan, pelacakan layer biaya FIFO penuh harus diterapkan di Kartu Persediaan — setiap pengeluaran ditandai dengan batch pembelian sumbernya.
+              </span>
+            </div>
+          </div>
+
+          <!-- 4. P&L WATERFALL -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 4 — P&amp;L Cascade with Tax Overlay" data-id="Langkah 4 — Kaskade Laba Rugi dengan Overlay Pajak">Langkah 4 — Kaskade Laba Rugi dengan Overlay Pajak</span></div>
+              <span class="tax-chart-badge">PKP · DPP only</span>
+            </div>
+            <div class="waterfall-box">
+              <!-- Revenue 27,460,000 = 100% -->
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Revenue (DPP)" data-id="Pendapatan (DPP)">Pendapatan (DPP)</div><div class="wf-track"><div class="wf-bar total" style="width:100%">100%</div></div><div class="wf-val">Rp 27.460.000</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— COGS (58% GM)" data-id="— HPP (58% GM)">— HPP (58% GM)</div><div class="wf-track"><div class="wf-bar neg" style="width:42%">42,0%</div></div><div class="wf-val" style="color:#F87171">(11.533.200)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Gross Profit" data-id="Laba Kotor">Laba Kotor</div><div class="wf-track"><div class="wf-bar subtotal" style="width:58%">58,0% · GM</div></div><div class="wf-val">Rp 15.926.800</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Salaries (3 staff)" data-id="— Beban Gaji (3 staff)">— Beban Gaji (3 staff)</div><div class="wf-track"><div class="wf-bar neg" style="width:27.3%">27,3%</div></div><div class="wf-val" style="color:#F87171">(7.500.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Rent (ruko)" data-id="— Beban Sewa (ruko)">— Beban Sewa (ruko)</div><div class="wf-track"><div class="wf-bar neg" style="width:18.2%">18,2%</div></div><div class="wf-val" style="color:#F87171">(5.000.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Utilities" data-id="— Beban Utilitas">— Beban Utilitas</div><div class="wf-track"><div class="wf-bar neg" style="width:4.4%">4,4%</div></div><div class="wf-val" style="color:#F87171">(1.200.000)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="EBIT (pre-tax profit)" data-id="EBIT (laba sebelum pajak)">EBIT (laba sebelum pajak)</div><div class="wf-track"><div class="wf-bar subtotal" style="width:8.1%">8,1% NM</div></div><div class="wf-val">Rp 2.226.800</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— PPh OP (annualized &lt; PTKP K/2)" data-id="— PPh OP (disetahunkan &lt; PTKP K/2)">— PPh OP (disetahunkan &lt; PTKP K/2)</div><div class="wf-track"><div class="wf-bar neg" style="width:0.01%;padding:0 .3rem;font-size:10px;background:rgba(52,211,153,0.3)">0</div></div><div class="wf-val" style="color:#34D399">(0)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Net Profit After Tax" data-id="Laba Bersih Setelah Pajak">Laba Bersih Setelah Pajak</div><div class="wf-track"><div class="wf-bar total" style="width:8.1%">8,1% NM</div></div><div class="wf-val" style="color:var(--cyan)">Rp 2.226.800</div></div>
+            </div>
+
+            <div style="margin-top:1.2rem;padding:.9rem 1.1rem;background:rgba(201,165,103,0.04);border-left:2px solid var(--cyan);font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;border-radius:0 4px 4px 0;"
+                 data-en="<strong>Counter-intuitive but correct:</strong> The business made Rp 2.23M profit this month yet paid <strong>Rp 1.13M in tax</strong> (PPN Rp 1,009,250 + PPh 21 Tono Rp 117,500) — that&rsquo;s 51% of net profit going to the state. Meanwhile, Bapak Rahmat&rsquo;s personal income tax is zero (annualized EBIT Rp 26.7M &lt; PTKP K/2 Rp 67.5M). For PKP small retailers, <em>PPN cash-flow discipline outweighs PPh planning almost every time</em>."
+                 data-id="<strong>Terlihat kontra-intuitif tapi benar:</strong> Usaha untung Rp 2,23 jt bulan ini namun membayar <strong>Rp 1,13 jt pajak</strong> (PPN Rp 1.009.250 + PPh 21 Tono Rp 117.500) — yaitu 51% dari laba bersih disetor ke negara. Sementara itu, PPh OP pribadi Bapak Rahmat nol (EBIT disetahunkan Rp 26,7 jt &lt; PTKP K/2 Rp 67,5 jt). Untuk pengecer PKP kecil, <em>disiplin cash-flow PPN mengalahkan perencanaan PPh hampir selalu</em>.">
+              <strong>Terlihat kontra-intuitif tapi benar:</strong> Usaha untung Rp 2,23 jt bulan ini namun membayar <strong>Rp 1,13 jt pajak</strong> (PPN Rp 1.009.250 + PPh 21 Tono Rp 117.500) — yaitu 51% dari laba bersih disetor ke negara. Sementara itu, PPh OP pribadi Bapak Rahmat nol (EBIT disetahunkan Rp 26,7 jt &lt; PTKP K/2 Rp 67,5 jt). Untuk pengecer PKP kecil, <em>disiplin cash-flow PPN mengalahkan perencanaan PPh hampir selalu</em>.
+            </div>
+          </div>
+
+          <!-- 5. PTKP CHECK -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 5 — PPh 21 Progressive Calculation" data-id="Langkah 5 — Perhitungan PPh 21 Progresif">Langkah 5 — Perhitungan PPh 21 Progresif</span></div>
+              <span class="tax-chart-badge">PMK 101/2016 · PTKP 2025</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;"
+               data-en="Unlike Kopi Tadulako&rsquo;s all-zero payroll, Toko Makmur has a real progressive withholding case — Tono (Kepala Toko) earns Rp 8M/month, above the K/1 PTKP threshold."
+               data-id="Berbeda dari Kopi Tadulako yang semua nol, Toko Makmur punya kasus pemotongan progresif nyata — Tono (Kepala Toko) berpenghasilan Rp 8jt/bulan, di atas ambang PTKP K/1.">
+              Berbeda dari Kopi Tadulako yang semua nol, Toko Makmur punya kasus pemotongan progresif nyata — Tono (Kepala Toko) berpenghasilan Rp 8jt/bulan, di atas ambang PTKP K/1.
+            </p>
+
+            <div class="ptkp-header-labels">
+              <span data-en="Employee" data-id="Karyawan">Karyawan</span>
+              <span data-en="PTKP Status" data-id="Status PTKP">Status PTKP</span>
+              <span data-en="Annual gross vs PTKP" data-id="Bruto tahunan vs PTKP">Bruto tahunan vs PTKP</span>
+              <span data-en="PPh 21 Verdict" data-id="Putusan PPh 21" style="text-align:right">Putusan PPh 21</span>
+            </div>
+
+            <div class="ptkp-grid">
+              <!-- Desi: TK/0 · 3.7M × 12 = 44.4M vs PTKP 54M → below -->
+              <div class="ptkp-row">
+                <div>
+                  <div class="ptkp-name">Desi Ratnasari</div>
+                  <div class="ptkp-name-role" data-en="Cashier / Admin" data-id="Kasir / Admin">Kasir / Admin</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-tk0">TK/0</div>
+                <div class="ptkp-compare">
+                  <!-- PTKP 54M line at 90%; bruto 44.4M = 44.4/54 × 90% = 74% -->
+                  <div class="ptkp-compare-bruto" style="width:74%;background:linear-gradient(90deg,rgba(52,211,153,0.5),rgba(52,211,153,0.25))"></div>
+                  <div class="ptkp-compare-ptkp-line" style="left:90%"></div>
+                  <div class="ptkp-compare-label" style="left:4px;">Rp 44,4jt</div>
+                  <div class="ptkp-compare-label" style="right:4px;color:var(--cyan);">PTKP Rp 54jt</div>
+                </div>
+                <div class="ptkp-verdict ptkp-verdict-zero">PPh 21 = Rp 0</div>
+              </div>
+
+              <!-- Tono: K/1 · 8M × 12 = 96M vs PTKP 63M → ABOVE, taxable -->
+              <div class="ptkp-row" style="background:rgba(251,146,60,0.03);border-color:rgba(251,146,60,0.15);">
+                <div>
+                  <div class="ptkp-name">Tono Wibowo</div>
+                  <div class="ptkp-name-role" data-en="Store Manager" data-id="Kepala Toko">Kepala Toko</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-k1">K/1</div>
+                <div class="ptkp-compare">
+                  <!-- PTKP 63M line; bruto 96M = 152% of PTKP → bar fills over the line
+                       Place PTKP line at 65%, bruto bar width = 96/63 × 65% = 99% (just under full) -->
+                  <div class="ptkp-compare-bruto" style="width:99%;background:linear-gradient(90deg,rgba(251,146,60,0.5),rgba(251,146,60,0.3))"></div>
+                  <div class="ptkp-compare-ptkp-line" style="left:65%"></div>
+                  <div class="ptkp-compare-label" style="left:4px;">Rp 96jt</div>
+                  <div class="ptkp-compare-label" style="left:calc(65% + 6px);color:var(--cyan);">PTKP Rp 63jt</div>
+                </div>
+                <div class="ptkp-verdict" style="color:#FB923C">Rp 117.500/bln</div>
+              </div>
+
+              <!-- Sari: TK/0 · 3M × 12 = 36M vs PTKP 54M → below -->
+              <div class="ptkp-row">
+                <div>
+                  <div class="ptkp-name">Sari Dewi</div>
+                  <div class="ptkp-name-role" data-en="Sales clerk" data-id="Pramuniaga">Pramuniaga</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-tk0">TK/0</div>
+                <div class="ptkp-compare">
+                  <div class="ptkp-compare-bruto" style="width:60%;background:linear-gradient(90deg,rgba(52,211,153,0.5),rgba(52,211,153,0.25))"></div>
+                  <div class="ptkp-compare-ptkp-line" style="left:90%"></div>
+                  <div class="ptkp-compare-label" style="left:4px;">Rp 36jt</div>
+                  <div class="ptkp-compare-label" style="right:4px;color:var(--cyan);">PTKP Rp 54jt</div>
+                </div>
+                <div class="ptkp-verdict ptkp-verdict-zero">PPh 21 = Rp 0</div>
+              </div>
+            </div>
+
+            <!-- Worked-out calculation for Tono -->
+            <details style="margin-top:1.25rem;background:rgba(251,146,60,0.03);border:1px solid rgba(251,146,60,0.15);border-radius:6px;padding:.9rem 1.1rem;" open>
+              <summary style="font-family:var(--mono);font-size:11px;color:#FB923C;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:700;" data-en="▼ Tono&rsquo;s PPh 21 — step-by-step" data-id="▼ PPh 21 Tono — langkah demi langkah">▼ PPh 21 Tono — langkah demi langkah</summary>
+              <table class="kt-table" style="margin-top:1rem">
+                <tbody>
+                  <tr><td class="td-label" data-en="Step 1 · Annual gross (Rp 8jt × 12)" data-id="Langkah 1 · Bruto tahunan (Rp 8jt × 12)">Langkah 1 · Bruto tahunan (Rp 8jt × 12)</td><td class="td-num">Rp 96.000.000</td></tr>
+                  <tr><td class="td-label" data-en="Step 2 · Less: Biaya Jabatan (5%, max Rp 6jt/yr)" data-id="Langkah 2 · Dikurangi: Biaya Jabatan (5%, max Rp 6jt/thn)">Langkah 2 · Dikurangi: Biaya Jabatan (5%, max Rp 6jt/thn)</td><td class="td-num" style="color:#F87171">(Rp 4.800.000)</td></tr>
+                  <tr><td class="td-label" data-en="= Neto annual" data-id="= Neto tahunan">= Neto tahunan</td><td class="td-num">Rp 91.200.000</td></tr>
+                  <tr><td class="td-label" data-en="Step 3 · Less: PTKP K/1" data-id="Langkah 3 · Dikurangi: PTKP K/1">Langkah 3 · Dikurangi: PTKP K/1</td><td class="td-num" style="color:#F87171">(Rp 63.000.000)</td></tr>
+                  <tr style="background:rgba(201,165,103,0.06)"><td class="td-label" data-en="= PKP (taxable income)" data-id="= PKP (Penghasilan Kena Pajak)">= PKP (Penghasilan Kena Pajak)</td><td class="td-num" style="color:var(--cyan)">Rp 28.200.000</td></tr>
+                  <tr><td class="td-label" data-en="Step 4 · 1st bracket: 5% × Rp 28,2jt (within Rp 60jt cap)" data-id="Langkah 4 · Lapis 1: 5% × Rp 28,2jt (dalam batas Rp 60jt)">Langkah 4 · Lapis 1: 5% × Rp 28,2jt (dalam batas Rp 60jt)</td><td class="td-num">Rp 1.410.000</td></tr>
+                  <tr class="cb-total" style="background:rgba(251,146,60,0.1);border-top:2px solid #FB923C"><td class="td-label" data-en="= PPh 21 ANNUAL" data-id="= PPh 21 TAHUNAN">= PPh 21 TAHUNAN</td><td class="td-num" style="color:#FB923C">Rp 1.410.000</td></tr>
+                  <tr><td class="td-label" data-en="Step 5 · Monthly withholding ÷ 12" data-id="Langkah 5 · Pemotongan bulanan ÷ 12">Langkah 5 · Pemotongan bulanan ÷ 12</td><td class="td-num" style="color:var(--cyan);font-size:14px">Rp 117.500</td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+
+          <!-- 6. OBLIGATIONS CALENDAR — 5 cards for PKP -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 6 — Tax Obligations Calendar (5 filings/month)" data-id="Langkah 6 — Kalender Kewajiban Pajak (5 pelaporan/bulan)">Langkah 6 — Kalender Kewajiban Pajak (5 pelaporan/bulan)</span></div>
+              <span class="tax-chart-badge" data-en="PKP complexity" data-id="kompleksitas PKP">kompleksitas PKP</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;"
+               data-en="Where Kopi Tadulako had 3 obligations, Toko Makmur has 5. Miss any deadline and DJP charges bunga 2%/month on the underpayment plus administrative penalties."
+               data-id="Kalau Kopi Tadulako punya 3 kewajiban, Toko Makmur punya 5. Lewatkan salah satu tenggat dan DJP menagih bunga 2%/bulan atas kekurangan ditambah denda administratif.">
+              Kalau Kopi Tadulako punya 3 kewajiban, Toko Makmur punya 5. Lewatkan salah satu tenggat dan DJP menagih bunga 2%/bulan atas kekurangan ditambah denda administratif.
+            </p>
+            <div class="obl-grid-5">
+              <div class="obl-card" style="--card-color:#F87171">
+                <div class="obl-period" data-en="By 10th" data-id="Tgl 10">Tgl 10</div>
+                <div class="obl-title" data-en="PPh 21 Setoran" data-id="Setoran PPh 21">Setoran PPh 21</div>
+                <div class="obl-form" data-en="Rp 117.500 for Tono · SSP kode 411121-100" data-id="Rp 117.500 untuk Tono · SSP kode 411121-100">Rp 117.500 untuk Tono · SSP kode 411121-100</div>
+                <div class="obl-deadline"><span data-en="Next:" data-id="Berikutnya:">Berikutnya:</span>&nbsp;<strong>10 Feb 2025</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:#FB923C">
+                <div class="obl-period" data-en="By 15th" data-id="Tgl 15">Tgl 15</div>
+                <div class="obl-title" data-en="PPh 25 Angsuran" data-id="Angsuran PPh 25">Angsuran PPh 25</div>
+                <div class="obl-form" data-en="Rp 0 this year — annual base below PTKP" data-id="Rp 0 tahun ini — dasar tahunan di bawah PTKP">Rp 0 tahun ini — dasar tahunan di bawah PTKP</div>
+                <div class="obl-deadline"><span data-en="Next:" data-id="Berikutnya:">Berikutnya:</span>&nbsp;<strong>15 Feb 2025</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:#818CF8">
+                <div class="obl-period" data-en="By 20th" data-id="Tgl 20">Tgl 20</div>
+                <div class="obl-title" data-en="SPT Masa PPh 21" data-id="SPT Masa PPh 21">SPT Masa PPh 21</div>
+                <div class="obl-form" data-en="Report withholding · via Coretax / DJP Online" data-id="Lapor pemotongan · via Coretax / DJP Online">Lapor pemotongan · via Coretax / DJP Online</div>
+                <div class="obl-deadline"><span data-en="Next:" data-id="Berikutnya:">Berikutnya:</span>&nbsp;<strong>20 Feb 2025</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:var(--cyan)">
+                <div class="obl-period" data-en="End of month" data-id="Akhir bulan">Akhir bulan</div>
+                <div class="obl-title" data-en="PPN Setor + SPT Masa PPN" data-id="Setor PPN + SPT Masa PPN">Setor PPN + SPT Masa PPN</div>
+                <div class="obl-form" data-en="Rp 1.009.250 · SSP kode 411211-100 · SPT via Coretax" data-id="Rp 1.009.250 · SSP kode 411211-100 · SPT via Coretax">Rp 1.009.250 · SSP kode 411211-100 · SPT via Coretax</div>
+                <div class="obl-deadline"><span data-en="Next:" data-id="Berikutnya:">Berikutnya:</span>&nbsp;<strong>28 Feb 2025</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:#34D399">
+                <div class="obl-period" data-en="Annually" data-id="Tahunan">Tahunan</div>
+                <div class="obl-title" data-en="SPT Tahunan PPh OP" data-id="SPT Tahunan PPh OP">SPT Tahunan PPh OP</div>
+                <div class="obl-form" data-en="Form 1770 · full Neraca, L/R, mutasi persediaan" data-id="Formulir 1770 · Neraca, L/R, mutasi persediaan">Formulir 1770 · Neraca, L/R, mutasi persediaan</div>
+                <div class="obl-deadline"><span data-en="Deadline:" data-id="Batas:">Batas:</span>&nbsp;<strong>31 Mar 2026</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. PRACTITIONER RECOMMENDATIONS -->
+          <div>
+            <div class="tax-section-label" data-en="Practitioner Recommendations" data-id="Rekomendasi Praktisi">Rekomendasi Praktisi</div>
+            <div class="practitioner-grid">
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="PPN cash-flow" data-id="Cash-flow PPN">Cash-flow PPN</div>
+                <div class="practitioner-title" data-en="Collect early, remit late — but don't spend it" data-id="Pungut di awal, setor di akhir — tapi jangan dipakai">Pungut di awal, setor di akhir — tapi jangan dipakai</div>
+                <div class="practitioner-text"
+                     data-en="PPN Keluaran is a liability, not revenue. Toko Makmur has ~28 days between collecting PPN on a Jan 5 sale and remitting it on Feb 28. Tempting to use as working capital, but if cash isn&rsquo;t available at deadline, DJP charges 2%/month interest plus potential STP. Best practice: sweep PPN Keluaran into a separate rekening pajak daily."
+                     data-id="PPN Keluaran adalah liabilitas, bukan pendapatan. Toko Makmur punya ~28 hari antara pungutan PPN atas jual 5 Jan dengan setor 28 Feb. Menggoda untuk dipakai modal kerja, tapi kalau kas tidak tersedia saat deadline, DJP tagih bunga 2%/bulan plus potensi STP. Praktik terbaik: transfer PPN Keluaran ke rekening pajak terpisah tiap hari.">
+                  PPN Keluaran adalah liabilitas, bukan pendapatan. Toko Makmur punya ~28 hari antara pungutan PPN atas jual 5 Jan dengan setor 28 Feb. Menggoda untuk dipakai modal kerja, tapi kalau kas tidak tersedia saat deadline, DJP tagih bunga 2%/bulan plus potensi STP. Praktik terbaik: transfer PPN Keluaran ke rekening pajak terpisah tiap hari.
+                </div>
+              </div>
+
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="Faktur discipline" data-id="Disiplin Faktur">Disiplin Faktur</div>
+                <div class="practitioner-title" data-en="No valid FP = no VAT credit" data-id="Tanpa FP valid = PPN Masukan tidak bisa dikreditkan">Tanpa FP valid = PPN Masukan tidak bisa dikreditkan</div>
+                <div class="practitioner-text"
+                     data-en="The Rp 2M VAT credit on purchases requires valid Faktur Pajak from each supplier (bearing a proper NSFP sequence and uploaded to Coretax). Lose or forget to request one and the PPN Masukan becomes non-creditable — Toko Makmur would owe the full Rp 3M Keluaran instead of Rp 1M. Standing rule: always demand FP at time of purchase, never later."
+                     data-id="Kredit PPN Rp 2jt atas pembelian memerlukan Faktur Pajak sah dari setiap pemasok (dengan urutan NSFP valid dan diunggah ke Coretax). Kehilangan atau lupa minta FP membuat PPN Masukan tidak bisa dikreditkan — Toko Makmur akan terutang Rp 3jt Keluaran penuh alih-alih Rp 1jt. Aturan baku: selalu minta FP saat pembelian, jangan belakangan.">
+                  Kredit PPN Rp 2jt atas pembelian memerlukan Faktur Pajak sah dari setiap pemasok (dengan urutan NSFP valid dan diunggah ke Coretax). Kehilangan atau lupa minta FP membuat PPN Masukan tidak bisa dikreditkan — Toko Makmur akan terutang Rp 3jt Keluaran penuh alih-alih Rp 1jt. Aturan baku: selalu minta FP saat pembelian, jangan belakangan.
+                </div>
+              </div>
+
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="Bracket drift" data-id="Pergeseran lapis">Pergeseran lapis</div>
+                <div class="practitioner-title" data-en="Tono&rsquo;s next raise crosses a tax bracket" data-id="Kenaikan gaji Tono berikutnya menembus lapis tarif">Kenaikan gaji Tono berikutnya menembus lapis tarif</div>
+                <div class="practitioner-text"
+                     data-en="Tono&rsquo;s PKP is Rp 28.2M — safely in the 5% bracket. But if his gross climbs to Rp 13jt/month (PKP ~Rp 91jt/yr), part of it crosses into the 15% bracket. Effective withholding would jump from Rp 117k to roughly Rp 646k/month — a 5.5× increase from a 62% raise. When budgeting a promotion, factor in the bracket math, not just the take-home impact."
+                     data-id="PKP Tono saat ini Rp 28,2jt — aman di lapis 5%. Tapi kalau bruto naik ke Rp 13jt/bulan (PKP ~Rp 91jt/thn), sebagian menembus lapis 15%. Pemotongan efektif akan melonjak dari Rp 117rb ke sekitar Rp 646rb/bulan — 5,5× lipat dari kenaikan 62%. Saat menganggarkan promosi, hitung matematika lapis, bukan cuma dampak take-home.">
+                  PKP Tono saat ini Rp 28,2jt — aman di lapis 5%. Tapi kalau bruto naik ke Rp 13jt/bulan (PKP ~Rp 91jt/thn), sebagian menembus lapis 15%. Pemotongan efektif akan melonjak dari Rp 117rb ke sekitar Rp 646rb/bulan — 5,5× lipat dari kenaikan 62%. Saat menganggarkan promosi, hitung matematika lapis, bukan cuma dampak take-home.
+                </div>
+              </div>
+
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="Method lock-in" data-id="Kunci metode">Kunci metode</div>
+                <div class="practitioner-title" data-en="FIFO vs Average changes HPP meaningfully" data-id="FIFO vs Rata-rata ubah HPP secara signifikan">FIFO vs Rata-rata ubah HPP secara signifikan</div>
+                <div class="practitioner-text"
+                     data-en="Toko Makmur uses FIFO. Under rising sembako prices, FIFO yields lower HPP → higher gross profit → higher PPh. Switching to weighted-average would lower taxable profit but DJP requires consistency — you cannot switch more often than every 5 fiscal years, and switching requires formal notification. Pick the method deliberately at the start, not in reaction to one bad year."
+                     data-id="Toko Makmur pakai FIFO. Saat harga sembako naik, FIFO menghasilkan HPP lebih rendah → laba kotor lebih tinggi → PPh lebih tinggi. Pindah ke rata-rata tertimbang akan menurunkan laba kena pajak, tapi DJP mewajibkan konsistensi — tidak boleh pindah lebih sering dari tiap 5 tahun pajak, dan pindahnya harus pemberitahuan formal. Pilih metodenya secara sadar di awal, bukan reaktif setelah satu tahun buruk.">
+                  Toko Makmur pakai FIFO. Saat harga sembako naik, FIFO menghasilkan HPP lebih rendah → laba kotor lebih tinggi → PPh lebih tinggi. Pindah ke rata-rata tertimbang akan menurunkan laba kena pajak, tapi DJP mewajibkan konsistensi — tidak boleh pindah lebih sering dari tiap 5 tahun pajak, dan pindahnya harus pemberitahuan formal. Pilih metodenya secara sadar di awal, bukan reaktif setelah satu tahun buruk.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /tax-dash-body -->
+      </div><!-- /tax-dash-wrapper -->
+
+    </div><!-- /cb-panel makmur -->
     <div class="cb-panel" id="cb-solusi">
       <div class="cb-placeholder-panel">
         <div class="cb-placeholder-icon">§</div>

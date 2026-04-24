@@ -914,17 +914,16 @@
                data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
-        <div class="cb-card placeholder" data-cb="makmur">
+        <div class="cb-card" data-cb="makmur">
           <div class="cb-card-num">Case 02</div>
           <div class="cb-card-name">Toko Makmur</div>
           <div class="cb-card-type"
                data-en="Sembako retail · FIFO"
                data-id="Toko sembako · FIFO">Toko sembako · FIFO</div>
-          <div class="cb-card-tag ph">PKP · PPN 11%</div>
+          <div class="cb-card-tag">PKP · PPN 11%</div>
           <div class="cb-card-arrow"
-               style="color: var(--gray-3)"
-               data-en="In progress"
-               data-id="Segera hadir">Segera hadir</div>
+               data-en="View casebook →"
+               data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
         <div class="cb-card placeholder" data-cb="solusi">
@@ -1311,18 +1310,446 @@
 
     </div><!-- /cb-panel kopi -->
 
-    <!-- Placeholder panels for other 4 businesses -->
-    <div class="cb-panel" id="cb-makmur">
-      <div class="cb-placeholder-panel">
-        <div class="cb-placeholder-icon">§</div>
-        <div class="cb-placeholder-title">Toko Makmur</div>
-        <div class="cb-placeholder-desc"
-             data-en="PKP sembako retailer with FIFO inventory and PPN input/output reconciliation — casebook in progress."
-             data-id="Toko sembako PKP dengan persediaan FIFO dan rekonsiliasi PPN masukan/keluaran — casebook sedang disusun.">
-          Toko sembako PKP dengan persediaan FIFO dan rekonsiliasi PPN masukan/keluaran — casebook sedang disusun.
+    <!-- ═════════════════════════════════════════════════════════════════
+         PANEL 02 — TOKO MAKMUR
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="cb-panel" id="cb-makmur" data-panel-id="toko-makmur">
+
+      <!-- Business header -->
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 02 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Toko <span>Makmur</span></h3>
+        <p class="cb-biz-desc"
+           data-en="A sembako retailer in Palu owned by Bapak Rahmat, selling rice, cooking oil, sugar, and mixed grocery to walk-in customers. Already registered as PKP, so every purchase and sale carries PPN 11%. Three employees — one kepala toko above PTKP, two below. Where Kopi Tadulako kept things simple, Toko Makmur operates at the next tier of tax complexity."
+           data-id="Toko sembako di Palu milik Bapak Rahmat, menjual beras, minyak goreng, gula, dan sembako campuran ke pelanggan eceran. Sudah dikukuhkan sebagai PKP, jadi setiap pembelian dan penjualan disertai PPN 11%. Tiga karyawan — satu kepala toko di atas PTKP, dua di bawah. Kalau Kopi Tadulako serba sederhana, Toko Makmur beroperasi di tingkat kompleksitas pajak berikutnya.">
+          Toko sembako di Palu milik Bapak Rahmat, menjual beras, minyak goreng, gula, dan sembako campuran ke pelanggan eceran. Sudah dikukuhkan sebagai PKP, jadi setiap pembelian dan penjualan disertai PPN 11%. Tiga karyawan — satu kepala toko di atas PTKP, dua di bawah. Kalau Kopi Tadulako serba sederhana, Toko Makmur beroperasi di tingkat kompleksitas pajak berikutnya.
+        </p>
+        <div class="cb-biz-meta">
+          <span class="cb-meta-chip" data-en="Business <strong>Sembako retail</strong>" data-id="Jenis <strong>Toko sembako</strong>">Jenis <strong>Toko sembako</strong></span>
+          <span class="cb-meta-chip" data-en="Location <strong>Palu, Sulteng</strong>" data-id="Lokasi <strong>Palu, Sulteng</strong>">Lokasi <strong>Palu, Sulteng</strong></span>
+          <span class="cb-meta-chip" data-en="Revenue DPP <strong>Rp 27,46 jt/mo</strong>" data-id="Omzet DPP <strong>Rp 27,46 jt/bln</strong>">Omzet DPP <strong>Rp 27,46 jt/bln</strong></span>
+          <span class="cb-meta-chip" data-en="Status <strong>PKP · FIFO</strong>" data-id="Status <strong>PKP · FIFO</strong>">Status <strong>PKP · FIFO</strong></span>
+          <span class="cb-meta-chip" data-en="Employees <strong>3 staff</strong>" data-id="Karyawan <strong>3 staff</strong>">Karyawan <strong>3 staff</strong></span>
         </div>
       </div>
-    </div>
+
+      <!-- Sheets tabs -->
+      <div class="cb-sheets-wrap">
+        <div class="cb-tabs" role="tablist">
+          <button class="cb-tab active" data-sheet="buku" data-panel="makmur">
+            <span class="cb-tab-icon"></span><span data-en="Buku Besar Harian" data-id="Buku Besar Harian">Buku Besar Harian</span>
+          </button>
+          <button class="cb-tab" data-sheet="persediaan" data-panel="makmur">
+            <span class="cb-tab-icon"></span><span data-en="Kartu Persediaan" data-id="Kartu Persediaan">Kartu Persediaan</span>
+          </button>
+          <button class="cb-tab" data-sheet="ppn" data-panel="makmur">
+            <span class="cb-tab-icon"></span><span data-en="Rekap PPN" data-id="Rekap PPN">Rekap PPN</span>
+          </button>
+          <button class="cb-tab" data-sheet="pl" data-panel="makmur">
+            <span class="cb-tab-icon"></span><span data-en="P&amp;L" data-id="Laba Rugi">Laba Rugi</span>
+          </button>
+          <button class="cb-tab" data-sheet="kary" data-panel="makmur">
+            <span class="cb-tab-icon"></span><span data-en="Employees" data-id="Karyawan">Karyawan</span>
+          </button>
+        </div>
+
+        <!-- ═══ Sheet 1: Buku Besar Harian ═══ -->
+        <div class="cb-sheet-content active" data-sheet-content="buku" data-panel="makmur">
+          <div class="cb-sheet-title"
+               data-en="Buku Besar Harian — Double-Entry Ledger · Januari 2025"
+               data-id="Buku Besar Harian — Jurnal Double-Entry · Januari 2025">Buku Besar Harian — Jurnal Double-Entry · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="As a PKP, Toko Makmur is required to use full double-entry bookkeeping under Article 28(1) UU KUP — not just pencatatan. Every sale is split into DPP + PPN Keluaran; every purchase into Persediaan + PPN Masukan. This separation is what makes the monthly PPN reconciliation possible."
+             data-id="Sebagai PKP, Toko Makmur wajib menggunakan pembukuan double-entry penuh menurut Pasal 28(1) UU KUP — bukan sekadar pencatatan. Setiap penjualan dipecah menjadi DPP + PPN Keluaran; setiap pembelian menjadi Persediaan + PPN Masukan. Pemisahan inilah yang memungkinkan rekonsiliasi PPN bulanan.">
+            Sebagai PKP, Toko Makmur wajib menggunakan pembukuan double-entry penuh menurut Pasal 28(1) UU KUP — bukan sekadar pencatatan. Setiap penjualan dipecah menjadi DPP + PPN Keluaran; setiap pembelian menjadi Persediaan + PPN Masukan. Pemisahan inilah yang memungkinkan rekonsiliasi PPN bulanan.
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Description" data-id="Keterangan">Keterangan</th>
+                  <th class="num" data-en="Debit (Rp)" data-id="Debit (Rp)">Debit (Rp)</th>
+                  <th class="num" data-en="Credit (Rp)" data-id="Kredit (Rp)">Kredit (Rp)</th>
+                  <th data-en="Account (D / K)" data-id="Akun (D / K)">Akun (D / K)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Owner capital deposit" data-id="Modal awal pemilik">Modal awal pemilik</td><td class="num">150.000.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Modal</span></td></tr>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Rent — Januari" data-id="Sewa ruko Januari">Sewa ruko Januari</td><td class="num muted">—</td><td class="num">5.000.000</td><td><span class="cb-acc-d">B. Sewa</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">03 Jan</td><td class="cb-desc" data-en="Buy rice 200kg — DPP" data-id="Beli beras 200kg — DPP">Beli beras 200kg — DPP</td><td class="num muted">—</td><td class="num">2.400.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">03 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">264.000</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">05 Jan</td><td class="cb-desc" data-en="Sale rice — DPP" data-id="Penjualan beras — DPP">Penjualan beras — DPP</td><td class="num">2.160.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">05 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">237.600</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">07 Jan</td><td class="cb-desc" data-en="Buy cooking oil — DPP" data-id="Beli minyak goreng — DPP">Beli minyak goreng — DPP</td><td class="num muted">—</td><td class="num">1.850.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">07 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">203.500</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Sale cooking oil — DPP" data-id="Penjualan minyak — DPP">Penjualan minyak — DPP</td><td class="num">2.160.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">08 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">237.600</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">10 Jan</td><td class="cb-desc" data-en="Buy sugar 150kg — DPP" data-id="Beli gula pasir 150kg — DPP">Beli gula pasir 150kg — DPP</td><td class="num muted">—</td><td class="num">2.175.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">10 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">239.250</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">12 Jan</td><td class="cb-desc" data-en="Sale sugar — DPP" data-id="Penjualan gula pasir — DPP">Penjualan gula pasir — DPP</td><td class="num">2.800.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">12 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">308.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">14 Jan</td><td class="cb-desc" data-en="Buy mixed sembako — DPP" data-id="Beli sembako campuran — DPP">Beli sembako campuran — DPP</td><td class="num muted">—</td><td class="num">4.500.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">14 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">495.000</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">16 Jan</td><td class="cb-desc" data-en="Sale rice — DPP" data-id="Penjualan beras — DPP">Penjualan beras — DPP</td><td class="num">3.000.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">16 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">330.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">18 Jan</td><td class="cb-desc" data-en="Sale mixed sembako — DPP" data-id="Penjualan sembako campuran — DPP">Penjualan sembako campuran — DPP</td><td class="num">3.300.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">18 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">363.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">20 Jan</td><td class="cb-desc" data-en="Buy rice 300kg — DPP" data-id="Beli beras 300kg — DPP">Beli beras 300kg — DPP</td><td class="num muted">—</td><td class="num">3.660.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">20 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">402.600</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">22 Jan</td><td class="cb-desc" data-en="Sale cooking oil — DPP" data-id="Penjualan minyak goreng — DPP">Penjualan minyak goreng — DPP</td><td class="num">1.480.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">22 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">162.800</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">24 Jan</td><td class="cb-desc" data-en="Sale rice — DPP" data-id="Penjualan beras — DPP">Penjualan beras — DPP</td><td class="num">3.360.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">24 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">369.600</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">26 Jan</td><td class="cb-desc" data-en="Buy sugar &amp; sembako — DPP" data-id="Beli gula &amp; sembako — DPP">Beli gula &amp; sembako — DPP</td><td class="num muted">—</td><td class="num">3.700.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">26 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT In (11%)" data-id="&nbsp;&nbsp;↳ PPN Masukan (11%)">&nbsp;&nbsp;↳ PPN Masukan (11%)</td><td class="num muted">—</td><td class="num">407.000</td><td><span class="cb-acc-d">PPN Masukan</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">28 Jan</td><td class="cb-desc" data-en="Sale mixed sembako — DPP" data-id="Penjualan sembako — DPP">Penjualan sembako — DPP</td><td class="num">4.500.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">28 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">495.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">29 Jan</td><td class="cb-desc" data-en="Pay salary (3 staff)" data-id="Bayar gaji karyawan (3 orang)">Bayar gaji karyawan (3 orang)</td><td class="num muted">—</td><td class="num">7.500.000</td><td><span class="cb-acc-d">B. Gaji</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr><td class="cb-date">30 Jan</td><td class="cb-desc" data-en="Sale rice &amp; sugar — DPP" data-id="Penjualan beras &amp; gula — DPP">Penjualan beras &amp; gula — DPP</td><td class="num">2.600.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">30 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">286.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="End-of-month sales — DPP" data-id="Penjualan akhir bulan — DPP">Penjualan akhir bulan — DPP</td><td class="num">2.100.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Penjualan</span></td></tr>
+                <tr style="background:rgba(201,165,103,0.03)"><td class="cb-date">31 Jan</td><td class="cb-desc" style="color:var(--cyan);font-size:11px" data-en="&nbsp;&nbsp;↳ VAT Out (11%)" data-id="&nbsp;&nbsp;↳ PPN Keluaran (11%)">&nbsp;&nbsp;↳ PPN Keluaran (11%)</td><td class="num">231.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">PPN Keluaran</span></td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="Electricity &amp; internet" data-id="Bayar listrik &amp; internet">Bayar listrik &amp; internet</td><td class="num muted">—</td><td class="num">1.200.000</td><td><span class="cb-acc-d">B. Utilitas</span> / <span class="cb-acc-k">Kas</span></td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL DEBIT / KREDIT" data-id="TOTAL DEBIT / KREDIT">TOTAL DEBIT / KREDIT</td><td class="num">180.480.600</td><td class="num">33.996.350</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cb-summary">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Operating transactions" data-id="Transaksi operasional">Transaksi operasional</div>
+              <div class="cb-summary-val pos">36</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="VAT entries (split)" data-id="Entri PPN (dipisah)">Entri PPN (dipisah)</div>
+              <div class="cb-summary-val">16</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Accounts used" data-id="Akun dipakai">Akun dipakai</div>
+              <div class="cb-summary-val">9</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Sheet 2: Kartu Persediaan (with reconciliation finding) ═══ -->
+        <div class="cb-sheet-content" data-sheet-content="persediaan" data-panel="makmur">
+          <div class="cb-sheet-title"
+               data-en="Kartu Persediaan — FIFO Inventory Card · Januari 2025"
+               data-id="Kartu Persediaan — Metode FIFO · Januari 2025">Kartu Persediaan — Metode FIFO · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="FIFO (First-In, First-Out) tracks which physical stock gets sold first — the oldest purchases. Purchases are recorded at DPP (excluding PPN, which flows separately). Outflows should be valued at FIFO cost, not selling price."
+             data-id="FIFO (First-In, First-Out) melacak persediaan fisik mana yang terjual duluan — pembelian yang paling lama. Pembelian dicatat pada DPP (tidak termasuk PPN, yang mengalir terpisah). Pengeluaran seharusnya dinilai pada biaya FIFO, bukan harga jual.">
+            FIFO (First-In, First-Out) melacak persediaan fisik mana yang terjual duluan — pembelian yang paling lama. Pembelian dicatat pada DPP (tidak termasuk PPN, yang mengalir terpisah). Pengeluaran seharusnya dinilai pada biaya FIFO, bukan harga jual.
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Description" data-id="Keterangan">Keterangan</th>
+                  <th class="num" data-en="Qty In" data-id="Qty Masuk">Qty Masuk</th>
+                  <th class="num" data-en="Unit Cost (Rp)" data-id="Harga/Unit (Rp)">Harga/Unit (Rp)</th>
+                  <th class="num" data-en="Value In (Rp)" data-id="Nilai Masuk (Rp)">Nilai Masuk (Rp)</th>
+                  <th class="num" data-en="Qty Out" data-id="Qty Keluar">Qty Keluar</th>
+                  <th class="num" data-en="Outflow Value (Rp)" data-id="Nilai Keluar (Rp)">Nilai Keluar (Rp)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Opening: rice" data-id="Stok awal beras">Stok awal beras</td><td class="num">500</td><td class="num">12.000</td><td class="num">6.000.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Opening: cooking oil" data-id="Stok awal minyak goreng">Stok awal minyak goreng</td><td class="num">200</td><td class="num">18.000</td><td class="num">3.600.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Opening: sugar" data-id="Stok awal gula pasir">Stok awal gula pasir</td><td class="num">300</td><td class="num">14.000</td><td class="num">4.200.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">03 Jan</td><td class="cb-desc" data-en="Buy rice 200kg + PPN" data-id="Beli beras 200kg + PPN">Beli beras 200kg + PPN</td><td class="num">200</td><td class="num">12.000</td><td class="num">2.400.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">05 Jan</td><td class="cb-desc" data-en="Sale rice" data-id="Jual beras">Jual beras</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">180</td><td class="num" style="color:#FB923C">2.160.000</td></tr>
+                <tr><td class="cb-date">07 Jan</td><td class="cb-desc" data-en="Buy cooking oil 100L + PPN" data-id="Beli minyak 100L + PPN">Beli minyak 100L + PPN</td><td class="num">100</td><td class="num">18.500</td><td class="num">1.850.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Sale cooking oil" data-id="Jual minyak goreng">Jual minyak goreng</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">120</td><td class="num" style="color:#FB923C">2.160.000</td></tr>
+                <tr><td class="cb-date">10 Jan</td><td class="cb-desc" data-en="Buy sugar 150kg + PPN" data-id="Beli gula pasir 150kg + PPN">Beli gula pasir 150kg + PPN</td><td class="num">150</td><td class="num">14.500</td><td class="num">2.175.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">12 Jan</td><td class="cb-desc" data-en="Sale sugar" data-id="Jual gula pasir">Jual gula pasir</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">200</td><td class="num" style="color:#FB923C">2.800.000</td></tr>
+                <tr><td class="cb-date">14 Jan</td><td class="cb-desc" data-en="Buy mixed sembako + PPN" data-id="Beli sembako campuran + PPN">Beli sembako campuran + PPN</td><td class="num">300</td><td class="num">15.000</td><td class="num">4.500.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">16 Jan</td><td class="cb-desc" data-en="Sale rice" data-id="Jual beras">Jual beras</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">250</td><td class="num" style="color:#FB923C">3.000.000</td></tr>
+                <tr><td class="cb-date">18 Jan</td><td class="cb-desc" data-en="Sale mixed sembako" data-id="Jual sembako campuran">Jual sembako campuran</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">220</td><td class="num" style="color:#FB923C">3.300.000</td></tr>
+                <tr><td class="cb-date">20 Jan</td><td class="cb-desc" data-en="Buy rice 300kg + PPN" data-id="Beli beras 300kg + PPN">Beli beras 300kg + PPN</td><td class="num">300</td><td class="num">12.200</td><td class="num">3.660.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">22 Jan</td><td class="cb-desc" data-en="Sale cooking oil" data-id="Jual minyak goreng">Jual minyak goreng</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">80</td><td class="num" style="color:#FB923C">1.480.000</td></tr>
+                <tr><td class="cb-date">24 Jan</td><td class="cb-desc" data-en="Sale rice" data-id="Jual beras">Jual beras</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">280</td><td class="num" style="color:#FB923C">3.360.000</td></tr>
+                <tr><td class="cb-date">26 Jan</td><td class="cb-desc" data-en="Buy sugar &amp; sembako + PPN" data-id="Beli gula &amp; sembako + PPN">Beli gula &amp; sembako + PPN</td><td class="num">250</td><td class="num">14.800</td><td class="num">3.700.000</td><td class="num muted">—</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-date">28 Jan</td><td class="cb-desc" data-en="Sale mixed sembako" data-id="Jual sembako campuran">Jual sembako campuran</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">300</td><td class="num" style="color:#FB923C">4.500.000</td></tr>
+                <tr><td class="cb-date">30 Jan</td><td class="cb-desc" data-en="Sale rice &amp; sugar" data-id="Jual beras &amp; gula">Jual beras &amp; gula</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">200</td><td class="num" style="color:#FB923C">2.600.000</td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="End-of-month sale" data-id="Jual akhir bulan">Jual akhir bulan</td><td class="num muted">—</td><td class="num muted">—</td><td class="num muted">—</td><td class="num">150</td><td class="num" style="color:#FB923C">2.100.000</td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">2.000</td><td></td><td class="num">32.085.000</td><td class="num">1.980</td><td class="num" style="color:#FB923C">27.460.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Reconciliation finding — the FIFO data issue -->
+          <div class="cb-finding">
+            <div class="cb-finding-label"
+                 data-en="⚠ Reconciliation finding"
+                 data-id="⚠ Temuan rekonsiliasi">⚠ Temuan rekonsiliasi</div>
+            <div class="cb-finding-title"
+                 data-en="The &lsquo;Nilai Keluar&rsquo; column shows selling prices, not FIFO cost"
+                 data-id="Kolom &lsquo;Nilai Keluar&rsquo; berisi harga jual, bukan biaya FIFO">Kolom &lsquo;Nilai Keluar&rsquo; berisi harga jual, bukan biaya FIFO</div>
+            <div class="cb-finding-text"
+                 data-en="Under FIFO, outflow value should equal <strong>quantity sold × unit cost from the oldest purchase layer</strong> — not the selling price. In this card, Nilai Keluar totals Rp 27,460,000 which exactly matches Total Penjualan (DPP) in the ledger. That can&rsquo;t be right: it would imply a 0% gross margin, making every sale a cost-price transaction. <br><br>The proper reconciliation: <strong>HPP = Opening Inventory (Rp 13,8 jt) + Purchases (Rp 18,3 jt) − Closing Inventory</strong>. The client still needs to do a physical stock count at month-end to determine closing inventory precisely. For this dashboard, HPP is estimated at 58% gross margin (Rp 11,53 jt), yielding a closing inventory of Rp 20,57 jt — consistent with mixed SKU margins (staples lower, packaged goods higher) in a well-operated Palu sembako store."
+                 data-id="Di bawah metode FIFO, nilai keluar seharusnya sama dengan <strong>qty terjual × biaya per unit dari layer pembelian tertua</strong> — bukan harga jual. Di kartu ini, Nilai Keluar totalnya Rp 27.460.000 yang persis sama dengan Total Penjualan (DPP) di buku besar. Ini tidak mungkin: artinya margin kotor 0%, seolah semua penjualan di harga beli. <br><br>Rekonsiliasi yang benar: <strong>HPP = Persediaan Awal (Rp 13,8 jt) + Pembelian (Rp 18,3 jt) − Persediaan Akhir</strong>. Klien masih perlu stock-opname fisik akhir bulan untuk menentukan saldo persediaan akhir secara tepat. Untuk dashboard ini, HPP diestimasi pada gross margin 58% (Rp 11,53 jt), menghasilkan saldo akhir Rp 20,57 jt — konsisten dengan margin SKU campuran (sembako pokok lebih rendah, barang kemasan lebih tinggi) pada toko sembako Palu yang dikelola baik.">
+              Di bawah metode FIFO, nilai keluar seharusnya sama dengan <strong>qty terjual × biaya per unit dari layer pembelian tertua</strong> — bukan harga jual. Di kartu ini, Nilai Keluar totalnya Rp 27.460.000 yang persis sama dengan Total Penjualan (DPP) di buku besar. Ini tidak mungkin: artinya margin kotor 0%, seolah semua penjualan di harga beli. <br><br>Rekonsiliasi yang benar: <strong>HPP = Persediaan Awal (Rp 13,8 jt) + Pembelian (Rp 18,3 jt) − Persediaan Akhir</strong>. Klien masih perlu stock-opname fisik akhir bulan untuk menentukan saldo persediaan akhir secara tepat. Untuk dashboard ini, HPP diestimasi pada gross margin 58% (Rp 11,53 jt), menghasilkan saldo akhir Rp 20,57 jt — konsisten dengan margin SKU campuran (sembako pokok lebih rendah, barang kemasan lebih tinggi) pada toko sembako Palu yang dikelola baik.
+            </div>
+          </div>
+
+          <div class="cb-summary" style="margin-top:1.5rem">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Opening inventory" data-id="Persediaan awal">Persediaan awal</div>
+              <div class="cb-summary-val">Rp 13.800.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Purchases (DPP)" data-id="Pembelian (DPP)">Pembelian (DPP)</div>
+              <div class="cb-summary-val">Rp 18.285.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Estimated closing inv." data-id="Persediaan akhir (estimasi)">Persediaan akhir (estimasi)</div>
+              <div class="cb-summary-val pos">Rp 20.566.800</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Sheet 3: Rekap PPN ═══ -->
+        <div class="cb-sheet-content" data-sheet-content="ppn" data-panel="makmur">
+          <div class="cb-sheet-title"
+               data-en="VAT Reconciliation — PPN Masukan vs Keluaran · Januari 2025"
+               data-id="Rekonsiliasi PPN — Masukan vs Keluaran · Januari 2025">Rekonsiliasi PPN — Masukan vs Keluaran · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Every month, Toko Makmur files SPT Masa PPN. It adds up all PPN collected from customers (Keluaran) and subtracts PPN paid to suppliers (Masukan). The difference is either remitted to DJP (kurang bayar) or carried forward as credit / refunded (lebih bayar)."
+             data-id="Setiap bulan, Toko Makmur lapor SPT Masa PPN. Menjumlahkan semua PPN yang dipungut dari pelanggan (Keluaran) dikurangi PPN yang dibayar ke pemasok (Masukan). Selisihnya disetor ke DJP (kurang bayar) atau dikompensasi / direstitusi (lebih bayar).">
+            Setiap bulan, Toko Makmur lapor SPT Masa PPN. Menjumlahkan semua PPN yang dipungut dari pelanggan (Keluaran) dikurangi PPN yang dibayar ke pemasok (Masukan). Selisihnya disetor ke DJP (kurang bayar) atau dikompensasi / direstitusi (lebih bayar).
+          </p>
+
+          <!-- Bagian A -->
+          <div class="cb-sheet-title" style="margin-top:.5rem;color:#F87171"
+               data-en="A — PPN Masukan (VAT paid on purchases)"
+               data-id="A — PPN Masukan (PPN dibayar saat pembelian)">A — PPN Masukan (PPN dibayar saat pembelian)</div>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Purchase" data-id="Keterangan Pembelian">Keterangan Pembelian</th>
+                  <th class="num" data-en="DPP (Rp)" data-id="DPP (Rp)">DPP (Rp)</th>
+                  <th class="num" data-en="VAT 11% (Rp)" data-id="PPN 11% (Rp)">PPN 11% (Rp)</th>
+                  <th class="num" data-en="Total paid" data-id="Total Dibayar">Total Dibayar</th>
+                  <th data-en="FP No." data-id="No. Faktur">No. Faktur</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">03 Jan</td><td class="cb-desc" data-en="Buy rice 200kg" data-id="Beli beras 200 kg">Beli beras 200 kg</td><td class="num">2.400.000</td><td class="num">264.000</td><td class="num">2.664.000</td><td class="muted" style="font-size:10.5px">FP-TM-2501-001</td></tr>
+                <tr><td class="cb-date">07 Jan</td><td class="cb-desc" data-en="Buy cooking oil 100L" data-id="Beli minyak goreng 100 L">Beli minyak goreng 100 L</td><td class="num">1.850.000</td><td class="num">203.500</td><td class="num">2.053.500</td><td class="muted" style="font-size:10.5px">FP-TM-2501-002</td></tr>
+                <tr><td class="cb-date">10 Jan</td><td class="cb-desc" data-en="Buy sugar 150kg" data-id="Beli gula pasir 150 kg">Beli gula pasir 150 kg</td><td class="num">2.175.000</td><td class="num">239.250</td><td class="num">2.414.250</td><td class="muted" style="font-size:10.5px">FP-TM-2501-003</td></tr>
+                <tr><td class="cb-date">14 Jan</td><td class="cb-desc" data-en="Buy mixed sembako" data-id="Beli sembako campuran">Beli sembako campuran</td><td class="num">4.500.000</td><td class="num">495.000</td><td class="num">4.995.000</td><td class="muted" style="font-size:10.5px">FP-TM-2501-004</td></tr>
+                <tr><td class="cb-date">20 Jan</td><td class="cb-desc" data-en="Buy rice 300kg" data-id="Beli beras 300 kg">Beli beras 300 kg</td><td class="num">3.660.000</td><td class="num">402.600</td><td class="num">4.062.600</td><td class="muted" style="font-size:10.5px">FP-TM-2501-005</td></tr>
+                <tr><td class="cb-date">26 Jan</td><td class="cb-desc" data-en="Buy sugar &amp; sembako" data-id="Beli gula &amp; sembako">Beli gula &amp; sembako</td><td class="num">3.700.000</td><td class="num">407.000</td><td class="num">4.107.000</td><td class="muted" style="font-size:10.5px">FP-TM-2501-006</td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL PPN MASUKAN" data-id="TOTAL PPN MASUKAN">TOTAL PPN MASUKAN</td><td class="num">18.285.000</td><td class="num">2.011.350</td><td class="num">20.296.350</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bagian B -->
+          <div class="cb-sheet-title" style="margin-top:2rem;color:#34D399"
+               data-en="B — PPN Keluaran (VAT collected on sales)"
+               data-id="B — PPN Keluaran (PPN dipungut saat penjualan)">B — PPN Keluaran (PPN dipungut saat penjualan)</div>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Sale" data-id="Keterangan Penjualan">Keterangan Penjualan</th>
+                  <th class="num" data-en="DPP (Rp)" data-id="DPP (Rp)">DPP (Rp)</th>
+                  <th class="num" data-en="VAT 11% (Rp)" data-id="PPN 11% (Rp)">PPN 11% (Rp)</th>
+                  <th class="num" data-en="Total received" data-id="Total Diterima">Total Diterima</th>
+                  <th data-en="FK No." data-id="No. Faktur">No. Faktur</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">05 Jan</td><td class="cb-desc" data-en="Sale rice to customer" data-id="Jual beras ke pelanggan">Jual beras ke pelanggan</td><td class="num">2.160.000</td><td class="num">237.600</td><td class="num">2.397.600</td><td class="muted" style="font-size:10.5px">FK-TM-2501-001</td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Sale cooking oil" data-id="Jual minyak goreng">Jual minyak goreng</td><td class="num">2.160.000</td><td class="num">237.600</td><td class="num">2.397.600</td><td class="muted" style="font-size:10.5px">FK-TM-2501-002</td></tr>
+                <tr><td class="cb-date">12 Jan</td><td class="cb-desc" data-en="Sale sugar" data-id="Jual gula pasir">Jual gula pasir</td><td class="num">2.800.000</td><td class="num">308.000</td><td class="num">3.108.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-003</td></tr>
+                <tr><td class="cb-date">16 Jan</td><td class="cb-desc" data-en="Sale rice" data-id="Jual beras">Jual beras</td><td class="num">3.000.000</td><td class="num">330.000</td><td class="num">3.330.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-004</td></tr>
+                <tr><td class="cb-date">18 Jan</td><td class="cb-desc" data-en="Sale mixed sembako" data-id="Jual sembako campuran">Jual sembako campuran</td><td class="num">3.300.000</td><td class="num">363.000</td><td class="num">3.663.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-005</td></tr>
+                <tr><td class="cb-date">22 Jan</td><td class="cb-desc" data-en="Sale cooking oil" data-id="Jual minyak goreng">Jual minyak goreng</td><td class="num">1.480.000</td><td class="num">162.800</td><td class="num">1.642.800</td><td class="muted" style="font-size:10.5px">FK-TM-2501-006</td></tr>
+                <tr><td class="cb-date">24 Jan</td><td class="cb-desc" data-en="Sale rice" data-id="Jual beras">Jual beras</td><td class="num">3.360.000</td><td class="num">369.600</td><td class="num">3.729.600</td><td class="muted" style="font-size:10.5px">FK-TM-2501-007</td></tr>
+                <tr><td class="cb-date">28 Jan</td><td class="cb-desc" data-en="Sale mixed sembako" data-id="Jual sembako campuran">Jual sembako campuran</td><td class="num">4.500.000</td><td class="num">495.000</td><td class="num">4.995.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-008</td></tr>
+                <tr><td class="cb-date">30 Jan</td><td class="cb-desc" data-en="Sale rice &amp; sugar" data-id="Jual beras &amp; gula">Jual beras &amp; gula</td><td class="num">2.600.000</td><td class="num">286.000</td><td class="num">2.886.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-009</td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="End-of-month sale" data-id="Jual akhir bulan">Jual akhir bulan</td><td class="num">2.100.000</td><td class="num">231.000</td><td class="num">2.331.000</td><td class="muted" style="font-size:10.5px">FK-TM-2501-010</td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL PPN KELUARAN" data-id="TOTAL PPN KELUARAN">TOTAL PPN KELUARAN</td><td class="num">27.460.000</td><td class="num">3.020.600</td><td class="num">30.480.600</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bagian C — SPT Masa PPN Summary -->
+          <div style="margin-top:2rem;padding:1.75rem 2rem;background:linear-gradient(135deg,rgba(201,165,103,0.08) 0%,rgba(201,165,103,0.02) 100%);border:1px solid rgba(201,165,103,0.25);border-radius:10px;">
+            <div class="cb-sheet-title" style="margin-bottom:1rem" data-en="C — SPT Masa PPN Summary" data-id="C — Rekap SPT Masa PPN">C — Rekap SPT Masa PPN</div>
+            <table class="cb-hpp-table">
+              <tbody>
+                <tr>
+                  <td style="color:#34D399" data-en="PPN Keluaran (collected from customers)" data-id="PPN Keluaran (dipungut dari pembeli)">PPN Keluaran (dipungut dari pembeli)</td>
+                  <td class="num" style="color:#34D399">3.020.600</td>
+                </tr>
+                <tr>
+                  <td style="color:#F87171" data-en="PPN Masukan (credited from purchases)" data-id="PPN Masukan (dikreditkan dari pembelian)">PPN Masukan (dikreditkan dari pembelian)</td>
+                  <td class="num" style="color:#F87171">(2.011.350)</td>
+                </tr>
+                <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)">
+                  <td data-en="PPN KURANG BAYAR — to remit to DJP" data-id="PPN KURANG BAYAR — disetor ke DJP">PPN KURANG BAYAR — disetor ke DJP</td>
+                  <td class="num" style="color:var(--cyan);font-size:16px">1.009.250</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;margin-top:1rem;">
+              <span data-en="<strong>📌 Tax note:</strong> PPN Kurang Bayar (positive) = remit to state treasury by end of following month (28 Feb 2025 for Jan period). PPN Lebih Bayar (negative) = can be compensated against future months or requested as refund (restitusi)."
+                    data-id="<strong>📌 Catatan pajak:</strong> PPN Kurang Bayar (positif) = disetor ke kas negara paling lambat akhir bulan berikutnya (28 Feb 2025 untuk masa Jan). PPN Lebih Bayar (negatif) = bisa dikompensasi ke masa berikutnya atau diminta restitusi.">
+                <strong>📌 Catatan pajak:</strong> PPN Kurang Bayar (positif) = disetor ke kas negara paling lambat akhir bulan berikutnya (28 Feb 2025 untuk masa Jan). PPN Lebih Bayar (negatif) = bisa dikompensasi ke masa berikutnya atau diminta restitusi.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- ═══ Sheet 4: P&L ═══ -->
+        <div class="cb-sheet-content" data-sheet-content="pl" data-panel="makmur">
+          <div class="cb-sheet-title"
+               data-en="Income Statement · Januari 2025"
+               data-id="Laporan Laba Rugi · Januari 2025">Laporan Laba Rugi · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="DPP only — VAT flows separately through PPN Masukan/Keluaran accounts on the balance sheet side. HPP is estimated at 58% gross margin (see reconciliation finding on the Persediaan tab). PPh is zero because Bapak Rahmat&rsquo;s annualized PKP falls below PTKP K/2."
+             data-id="Hanya DPP — PPN mengalir terpisah via akun PPN Masukan/Keluaran di neraca. HPP diestimasi pada gross margin 58% (lihat temuan rekonsiliasi di tab Persediaan). PPh nol karena PKP tahunan Bapak Rahmat di bawah PTKP K/2.">
+            Hanya DPP — PPN mengalir terpisah via akun PPN Masukan/Keluaran di neraca. HPP diestimasi pada gross margin 58% (lihat temuan rekonsiliasi di tab Persediaan). PPh nol karena PKP tahunan Bapak Rahmat di bawah PTKP K/2.
+          </p>
+          <table class="cb-hpp-table">
+            <tbody>
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="REVENUE" data-id="PENDAPATAN">PENDAPATAN</td></tr>
+              <tr><td data-en="Sembako retail sales (DPP only)" data-id="Penjualan sembako retail (DPP saja)">Penjualan sembako retail (DPP saja)</td><td class="num">27.460.000</td></tr>
+              <tr class="cb-total"><td data-en="TOTAL REVENUE" data-id="TOTAL PENDAPATAN">TOTAL PENDAPATAN</td><td class="num">27.460.000</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="COST OF GOODS SOLD" data-id="HARGA POKOK PENJUALAN">HARGA POKOK PENJUALAN</td></tr>
+              <tr><td data-en="COGS (imputed at 58% GM)" data-id="HPP (imputasi 58% GM)">HPP (imputasi 58% GM)</td><td class="num">11.533.200</td></tr>
+              <tr class="cb-total"><td data-en="GROSS PROFIT" data-id="LABA KOTOR">LABA KOTOR</td><td class="num">15.926.800</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px" data-en="Gross margin %" data-id="Gross margin %">Gross margin %</td><td class="num" style="color:var(--cyan);font-size:12px">58,0%</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="OPERATING EXPENSES" data-id="BEBAN OPERASIONAL">BEBAN OPERASIONAL</td></tr>
+              <tr><td data-en="Salary (3 staff)" data-id="Beban Gaji (3 staff)">Beban Gaji (3 staff)</td><td class="num">7.500.000</td></tr>
+              <tr><td data-en="Rent (ruko)" data-id="Beban Sewa Ruko">Beban Sewa Ruko</td><td class="num">5.000.000</td></tr>
+              <tr><td data-en="Utilities (electricity + internet)" data-id="Beban Utilitas (listrik + internet)">Beban Utilitas (listrik + internet)</td><td class="num">1.200.000</td></tr>
+              <tr class="cb-total"><td data-en="TOTAL OPEX" data-id="TOTAL BEBAN OPERASIONAL">TOTAL BEBAN OPERASIONAL</td><td class="num">13.700.000</td></tr>
+
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)"><td data-en="PRE-TAX PROFIT (EBIT)" data-id="LABA SEBELUM PAJAK (EBIT)">LABA SEBELUM PAJAK (EBIT)</td><td class="num" style="color:var(--white);font-size:13px">2.226.800</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px" data-en="Net margin %" data-id="Net margin %">Net margin %</td><td class="num" style="color:var(--cyan);font-size:12px">8,1%</td></tr>
+              <tr><td data-en="PPh OP (annualized EBIT &lt; PTKP K/2)" data-id="PPh OP (EBIT disetahunkan &lt; PTKP K/2)">PPh OP (EBIT disetahunkan &lt; PTKP K/2)</td><td class="num" style="color:#34D399">0</td></tr>
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:1px solid var(--cyan)"><td data-en="NET PROFIT AFTER TAX" data-id="LABA BERSIH SETELAH PAJAK">LABA BERSIH SETELAH PAJAK</td><td class="num" style="color:var(--cyan);font-size:15px">2.226.800</td></tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top:1.5rem;padding:1.1rem 1.35rem;background:rgba(52,211,153,0.05);border-left:2px solid #34D399;border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+            <span data-en="<strong>Counter-intuitive but correct:</strong> The business made Rp 2.23M profit this month yet owes <strong>Rp 1.13M in tax</strong> (PPN Rp 1.01M + PPh 21 Tono Rp 117k) — that&rsquo;s 51% of net profit going to taxes. Meanwhile, Bapak Rahmat&rsquo;s personal PPh OP is zero because his annualized PKP falls under PTKP K/2. This is why PPN cash-flow discipline matters far more than income tax for PKP retailers."
+                  data-id="<strong>Terlihat kontra-intuitif tapi benar:</strong> Usaha untung Rp 2,23 jt bulan ini tapi tetap membayar <strong>Rp 1,13 jt pajak</strong> (PPN Rp 1,01 jt + PPh 21 Tono Rp 117k) — yaitu 51% dari laba bersih jadi pajak. Sementara itu, PPh OP pribadi Bapak Rahmat nol karena PKP tahunannya di bawah PTKP K/2. Inilah mengapa disiplin cash-flow PPN jauh lebih penting dari PPh bagi pengecer PKP.">
+              <strong>Terlihat kontra-intuitif tapi benar:</strong> Usaha untung Rp 2,23 jt bulan ini tapi tetap membayar <strong>Rp 1,13 jt pajak</strong> (PPN Rp 1,01 jt + PPh 21 Tono Rp 117k) — yaitu 51% dari laba bersih jadi pajak. Sementara itu, PPh OP pribadi Bapak Rahmat nol karena PKP tahunannya di bawah PTKP K/2. Inilah mengapa disiplin cash-flow PPN jauh lebih penting dari PPh bagi pengecer PKP.
+            </span>
+          </div>
+        </div>
+
+        <!-- ═══ Sheet 5: Employees ═══ -->
+        <div class="cb-sheet-content" data-sheet-content="kary" data-panel="makmur">
+          <div class="cb-sheet-title"
+               data-en="Employee data · Januari 2025"
+               data-id="Data Karyawan · Januari 2025">Data Karyawan · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Four people on the books — including the owner. Only one (Tono, kepala toko) exceeds PTKP and triggers actual PPh 21 withholding. Kasir and pramuniaga sit comfortably below."
+             data-id="Empat orang tercatat — termasuk pemilik. Hanya satu (Tono, kepala toko) melebihi PTKP dan memicu pemotongan PPh 21. Kasir dan pramuniaga aman di bawah.">
+            Empat orang tercatat — termasuk pemilik. Hanya satu (Tono, kepala toko) melebihi PTKP dan memicu pemotongan PPh 21. Kasir dan pramuniaga aman di bawah.
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-en="Name" data-id="Nama">Nama</th>
+                  <th data-en="Role" data-id="Jabatan">Jabatan</th>
+                  <th data-en="PTKP" data-id="PTKP">PTKP</th>
+                  <th class="num" data-en="Gross/mo" data-id="Bruto/bln">Bruto/bln</th>
+                  <th class="num" data-en="PPh 21/mo" data-id="PPh 21/bln">PPh 21/bln</th>
+                  <th data-en="Note" data-id="Keterangan">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="muted">1</td>
+                  <td class="cb-desc">Bapak Rahmat</td>
+                  <td class="muted" data-en="Owner / Director" data-id="Pemilik / Direktur">Pemilik / Direktur</td>
+                  <td><span style="color:var(--cyan);font-size:10.5px;font-weight:600">K/2</span></td>
+                  <td class="num muted">—</td>
+                  <td class="num muted">—</td>
+                  <td class="muted" data-en="Takes profit distribution · files SPT 1770" data-id="Ambil laba · lapor SPT 1770">Ambil laba · lapor SPT 1770</td>
+                </tr>
+                <tr>
+                  <td class="muted">2</td>
+                  <td class="cb-desc">Desi Ratnasari</td>
+                  <td class="muted" data-en="Cashier / Admin" data-id="Kasir / Admin">Kasir / Admin</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">3.700.000</td>
+                  <td class="num" style="color:#34D399">0</td>
+                  <td class="muted" data-en="Annual gross &lt; PTKP TK/0" data-id="Bruto tahunan &lt; PTKP TK/0">Bruto tahunan &lt; PTKP TK/0</td>
+                </tr>
+                <tr style="background:rgba(201,165,103,0.04)">
+                  <td class="muted">3</td>
+                  <td class="cb-desc">Tono Wibowo</td>
+                  <td class="muted" data-en="Store Manager" data-id="Kepala Toko">Kepala Toko</td>
+                  <td><span style="color:var(--cyan);font-size:10.5px;font-weight:600">K/1</span></td>
+                  <td class="num">8.000.000</td>
+                  <td class="num" style="color:#FB923C">117.500</td>
+                  <td class="muted" data-en="PKP Rp 28,2jt × 5% = Rp 1,41jt/yr" data-id="PKP Rp 28,2jt × 5% = Rp 1,41jt/thn">PKP Rp 28,2jt × 5% = Rp 1,41jt/thn</td>
+                </tr>
+                <tr>
+                  <td class="muted">4</td>
+                  <td class="cb-desc">Sari Dewi</td>
+                  <td class="muted" data-en="Sales clerk" data-id="Pramuniaga">Pramuniaga</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">3.000.000</td>
+                  <td class="num" style="color:#34D399">0</td>
+                  <td class="muted" data-en="Annual gross &lt; PTKP TK/0" data-id="Bruto tahunan &lt; PTKP TK/0">Bruto tahunan &lt; PTKP TK/0</td>
+                </tr>
+                <tr class="cb-total"><td colspan="4" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">14.700.000</td><td class="num" style="color:#FB923C">117.500</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:1.5rem;padding:1.1rem 1.35rem;background:rgba(201,165,103,0.04);border-left:2px solid var(--cyan);border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+            <span data-en="<strong>Tono&rsquo;s PPh 21 worked out:</strong> Bruto annual Rp 96 jt − Biaya Jabatan 5% (capped at Rp 6 jt/yr → Rp 4,8 jt) = Neto Rp 91,2 jt. After PTKP K/1 Rp 63 jt → PKP Rp 28,2 jt. First bracket 5% → Rp 1,41 jt/yr ÷ 12 = <strong>Rp 117.500/bulan</strong>. Deposited via SSP code 411121-100 by the 10th of each following month; SPT Masa PPh 21 filed by the 20th."
+                  data-id="<strong>Cara hitung PPh 21 Tono:</strong> Bruto tahunan Rp 96 jt − Biaya Jabatan 5% (max Rp 6 jt/thn → Rp 4,8 jt) = Neto Rp 91,2 jt. Setelah PTKP K/1 Rp 63 jt → PKP Rp 28,2 jt. Tarif lapis pertama 5% → Rp 1,41 jt/thn ÷ 12 = <strong>Rp 117.500/bulan</strong>. Disetor via SSP kode 411121-100 paling lambat tgl 10 bulan berikutnya; SPT Masa PPh 21 dilapor paling lambat tgl 20.">
+              <strong>Cara hitung PPh 21 Tono:</strong> Bruto tahunan Rp 96 jt − Biaya Jabatan 5% (max Rp 6 jt/thn → Rp 4,8 jt) = Neto Rp 91,2 jt. Setelah PTKP K/1 Rp 63 jt → PKP Rp 28,2 jt. Tarif lapis pertama 5% → Rp 1,41 jt/thn ÷ 12 = <strong>Rp 117.500/bulan</strong>. Disetor via SSP kode 411121-100 paling lambat tgl 10 bulan berikutnya; SPT Masa PPh 21 dilapor paling lambat tgl 20.
+            </span>
+          </div>
+        </div>
+
+      </div><!-- /cb-sheets-wrap -->
+
+      <!-- ═══ BRIDGE TO TAX PAGE ═══ -->
+      <a href="tax.html#casebook-makmur" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label"
+               data-en="Tax perspective"
+               data-id="Perspektif pajak">Perspektif pajak</div>
+          <div class="cb-bridge-title"
+               data-en="Continue with the full tax analysis for Toko Makmur"
+               data-id="Lanjut ke analisis pajak lengkap Toko Makmur">Lanjut ke analisis pajak lengkap Toko Makmur</div>
+          <div class="cb-bridge-desc"
+               data-en="Same data, tax-compliance lens — PPN Masukan vs Keluaran reconciliation with SPT Masa PPN output, PPh 21 progressive calc for Tono, and 5 distinct filing obligations per month."
+               data-id="Data yang sama, dari sudut kepatuhan pajak — rekonsiliasi PPN Masukan vs Keluaran dengan output SPT Masa PPN, perhitungan progresif PPh 21 untuk Tono, dan 5 kewajiban pelaporan berbeda tiap bulan.">
+            Data yang sama, dari sudut kepatuhan pajak — rekonsiliasi PPN Masukan vs Keluaran dengan output SPT Masa PPN, perhitungan progresif PPh 21 untuk Tono, dan 5 kewajiban pelaporan berbeda tiap bulan.
+          </div>
+        </div>
+        <span class="cb-bridge-btn"
+              data-en="View Tax Analysis&nbsp;&nbsp;<span class='arrow'>→</span>"
+              data-id="Lihat Analisis Pajak&nbsp;&nbsp;<span class='arrow'>→</span>">
+          Lihat Analisis Pajak&nbsp;&nbsp;<span class="arrow">→</span>
+        </span>
+      </a>
+
+    </div><!-- /cb-panel makmur -->
     <div class="cb-panel" id="cb-solusi">
       <div class="cb-placeholder-panel">
         <div class="cb-placeholder-icon">§</div>
