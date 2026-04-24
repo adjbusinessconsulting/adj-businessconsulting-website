@@ -264,6 +264,127 @@
       .dk-table { font-size: 10.5px; }
     }
 
+    /* ── CLIENT CASEBOOK ── */
+    .casebook-section { padding: 5rem 5vw 4rem; }
+    .casebook-inner { max-width: 1200px; margin: 0 auto; }
+    .casebook-intro { font-family: var(--mono); font-size: 14px; color: var(--gray-2); line-height: 1.8; max-width: 740px; margin-bottom: 2.5rem; }
+    .casebook-intro em { font-style: normal; color: var(--white); font-weight: 600; }
+
+    /* Project picker */
+    .cb-picker { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.12); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+    .cb-picker-label { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 600; }
+    .cb-cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.85rem; }
+    .cb-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.08); border-radius: 6px; padding: 1.1rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.5rem; min-height: 150px; }
+    .cb-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; }
+    .cb-card:hover { border-color: rgba(201,165,103,0.25); transform: translateY(-2px); }
+    .cb-card.active { border-color: rgba(201,165,103,0.4); background: rgba(201,165,103,0.03); }
+    .cb-card.active::before { background: var(--cyan); }
+    .cb-card.placeholder { opacity: 0.55; cursor: default; }
+    .cb-card.placeholder:hover { transform: none; border-color: rgba(201,165,103,0.08); }
+    .cb-card-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; font-weight: 600; text-transform: uppercase; }
+    .cb-card-name { font-family: var(--h); font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .cb-card-type { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); line-height: 1.5; flex: 1; }
+    .cb-card-tag { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 9.5px; color: var(--cyan); background: rgba(201,165,103,0.08); border: 1px solid rgba(201,165,103,0.18); padding: 2px 7px; border-radius: 3px; letter-spacing: 0.08em; width: fit-content; font-weight: 600; }
+    .cb-card-tag.ph { color: var(--gray-3); background: rgba(160,152,144,0.05); border-color: rgba(160,152,144,0.15); }
+    .cb-card-arrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); margin-top: auto; font-weight: 600; letter-spacing: 0.04em; }
+
+    /* Project panels */
+    .cb-panel { display: none; }
+    .cb-panel.active { display: block; }
+
+    /* Business detail header */
+    .cb-biz-header { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.15); border-radius: 10px 10px 0 0; padding: 2rem 2.25rem; border-bottom: 1px solid rgba(201,165,103,0.25); }
+    .cb-biz-eyebrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; }
+    .cb-biz-name { font-family: var(--h); font-size: clamp(22px,2.8vw,30px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0.65rem; letter-spacing: -0.01em; }
+    .cb-biz-name span { color: var(--cyan); }
+    .cb-biz-desc { font-family: var(--mono); font-size: 13px; color: var(--gray-2); line-height: 1.75; max-width: 760px; margin-bottom: 1.25rem; }
+    .cb-biz-meta { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cb-meta-chip { font-family: var(--mono); font-size: 10.5px; color: var(--gray-2); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 5px 11px; border-radius: 4px; letter-spacing: 0.02em; }
+    .cb-meta-chip strong { color: var(--cyan); font-weight: 600; margin-left: 4px; }
+
+    /* Sheet container (tab-like) */
+    .cb-sheets-wrap { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.15); border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; }
+    .cb-tabs { display: flex; border-bottom: 1px solid rgba(201,165,103,0.15); background: var(--navy-light); overflow-x: auto; }
+    .cb-tab { font-family: var(--mono); font-size: 11.5px; color: var(--gray-3); background: none; border: none; padding: 0.9rem 1.4rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.2s; white-space: nowrap; border-bottom: 2px solid transparent; position: relative; }
+    .cb-tab:hover { color: var(--white); }
+    .cb-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); background: var(--navy-mid); }
+    .cb-tab-icon { display: inline-block; width: 10px; height: 10px; background: rgba(201,165,103,0.2); border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+    .cb-tab.active .cb-tab-icon { background: var(--cyan); }
+
+    .cb-sheet-content { padding: 2rem 2.25rem; display: none; }
+    .cb-sheet-content.active { display: block; }
+    .cb-sheet-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 600; }
+    .cb-sheet-sub { font-family: var(--mono); font-size: 12px; color: var(--gray-3); margin-bottom: 1.5rem; line-height: 1.6; }
+
+    /* Bookkeeping table (extends journal-table) */
+    .cb-table-wrap { overflow-x: auto; margin: 0 -2.25rem; padding: 0 2.25rem; }
+    .cb-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; min-width: 760px; }
+    .cb-table th { font-family: var(--mono); font-size: 9.5px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 10px 12px; border-bottom: 1px solid rgba(201,165,103,0.2); background: rgba(201,165,103,0.04); text-align: left; white-space: nowrap; position: sticky; top: 0; }
+    .cb-table th.num { text-align: right; }
+    .cb-table td { padding: 8px 12px; border-bottom: 1px solid rgba(201,165,103,0.04); color: var(--gray-1); vertical-align: top; }
+    .cb-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .cb-table td.muted { color: var(--gray-3); }
+    .cb-table tbody tr:hover td { background: rgba(201,165,103,0.03); }
+    .cb-table tr.cb-total td { background: rgba(201,165,103,0.06); color: var(--cyan); font-weight: 700; border-top: 1px solid rgba(201,165,103,0.2); padding-top: 12px; padding-bottom: 12px; font-size: 11px; letter-spacing: 0.04em; }
+    .cb-table .cb-date { color: var(--gray-3); white-space: nowrap; }
+    .cb-table .cb-desc { color: var(--gray-1); }
+    .cb-table .cb-acc-d { color: var(--cyan); font-size: 10.5px; }
+    .cb-table .cb-acc-k { color: #A09890; font-size: 10.5px; }
+
+    /* Summary footer under table */
+    .cb-summary { margin-top: 1.5rem; padding: 1.1rem 1.35rem; background: rgba(201,165,103,0.04); border-left: 2px solid var(--cyan); border-radius: 0 4px 4px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .cb-summary-item { display: flex; flex-direction: column; gap: 4px; }
+    .cb-summary-label { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.12em; text-transform: uppercase; }
+    .cb-summary-val { font-family: var(--mono); font-size: 16px; color: var(--white); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .cb-summary-val.pos { color: var(--cyan); }
+
+    /* HPP category table */
+    .cb-hpp-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; margin-top: 0.5rem; }
+    .cb-hpp-table th { padding: 10px 12px; font-size: 9.5px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border-bottom: 1px solid rgba(201,165,103,0.2); text-align: left; background: rgba(201,165,103,0.04); }
+    .cb-hpp-table th.num { text-align: right; }
+    .cb-hpp-table td { padding: 10px 12px; border-bottom: 1px solid rgba(201,165,103,0.04); color: var(--gray-1); }
+    .cb-hpp-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .cb-hpp-table .cat-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 10px; vertical-align: -1px; }
+
+    /* Reconciliation finding callout */
+    .cb-finding { margin-top: 1.75rem; padding: 1.1rem 1.35rem; background: rgba(251,146,60,0.04); border-left: 2px solid #FB923C; border-radius: 0 4px 4px 0; }
+    .cb-finding-label { font-family: var(--mono); font-size: 10px; color: #FB923C; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 700; }
+    .cb-finding-title { font-family: var(--mono); font-size: 13px; color: var(--white); font-weight: 700; margin-bottom: 0.6rem; line-height: 1.4; }
+    .cb-finding-text { font-family: var(--mono); font-size: 12px; color: var(--gray-1); line-height: 1.75; }
+    .cb-finding-text strong { color: #FB923C; font-weight: 600; }
+
+    /* Bridge to tax page */
+    .cb-bridge { margin-top: 2rem; padding: 1.75rem 2rem; background: linear-gradient(135deg, rgba(201,165,103,0.08) 0%, rgba(201,165,103,0.02) 100%); border: 1px solid rgba(201,165,103,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .cb-bridge-content { flex: 1; min-width: 260px; }
+    .cb-bridge-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 700; }
+    .cb-bridge-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; line-height: 1.3; }
+    .cb-bridge-desc { font-family: var(--mono); font-size: 12px; color: var(--gray-2); line-height: 1.65; }
+    .cb-bridge-btn { font-family: var(--mono); font-size: 12.5px; font-weight: 600; background: var(--cyan); color: var(--navy); padding: 11px 20px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.02em; }
+    .cb-bridge-btn:hover { background: #D9B97C; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,165,103,0.2); }
+    .cb-bridge-btn .arrow { transition: transform 0.2s; }
+    .cb-bridge-btn:hover .arrow { transform: translateX(3px); }
+
+    /* Placeholder panel */
+    .cb-placeholder-panel { background: var(--navy-mid); border: 1px dashed rgba(201,165,103,0.2); border-radius: 10px; padding: 4rem 3rem; text-align: center; }
+    .cb-placeholder-icon { font-size: 32px; color: var(--cyan); opacity: 0.3; margin-bottom: 1rem; font-family: var(--h); }
+    .cb-placeholder-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .cb-placeholder-desc { font-family: var(--mono); font-size: 12.5px; color: var(--gray-3); line-height: 1.7; max-width: 440px; margin: 0 auto; }
+
+    @media (max-width: 1024px) {
+      .cb-cards-row { grid-template-columns: repeat(3, 1fr); }
+      .cb-cards-row .cb-card:nth-child(n+4) { grid-column: span 1; }
+    }
+    @media (max-width: 768px) {
+      .cb-cards-row { grid-template-columns: repeat(2, 1fr); }
+      .cb-summary { grid-template-columns: 1fr; gap: 0.75rem; }
+      .cb-sheet-content { padding: 1.5rem 1.25rem; }
+      .cb-biz-header { padding: 1.5rem 1.5rem; }
+      .cb-bridge { padding: 1.5rem 1.25rem; }
+    }
+    @media (max-width: 540px) {
+      .cb-cards-row { grid-template-columns: 1fr; }
+    }
+
     /* ── COMING SOON ── */
     .coming-soon-section { padding: 4rem 5vw 6rem; }
     .coming-soon-inner { max-width: 1200px; margin: 0 auto; }
@@ -312,7 +433,7 @@
     <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
     <li><a href="accounting.html" class="active" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
-    <li><a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a></li>
+    <li><a href="tax.html" data-en="tax" data-id="pajak">pajak</a></li>
     <li><a href="website.html" data-en="website" data-id="website">website</a></li>
   </ul>
   <div class="nav-right">
@@ -325,7 +446,7 @@
   <a href="index.html" data-en="home" data-id="beranda">beranda</a>
   <a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a>
   <a href="accounting.html" class="active" data-en="accounting" data-id="akuntansi">akuntansi</a>
-  <a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a>
+  <a href="tax.html" data-en="tax" data-id="pajak">pajak</a>
   <a href="website.html" data-en="website" data-id="website">website</a>
   <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
@@ -426,11 +547,7 @@
       <div class="edu-list">
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
-          <div><span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span><span class="cert-issuer-edu">Jimly Law School, Jakarta · Apr 2026 — May 2026</span></div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div><span class="cert-text">Data Analyst / Data Scientist</span><span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026</span></div>
+          <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer-edu">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
         </div>
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
@@ -451,13 +568,53 @@
       </div>
 
       <div class="about-actions">
-        <a href="#" class="btn-about" onclick="openResumeModal(event)" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
-        <a href="index.html#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
+        <a href="ATS_Anthony_Djiady_Djie_Resume.pdf" class="btn-about" target="_blank" data-en="Download Resume →" data-id="Download Resume →">Download Resume →</a>
+        <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
         <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-gallery" id="certs-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
+    <h2 class="section-title" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
+    <div class="certs-grid">
+      <a href="https://coursera.org/verify/professional-cert/HR6VC9WMGF9J" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 15.5 19.1 12 24 12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.5 0 10.4-1.8 14.3-5l-6.6-5.6C29.5 37 26.9 38 24 38c-6 0-11.1-4-12.9-9.7l-7 5.4C7.5 41.2 15.2 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.2-3.1 5.8-5.9 7.5l6.6 5.6C40 38 46 32 46 24c0-1.3-.2-2.7-.5-4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Google Data Analytics</span><span class="cert-card-org">Google · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/KEKKD62YV2EN" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft SQL Server</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/DVISLWDAXUY0" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft Excel Professional</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/GOVL4H7ONB52" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#E97627" d="M24 6v16h-2V6h2zm0 20v16h-2V26h2z"/><path fill="#C72037" d="M6 24h16v-2H6v2zm20 0h16v-2H26v2z"/><path fill="#5B879B" d="M14 14l8 8-1.4 1.4L12.6 15.4 14 14z"/><path fill="#5B879B" d="M26.6 26.6L34 34l-1.4 1.4-7.4-7.4 1.4-1.4z"/><path fill="#EB9129" d="M34 14l-8 8-1.4-1.4 8-8L34 14z"/><path fill="#EB9129" d="M15.4 32.6L24 24l1.4 1.4-8.6 8.6-1.4-1.4z"/><circle fill="#E97627" cx="24" cy="24" r="3"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Tableau BI Analyst</span><span class="cert-card-org">Tableau · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/USZXR9ZAOQUE" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 4c-6 0-9 2.7-9 6v4h10v2H12c-4 0-8 3.3-8 9s3 9 7 9h4v-5c0-4 3.3-7 7-7h10c3 0 6-2.7 6-6V10c0-3.3-4-6-10-6h-4zm-2 4a2 2 0 110 4 2 2 0 010-4z"/><path fill="#FFD43B" d="M24 44c6 0 9-2.7 9-6v-4H23v-2h13c4 0 8-3.3 8-9s-3-9-7-9h-4v5c0 4-3.3 7-7 7H16c-3 0-6 2.7-6 6v8c0 3.3 4 6 10 6h4zm2-4a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Python for Data Science, AI</span><span class="cert-card-org">IBM · Coursera · 2025</span></div>
+      </a>
+      <a href="Xero_Advisor.png" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><circle fill="#13B5EA" cx="24" cy="24" r="20"/><path fill="#fff" d="M16 24l6-6 2 2-4 4 4 4-2 2-6-6zm16 0l-6-6-2 2 4 4-4 4 2 2 6-6z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Xero Advisor Certified</span><span class="cert-card-org">Xero · 2025</span></div>
+      </a>
+      <a href="AB_66DM_RS-1_AD.pdf" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#1B4F72" d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path fill="#2E86C1" d="M24 8l16 8-16 8-16-8 16-8z"/><path fill="#85C1E9" d="M8 18v14l16 8V26L8 18z" opacity="0.7"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI · 2018</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -718,6 +875,493 @@
 
 <div class="glow-line"></div>
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     CLIENT CASEBOOK — Palu SMEs
+     5 businesses · Kopi Tadulako live · Others in progress
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="casebook-section" id="casebook">
+  <div class="casebook-inner">
+    <div class="section-eyebrow"
+         data-en="client casebook"
+         data-id="casebook klien">casebook klien</div>
+    <h2 class="section-title"
+        data-en="Client <span>Casebook</span> — Palu SMEs"
+        data-id="<span>Casebook</span> Klien — UMKM Palu">
+      <span>Casebook</span> Klien — UMKM Palu
+    </h2>
+    <p class="casebook-intro"
+       data-en="Five representative small businesses from Palu — each sitting in a different corner of Indonesia's tax landscape. Browse the bookkeeping below, then follow the <em>Lihat analisis pajak →</em> link on any case to see the full tax compliance analysis on the Tax page. The same data, two professional lenses."
+       data-id="Lima usaha kecil representatif dari Palu — masing-masing berada di sudut berbeda dari lanskap perpajakan Indonesia. Telusuri pembukuannya di bawah, lalu ikuti tautan <em>Lihat analisis pajak →</em> pada setiap kasus untuk melihat analisis kepatuhan pajak lengkap di halaman Pajak. Data yang sama, dua lensa profesional.">
+      Lima usaha kecil representatif dari Palu — masing-masing berada di sudut berbeda dari lanskap perpajakan Indonesia. Telusuri pembukuannya di bawah, lalu ikuti tautan <em>Lihat analisis pajak →</em> pada setiap kasus untuk melihat analisis kepatuhan pajak lengkap di halaman Pajak. Data yang sama, dua lensa profesional.
+    </p>
+
+    <!-- PROJECT PICKER -->
+    <div class="cb-picker">
+      <div class="cb-picker-label"
+           data-en="Select a case"
+           data-id="Pilih kasus">Pilih kasus</div>
+      <div class="cb-cards-row">
+
+        <div class="cb-card active" data-cb="kopi">
+          <div class="cb-card-num">Case 01</div>
+          <div class="cb-card-name">Kopi Tadulako</div>
+          <div class="cb-card-type"
+               data-en="Café / F&amp;B · sole proprietor"
+               data-id="Kafe / F&amp;B · perorangan">Kafe / F&amp;B · perorangan</div>
+          <div class="cb-card-tag">UMKM Non-PKP</div>
+          <div class="cb-card-arrow"
+               data-en="View casebook →"
+               data-id="Lihat casebook →">Lihat casebook →</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="makmur">
+          <div class="cb-card-num">Case 02</div>
+          <div class="cb-card-name">Toko Makmur</div>
+          <div class="cb-card-type"
+               data-en="Sembako retail · FIFO"
+               data-id="Toko sembako · FIFO">Toko sembako · FIFO</div>
+          <div class="cb-card-tag ph">PKP · PPN 11%</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="solusi">
+          <div class="cb-card-num">Case 03</div>
+          <div class="cb-card-name">CV Solusi Digital</div>
+          <div class="cb-card-type"
+               data-en="IT services · invoicing"
+               data-id="Jasa IT · faktur">Jasa IT · faktur</div>
+          <div class="cb-card-tag ph">PKP · PPh 23</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="bangun">
+          <div class="cb-card-num">Case 04</div>
+          <div class="cb-card-name">PT Bangun Sulawesi</div>
+          <div class="cb-card-type"
+               data-en="Construction · project costing"
+               data-id="Konstruksi · project costing">Konstruksi · project costing</div>
+          <div class="cb-card-tag ph">PKP · PPh 4(2)</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="kos">
+          <div class="cb-card-num">Case 05</div>
+          <div class="cb-card-name">Kos Pak Haris</div>
+          <div class="cb-card-type"
+               data-en="Boarding house · 20 rooms"
+               data-id="Kos-kosan · 20 kamar">Kos-kosan · 20 kamar</div>
+          <div class="cb-card-tag ph">Non-PPN · Final 10%</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         PANEL 01 — KOPI TADULAKO
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="cb-panel active" id="cb-kopi" data-panel-id="kopi-tadulako">
+
+      <!-- Business header -->
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 01 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Kopi <span>Tadulako</span></h3>
+        <p class="cb-biz-desc"
+           data-en="A small café in Palu owned by Pak Hasan, serving espresso-based drinks, teas, and snacks. Monthly revenue of Rp 32.9M places it well within the UMKM threshold — single-entry bookkeeping is sufficient, no PPN to collect, and employee payroll sits below PTKP. A textbook Non-PKP case."
+           data-id="Sebuah kafe kecil di Palu milik Pak Hasan yang menyajikan minuman espresso, teh, dan makanan ringan. Omzet Rp 32,9 juta/bulan menempatkannya dalam kategori UMKM — pencatatan sederhana (single-entry) cukup, tidak pungut PPN, dan gaji karyawan di bawah PTKP. Kasus Non-PKP klasik.">
+          Sebuah kafe kecil di Palu milik Pak Hasan yang menyajikan minuman espresso, teh, dan makanan ringan. Omzet Rp 32,9 juta/bulan menempatkannya dalam kategori UMKM — pencatatan sederhana (single-entry) cukup, tidak pungut PPN, dan gaji karyawan di bawah PTKP. Kasus Non-PKP klasik.
+        </p>
+        <div class="cb-biz-meta">
+          <span class="cb-meta-chip" data-en="Business <strong>Café (F&B)</strong>" data-id="Jenis <strong>Kafe (F&B)</strong>">Jenis <strong>Kafe (F&B)</strong></span>
+          <span class="cb-meta-chip" data-en="Location <strong>Palu, Sulteng</strong>" data-id="Lokasi <strong>Palu, Sulteng</strong>">Lokasi <strong>Palu, Sulteng</strong></span>
+          <span class="cb-meta-chip" data-en="Revenue <strong>Rp 32,93 M/mo</strong>" data-id="Omzet <strong>Rp 32,93 jt/bln</strong>">Omzet <strong>Rp 32,93 jt/bln</strong></span>
+          <span class="cb-meta-chip" data-en="Status <strong>Non-PKP · UMKM</strong>" data-id="Status <strong>Non-PKP · UMKM</strong>">Status <strong>Non-PKP · UMKM</strong></span>
+          <span class="cb-meta-chip" data-en="Employees <strong>2 baristas</strong>" data-id="Karyawan <strong>2 barista</strong>">Karyawan <strong>2 barista</strong></span>
+        </div>
+      </div>
+
+      <!-- Sheets tabs -->
+      <div class="cb-sheets-wrap">
+        <div class="cb-tabs" role="tablist">
+          <button class="cb-tab active" data-sheet="buku" data-panel="kopi">
+            <span class="cb-tab-icon"></span><span data-en="Buku Harian" data-id="Buku Harian">Buku Harian</span>
+          </button>
+          <button class="cb-tab" data-sheet="hpp" data-panel="kopi">
+            <span class="cb-tab-icon"></span><span data-en="HPP / COGS" data-id="HPP / COGS">HPP / COGS</span>
+          </button>
+          <button class="cb-tab" data-sheet="pl" data-panel="kopi">
+            <span class="cb-tab-icon"></span><span data-en="P&amp;L" data-id="Laba Rugi">Laba Rugi</span>
+          </button>
+          <button class="cb-tab" data-sheet="kary" data-panel="kopi">
+            <span class="cb-tab-icon"></span><span data-en="Employees" data-id="Karyawan">Karyawan</span>
+          </button>
+        </div>
+
+        <!-- Sheet 1: Buku Harian -->
+        <div class="cb-sheet-content active" data-sheet-content="buku" data-panel="kopi">
+          <div class="cb-sheet-title"
+               data-en="Buku Harian — Cash Journal · Januari 2025"
+               data-id="Buku Harian — Jurnal Kas · Januari 2025">Buku Harian — Jurnal Kas · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Every cash in and cash out, recorded chronologically. Since Kopi Tadulako is Non-PKP and owner-managed, a simple single-entry cash book is compliant under Article 28(7) UU KUP (pencatatan instead of pembukuan lengkap)."
+             data-id="Setiap kas masuk dan keluar dicatat secara kronologis. Karena Kopi Tadulako Non-PKP dan dikelola sendiri oleh pemilik, pencatatan kas sederhana sudah memenuhi Pasal 28(7) UU KUP (pencatatan, bukan pembukuan lengkap).">
+            Setiap kas masuk dan keluar dicatat secara kronologis. Karena Kopi Tadulako Non-PKP dan dikelola sendiri oleh pemilik, pencatatan kas sederhana sudah memenuhi Pasal 28(7) UU KUP (pencatatan, bukan pembukuan lengkap).
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Description" data-id="Keterangan">Keterangan</th>
+                  <th class="num" data-en="Debit (Rp)" data-id="Debit (Rp)">Debit (Rp)</th>
+                  <th class="num" data-en="Credit (Rp)" data-id="Kredit (Rp)">Kredit (Rp)</th>
+                  <th data-en="Account" data-id="Akun">Akun (D / K)</th>
+                  <th class="num" data-en="Cash Balance" data-id="Saldo Kas">Saldo Kas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Owner capital deposit" data-id="Modal awal pemilik">Modal awal pemilik</td><td class="num">50.000.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Modal</span></td><td class="num">50.000.000</td></tr>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Rent — January" data-id="Sewa tempat Januari">Sewa tempat Januari</td><td class="num muted">—</td><td class="num">3.500.000</td><td><span class="cb-acc-d">B. Sewa</span> / <span class="cb-acc-k">Kas</span></td><td class="num">46.500.000</td></tr>
+                <tr><td class="cb-date">01 Jan</td><td class="cb-desc" data-en="Café equipment (tables, chairs, coffee machine)" data-id="Beli peralatan (meja, kursi, mesin kopi)">Beli peralatan (meja, kursi, mesin kopi)</td><td class="num muted">—</td><td class="num">12.000.000</td><td><span class="cb-acc-d">Peralatan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">34.500.000</td></tr>
+                <tr><td class="cb-date">02 Jan</td><td class="cb-desc" data-en="Initial raw material stock" data-id="Stok awal bahan baku">Stok awal bahan baku</td><td class="num muted">—</td><td class="num">4.000.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">30.500.000</td></tr>
+                <tr><td class="cb-date">03 Jan</td><td class="cb-desc" data-en="Cash sales day 1" data-id="Penjualan tunai hari ke-1">Penjualan tunai hari ke-1</td><td class="num">1.250.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">31.750.000</td></tr>
+                <tr><td class="cb-date">04 Jan</td><td class="cb-desc" data-en="Cash sales day 2" data-id="Penjualan tunai hari ke-2">Penjualan tunai hari ke-2</td><td class="num">980.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">32.730.000</td></tr>
+                <tr><td class="cb-date">05 Jan</td><td class="cb-desc" data-en="Cash sales day 3" data-id="Penjualan tunai hari ke-3">Penjualan tunai hari ke-3</td><td class="num">1.100.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">33.830.000</td></tr>
+                <tr><td class="cb-date">06 Jan</td><td class="cb-desc" data-en="Pay salary (2 baristas)" data-id="Bayar gaji karyawan (2 barista)">Bayar gaji karyawan (2 barista)</td><td class="num muted">—</td><td class="num">4.000.000</td><td><span class="cb-acc-d">B. Gaji</span> / <span class="cb-acc-k">Kas</span></td><td class="num">29.830.000</td></tr>
+                <tr><td class="cb-date">07 Jan</td><td class="cb-desc" data-en="Cash sales day 5–6" data-id="Penjualan tunai hari ke-5 &amp; 6">Penjualan tunai hari ke-5 &amp; 6</td><td class="num">2.150.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">31.980.000</td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Weekly restock" data-id="Restok bahan baku mingguan">Restok bahan baku mingguan</td><td class="num muted">—</td><td class="num">2.500.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">29.480.000</td></tr>
+                <tr><td class="cb-date">10 Jan</td><td class="cb-desc" data-en="Cash sales (8–10 Jan)" data-id="Penjualan tunai (8–10 Jan)">Penjualan tunai (8–10 Jan)</td><td class="num">3.450.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">32.930.000</td></tr>
+                <tr><td class="cb-date">12 Jan</td><td class="cb-desc" data-en="Cash sales (11–12 Jan)" data-id="Penjualan tunai (11–12 Jan)">Penjualan tunai (11–12 Jan)</td><td class="num">2.200.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">35.130.000</td></tr>
+                <tr><td class="cb-date">13 Jan</td><td class="cb-desc" data-en="Electricity &amp; water" data-id="Bayar listrik &amp; air">Bayar listrik &amp; air</td><td class="num muted">—</td><td class="num">850.000</td><td><span class="cb-acc-d">B. Utilitas</span> / <span class="cb-acc-k">Kas</span></td><td class="num">34.280.000</td></tr>
+                <tr><td class="cb-date">14 Jan</td><td class="cb-desc" data-en="Cash sales (13–14 Jan)" data-id="Penjualan tunai (13–14 Jan)">Penjualan tunai (13–14 Jan)</td><td class="num">2.400.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">36.680.000</td></tr>
+                <tr><td class="cb-date">15 Jan</td><td class="cb-desc" data-en="Weekly restock" data-id="Restok bahan baku mingguan">Restok bahan baku mingguan</td><td class="num muted">—</td><td class="num">2.500.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">34.180.000</td></tr>
+                <tr><td class="cb-date">17 Jan</td><td class="cb-desc" data-en="Cash sales (15–17 Jan)" data-id="Penjualan tunai (15–17 Jan)">Penjualan tunai (15–17 Jan)</td><td class="num">3.600.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">37.780.000</td></tr>
+                <tr><td class="cb-date">19 Jan</td><td class="cb-desc" data-en="Cash sales (18–19 Jan)" data-id="Penjualan tunai (18–19 Jan)">Penjualan tunai (18–19 Jan)</td><td class="num">2.300.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">40.080.000</td></tr>
+                <tr><td class="cb-date">20 Jan</td><td class="cb-desc" data-en="Pay salary (2 baristas)" data-id="Bayar gaji karyawan (2 barista)">Bayar gaji karyawan (2 barista)</td><td class="num muted">—</td><td class="num">4.000.000</td><td><span class="cb-acc-d">B. Gaji</span> / <span class="cb-acc-k">Kas</span></td><td class="num">36.080.000</td></tr>
+                <tr><td class="cb-date">21 Jan</td><td class="cb-desc" data-en="Restock + packaging" data-id="Restok bahan baku + kemasan">Restok bahan baku + kemasan</td><td class="num muted">—</td><td class="num">3.000.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">33.080.000</td></tr>
+                <tr><td class="cb-date">21 Jan</td><td class="cb-desc" data-en="Cash sales (20–21 Jan)" data-id="Penjualan tunai (20–21 Jan)">Penjualan tunai (20–21 Jan)</td><td class="num">2.500.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">35.580.000</td></tr>
+                <tr><td class="cb-date">24 Jan</td><td class="cb-desc" data-en="Cash sales (22–24 Jan)" data-id="Penjualan tunai (22–24 Jan)">Penjualan tunai (22–24 Jan)</td><td class="num">3.800.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">39.380.000</td></tr>
+                <tr><td class="cb-date">26 Jan</td><td class="cb-desc" data-en="Cash sales (25–26 Jan)" data-id="Penjualan tunai (25–26 Jan)">Penjualan tunai (25–26 Jan)</td><td class="num">2.600.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">41.980.000</td></tr>
+                <tr><td class="cb-date">27 Jan</td><td class="cb-desc" data-en="Marketing (IG ads + flyer)" data-id="Beban promosi (IG ads + flyer)">Beban promosi (IG ads + flyer)</td><td class="num muted">—</td><td class="num">500.000</td><td><span class="cb-acc-d">B. Pemasaran</span> / <span class="cb-acc-k">Kas</span></td><td class="num">41.480.000</td></tr>
+                <tr><td class="cb-date">28 Jan</td><td class="cb-desc" data-en="Cash sales (27–28 Jan)" data-id="Penjualan tunai (27–28 Jan)">Penjualan tunai (27–28 Jan)</td><td class="num">2.700.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">44.180.000</td></tr>
+                <tr><td class="cb-date">29 Jan</td><td class="cb-desc" data-en="End-of-month restock" data-id="Restok bahan baku akhir bulan">Restok bahan baku akhir bulan</td><td class="num muted">—</td><td class="num">2.000.000</td><td><span class="cb-acc-d">Persediaan</span> / <span class="cb-acc-k">Kas</span></td><td class="num">42.180.000</td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="Cash sales (29–31 Jan)" data-id="Penjualan tunai (29–31 Jan)">Penjualan tunai (29–31 Jan)</td><td class="num">3.900.000</td><td class="num muted">—</td><td><span class="cb-acc-d">Kas</span> / <span class="cb-acc-k">Pendapatan</span></td><td class="num">46.080.000</td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="Equipment depreciation (Rp12M / 36 mo)" data-id="Penyusutan peralatan (Rp12jt / 36 bln)">Penyusutan peralatan (Rp12jt / 36 bln)</td><td class="num muted">—</td><td class="num">333.333</td><td><span class="cb-acc-d">B. Penyusutan</span> / <span class="cb-acc-k">Akm. Penyusutan</span></td><td class="num">45.746.667</td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">84.930.000</td><td class="num">39.183.333</td><td></td><td class="num">45.746.667</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cb-summary">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Total cash in" data-id="Total kas masuk">Total kas masuk</div>
+              <div class="cb-summary-val pos">Rp 84.930.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Total cash out" data-id="Total kas keluar">Total kas keluar</div>
+              <div class="cb-summary-val">Rp 39.183.333</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label" data-en="Ending cash balance" data-id="Saldo kas akhir">Saldo kas akhir</div>
+              <div class="cb-summary-val pos">Rp 45.746.667</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sheet 2: HPP / COGS -->
+        <div class="cb-sheet-content" data-sheet-content="hpp" data-panel="kopi">
+          <div class="cb-sheet-title"
+               data-en="HPP — Cost of Goods Sold · Januari 2025"
+               data-id="HPP — Harga Pokok Penjualan · Januari 2025">HPP — Harga Pokok Penjualan · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Two views of COGS: (A) raw material movement by date, (B) breakdown by menu category. Compared against gross margin targets to flag pricing issues early."
+             data-id="Dua pandangan HPP: (A) mutasi bahan baku per tanggal, (B) rincian per kategori menu. Dibandingkan dengan target gross margin untuk mendeteksi isu pricing sejak awal.">
+            Dua pandangan HPP: (A) mutasi bahan baku per tanggal, (B) rincian per kategori menu. Dibandingkan dengan target gross margin untuk mendeteksi isu pricing sejak awal.
+          </p>
+
+          <div class="cb-sheet-title" style="margin-top:.5rem"
+               data-en="A — Raw material movement"
+               data-id="A — Mutasi persediaan bahan baku">A — Mutasi persediaan bahan baku</div>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th data-en="Date" data-id="Tanggal">Tanggal</th>
+                  <th data-en="Description" data-id="Keterangan">Keterangan</th>
+                  <th class="num" data-en="Purchased (Rp)" data-id="Pembelian (Rp)">Pembelian (Rp)</th>
+                  <th class="num" data-en="Used (Rp)" data-id="Pemakaian (Rp)">Pemakaian (Rp)</th>
+                  <th class="num" data-en="Stock balance" data-id="Saldo persediaan">Saldo persediaan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-date">02 Jan</td><td class="cb-desc" data-en="Initial raw stock" data-id="Stok awal bahan baku">Stok awal bahan baku</td><td class="num">4.000.000</td><td class="num muted">—</td><td class="num">4.000.000</td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Weekly restock" data-id="Restok mingguan">Restok mingguan</td><td class="num">2.500.000</td><td class="num muted">—</td><td class="num">6.500.000</td></tr>
+                <tr><td class="cb-date">08 Jan</td><td class="cb-desc" data-en="Estimated usage (1–8 Jan)" data-id="Estimasi pemakaian (1–8 Jan)">Estimasi pemakaian (1–8 Jan)</td><td class="num muted">—</td><td class="num">3.200.000</td><td class="num">3.300.000</td></tr>
+                <tr><td class="cb-date">15 Jan</td><td class="cb-desc" data-en="Weekly restock" data-id="Restok mingguan">Restok mingguan</td><td class="num">2.500.000</td><td class="num muted">—</td><td class="num">5.800.000</td></tr>
+                <tr><td class="cb-date">15 Jan</td><td class="cb-desc" data-en="Estimated usage (9–15 Jan)" data-id="Estimasi pemakaian (9–15 Jan)">Estimasi pemakaian (9–15 Jan)</td><td class="num muted">—</td><td class="num">3.100.000</td><td class="num">2.700.000</td></tr>
+                <tr><td class="cb-date">21 Jan</td><td class="cb-desc" data-en="Restock + packaging" data-id="Restok + kemasan">Restok + kemasan</td><td class="num">3.000.000</td><td class="num muted">—</td><td class="num">5.700.000</td></tr>
+                <tr><td class="cb-date">21 Jan</td><td class="cb-desc" data-en="Estimated usage (16–21 Jan)" data-id="Estimasi pemakaian (16–21 Jan)">Estimasi pemakaian (16–21 Jan)</td><td class="num muted">—</td><td class="num">2.800.000</td><td class="num">2.900.000</td></tr>
+                <tr><td class="cb-date">29 Jan</td><td class="cb-desc" data-en="End-of-month restock" data-id="Restok akhir bulan">Restok akhir bulan</td><td class="num">2.000.000</td><td class="num muted">—</td><td class="num">4.900.000</td></tr>
+                <tr><td class="cb-date">31 Jan</td><td class="cb-desc" data-en="Estimated usage (22–31 Jan)" data-id="Estimasi pemakaian (22–31 Jan)">Estimasi pemakaian (22–31 Jan)</td><td class="num muted">—</td><td class="num">2.900.000</td><td class="num">2.000.000</td></tr>
+                <tr class="cb-total"><td colspan="2" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">14.000.000</td><td class="num">12.000.000</td><td class="num">2.000.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cb-sheet-title" style="margin-top:2rem"
+               data-en="B — HPP breakdown by menu category"
+               data-id="B — Rincian HPP per kategori menu">B — Rincian HPP per kategori menu</div>
+          <table class="cb-hpp-table">
+            <thead>
+              <tr>
+                <th data-en="Menu category" data-id="Kategori menu">Kategori menu</th>
+                <th data-en="Main ingredients" data-id="Bahan baku utama">Bahan baku utama</th>
+                <th class="num" data-en="Cost/unit" data-id="Biaya/unit">Biaya/unit</th>
+                <th class="num" data-en="Portions" data-id="Porsi">Porsi</th>
+                <th class="num" data-en="Total COGS" data-id="Total HPP">Total HPP</th>
+                <th class="num" data-en="Price/unit" data-id="Harga/unit">Harga/unit</th>
+                <th class="num" data-en="GM %" data-id="GM %">GM %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="cat-dot" style="background:#C9A567"></span><span data-en="Coffee (espresso)" data-id="Kopi (espresso)">Kopi (espresso)</span></td>
+                <td class="muted" data-en="Beans, milk, sugar" data-id="Biji kopi, susu, gula">Biji kopi, susu, gula</td>
+                <td class="num">8.000</td>
+                <td class="num">820</td>
+                <td class="num">6.560.000</td>
+                <td class="num">12.000</td>
+                <td class="num">33,3%</td>
+              </tr>
+              <tr>
+                <td><span class="cat-dot" style="background:#818CF8"></span><span data-en="Non-coffee drinks" data-id="Minuman non-kopi">Minuman non-kopi</span></td>
+                <td class="muted" data-en="Tea, milk, syrup, fruit" data-id="Teh, susu, sirup, buah">Teh, susu, sirup, buah</td>
+                <td class="num">5.000</td>
+                <td class="num">410</td>
+                <td class="num">2.050.000</td>
+                <td class="num">9.000</td>
+                <td class="num">44,4%</td>
+              </tr>
+              <tr>
+                <td><span class="cat-dot" style="background:#34D399"></span><span data-en="Snacks" data-id="Makanan ringan">Makanan ringan</span></td>
+                <td class="muted" data-en="Flour, eggs, oil, packaging" data-id="Tepung, telur, minyak, kemasan">Tepung, telur, minyak, kemasan</td>
+                <td class="num">6.000</td>
+                <td class="num">380</td>
+                <td class="num">2.280.000</td>
+                <td class="num">12.000</td>
+                <td class="num">50,0%</td>
+              </tr>
+              <tr>
+                <td><span class="cat-dot" style="background:#FB923C"></span><span data-en="Bottled resale" data-id="Minuman botol resale">Minuman botol resale</span></td>
+                <td class="muted" data-en="Direct supplier purchase" data-id="Beli putus dari supplier">Beli putus dari supplier</td>
+                <td class="num">7.000</td>
+                <td class="num">210</td>
+                <td class="num">1.470.000</td>
+                <td class="num">12.000</td>
+                <td class="num">41,7%</td>
+              </tr>
+              <tr class="cb-total"><td colspan="4" data-en="TOTAL COGS — JANUARY" data-id="TOTAL HPP — JANUARI">TOTAL HPP — JANUARI</td><td class="num">12.360.000</td><td colspan="2"></td></tr>
+            </tbody>
+          </table>
+
+          <!-- Reconciliation finding — teachable moment -->
+          <div class="cb-finding">
+            <div class="cb-finding-label"
+                 data-en="⚠ Reconciliation finding"
+                 data-id="⚠ Temuan rekonsiliasi">⚠ Temuan rekonsiliasi</div>
+            <div class="cb-finding-title"
+                 data-en="Three different COGS numbers across three sheets"
+                 data-id="Tiga angka HPP berbeda di tiga sheet yang berbeda">Tiga angka HPP berbeda di tiga sheet yang berbeda</div>
+            <div class="cb-finding-text"
+                 data-en="The Buku Harian shows <strong>Rp 14M total purchases</strong> of raw materials. Table A here shows <strong>Rp 12M total usage</strong>. Table B breaks down to <strong>Rp 12.36M</strong>. The P&amp;L uses Rp 14M as &lsquo;materials consumed&rsquo; — which is wrong, because Rp 2M of inventory is still on hand. Correct COGS = Beginning (0) + Purchases (14M) − Ending (2M) = <strong>Rp 12M</strong>. In real practice, this kind of small discrepancy is the exact thing I'd flag during monthly close — it only becomes a problem at SPT time when the tax office sees Laba Kotor figures that don't tie to inventory movement."
+                 data-id="Buku Harian mencatat <strong>total pembelian Rp 14jt</strong> bahan baku. Tabel A di atas mencatat <strong>total pemakaian Rp 12jt</strong>. Tabel B merinci <strong>Rp 12,36jt</strong>. Laporan L/R memakai Rp 14jt sebagai &lsquo;bahan baku terpakai&rsquo; — ini salah, karena masih ada sisa persediaan Rp 2jt. HPP yang benar = Saldo Awal (0) + Pembelian (14jt) − Saldo Akhir (2jt) = <strong>Rp 12jt</strong>. Dalam praktik nyata, selisih kecil seperti inilah yang saya tandai saat tutup buku bulanan — baru menjadi masalah saat SPT ketika DJP melihat angka Laba Kotor yang tidak nyambung dengan mutasi persediaan.">
+              Buku Harian mencatat <strong>total pembelian Rp 14jt</strong> bahan baku. Tabel A di atas mencatat <strong>total pemakaian Rp 12jt</strong>. Tabel B merinci <strong>Rp 12,36jt</strong>. Laporan L/R memakai Rp 14jt sebagai &lsquo;bahan baku terpakai&rsquo; — ini salah, karena masih ada sisa persediaan Rp 2jt. HPP yang benar = Saldo Awal (0) + Pembelian (14jt) − Saldo Akhir (2jt) = <strong>Rp 12jt</strong>. Dalam praktik nyata, selisih kecil seperti inilah yang saya tandai saat tutup buku bulanan — baru menjadi masalah saat SPT ketika DJP melihat angka Laba Kotor yang tidak nyambung dengan mutasi persediaan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sheet 3: P&L -->
+        <div class="cb-sheet-content" data-sheet-content="pl" data-panel="kopi">
+          <div class="cb-sheet-title"
+               data-en="Laporan Laba Rugi · Januari 2025"
+               data-id="Laporan Laba Rugi · Januari 2025">Laporan Laba Rugi · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="The core monthly performance statement — revenue, gross profit after COGS, operating expenses, and net profit after final tax."
+             data-id="Laporan kinerja bulanan inti — pendapatan, laba kotor setelah HPP, beban operasional, dan laba bersih setelah pajak final.">
+            Laporan kinerja bulanan inti — pendapatan, laba kotor setelah HPP, beban operasional, dan laba bersih setelah pajak final.
+          </p>
+          <table class="cb-hpp-table">
+            <tbody>
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="REVENUE" data-id="PENDAPATAN">PENDAPATAN</td></tr>
+              <tr><td data-en="Food &amp; beverage sales" data-id="Penjualan Minuman &amp; Makanan">Penjualan Minuman &amp; Makanan</td><td class="num">32.930.000</td></tr>
+              <tr class="cb-total"><td data-en="TOTAL REVENUE" data-id="TOTAL PENDAPATAN">TOTAL PENDAPATAN</td><td class="num">32.930.000</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="COST OF GOODS SOLD" data-id="HARGA POKOK PENJUALAN">HARGA POKOK PENJUALAN</td></tr>
+              <tr><td data-en="Raw materials consumed (per source sheet)" data-id="Bahan baku terpakai (sesuai source)">Bahan baku terpakai (sesuai source)</td><td class="num">14.000.000</td></tr>
+              <tr class="cb-total"><td data-en="GROSS PROFIT" data-id="LABA KOTOR">LABA KOTOR</td><td class="num">18.930.000</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px" data-en="Gross margin %" data-id="Gross margin %">Gross margin %</td><td class="num" style="color:var(--cyan);font-size:12px">57,5%</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px" data-en="OPERATING EXPENSES" data-id="BEBAN OPERASIONAL">BEBAN OPERASIONAL</td></tr>
+              <tr><td data-en="Salary (2 baristas)" data-id="Beban Gaji (2 barista)">Beban Gaji (2 barista)</td><td class="num">8.000.000</td></tr>
+              <tr><td data-en="Rent" data-id="Beban Sewa Tempat">Beban Sewa Tempat</td><td class="num">3.500.000</td></tr>
+              <tr><td data-en="Utilities" data-id="Beban Utilitas (Listrik &amp; Air)">Beban Utilitas (Listrik &amp; Air)</td><td class="num">850.000</td></tr>
+              <tr><td data-en="Marketing" data-id="Beban Pemasaran">Beban Pemasaran</td><td class="num">500.000</td></tr>
+              <tr><td data-en="Depreciation" data-id="Beban Penyusutan Peralatan">Beban Penyusutan Peralatan</td><td class="num">333.333</td></tr>
+              <tr class="cb-total"><td data-en="TOTAL OPEX" data-id="TOTAL BEBAN OPERASIONAL">TOTAL BEBAN OPERASIONAL</td><td class="num">13.183.333</td></tr>
+
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)"><td data-en="PRE-TAX PROFIT (EBIT)" data-id="LABA SEBELUM PAJAK (EBIT)">LABA SEBELUM PAJAK (EBIT)</td><td class="num" style="color:var(--white);font-size:13px">5.746.667</td></tr>
+              <tr><td data-en="PPh Final UMKM (0.5% × revenue)" data-id="PPh Final UMKM (0,5% × omzet)">PPh Final UMKM (0,5% × omzet)</td><td class="num" style="color:#FB923C">(164.650)</td></tr>
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:1px solid var(--cyan)"><td data-en="NET PROFIT AFTER TAX" data-id="LABA BERSIH SETELAH PAJAK">LABA BERSIH SETELAH PAJAK</td><td class="num" style="color:var(--cyan);font-size:15px">5.582.017</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sheet 4: Data Karyawan -->
+        <div class="cb-sheet-content" data-sheet-content="kary" data-panel="kopi">
+          <div class="cb-sheet-title"
+               data-en="Employee data · Januari 2025"
+               data-id="Data Karyawan · Januari 2025">Data Karyawan · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Three people on the books. Both baristas fall below the PTKP (non-taxable income threshold), so no PPh 21 withholding applies — but compensation structure means even a small raise could change that."
+             data-id="Tiga orang tercatat. Kedua barista di bawah PTKP (Penghasilan Tidak Kena Pajak), jadi tidak ada pemotongan PPh 21 — tapi struktur kompensasi berarti kenaikan kecil saja bisa mengubah itu.">
+            Tiga orang tercatat. Kedua barista di bawah PTKP (Penghasilan Tidak Kena Pajak), jadi tidak ada pemotongan PPh 21 — tapi struktur kompensasi berarti kenaikan kecil saja bisa mengubah itu.
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-en="Name" data-id="Nama">Nama</th>
+                  <th data-en="Role" data-id="Jabatan">Jabatan</th>
+                  <th data-en="PTKP" data-id="PTKP">PTKP</th>
+                  <th class="num" data-en="Gross/mo" data-id="Bruto/bln">Bruto/bln</th>
+                  <th class="num" data-en="PPh 21/mo" data-id="PPh 21/bln">PPh 21/bln</th>
+                  <th data-en="Note" data-id="Keterangan">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="muted">1</td>
+                  <td class="cb-desc">Rina Marlina</td>
+                  <td class="muted" data-en="Barista / Cashier" data-id="Barista / Kasir">Barista / Kasir</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">4.000.000</td>
+                  <td class="num" style="color:var(--green)">0</td>
+                  <td class="muted" data-en="Annual gross &lt; PTKP" data-id="Bruto tahunan &lt; PTKP">Bruto tahunan &lt; PTKP</td>
+                </tr>
+                <tr>
+                  <td class="muted">2</td>
+                  <td class="cb-desc">Dedy Kurniawan</td>
+                  <td class="muted" data-en="Barista / Server" data-id="Barista / Pelayan">Barista / Pelayan</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">4.000.000</td>
+                  <td class="num" style="color:var(--green)">0</td>
+                  <td class="muted" data-en="Annual gross &lt; PTKP" data-id="Bruto tahunan &lt; PTKP">Bruto tahunan &lt; PTKP</td>
+                </tr>
+                <tr>
+                  <td class="muted">3</td>
+                  <td class="cb-desc">Pak Hasan</td>
+                  <td class="muted" data-en="Owner / Manager" data-id="Pemilik / Manajer">Pemilik / Manajer</td>
+                  <td><span style="color:var(--cyan);font-size:10.5px;font-weight:600">K/1</span></td>
+                  <td class="num muted">—</td>
+                  <td class="num muted">—</td>
+                  <td class="muted" data-en="Takes profit, not salary · files SPT 1770" data-id="Ambil laba, bukan gaji · lapor SPT 1770">Ambil laba, bukan gaji · lapor SPT 1770</td>
+                </tr>
+                <tr class="cb-total"><td colspan="4" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">8.000.000</td><td class="num" style="color:var(--green)">0</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /cb-sheets-wrap -->
+
+      <!-- ═══ BRIDGE TO TAX PAGE ═══ -->
+      <a href="tax.html#casebook-kopi" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label"
+               data-en="Tax perspective"
+               data-id="Perspektif pajak">Perspektif pajak</div>
+          <div class="cb-bridge-title"
+               data-en="Continue with the full tax analysis for Kopi Tadulako"
+               data-id="Lanjut ke analisis pajak lengkap Kopi Tadulako">Lanjut ke analisis pajak lengkap Kopi Tadulako</div>
+          <div class="cb-bridge-desc"
+               data-en="Same data, tax-compliance lens — PPh Final calculation, PKP threshold check, PTKP verification, filing calendar, and practitioner recommendations."
+               data-id="Data yang sama, dari sudut kepatuhan pajak — perhitungan PPh Final, cek ambang PKP, verifikasi PTKP, kalender pelaporan, dan rekomendasi praktisi.">
+            Data yang sama, dari sudut kepatuhan pajak — perhitungan PPh Final, cek ambang PKP, verifikasi PTKP, kalender pelaporan, dan rekomendasi praktisi.
+          </div>
+        </div>
+        <span class="cb-bridge-btn"
+              data-en="View Tax Analysis&nbsp;&nbsp;<span class='arrow'>→</span>"
+              data-id="Lihat Analisis Pajak&nbsp;&nbsp;<span class='arrow'>→</span>">
+          Lihat Analisis Pajak&nbsp;&nbsp;<span class="arrow">→</span>
+        </span>
+      </a>
+
+    </div><!-- /cb-panel kopi -->
+
+    <!-- Placeholder panels for other 4 businesses -->
+    <div class="cb-panel" id="cb-makmur">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">Toko Makmur</div>
+        <div class="cb-placeholder-desc"
+             data-en="PKP sembako retailer with FIFO inventory and PPN input/output reconciliation — casebook in progress."
+             data-id="Toko sembako PKP dengan persediaan FIFO dan rekonsiliasi PPN masukan/keluaran — casebook sedang disusun.">
+          Toko sembako PKP dengan persediaan FIFO dan rekonsiliasi PPN masukan/keluaran — casebook sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-solusi">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">CV Solusi Digital</div>
+        <div class="cb-placeholder-desc"
+             data-en="IT services firm with receivables aging, direct-method cash flow, and 5-employee progressive PPh 21 — casebook in progress."
+             data-id="Perusahaan jasa IT dengan piutang aging, arus kas metode langsung, dan PPh 21 progresif 5 karyawan — casebook sedang disusun.">
+          Perusahaan jasa IT dengan piutang aging, arus kas metode langsung, dan PPh 21 progresif 5 karyawan — casebook sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-bangun">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">PT Bangun Sulawesi</div>
+        <div class="cb-placeholder-desc"
+             data-en="Construction firm with project costing variance analysis and mixed-workforce PPh 21 — casebook in progress."
+             data-id="Perusahaan konstruksi dengan analisis varians project costing dan PPh 21 campuran (tetap & harian) — casebook sedang disusun.">
+          Perusahaan konstruksi dengan analisis varians project costing dan PPh 21 campuran (tetap & harian) — casebook sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-kos">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">Kos Pak Haris</div>
+        <div class="cb-placeholder-desc"
+             data-en="20-room boarding house — PKP but VAT-exempt under PMK 70/2022, with self-assessed final 10% — casebook in progress."
+             data-id="Kos-kosan 20 kamar — PKP tapi bebas PPN menurut PMK 70/2022, dengan PPh Final 10% self-assessed — casebook sedang disusun.">
+          Kos-kosan 20 kamar — PKP tapi bebas PPN menurut PMK 70/2022, dengan PPh Final 10% self-assessed — casebook sedang disusun.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
 <!-- COMPLIANCE CALLOUT -->
 <section class="compliance-block">
   <div class="compliance-inner">
@@ -784,35 +1428,7 @@
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
-<!-- RESUME MODAL -->
-<div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;">
-  <div style="position:relative;width:min(860px,95vw);height:90vh;background:#1C232D;border:1px solid rgba(201,165,103,0.2);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
-      <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
-    </div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
-  </div>
-</div>
-
 <script>
-  function openResumeModal(e) {
-    e.preventDefault();
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeResumeModal() {
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('resumeModal').addEventListener('click', function(e) {
-    if (e.target === this) closeResumeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeResumeModal();
-  });
   function toggleMobileMenu() {
     document.getElementById('hamburgerBtn').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -835,6 +1451,37 @@
   (function() {
     const saved = localStorage.getItem('adj_lang') || 'id';
     if (saved === 'en') applyLang('en');
+  })();
+
+  /* ── CLIENT CASEBOOK ── tab + project card switching */
+  (function() {
+    // Project card picker
+    document.querySelectorAll('.cb-card').forEach(card => {
+      card.addEventListener('click', function() {
+        if (this.classList.contains('placeholder')) return; // do nothing for coming-soon cards
+        const target = this.dataset.cb;
+        document.querySelectorAll('.cb-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.cb-panel').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const panel = document.getElementById('cb-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    });
+
+    // Sheet tabs within a panel
+    document.querySelectorAll('.cb-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const sheet = this.dataset.sheet;
+        const panel = this.dataset.panel;
+        // Deactivate all tabs & sheets in this panel
+        document.querySelectorAll('.cb-tab[data-panel="' + panel + '"]').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.cb-sheet-content[data-panel="' + panel + '"]').forEach(s => s.classList.remove('active'));
+        // Activate clicked
+        this.classList.add('active');
+        const content = document.querySelector('.cb-sheet-content[data-sheet-content="' + sheet + '"][data-panel="' + panel + '"]');
+        if (content) content.classList.add('active');
+      });
+    });
   })();
 </script>
 </body>

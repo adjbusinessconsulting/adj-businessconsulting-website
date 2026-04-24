@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perpajakan — ADJ Business Consulting</title>
+  <title>Pajak — ADJ Business Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -159,6 +159,208 @@
     .btn-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; background: var(--cyan); color: var(--navy); padding: 11px 24px; border-radius: 3px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
     .btn-cta:hover { background: #D9B97C; transform: translateY(-1px); }
 
+    /* ══════════════════════════════════════════════════════════════════
+       CLIENT CASEBOOK (Tax Analysis) — project picker + panels
+       ══════════════════════════════════════════════════════════════════ */
+    .casebook-section { padding: 5rem 5vw 4rem; }
+    .casebook-inner { max-width: 1200px; margin: 0 auto; }
+    .casebook-intro { font-family: var(--mono); font-size: 14px; color: var(--gray-2); line-height: 1.8; max-width: 740px; margin-bottom: 2.5rem; }
+    .casebook-intro em { font-style: normal; color: var(--white); font-weight: 600; }
+
+    .cb-picker { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.12); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+    .cb-picker-label { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 600; }
+    .cb-cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.85rem; }
+    .cb-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.08); border-radius: 6px; padding: 1.1rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.5rem; min-height: 150px; }
+    .cb-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; }
+    .cb-card:hover { border-color: rgba(201,165,103,0.25); transform: translateY(-2px); }
+    .cb-card.active { border-color: rgba(201,165,103,0.4); background: rgba(201,165,103,0.03); }
+    .cb-card.active::before { background: var(--cyan); }
+    .cb-card.placeholder { opacity: 0.55; cursor: default; }
+    .cb-card.placeholder:hover { transform: none; border-color: rgba(201,165,103,0.08); }
+    .cb-card-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; font-weight: 600; text-transform: uppercase; }
+    .cb-card-name { font-family: var(--h); font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .cb-card-type { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); line-height: 1.5; flex: 1; }
+    .cb-card-tag { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 9.5px; color: var(--cyan); background: rgba(201,165,103,0.08); border: 1px solid rgba(201,165,103,0.18); padding: 2px 7px; border-radius: 3px; letter-spacing: 0.08em; width: fit-content; font-weight: 600; }
+    .cb-card-tag.ph { color: var(--gray-3); background: rgba(160,152,144,0.05); border-color: rgba(160,152,144,0.15); }
+    .cb-card-arrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); margin-top: auto; font-weight: 600; letter-spacing: 0.04em; }
+
+    .cb-panel { display: none; }
+    .cb-panel.active { display: block; }
+
+    .cb-placeholder-panel { background: var(--navy-mid); border: 1px dashed rgba(201,165,103,0.2); border-radius: 10px; padding: 4rem 3rem; text-align: center; }
+    .cb-placeholder-icon { font-size: 32px; color: var(--cyan); opacity: 0.3; margin-bottom: 1rem; font-family: var(--h); }
+    .cb-placeholder-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .cb-placeholder-desc { font-family: var(--mono); font-size: 12.5px; color: var(--gray-3); line-height: 1.7; max-width: 440px; margin: 0 auto; }
+
+    /* Back-link to accounting */
+    .cb-backlink-wrap { margin-bottom: 1.25rem; }
+    .cb-backlink { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--gray-2); text-decoration: none; padding: 7px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.12); border-radius: 4px; transition: all 0.2s; letter-spacing: 0.03em; }
+    .cb-backlink:hover { color: var(--cyan); border-color: rgba(201,165,103,0.3); background: rgba(201,165,103,0.04); }
+    .cb-backlink .arrow { transition: transform 0.2s; }
+    .cb-backlink:hover .arrow { transform: translateX(-3px); }
+
+    /* ══════════════════════════════════════════════════════════════════
+       EMBEDDED DASHBOARD STYLES (from Kopi Tadulako template)
+       Scoped under .tax-dash-wrapper to avoid colliding with page styles
+       ══════════════════════════════════════════════════════════════════ */
+    .tax-dash-wrapper { background: var(--navy); border-radius: 12px; overflow: hidden; border: 1px solid rgba(201,165,103,0.10); margin: 0 auto; }
+    .tax-dash-wrapper-bar { display: flex; align-items: center; gap: 1rem; background: var(--navy-light); padding: .55rem .9rem; border-bottom: 1px solid rgba(201,165,103,0.08); }
+    .tax-dash-wrapper-bar .dwb-dots { display: flex; gap: .35rem; }
+    .tax-dash-wrapper-bar .dwb-dot { width: 10px; height: 10px; border-radius: 50%; display: block; }
+    .tax-dash-wrapper-bar .dwb-r { background: #F87171; }
+    .tax-dash-wrapper-bar .dwb-a { background: #FBBF24; }
+    .tax-dash-wrapper-bar .dwb-g { background: #34D399; }
+    .tax-dash-wrapper-bar .dwb-file { flex: 1; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--gray-2); }
+    .tax-dash-wrapper-bar .dwb-path { color: var(--gray-3); }
+    .tax-dash-wrapper-bar .dwb-name { color: var(--white); }
+    .tax-dash-wrapper-bar .dwb-right { display: flex; gap: .75rem; align-items: center; font-family: var(--mono); font-size: 10px; color: var(--gray-2); }
+    .tax-dash-wrapper-bar .dwb-status { color: #34D399; letter-spacing: .1em; text-transform: uppercase; }
+    .tax-dash-wrapper-bar .dwb-status::before { content: '●'; margin-right: .3rem; animation: taxPulse 2s ease-in-out infinite; }
+    @keyframes taxPulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+    .tax-dash-header { background: var(--navy-mid); border-bottom: 1px solid rgba(201,165,103,0.1); padding: 2rem 5%; position: relative; overflow: hidden; }
+    .tax-dash-header::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); animation: taxScan 5s linear infinite; }
+    @keyframes taxScan { 0% { transform: translateX(-25%); } 100% { transform: translateX(25%); } }
+    .tax-dash-header .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .tax-dash-header .header-label { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+    .tax-dash-header .header-title { font-family: var(--h); font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: .5rem; }
+    .tax-dash-header .header-title span { color: var(--cyan); }
+    .tax-dash-header .header-sub { font-family: var(--mono); font-size: 13px; color: var(--gray-2); line-height: 1.7; max-width: 540px; }
+    .tax-dash-header .header-meta { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; min-width: 180px; }
+    .tax-dash-header .meta-chip { font-family: var(--mono); font-size: 11px; color: var(--gray-2); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; text-align: right; }
+    .tax-dash-header .meta-chip span { color: var(--cyan); }
+    .regime-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(251,146,60,0.10); border: 1px solid rgba(251,146,60,0.30); color: #FB923C; font-family: var(--mono); font-size: 11px; padding: .35rem .75rem; border-radius: 4px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem; }
+    .regime-badge::before { content: '§'; font-size: 14px; line-height: 1; }
+
+    .tax-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(201,165,103,0.06); border-top: 1px solid rgba(201,165,103,0.06); border-bottom: 1px solid rgba(201,165,103,0.06); }
+    .tax-kpi-cell { background: var(--navy-mid); padding: 1.5rem 1.75rem; position: relative; overflow: hidden; transition: background .3s; }
+    .tax-kpi-cell:hover { background: var(--navy-light); }
+    .tax-kpi-cell::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--cyan); transition: width .5s cubic-bezier(.4, 0, .2, 1); }
+    .tax-kpi-cell:hover::after { width: 100%; }
+    .tax-kpi-label { font-family: var(--mono); font-size: 10px; color: var(--gray-2); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .5rem; }
+    .tax-kpi-val { font-family: var(--mono); font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; color: var(--white); line-height: 1; }
+    .tax-kpi-val span { font-size: 12px; color: var(--gray-2); font-weight: 400; }
+    .tax-kpi-val .kpi-currency { font-size: 11px; color: var(--cyan); font-weight: 500; letter-spacing: .05em; }
+    .tax-kpi-desc { font-family: var(--mono); font-size: 11px; color: var(--gray-3); margin-top: .4rem; line-height: 1.4; }
+
+    .tax-dash-body { max-width: 1200px; margin: 0 auto; padding: 2.5rem 5%; display: grid; gap: 2rem; }
+    .tax-section-label { font-family: var(--mono); font-size: 10px; color: var(--gray-2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+    .tax-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(148,163,184,0.12); }
+
+    .tax-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .tax-chart-box { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.5rem; transition: border-color .3s; }
+    .tax-chart-box:hover { border-color: rgba(201,165,103,0.15); }
+    .tax-chart-title { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+    .tax-chart-badge { font-family: var(--mono); font-size: 10px; color: var(--cyan); border: 1px solid rgba(201,165,103,0.2); padding: 2px 8px; border-radius: 3px; white-space: nowrap; }
+
+    .kt-table { width: 100%; border-collapse: collapse; font-family: var(--mono); }
+    .kt-table thead tr { border-bottom: 1px solid rgba(201,165,103,0.1); }
+    .kt-table th { font-size: 11px; color: var(--cyan); letter-spacing: .12em; padding: .75rem 1rem; text-align: left; font-weight: 600; text-transform: uppercase; }
+    .kt-table td { font-size: 12px; padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--gray-2); }
+    .kt-table tbody tr:last-child td { border-bottom: none; }
+    .kt-table tbody tr:hover td { background: rgba(201,165,103,0.03); color: var(--white); }
+    .kt-table td.td-label { color: var(--white); font-weight: 600; }
+    .kt-table td.td-num { color: var(--white); text-align: right; font-variant-numeric: tabular-nums; }
+    .kt-table td.td-pos { color: #34D399; text-align: right; font-variant-numeric: tabular-nums; }
+    .kt-table td.td-neg { color: #F87171; text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* Headroom bar */
+    .headroom-wrap { padding: 1rem 0; }
+    .headroom-scale { position: relative; height: 40px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+    .headroom-fill { position: absolute; top: 0; bottom: 0; left: 0; background: linear-gradient(90deg, #34D399, rgba(52,211,153,0.4)); border-radius: 6px; transition: width 1.5s cubic-bezier(.25,.46,.45,.94); }
+    .headroom-marker { position: absolute; top: -6px; bottom: -6px; width: 2px; background: #F87171; box-shadow: 0 0 8px rgba(248,113,113,0.6); }
+    .headroom-marker-label { position: absolute; top: -22px; font-family: var(--mono); font-size: 10px; color: #F87171; white-space: nowrap; transform: translateX(-50%); letter-spacing: .05em; font-weight: 600; }
+    .headroom-val { position: absolute; top: 9px; font-family: var(--mono); font-size: 11px; color: var(--white); font-weight: 700; letter-spacing: .05em; z-index: 2; }
+    .headroom-legend { display: flex; justify-content: space-between; margin-top: .9rem; font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: .08em; }
+    .headroom-notes { margin-top: 1.2rem; padding: .9rem 1.1rem; background: rgba(52,211,153,0.05); border-left: 2px solid #34D399; border-radius: 0 4px 4px 0; font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); line-height: 1.7; }
+
+    /* P&L Waterfall */
+    .waterfall-box { padding: .5rem 0; }
+    .wf-row { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; }
+    .wf-label { font-family: var(--mono); font-size: 11.5px; color: var(--gray-2); min-width: 200px; line-height: 1.3; }
+    .wf-label.wf-label-strong { color: var(--white); font-weight: 600; }
+    .wf-track { flex: 1; position: relative; height: 22px; background: rgba(255,255,255,0.03); border-radius: 3px; overflow: visible; }
+    .wf-bar { position: absolute; top: 0; bottom: 0; border-radius: 3px; transition: width 1.2s cubic-bezier(.25,.46,.45,.94); display: flex; align-items: center; padding: 0 .6rem; font-family: var(--mono); font-size: 11px; color: var(--white); font-weight: 600; letter-spacing: .02em; }
+    .wf-bar.pos { background: linear-gradient(90deg, rgba(52,211,153,0.5), rgba(52,211,153,0.25)); }
+    .wf-bar.neg { background: linear-gradient(90deg, rgba(248,113,113,0.45), rgba(248,113,113,0.22)); }
+    .wf-bar.total { background: linear-gradient(90deg, rgba(201,165,103,0.55), rgba(201,165,103,0.30)); border: 1px solid rgba(201,165,103,0.4); }
+    .wf-bar.subtotal { background: linear-gradient(90deg, rgba(129,140,248,0.4), rgba(129,140,248,0.18)); }
+    .wf-val { font-family: var(--mono); font-size: 11.5px; color: var(--white); font-variant-numeric: tabular-nums; min-width: 110px; text-align: right; font-weight: 600; }
+    .wf-divider { border-top: 1px dashed rgba(201,165,103,0.15); margin: .75rem 0 1.1rem; }
+
+    /* Donut */
+    .donut-wrap { display: flex; gap: 1.8rem; align-items: center; justify-content: center; padding: .5rem 0; }
+    .donut-svg { flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: .65rem; flex: 1; min-width: 0; }
+    .legend-row { display: flex; align-items: center; gap: .7rem; font-family: var(--mono); font-size: 11.5px; color: var(--gray-2); transition: color .2s; }
+    .legend-row:hover { color: var(--white); }
+    .legend-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+    .legend-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .legend-pct { color: var(--white); font-weight: 700; font-variant-numeric: tabular-nums; min-width: 50px; text-align: right; }
+    .donut-center-label { font-family: var(--mono); font-size: 9px; fill: var(--gray-2); letter-spacing: .15em; }
+    .donut-center-val { font-family: var(--mono); font-size: 18px; fill: var(--white); font-weight: 700; }
+
+    /* PTKP check */
+    .ptkp-grid { display: grid; gap: .85rem; }
+    .ptkp-row { display: grid; grid-template-columns: 1.5fr 0.8fr 2.5fr 0.9fr; gap: 1rem; align-items: center; padding: .85rem 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; transition: border-color .3s; }
+    .ptkp-row:hover { border-color: rgba(201,165,103,0.12); }
+    .ptkp-name { font-family: var(--mono); font-size: 12.5px; color: var(--white); font-weight: 600; }
+    .ptkp-name-role { font-family: var(--mono); font-size: 10px; color: var(--gray-3); margin-top: 2px; letter-spacing: .02em; }
+    .ptkp-status-chip { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 3px; font-weight: 600; letter-spacing: .08em; text-align: center; border: 1px solid; }
+    .ptkp-status-tk0 { color: #818CF8; border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.08); }
+    .ptkp-status-k1 { color: var(--cyan); border-color: rgba(201,165,103,0.3); background: rgba(201,165,103,0.08); }
+    .ptkp-compare { position: relative; height: 22px; background: rgba(255,255,255,0.03); border-radius: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
+    .ptkp-compare-bruto { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 3px; }
+    .ptkp-compare-ptkp-line { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--cyan); box-shadow: 0 0 6px rgba(201,165,103,0.6); }
+    .ptkp-compare-label { position: absolute; top: 5px; font-family: var(--mono); font-size: 9px; color: var(--white); font-weight: 600; padding: 0 .4rem; white-space: nowrap; z-index: 2; }
+    .ptkp-verdict { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-align: right; }
+    .ptkp-verdict-zero { color: #34D399; }
+    .ptkp-header-labels { display: grid; grid-template-columns: 1.5fr 0.8fr 2.5fr 0.9fr; gap: 1rem; padding: 0 1rem .5rem; font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+
+    /* Obligations calendar */
+    .obl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .obl-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.2rem; position: relative; transition: border-color .3s, transform .3s; }
+    .obl-card:hover { border-color: rgba(201,165,103,0.2); transform: translateY(-2px); }
+    .obl-card::before { content: ''; position: absolute; top: 0; left: 1.2rem; right: 1.2rem; height: 2px; background: var(--card-color, var(--cyan)); border-radius: 0 0 2px 2px; }
+    .obl-period { font-family: var(--mono); font-size: 10px; color: var(--card-color, var(--cyan)); letter-spacing: .12em; text-transform: uppercase; font-weight: 700; margin-bottom: .5rem; }
+    .obl-title { font-family: var(--mono); font-size: 13.5px; color: var(--white); font-weight: 700; margin-bottom: .3rem; line-height: 1.35; }
+    .obl-form { font-family: var(--mono); font-size: 10.5px; color: var(--gray-2); margin-bottom: .75rem; letter-spacing: .02em; }
+    .obl-deadline { font-family: var(--mono); font-size: 10px; color: var(--gray-3); display: flex; align-items: center; gap: .4rem; padding-top: .6rem; border-top: 1px solid rgba(255,255,255,0.04); }
+    .obl-deadline strong { color: var(--white); font-weight: 600; }
+    .obl-deadline::before { content: '⏱'; color: var(--cyan); font-size: 11px; }
+
+    /* Practitioner takeaways */
+    .practitioner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .practitioner-card { background: var(--navy); border-left: 3px solid var(--cyan); padding: 1.2rem 1.4rem; border-radius: 0 4px 4px 0; transition: border-color .3s, box-shadow .3s; }
+    .practitioner-card:hover { border-left-color: var(--gray-1); box-shadow: -4px 0 16px rgba(201,165,103,0.1); }
+    .practitioner-tag { font-family: var(--mono); font-size: 9.5px; color: var(--cyan); letter-spacing: .18em; text-transform: uppercase; margin-bottom: .5rem; font-weight: 700; }
+    .practitioner-title { font-family: var(--mono); font-size: 13px; color: var(--white); font-weight: 700; margin-bottom: .5rem; line-height: 1.4; }
+    .practitioner-text { font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); line-height: 1.7; }
+
+    @media(max-width: 1024px) {
+      .cb-cards-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media(max-width: 900px) {
+      .tax-two-col { grid-template-columns: 1fr; }
+      .tax-kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .obl-grid { grid-template-columns: 1fr; }
+      .practitioner-grid { grid-template-columns: 1fr; }
+      .ptkp-row, .ptkp-header-labels { grid-template-columns: 1fr; }
+      .ptkp-header-labels { display: none; }
+      .donut-wrap { flex-direction: column; }
+    }
+    @media(max-width: 768px) {
+      .cb-cards-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 550px) {
+      .cb-cards-row { grid-template-columns: 1fr; }
+      .tax-kpi-row { grid-template-columns: 1fr; }
+      .tax-dash-header .header-meta { align-items: flex-start; }
+      .tax-dash-header .meta-chip { text-align: left; }
+      .wf-label { min-width: 120px; font-size: 10.5px; }
+      .wf-val { min-width: 80px; font-size: 10.5px; }
+    }
+
     /* ── CTA ── */
     .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); }
     .cta-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
@@ -197,7 +399,7 @@
     <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
     <li><a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
-    <li><a href="tax.html" class="active" data-en="tax" data-id="perpajakan">perpajakan</a></li>
+    <li><a href="tax.html" class="active" data-en="tax" data-id="pajak">pajak</a></li>
     <li><a href="website.html" data-en="website" data-id="website">website</a></li>
   </ul>
   <div class="nav-right">
@@ -210,7 +412,7 @@
   <a href="index.html" data-en="home" data-id="beranda">beranda</a>
   <a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a>
   <a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a>
-  <a href="tax.html" class="active" data-en="tax" data-id="perpajakan">perpajakan</a>
+  <a href="tax.html" class="active" data-en="tax" data-id="pajak">pajak</a>
   <a href="website.html" data-en="website" data-id="website">website</a>
   <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
@@ -219,7 +421,7 @@
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-header-left">
-      <h1 class="page-title cyan-glow" data-en="Tax" data-id="Perpajakan">Perpajakan<span class="cursor">_</span></h1>
+      <h1 class="page-title cyan-glow" data-en="Tax" data-id="Pajak">Pajak<span class="cursor">_</span></h1>
       <p class="hero-positioning"
          data-en="Accurate PPh 21 calculation, SPT Tahunan reporting, and Coretax data input — compliant with Indonesian tax regulations."
          data-id="Perhitungan PPh 21 yang akurat, pelaporan SPT Tahunan, dan penginputan data Coretax — sesuai regulasi perpajakan Indonesia.">
@@ -238,7 +440,7 @@
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
           <div class="hero-stat-num">A<span class="hero-stat-unit">&amp;B</span></div>
-          <div class="hero-stat-label" data-en="tax brevet" data-id="brevet perpajakan">brevet perpajakan</div>
+          <div class="hero-stat-label" data-en="tax brevet" data-id="brevet pajak">brevet pajak</div>
         </div>
       </div>
     </div>
@@ -256,7 +458,7 @@
           </div>
           <div class="layanan-stat">
             <span class="layanan-stat-num">A<span style="font-size:0.6em">&amp;B</span></span>
-            <span class="layanan-stat-label" data-en="tax brevet" data-id="brevet perpajakan">brevet perpajakan</span>
+            <span class="layanan-stat-label" data-en="tax brevet" data-id="brevet pajak">brevet pajak</span>
           </div>
         </div>
         <div class="layanan-pills">
@@ -311,11 +513,7 @@
       <div class="edu-list">
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
-          <div><span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span><span class="cert-issuer-edu">Jimly Law School, Jakarta · Apr 2026 — May 2026</span></div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div><span class="cert-text">Data Analyst / Data Scientist</span><span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026</span></div>
+          <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer-edu">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
         </div>
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
@@ -336,8 +534,8 @@
       </div>
 
       <div class="about-actions">
-        <a href="#" class="btn-about" onclick="openResumeModal(event)" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
-        <a href="index.html#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
+        <a href="ATS_Anthony_Djiady_Djie_Resume.pdf" class="btn-about" target="_blank" data-en="Download Resume →" data-id="Download Resume →">Download Resume →</a>
+        <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
         <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
@@ -349,17 +547,550 @@
 
 <div class="glow-line"></div>
 
-<!-- COMING SOON -->
-<section class="coming-soon-section">
-  <div class="coming-soon-inner">
-    <div class="section-eyebrow" data-en="portfolio" data-id="portfolio">portfolio</div>
-    <h2 class="section-title" data-en="Tax <span>Portfolio</span>" data-id="Portfolio <span>Perpajakan</span>">Portfolio <span>Perpajakan</span></h2>
-    <div class="coming-soon-box">
-      <div class="coming-soon-icon">§</div>
-      <div class="coming-soon-title" data-en="Portfolio Coming Soon" data-id="Portfolio Segera Hadir">Portfolio Segera Hadir</div>
-      <p class="coming-soon-desc" data-en="Case studies and tax compliance work will be showcased here. Check back soon." data-id="Studi kasus dan pekerjaan kepatuhan pajak akan ditampilkan di sini. Kunjungi kembali segera.">Studi kasus dan pekerjaan kepatuhan pajak akan ditampilkan di sini. Kunjungi kembali segera.</p>
-      <a href="index.html#contact" class="btn-cta" data-en="Get In Touch →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+<!-- CERTIFICATIONS -->
+<section class="certs-gallery" id="certs-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
+    <h2 class="section-title" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
+    <div class="certs-grid">
+      <a href="https://coursera.org/verify/professional-cert/HR6VC9WMGF9J" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 15.5 19.1 12 24 12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.5 0 10.4-1.8 14.3-5l-6.6-5.6C29.5 37 26.9 38 24 38c-6 0-11.1-4-12.9-9.7l-7 5.4C7.5 41.2 15.2 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.2-3.1 5.8-5.9 7.5l6.6 5.6C40 38 46 32 46 24c0-1.3-.2-2.7-.5-4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Google Data Analytics</span><span class="cert-card-org">Google · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/KEKKD62YV2EN" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft SQL Server</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/DVISLWDAXUY0" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft Excel Professional</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/professional-cert/GOVL4H7ONB52" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#E97627" d="M24 6v16h-2V6h2zm0 20v16h-2V26h2z"/><path fill="#C72037" d="M6 24h16v-2H6v2zm20 0h16v-2H26v2z"/><path fill="#5B879B" d="M14 14l8 8-1.4 1.4L12.6 15.4 14 14z"/><path fill="#5B879B" d="M26.6 26.6L34 34l-1.4 1.4-7.4-7.4 1.4-1.4z"/><path fill="#EB9129" d="M34 14l-8 8-1.4-1.4 8-8L34 14z"/><path fill="#EB9129" d="M15.4 32.6L24 24l1.4 1.4-8.6 8.6-1.4-1.4z"/><circle fill="#E97627" cx="24" cy="24" r="3"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Tableau BI Analyst</span><span class="cert-card-org">Tableau · Coursera · 2025</span></div>
+      </a>
+      <a href="https://coursera.org/verify/USZXR9ZAOQUE" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 4c-6 0-9 2.7-9 6v4h10v2H12c-4 0-8 3.3-8 9s3 9 7 9h4v-5c0-4 3.3-7 7-7h10c3 0 6-2.7 6-6V10c0-3.3-4-6-10-6h-4zm-2 4a2 2 0 110 4 2 2 0 010-4z"/><path fill="#FFD43B" d="M24 44c6 0 9-2.7 9-6v-4H23v-2h13c4 0 8-3.3 8-9s-3-9-7-9h-4v5c0 4-3.3 7-7 7H16c-3 0-6 2.7-6 6v8c0 3.3 4 6 10 6h4zm2-4a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Python for Data Science, AI</span><span class="cert-card-org">IBM · Coursera · 2025</span></div>
+      </a>
+      <a href="Xero_Advisor.png" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><circle fill="#13B5EA" cx="24" cy="24" r="20"/><path fill="#fff" d="M16 24l6-6 2 2-4 4 4 4-2 2-6-6zm16 0l-6-6-2 2 4 4-4 4 2 2 6-6z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Xero Advisor Certified</span><span class="cert-card-org">Xero · 2025</span></div>
+      </a>
+      <a href="AB_66DM_RS-1_AD.pdf" target="_blank" class="cert-card">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#1B4F72" d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path fill="#2E86C1" d="M24 8l16 8-16 8-16-8 16-8z"/><path fill="#85C1E9" d="M8 18v14l16 8V26L8 18z" opacity="0.7"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI · 2018</span></div>
+      </a>
     </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CLIENT CASEBOOK — TAX ANALYSIS · Palu SMEs
+     Kopi Tadulako live · other 4 in progress
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="casebook-section" id="casebook">
+  <div class="casebook-inner">
+    <div class="section-eyebrow"
+         data-en="client casebook · tax analysis"
+         data-id="casebook klien · analisis pajak">casebook klien · analisis pajak</div>
+    <h2 class="section-title"
+        data-en="Tax <span>Casebook</span> — Palu SMEs"
+        data-id="<span>Casebook</span> Pajak — UMKM Palu">
+      <span>Casebook</span> Pajak — UMKM Palu
+    </h2>
+    <p class="casebook-intro"
+       data-en="Full tax compliance walkthrough for five representative Palu SMEs — each sitting in a different tax regime. Every case includes regime classification, threshold analysis, P&amp;L with tax overlay, PTKP/PPh verification, filing calendar, and practitioner recommendations. Want the accounting side first? Each case links back to the <em>casebook on the Accounting page →</em>."
+       data-id="Analisis kepatuhan pajak lengkap untuk lima UMKM representatif Palu — masing-masing berada di rezim pajak berbeda. Setiap kasus mencakup klasifikasi rezim, analisis ambang batas, L/R dengan overlay pajak, verifikasi PTKP/PPh, kalender pelaporan, dan rekomendasi praktisi. Mau lihat sisi akuntansinya dulu? Setiap kasus punya tautan ke <em>casebook di halaman Akuntansi →</em>.">
+      Analisis kepatuhan pajak lengkap untuk lima UMKM representatif Palu — masing-masing berada di rezim pajak berbeda. Setiap kasus mencakup klasifikasi rezim, analisis ambang batas, L/R dengan overlay pajak, verifikasi PTKP/PPh, kalender pelaporan, dan rekomendasi praktisi. Mau lihat sisi akuntansinya dulu? Setiap kasus punya tautan ke <em>casebook di halaman Akuntansi →</em>.
+    </p>
+
+    <!-- PROJECT PICKER -->
+    <div class="cb-picker">
+      <div class="cb-picker-label"
+           data-en="Select a case"
+           data-id="Pilih kasus">Pilih kasus</div>
+      <div class="cb-cards-row">
+
+        <div class="cb-card active" data-cb="kopi">
+          <div class="cb-card-num">Case 01</div>
+          <div class="cb-card-name">Kopi Tadulako</div>
+          <div class="cb-card-type"
+               data-en="Café / F&amp;B · sole proprietor"
+               data-id="Kafe / F&amp;B · perorangan">Kafe / F&amp;B · perorangan</div>
+          <div class="cb-card-tag">UMKM Non-PKP</div>
+          <div class="cb-card-arrow"
+               data-en="View tax analysis →"
+               data-id="Lihat analisis →">Lihat analisis →</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="makmur">
+          <div class="cb-card-num">Case 02</div>
+          <div class="cb-card-name">Toko Makmur</div>
+          <div class="cb-card-type"
+               data-en="Sembako retail · FIFO"
+               data-id="Toko sembako · FIFO">Toko sembako · FIFO</div>
+          <div class="cb-card-tag ph">PKP · PPN 11%</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="solusi">
+          <div class="cb-card-num">Case 03</div>
+          <div class="cb-card-name">CV Solusi Digital</div>
+          <div class="cb-card-type"
+               data-en="IT services · invoicing"
+               data-id="Jasa IT · faktur">Jasa IT · faktur</div>
+          <div class="cb-card-tag ph">PKP · PPh 23</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="bangun">
+          <div class="cb-card-num">Case 04</div>
+          <div class="cb-card-name">PT Bangun Sulawesi</div>
+          <div class="cb-card-type"
+               data-en="Construction · project costing"
+               data-id="Konstruksi · project costing">Konstruksi · project costing</div>
+          <div class="cb-card-tag ph">PKP · PPh 4(2)</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+        <div class="cb-card placeholder" data-cb="kos">
+          <div class="cb-card-num">Case 05</div>
+          <div class="cb-card-name">Kos Pak Haris</div>
+          <div class="cb-card-type"
+               data-en="Boarding house · 20 rooms"
+               data-id="Kos-kosan · 20 kamar">Kos-kosan · 20 kamar</div>
+          <div class="cb-card-tag ph">Non-PPN · Final 10%</div>
+          <div class="cb-card-arrow"
+               style="color: var(--gray-3)"
+               data-en="In progress"
+               data-id="Segera hadir">Segera hadir</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         PANEL 01 — KOPI TADULAKO (full tax dashboard)
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="cb-panel active" id="cb-kopi">
+
+      <!-- Back-link to accounting -->
+      <div class="cb-backlink-wrap">
+        <a href="accounting.html#casebook" class="cb-backlink">
+          <span class="arrow">←</span>
+          <span data-en="Back to Kopi Tadulako bookkeeping"
+                data-id="Kembali ke pembukuan Kopi Tadulako">Kembali ke pembukuan Kopi Tadulako</span>
+        </a>
+      </div>
+
+      <!-- EMBEDDED DASHBOARD -->
+      <div class="tax-dash-wrapper" id="casebook-kopi">
+
+        <!-- File window bar -->
+        <div class="tax-dash-wrapper-bar">
+          <div class="dwb-dots"><span class="dwb-dot dwb-r"></span><span class="dwb-dot dwb-a"></span><span class="dwb-dot dwb-g"></span></div>
+          <div class="dwb-file"><span class="dwb-path">~/tax_casebook/</span><span class="dwb-name">01_kopi_tadulako.html</span></div>
+          <div class="dwb-right">
+            <span>Jan 2025 · 29 entries</span>
+            <span class="dwb-status" data-en="compliant" data-id="patuh">patuh</span>
+          </div>
+        </div>
+
+        <!-- HEADER -->
+        <div class="tax-dash-header">
+          <div class="header-inner">
+            <div>
+              <div class="regime-badge"
+                   data-en="NON-PKP · UMKM · Final Tax Regime"
+                   data-id="NON-PKP · UMKM · Rezim Pajak Final">NON-PKP · UMKM · Rezim Pajak Final</div>
+              <div class="header-label">CASE 01 · TAX ANALYSIS · UMKM</div>
+              <h1 class="header-title"
+                  data-en="Small Business Tax Compliance for<br><span>Kopi Tadulako — Palu</span>"
+                  data-id="Kepatuhan Pajak UMKM untuk<br><span>Kopi Tadulako — Palu</span>">
+                Kepatuhan Pajak UMKM untuk<br><span>Kopi Tadulako — Palu</span>
+              </h1>
+              <p class="header-sub"
+                 data-en="A café in Palu with Rp 32.9M monthly revenue — well below the Rp 4.8B PKP threshold. This analysis walks through the full Non-PKP compliance workflow: PPh Final 0.5% under PP 23/2018, PTKP verification for 2 baristas, and the annualized threshold check that tells Pak Hasan when he'll need to register as PKP."
+                 data-id="Sebuah kafe di Palu dengan omzet Rp 32,9 juta/bulan — jauh di bawah ambang PKP Rp 4,8 miliar. Analisis ini memandu alur kepatuhan Non-PKP lengkap: PPh Final 0,5% menurut PP 23/2018, verifikasi PTKP untuk 2 barista, dan cek ambang tahunan yang memberitahu Pak Hasan kapan harus dikukuhkan sebagai PKP.">
+                Sebuah kafe di Palu dengan omzet Rp 32,9 juta/bulan — jauh di bawah ambang PKP Rp 4,8 miliar. Analisis ini memandu alur kepatuhan Non-PKP lengkap: PPh Final 0,5% menurut PP 23/2018, verifikasi PTKP untuk 2 barista, dan cek ambang tahunan yang memberitahu Pak Hasan kapan harus dikukuhkan sebagai PKP.
+              </p>
+            </div>
+            <div class="header-meta">
+              <div class="meta-chip" data-en="Business <span>Café (F&B)</span>" data-id="Jenis <span>Kafe (F&B)</span>">Jenis <span>Kafe (F&B)</span></div>
+              <div class="meta-chip" data-en="Location <span>Palu, Sulteng</span>" data-id="Lokasi <span>Palu, Sulteng</span>">Lokasi <span>Palu, Sulteng</span></div>
+              <div class="meta-chip" data-en="Period <span>January 2025</span>" data-id="Periode <span>Januari 2025</span>">Periode <span>Januari 2025</span></div>
+              <div class="meta-chip" data-en="Regime <span>PP 23/2018 · 0.5%</span>" data-id="Rezim <span>PP 23/2018 · 0,5%</span>">Rezim <span>PP 23/2018 · 0,5%</span></div>
+              <div class="meta-chip" data-en="Employees <span>2 baristas</span>" data-id="Karyawan <span>2 barista</span>">Karyawan <span>2 barista</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI ROW -->
+        <div class="tax-kpi-row">
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="monthly revenue" data-id="omzet bulanan">omzet bulanan</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 32,93<span>jt</span></div>
+            <div class="tax-kpi-desc" data-en="29 transactions · all cash · no VAT collected" data-id="29 transaksi · semua tunai · tidak pungut PPN">29 transaksi · semua tunai · tidak pungut PPN</div>
+          </div>
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="PPh Final 0.5%" data-id="PPh Final 0,5%">PPh Final 0,5%</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 164.650</div>
+            <div class="tax-kpi-desc" data-en="payable by 15 Feb 2025 · SSP / e-billing" data-id="disetor paling lambat 15 Feb 2025 · SSP / e-billing">disetor paling lambat 15 Feb 2025 · SSP / e-billing</div>
+          </div>
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="net profit" data-id="laba bersih">laba bersih</div>
+            <div class="tax-kpi-val"><span class="kpi-currency">Rp</span> 5,58<span>jt</span></div>
+            <div class="tax-kpi-desc" data-en="after COGS, opex &amp; final tax" data-id="setelah HPP, beban op &amp; pajak final">setelah HPP, beban op &amp; pajak final</div>
+          </div>
+          <div class="tax-kpi-cell">
+            <div class="tax-kpi-label" data-en="PPh 21 withheld" data-id="PPh 21 dipotong">PPh 21 dipotong</div>
+            <div class="tax-kpi-val">Rp 0</div>
+            <div class="tax-kpi-desc" data-en="both baristas below TK/0 PTKP Rp 54M/yr" data-id="kedua barista di bawah PTKP TK/0 Rp 54jt/thn">kedua barista di bawah PTKP TK/0 Rp 54jt/thn</div>
+          </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="tax-dash-body">
+
+          <!-- 1. TAX REGIME CLASSIFICATION -->
+          <div>
+            <div class="tax-chart-box" style="padding:1.75rem;">
+              <div class="tax-section-label" data-en="Step 1 — Tax Regime Classification" data-id="Langkah 1 — Klasifikasi Rezim Pajak">Langkah 1 — Klasifikasi Rezim Pajak</div>
+              <p style="font-family:var(--mono);font-size:12px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;max-width:820px;"
+                 data-en="Before any calculation, we verify which tax regime applies. Indonesian SMEs fall into distinct buckets based on revenue, business form, and elections. Here's how we classified Kopi Tadulako."
+                 data-id="Sebelum menghitung apapun, kita verifikasi rezim pajak yang berlaku. UMKM Indonesia masuk ke dalam kelompok berbeda berdasarkan omzet, bentuk badan, dan pilihan WP. Berikut klasifikasi Kopi Tadulako.">
+                Sebelum menghitung apapun, kita verifikasi rezim pajak yang berlaku. UMKM Indonesia masuk ke dalam kelompok berbeda berdasarkan omzet, bentuk badan, dan pilihan WP. Berikut klasifikasi Kopi Tadulako.
+              </p>
+              <table class="kt-table">
+                <thead>
+                  <tr>
+                    <th data-en="Check" data-id="Pemeriksaan">Pemeriksaan</th>
+                    <th data-en="Criterion" data-id="Kriteria">Kriteria</th>
+                    <th data-en="Finding" data-id="Hasil">Hasil</th>
+                    <th data-en="Conclusion" data-id="Kesimpulan">Kesimpulan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="td-label" data-en="Legal form" data-id="Bentuk hukum">Bentuk hukum</td><td data-en="OP (sole proprietor) / Badan?" data-id="OP (orang pribadi) / Badan?">OP (orang pribadi) / Badan?</td><td data-en="Sole proprietor — owner Pak Hasan" data-id="Orang Pribadi — pemilik Pak Hasan">Orang Pribadi — pemilik Pak Hasan</td><td class="td-label" data-en="→ WP OP" data-id="→ WP OP">→ WP OP</td></tr>
+                  <tr><td class="td-label" data-en="Annual revenue" data-id="Omzet tahunan">Omzet tahunan</td><td data-en="Below Rp 4.8B PKP threshold?" data-id="Di bawah ambang PKP Rp 4,8M?">Di bawah ambang PKP Rp 4,8M?</td><td data-en="Rp 32.93M × 12 ≈ Rp 395M (annualized)" data-id="Rp 32,93jt × 12 ≈ Rp 395jt (disetahunkan)">Rp 32,93jt × 12 ≈ Rp 395jt (disetahunkan)</td><td class="td-pos" data-en="→ Non-PKP eligible" data-id="→ Memenuhi syarat Non-PKP">→ Memenuhi syarat Non-PKP</td></tr>
+                  <tr><td class="td-label" data-en="PP 23/2018 eligibility" data-id="Kelayakan PP 23/2018">Kelayakan PP 23/2018</td><td data-en="Business revenue ≤ Rp 4.8B/yr" data-id="Peredaran bruto ≤ Rp 4,8M/thn">Peredaran bruto ≤ Rp 4,8M/thn</td><td data-en="Yes — eligible for Final PPh 0.5%" data-id="Ya — layak PPh Final 0,5%">Ya — layak PPh Final 0,5%</td><td class="td-pos" data-en="→ Final tax 0.5% applies" data-id="→ PPh Final 0,5% berlaku">→ PPh Final 0,5% berlaku</td></tr>
+                  <tr><td class="td-label" data-en="Tenure in PP 23" data-id="Lama memakai PP 23">Lama memakai PP 23</td><td data-en="Max 7 years for WP OP" data-id="Maks 7 tahun untuk WP OP">Maks 7 tahun untuk WP OP</td><td data-en="Year 1 (assumed first-time registration)" data-id="Tahun ke-1 (diasumsikan baru terdaftar)">Tahun ke-1 (diasumsikan baru terdaftar)</td><td class="td-pos" data-en="→ 6 years headroom" data-id="→ Sisa 6 tahun">→ Sisa 6 tahun</td></tr>
+                  <tr><td class="td-label" data-en="VAT (PPN) obligation" data-id="Kewajiban PPN">Kewajiban PPN</td><td data-en="Registered as PKP?" data-id="Dikukuhkan sebagai PKP?">Dikukuhkan sebagai PKP?</td><td data-en="No — does not collect output VAT" data-id="Tidak — tidak pungut PPN keluaran">Tidak — tidak pungut PPN keluaran</td><td class="td-label" data-en="→ No PPN filing" data-id="→ Tidak lapor PPN">→ Tidak lapor PPN</td></tr>
+                  <tr><td class="td-label" data-en="Withholding obligation" data-id="Kewajiban pemotongan">Kewajiban pemotongan</td><td data-en="Any employee above PTKP?" data-id="Ada karyawan di atas PTKP?">Ada karyawan di atas PTKP?</td><td data-en="2 baristas × Rp 48M/yr — both below TK/0 Rp 54M" data-id="2 barista × Rp 48jt/thn — keduanya di bawah TK/0 Rp 54jt">2 barista × Rp 48jt/thn — keduanya di bawah TK/0 Rp 54jt</td><td class="td-pos" data-en="→ PPh 21 = Rp 0" data-id="→ PPh 21 = Rp 0">→ PPh 21 = Rp 0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 2. PKP THRESHOLD + HPP DONUT -->
+          <div class="tax-two-col">
+            <div class="tax-chart-box">
+              <div class="tax-chart-title">
+                <div><span data-en="Step 2 — PKP Threshold Check" data-id="Langkah 2 — Cek Ambang PKP">Langkah 2 — Cek Ambang PKP</span></div>
+                <span class="tax-chart-badge">UU HPP · PMK 68/2022</span>
+              </div>
+              <div class="headroom-wrap">
+                <div class="headroom-scale">
+                  <div class="headroom-fill" style="width:8.23%"></div>
+                  <div class="headroom-val" style="left:1rem">Rp 395jt</div>
+                  <div class="headroom-marker" style="left:50%;opacity:0.25"></div>
+                  <div class="headroom-marker" style="left:99%"></div>
+                  <div class="headroom-marker-label" style="left:99%" data-en="PKP Rp 4.8B" data-id="PKP Rp 4,8M">PKP Rp 4,8M</div>
+                </div>
+                <div class="headroom-legend">
+                  <span>Rp 0</span>
+                  <span>Rp 1,2M</span>
+                  <span>Rp 2,4M</span>
+                  <span>Rp 3,6M</span>
+                  <span>Rp 4,8M</span>
+                </div>
+                <div class="headroom-notes"
+                     data-en="<strong>Annualized revenue at current run-rate: Rp 395M</strong> — only 8.2% of the Rp 4.8B PKP threshold. Kopi Tadulako has comfortable headroom before mandatory PKP registration would apply. Even with 3× growth to Rp 1.2B/year, the café would still remain Non-PKP eligible."
+                     data-id="<strong>Omzet disetahunkan dengan run-rate saat ini: Rp 395jt</strong> — baru 8,2% dari ambang PKP Rp 4,8M. Kopi Tadulako punya ruang aman sebelum wajib dikukuhkan sebagai PKP. Bahkan dengan pertumbuhan 3× menjadi Rp 1,2M/tahun, kafe tetap memenuhi syarat Non-PKP.">
+                  <strong>Omzet disetahunkan dengan run-rate saat ini: Rp 395jt</strong> — baru 8,2% dari ambang PKP Rp 4,8M. Kopi Tadulako punya ruang aman sebelum wajib dikukuhkan sebagai PKP. Bahkan dengan pertumbuhan 3× menjadi Rp 1,2M/tahun, kafe tetap memenuhi syarat Non-PKP.
+                </div>
+              </div>
+            </div>
+
+            <div class="tax-chart-box">
+              <div class="tax-chart-title">
+                <div><span data-en="Step 3 — COGS by Menu Category" data-id="Langkah 3 — HPP per Kategori Menu">Langkah 3 — HPP per Kategori Menu</span></div>
+                <span class="tax-chart-badge" data-en="4 categories" data-id="4 kategori">4 kategori</span>
+              </div>
+              <div class="donut-wrap">
+                <svg class="donut-svg" width="180" height="180" viewBox="0 0 180 180">
+                  <circle cx="90" cy="90" r="55" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="22"/>
+                  <circle cx="90" cy="90" r="55" fill="none" stroke="#C9A567" stroke-width="22" stroke-dasharray="183.39 345.575" stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
+                  <circle cx="90" cy="90" r="55" fill="none" stroke="#818CF8" stroke-width="22" stroke-dasharray="57.29 345.575" stroke-dashoffset="-183.39" transform="rotate(-90 90 90)"/>
+                  <circle cx="90" cy="90" r="55" fill="none" stroke="#34D399" stroke-width="22" stroke-dasharray="63.76 345.575" stroke-dashoffset="-240.68" transform="rotate(-90 90 90)"/>
+                  <circle cx="90" cy="90" r="55" fill="none" stroke="#FB923C" stroke-width="22" stroke-dasharray="41.09 345.575" stroke-dashoffset="-304.44" transform="rotate(-90 90 90)"/>
+                  <text x="90" y="85" text-anchor="middle" class="donut-center-label">TOTAL HPP</text>
+                  <text x="90" y="105" text-anchor="middle" class="donut-center-val">Rp 12,36jt</text>
+                </svg>
+                <div class="donut-legend">
+                  <div class="legend-row"><span class="legend-dot" style="background:#C9A567"></span><span class="legend-name" data-en="Coffee (espresso-based)" data-id="Kopi (espresso-based)">Kopi (espresso-based)</span><span class="legend-pct">53,1%</span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#818CF8"></span><span class="legend-name" data-en="Non-coffee drinks" data-id="Minuman non-kopi">Minuman non-kopi</span><span class="legend-pct">16,6%</span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#34D399"></span><span class="legend-name" data-en="Snacks" data-id="Makanan ringan">Makanan ringan</span><span class="legend-pct">18,5%</span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#FB923C"></span><span class="legend-name" data-en="Bottled resale" data-id="Minuman botol resale">Minuman botol resale</span><span class="legend-pct">11,9%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. P&L WATERFALL -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 4 — P&L Cascade with Final Tax" data-id="Langkah 4 — Kaskade Laba Rugi dengan Pajak Final">Langkah 4 — Kaskade Laba Rugi dengan Pajak Final</span></div>
+              <span class="tax-chart-badge">Non-PKP · PP 23/2018</span>
+            </div>
+            <div class="waterfall-box">
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Revenue (Sales)" data-id="Pendapatan Penjualan">Pendapatan Penjualan</div><div class="wf-track"><div class="wf-bar total" style="width:100%">100%</div></div><div class="wf-val">Rp 32.930.000</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— COGS" data-id="— HPP">— HPP</div><div class="wf-track"><div class="wf-bar neg" style="width:42.5%">42,5%</div></div><div class="wf-val" style="color:#F87171">(14.000.000)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Gross Profit" data-id="Laba Kotor">Laba Kotor</div><div class="wf-track"><div class="wf-bar subtotal" style="width:57.5%">57,5% · GM</div></div><div class="wf-val">Rp 18.930.000</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Salaries (2 baristas)" data-id="— Beban Gaji (2 barista)">— Beban Gaji (2 barista)</div><div class="wf-track"><div class="wf-bar neg" style="width:24.3%">24,3%</div></div><div class="wf-val" style="color:#F87171">(8.000.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Rent" data-id="— Beban Sewa">— Beban Sewa</div><div class="wf-track"><div class="wf-bar neg" style="width:10.6%">10,6%</div></div><div class="wf-val" style="color:#F87171">(3.500.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Utilities" data-id="— Beban Utilitas">— Beban Utilitas</div><div class="wf-track"><div class="wf-bar neg" style="width:2.6%">2,6%</div></div><div class="wf-val" style="color:#F87171">(850.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Marketing" data-id="— Beban Pemasaran">— Beban Pemasaran</div><div class="wf-track"><div class="wf-bar neg" style="width:1.5%">1,5%</div></div><div class="wf-val" style="color:#F87171">(500.000)</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— Depreciation" data-id="— Beban Penyusutan">— Beban Penyusutan</div><div class="wf-track"><div class="wf-bar neg" style="width:1.0%">1,0%</div></div><div class="wf-val" style="color:#F87171">(333.333)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="EBIT (pre-tax profit)" data-id="EBIT (laba sebelum pajak)">EBIT (laba sebelum pajak)</div><div class="wf-track"><div class="wf-bar subtotal" style="width:17.4%">17,4%</div></div><div class="wf-val">Rp 5.746.667</div></div>
+              <div class="wf-row"><div class="wf-label" data-en="— PPh Final 0.5% × revenue" data-id="— PPh Final 0,5% × omzet">— PPh Final 0,5% × omzet</div><div class="wf-track"><div class="wf-bar neg" style="width:0.5%;padding:0 .3rem;font-size:10px">0,5%</div></div><div class="wf-val" style="color:#F87171">(164.650)</div></div>
+              <div class="wf-divider"></div>
+              <div class="wf-row"><div class="wf-label wf-label-strong" data-en="Net Profit After Tax" data-id="Laba Bersih Setelah Pajak">Laba Bersih Setelah Pajak</div><div class="wf-track"><div class="wf-bar total" style="width:16.9%">16,9% NM</div></div><div class="wf-val" style="color:var(--cyan)">Rp 5.582.017</div></div>
+            </div>
+            <div style="margin-top:1.2rem;padding:.9rem 1.1rem;background:rgba(201,165,103,0.04);border-left:2px solid var(--cyan);font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;border-radius:0 4px 4px 0;"
+                 data-en="<strong>Why PPh Final is computed on revenue, not profit:</strong> Under PP 23/2018, UMKM pay 0.5% × gross turnover regardless of margin. This means even in a loss month, the tax is still owed. Rp 164.650 = 0,5% × Rp 32.930.000 — payable by the 15th of the following month."
+                 data-id="<strong>Mengapa PPh Final dihitung dari omzet, bukan laba:</strong> Berdasarkan PP 23/2018, UMKM bayar 0,5% × peredaran bruto terlepas dari margin. Artinya, meski bulan rugi, pajak tetap terutang. Rp 164.650 = 0,5% × Rp 32.930.000 — disetor paling lambat tanggal 15 bulan berikutnya.">
+              <strong>Mengapa PPh Final dihitung dari omzet, bukan laba:</strong> Berdasarkan PP 23/2018, UMKM bayar 0,5% × peredaran bruto terlepas dari margin. Artinya, meski bulan rugi, pajak tetap terutang. Rp 164.650 = 0,5% × Rp 32.930.000 — disetor paling lambat tanggal 15 bulan berikutnya.
+            </div>
+          </div>
+
+          <!-- 4. PTKP CHECK -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 5 — PPh 21 Verification against PTKP 2025" data-id="Langkah 5 — Verifikasi PPh 21 terhadap PTKP 2025">Langkah 5 — Verifikasi PPh 21 terhadap PTKP 2025</span></div>
+              <span class="tax-chart-badge">PMK 101/2016 · PTKP 2025</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;"
+               data-en="For each employee, annualized gross income is compared against their applicable PTKP bracket. If gross &lt; PTKP, PPh 21 is zero — no withholding obligation."
+               data-id="Untuk setiap karyawan, bruto tahunan dibandingkan dengan PTKP yang berlaku. Bila bruto &lt; PTKP, PPh 21 = 0 — tidak ada kewajiban pemotongan.">
+              Untuk setiap karyawan, bruto tahunan dibandingkan dengan PTKP yang berlaku. Bila bruto &lt; PTKP, PPh 21 = 0 — tidak ada kewajiban pemotongan.
+            </p>
+
+            <div class="ptkp-header-labels">
+              <span data-en="Employee" data-id="Karyawan">Karyawan</span>
+              <span data-en="PTKP Status" data-id="Status PTKP">Status PTKP</span>
+              <span data-en="Gross (annual) vs PTKP" data-id="Bruto (tahunan) vs PTKP">Bruto (tahunan) vs PTKP</span>
+              <span data-en="PPh 21 Verdict" data-id="Putusan PPh 21" style="text-align:right">Putusan PPh 21</span>
+            </div>
+
+            <div class="ptkp-grid">
+              <div class="ptkp-row">
+                <div>
+                  <div class="ptkp-name">Rina Marlina</div>
+                  <div class="ptkp-name-role" data-en="Barista / Cashier" data-id="Barista / Kasir">Barista / Kasir</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-tk0">TK/0</div>
+                <div class="ptkp-compare">
+                  <div class="ptkp-compare-bruto" style="width:80%;background:linear-gradient(90deg,rgba(52,211,153,0.5),rgba(52,211,153,0.25))"></div>
+                  <div class="ptkp-compare-ptkp-line" style="left:90%"></div>
+                  <div class="ptkp-compare-label" style="left:4px;">Rp 48jt</div>
+                  <div class="ptkp-compare-label" style="right:4px;color:var(--cyan);">PTKP Rp 54jt</div>
+                </div>
+                <div class="ptkp-verdict ptkp-verdict-zero">PPh 21 = Rp 0</div>
+              </div>
+
+              <div class="ptkp-row">
+                <div>
+                  <div class="ptkp-name">Dedy Kurniawan</div>
+                  <div class="ptkp-name-role" data-en="Barista / Server" data-id="Barista / Pelayan">Barista / Pelayan</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-tk0">TK/0</div>
+                <div class="ptkp-compare">
+                  <div class="ptkp-compare-bruto" style="width:80%;background:linear-gradient(90deg,rgba(52,211,153,0.5),rgba(52,211,153,0.25))"></div>
+                  <div class="ptkp-compare-ptkp-line" style="left:90%"></div>
+                  <div class="ptkp-compare-label" style="left:4px;">Rp 48jt</div>
+                  <div class="ptkp-compare-label" style="right:4px;color:var(--cyan);">PTKP Rp 54jt</div>
+                </div>
+                <div class="ptkp-verdict ptkp-verdict-zero">PPh 21 = Rp 0</div>
+              </div>
+
+              <div class="ptkp-row" style="opacity:.7">
+                <div>
+                  <div class="ptkp-name">Pak Hasan</div>
+                  <div class="ptkp-name-role" data-en="Owner / Manager" data-id="Pemilik / Manajer">Pemilik / Manajer</div>
+                </div>
+                <div class="ptkp-status-chip ptkp-status-k1">K/1</div>
+                <div class="ptkp-compare" style="background:rgba(255,255,255,0.015);border-style:dashed">
+                  <div class="ptkp-compare-label" style="left:4px;color:var(--gray-2);" data-en="No salary — takes profit distribution" data-id="Tidak ambil gaji — ambil laba">Tidak ambil gaji — ambil laba</div>
+                </div>
+                <div class="ptkp-verdict" style="color:var(--gray-2)" data-en="N/A · via SPT 1770" data-id="N/A · via SPT 1770">N/A · via SPT 1770</div>
+              </div>
+            </div>
+
+            <details style="margin-top:1.25rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:.9rem 1.1rem;">
+              <summary style="font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:600;" data-en="▼ PTKP 2025 Reference Table" data-id="▼ Tabel Referensi PTKP 2025">▼ Tabel Referensi PTKP 2025</summary>
+              <table class="kt-table" style="margin-top:1rem">
+                <thead>
+                  <tr>
+                    <th data-en="Status" data-id="Status">Status</th>
+                    <th data-en="Description" data-id="Keterangan">Keterangan</th>
+                    <th data-en="PTKP / year" data-id="PTKP / tahun" style="text-align:right">PTKP / tahun</th>
+                    <th data-en="PTKP / month" data-id="PTKP / bulan" style="text-align:right">PTKP / bulan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="td-label">TK/0</td><td data-en="Single, no dependents" data-id="Tidak kawin, tanpa tanggungan">Tidak kawin, tanpa tanggungan</td><td class="td-num">Rp 54.000.000</td><td class="td-num">Rp 4.500.000</td></tr>
+                  <tr><td class="td-label">TK/1</td><td data-en="Single, 1 dependent" data-id="Tidak kawin, 1 tanggungan">Tidak kawin, 1 tanggungan</td><td class="td-num">Rp 58.500.000</td><td class="td-num">Rp 4.875.000</td></tr>
+                  <tr><td class="td-label">K/0</td><td data-en="Married, no dependents" data-id="Kawin, tanpa tanggungan">Kawin, tanpa tanggungan</td><td class="td-num">Rp 58.500.000</td><td class="td-num">Rp 4.875.000</td></tr>
+                  <tr><td class="td-label">K/1</td><td data-en="Married, 1 dependent" data-id="Kawin, 1 tanggungan">Kawin, 1 tanggungan</td><td class="td-num">Rp 63.000.000</td><td class="td-num">Rp 5.250.000</td></tr>
+                  <tr><td class="td-label">K/2</td><td data-en="Married, 2 dependents" data-id="Kawin, 2 tanggungan">Kawin, 2 tanggungan</td><td class="td-num">Rp 67.500.000</td><td class="td-num">Rp 5.625.000</td></tr>
+                  <tr><td class="td-label">K/3</td><td data-en="Married, 3 dependents" data-id="Kawin, 3 tanggungan">Kawin, 3 tanggungan</td><td class="td-num">Rp 72.000.000</td><td class="td-num">Rp 6.000.000</td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+
+          <!-- 5. OBLIGATIONS CALENDAR -->
+          <div class="tax-chart-box">
+            <div class="tax-chart-title">
+              <div><span data-en="Step 6 — Tax Obligations Calendar" data-id="Langkah 6 — Kalender Kewajiban Pajak">Langkah 6 — Kalender Kewajiban Pajak</span></div>
+              <span class="tax-chart-badge" data-en="filings &amp; deadlines" data-id="pelaporan &amp; tenggat">pelaporan &amp; tenggat</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:11.5px;color:var(--gray-2);line-height:1.7;margin-bottom:1.25rem;"
+               data-en="The actual filing workflow Pak Hasan needs to execute each month and year — simplified because of the Non-PKP regime."
+               data-id="Alur pelaporan yang harus dijalankan Pak Hasan tiap bulan dan tahun — disederhanakan karena rezim Non-PKP.">
+              Alur pelaporan yang harus dijalankan Pak Hasan tiap bulan dan tahun — disederhanakan karena rezim Non-PKP.
+            </p>
+            <div class="obl-grid">
+              <div class="obl-card" style="--card-color:#34D399">
+                <div class="obl-period" data-en="Monthly" data-id="Bulanan">Bulanan</div>
+                <div class="obl-title" data-en="PPh Final Setoran" data-id="Setoran PPh Final">Setoran PPh Final</div>
+                <div class="obl-form" data-en="0.5% × gross revenue · via SSP / e-billing · Code 411128-420" data-id="0,5% × omzet bruto · via SSP / e-billing · Kode 411128-420">0,5% × omzet bruto · via SSP / e-billing · Kode 411128-420</div>
+                <div class="obl-deadline"><span data-en="Deadline:" data-id="Batas:">Batas:</span>&nbsp;<strong data-en="15th of following month" data-id="Tgl 15 bulan berikutnya">Tgl 15 bulan berikutnya</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:#818CF8">
+                <div class="obl-period" data-en="Monthly" data-id="Bulanan">Bulanan</div>
+                <div class="obl-title" data-en="SPT Masa PPh Final" data-id="SPT Masa PPh Final">SPT Masa PPh Final</div>
+                <div class="obl-form" data-en="Reported automatically once SSP is validated · Coretax-integrated" data-id="Terlapor otomatis setelah SSP divalidasi · terintegrasi Coretax">Terlapor otomatis setelah SSP divalidasi · terintegrasi Coretax</div>
+                <div class="obl-deadline"><span data-en="Deadline:" data-id="Batas:">Batas:</span>&nbsp;<strong data-en="End of following month" data-id="Akhir bulan berikutnya">Akhir bulan berikutnya</strong></div>
+              </div>
+              <div class="obl-card" style="--card-color:#C9A567">
+                <div class="obl-period" data-en="Annually" data-id="Tahunan">Tahunan</div>
+                <div class="obl-title" data-en="SPT Tahunan PPh OP" data-id="SPT Tahunan PPh OP">SPT Tahunan PPh OP</div>
+                <div class="obl-form" data-en="Form 1770 · reports gross revenue &amp; final tax paid · includes household members" data-id="Formulir 1770 · lapor omzet bruto &amp; PPh Final dibayar · termasuk anggota keluarga">Formulir 1770 · lapor omzet bruto &amp; PPh Final dibayar · termasuk anggota keluarga</div>
+                <div class="obl-deadline"><span data-en="Deadline:" data-id="Batas:">Batas:</span>&nbsp;<strong>31 Maret 2026</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. PRACTITIONER RECOMMENDATIONS -->
+          <div>
+            <div class="tax-section-label" data-en="Practitioner Recommendations" data-id="Rekomendasi Praktisi">Rekomendasi Praktisi</div>
+            <div class="practitioner-grid">
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="Threshold monitoring" data-id="Pemantauan ambang">Pemantauan ambang</div>
+                <div class="practitioner-title" data-en="Track cumulative turnover monthly" data-id="Pantau peredaran bruto kumulatif bulanan">Pantau peredaran bruto kumulatif bulanan</div>
+                <div class="practitioner-text"
+                     data-en="The Rp 4.8B PKP threshold is cumulative within one fiscal year, not annualized. Once cumulative turnover crosses Rp 4.8B, PKP registration becomes mandatory the following month. At current run-rate, Kopi Tadulako has ~6× headroom, but any sudden growth (franchising, catering contracts) should trigger a re-check."
+                     data-id="Ambang PKP Rp 4,8M bersifat kumulatif dalam satu tahun pajak, bukan disetahunkan. Begitu kumulatif melampaui Rp 4,8M, pengukuhan PKP menjadi wajib pada bulan berikutnya. Dengan run-rate saat ini, Kopi Tadulako punya margin ~6×, tapi pertumbuhan mendadak (franchise, katering) harus memicu pemeriksaan ulang.">
+                  Ambang PKP Rp 4,8M bersifat kumulatif dalam satu tahun pajak, bukan disetahunkan. Begitu kumulatif melampaui Rp 4,8M, pengukuhan PKP menjadi wajib pada bulan berikutnya. Dengan run-rate saat ini, Kopi Tadulako punya margin ~6×, tapi pertumbuhan mendadak (franchise, katering) harus memicu pemeriksaan ulang.
+                </div>
+              </div>
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="7-year clock" data-id="Jam 7 tahun">Jam 7 tahun</div>
+                <div class="practitioner-title" data-en="PP 23 has a shelf life" data-id="PP 23 punya masa berlaku">PP 23 punya masa berlaku</div>
+                <div class="practitioner-text"
+                     data-en="WP OP can use the PP 23/2018 Final 0.5% regime for a maximum of 7 fiscal years. After that, Pak Hasan must transition to the regular PPh OP regime (progressive 5–35%) using actual net profit. Start preparing proper bookkeeping early — NPPN or full pembukuan — because the transition requires it."
+                     data-id="WP OP dapat menggunakan rezim PPh Final 0,5% PP 23/2018 maksimum 7 tahun pajak. Setelah itu, Pak Hasan harus transisi ke rezim PPh OP umum (progresif 5–35%) berdasarkan laba neto sesungguhnya. Siapkan pembukuan yang benar sejak awal — NPPN atau pembukuan penuh — karena transisi memerlukannya.">
+                  WP OP dapat menggunakan rezim PPh Final 0,5% PP 23/2018 maksimum 7 tahun pajak. Setelah itu, Pak Hasan harus transisi ke rezim PPh OP umum (progresif 5–35%) berdasarkan laba neto sesungguhnya. Siapkan pembukuan yang benar sejak awal — NPPN atau pembukuan penuh — karena transisi memerlukannya.
+                </div>
+              </div>
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="Loss months" data-id="Bulan merugi">Bulan merugi</div>
+                <div class="practitioner-title" data-en="PPh Final is owed even at a loss" data-id="PPh Final tetap terutang meski rugi">PPh Final tetap terutang meski rugi</div>
+                <div class="practitioner-text"
+                     data-en="Because the 0.5% rate applies to gross revenue regardless of profitability, Kopi Tadulako still owes Rp 164.650 this month. In months when the café operates at a loss, this becomes a real cash burden. Maintain a tax reserve of ~0.5% of monthly revenue to avoid late-payment bunga."
+                     data-id="Karena tarif 0,5% berlaku atas omzet bruto terlepas dari profitabilitas, Kopi Tadulako tetap terutang Rp 164.650 bulan ini. Pada bulan yang merugi, ini jadi beban kas riil. Sediakan cadangan pajak ~0,5% dari omzet bulanan untuk menghindari bunga keterlambatan.">
+                  Karena tarif 0,5% berlaku atas omzet bruto terlepas dari profitabilitas, Kopi Tadulako tetap terutang Rp 164.650 bulan ini. Pada bulan yang merugi, ini jadi beban kas riil. Sediakan cadangan pajak ~0,5% dari omzet bulanan untuk menghindari bunga keterlambatan.
+                </div>
+              </div>
+              <div class="practitioner-card">
+                <div class="practitioner-tag" data-en="PTKP ceiling" data-id="Langit-langit PTKP">Langit-langit PTKP</div>
+                <div class="practitioner-title" data-en="Any raise above Rp 4,5jt/month triggers PPh 21" data-id="Kenaikan gaji di atas Rp 4,5jt/bulan memicu PPh 21">Kenaikan gaji di atas Rp 4,5jt/bulan memicu PPh 21</div>
+                <div class="practitioner-text"
+                     data-en="Both baristas sit just Rp 500.000/month below TK/0 PTKP Rp 4.500.000/month. Any raise crossing this line creates a new withholding obligation — Pak Hasan becomes a PPh 21 withholding agent and must deposit monthly withholdings via SSP/e-billing by the 10th of the following month. Plan compensation structure accordingly."
+                     data-id="Kedua barista hanya Rp 500.000/bulan di bawah PTKP TK/0 Rp 4.500.000/bulan. Kenaikan gaji yang melewati batas ini menciptakan kewajiban pemotongan — Pak Hasan menjadi pemotong PPh 21 dan wajib setor bulanan via SSP/e-billing paling lambat tgl 10 bulan berikutnya. Susun struktur kompensasi dengan hati-hati.">
+                  Kedua barista hanya Rp 500.000/bulan di bawah PTKP TK/0 Rp 4.500.000/bulan. Kenaikan gaji yang melewati batas ini menciptakan kewajiban pemotongan — Pak Hasan menjadi pemotong PPh 21 dan wajib setor bulanan via SSP/e-billing paling lambat tgl 10 bulan berikutnya. Susun struktur kompensasi dengan hati-hati.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /tax-dash-body -->
+      </div><!-- /tax-dash-wrapper -->
+
+    </div><!-- /cb-panel kopi -->
+
+    <!-- Placeholder panels -->
+    <div class="cb-panel" id="cb-makmur">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">Toko Makmur</div>
+        <div class="cb-placeholder-desc"
+             data-en="PKP sembako retailer with PPN input/output reconciliation, FIFO inventory taxation, and monthly SPT Masa PPN — tax analysis in progress."
+             data-id="Toko sembako PKP dengan rekonsiliasi PPN masukan/keluaran, perpajakan persediaan FIFO, dan SPT Masa PPN bulanan — analisis pajak sedang disusun.">
+          Toko sembako PKP dengan rekonsiliasi PPN masukan/keluaran, perpajakan persediaan FIFO, dan SPT Masa PPN bulanan — analisis pajak sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-solusi">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">CV Solusi Digital</div>
+        <div class="cb-placeholder-desc"
+             data-en="IT services firm with PPh 23 withheld by corporate clients, 5-employee progressive PPh 21, and PPN on services — tax analysis in progress."
+             data-id="Perusahaan jasa IT dengan PPh 23 dipotong klien badan, PPh 21 progresif 5 karyawan, dan PPN atas jasa — analisis pajak sedang disusun.">
+          Perusahaan jasa IT dengan PPh 23 dipotong klien badan, PPh 21 progresif 5 karyawan, dan PPN atas jasa — analisis pajak sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-bangun">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">PT Bangun Sulawesi</div>
+        <div class="cb-placeholder-desc"
+             data-en="Construction firm with PPh 4(2) Final 2.65% on contract value, progress billing with VAT, and mixed workforce (PPh 21 for staff, below-PTKP daily workers) — tax analysis in progress."
+             data-id="Perusahaan konstruksi dengan PPh 4(2) Final 2,65% atas nilai kontrak, progress billing ber-PPN, dan tenaga kerja campuran (PPh 21 staff, pekerja harian di bawah PTKP) — analisis pajak sedang disusun.">
+          Perusahaan konstruksi dengan PPh 4(2) Final 2,65% atas nilai kontrak, progress billing ber-PPN, dan tenaga kerja campuran (PPh 21 staff, pekerja harian di bawah PTKP) — analisis pajak sedang disusun.
+        </div>
+      </div>
+    </div>
+    <div class="cb-panel" id="cb-kos">
+      <div class="cb-placeholder-panel">
+        <div class="cb-placeholder-icon">§</div>
+        <div class="cb-placeholder-title">Kos Pak Haris</div>
+        <div class="cb-placeholder-desc"
+             data-en="The regulatory edge case — 20-room boarding house. PKP status but VAT-exempt under PMK 70/2022. Self-assessed PPh 4(2) Final 10% on gross rental — tax analysis in progress."
+             data-id="Kasus regulasi unik — kos-kosan 20 kamar. Status PKP namun bebas PPN menurut PMK 70/2022. PPh 4(2) Final 10% self-assessed atas bruto sewa — analisis pajak sedang disusun.">
+          Kasus regulasi unik — kos-kosan 20 kamar. Status PKP namun bebas PPN menurut PMK 70/2022. PPh 4(2) Final 10% self-assessed atas bruto sewa — analisis pajak sedang disusun.
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -381,35 +1112,7 @@
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
-<!-- RESUME MODAL -->
-<div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;">
-  <div style="position:relative;width:min(860px,95vw);height:90vh;background:#1C232D;border:1px solid rgba(201,165,103,0.2);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
-      <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
-    </div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
-  </div>
-</div>
-
 <script>
-  function openResumeModal(e) {
-    e.preventDefault();
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeResumeModal() {
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('resumeModal').addEventListener('click', function(e) {
-    if (e.target === this) closeResumeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeResumeModal();
-  });
   function toggleMobileMenu() {
     document.getElementById('hamburgerBtn').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -432,6 +1135,21 @@
   (function() {
     const saved = localStorage.getItem('adj_lang') || 'id';
     if (saved === 'en') applyLang('en');
+  })();
+
+  /* ── CASEBOOK — project card picker ── */
+  (function() {
+    document.querySelectorAll('.cb-card').forEach(card => {
+      card.addEventListener('click', function() {
+        if (this.classList.contains('placeholder')) return;
+        const target = this.dataset.cb;
+        document.querySelectorAll('.cb-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.cb-panel').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const panel = document.getElementById('cb-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    });
   })();
 </script>
 </body>
