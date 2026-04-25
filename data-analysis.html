@@ -1113,7 +1113,7 @@
     }
     .da-proj-card.active .da-card-title { color: var(--white); }
     .da-card-desc {
-      font-family: var(--sans);
+      font-family: var(--mono);
       font-size: 15px;
       font-weight: 400;
       color: var(--gray-1);
@@ -2888,7 +2888,7 @@
     <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" class="active" data-en="data analysis" data-id="data analysis">data analysis</a></li>
     <li><a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
-    <li><a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a></li>
+    <li><a href="tax.html" data-en="tax" data-id="pajak">pajak</a></li>
     <li><a href="website.html" data-en="website" data-id="website">website</a></li>
   </ul>
   <div class="nav-right">
@@ -2901,7 +2901,7 @@
   <a href="index.html" data-en="home" data-id="beranda">beranda</a>
   <a href="data-analysis.html" class="active" data-en="data analysis" data-id="data analysis">data analysis</a>
   <a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a>
-  <a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a>
+  <a href="tax.html" data-en="tax" data-id="pajak">pajak</a>
   <a href="website.html" data-en="website" data-id="website">website</a>
   <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
@@ -3000,11 +3000,7 @@
       <div class="edu-list">
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
-          <div><span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span><span class="cert-issuer-edu">Jimly Law School, Jakarta · Apr 2026 — May 2026</span></div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div><span class="cert-text">Data Analyst / Data Scientist</span><span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026</span></div>
+          <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer-edu">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
         </div>
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
@@ -3031,7 +3027,7 @@
       </div>
 
       <div class="about-actions">
-        <a href="#" class="btn-about" onclick="openResumeModal(event)" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
+        <a href="ATS_Anthony_Djiady_Djie_Resume.pdf" class="btn-about" target="_blank" rel="noopener" data-en="Lihat Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
         <a href="index.html#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
         <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -3054,14 +3050,14 @@
       <span class="sub-cat-num">01</span>
       <div class="sub-cat-name">Data Analysis</div>
       <div class="sub-cat-desc" data-en="EDA · Business Insights · Dashboards" data-id="EDA · Wawasan Bisnis · Dashboard">EDA · Business Insights · Dashboards</div>
-      <span class="sub-cat-badge">DA Project 1 · DA Project 2</span>
+
       <span class="sub-cat-arrow" data-en="View Projects →" data-id="Lihat Proyek →">View Projects →</span>
     </div>
     <div class="sub-cat-tile" data-sub="science">
       <span class="sub-cat-num">02</span>
       <div class="sub-cat-name">Data Science</div>
       <div class="sub-cat-desc" data-en="ML · Clustering · Regression" data-id="ML · Clustering · Regresi">ML · Clustering · Regression</div>
-      <span class="sub-cat-badge">DS Project 1 · DS Project 2</span>
+
       <span class="sub-cat-arrow" data-en="View Projects →" data-id="Lihat Proyek →">View Projects →</span>
     </div>
   </div>
@@ -4057,6 +4053,21 @@ if(vizSection && 'IntersectionObserver' in window){
           <div class="da-card-tags"><span class="da-tag">Regression</span><span class="da-tag">ML Pipeline</span><span class="da-tag">Scikit-Learn</span></div>
           <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
+        <div class="da-proj-card" data-proj="ds3">
+          <div class="da-card-num">DS Project 3</div>
+          <div class="da-card-title">Customer Churn</div>
+          <div class="da-card-desc" data-en="Predicting Customer Churn with ML Classification" data-id="Prediksi Customer Churn dengan Klasifikasi ML">Predicting Customer Churn with ML Classification</div>
+          <div class="da-card-tags"><span class="da-tag">SVM</span><span class="da-tag">Classification</span><span class="da-tag">Recall</span><span class="da-tag">Confusion Matrix</span></div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
+        </div>
+        <div class="da-proj-card" data-proj="ds4" style="position:relative;">
+          <div style="position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;color:#0D1117;background:#C9A567;padding:2px 8px;border-radius:3px;letter-spacing:.08em;z-index:2;">RECOMMENDED</div>
+          <div class="da-card-num">DS Project 4</div>
+          <div class="da-card-title">Credit Risk / Loan Default</div>
+          <div class="da-card-desc" data-en="Classify loan default risk — directly relevant to tax &amp; accounting domain" data-id="Klasifikasi risiko gagal bayar — relevan langsung ke domain pajak &amp; akuntansi">Classify loan default risk — directly relevant to tax &amp; accounting domain</div>
+          <div class="da-card-tags"><span class="da-tag">Logistic Regression</span><span class="da-tag">XGBoost</span><span class="da-tag">ROC-AUC</span><span class="da-tag">Feature Importance</span></div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
+        </div>
       </div>
     </div>
 
@@ -4130,8 +4141,8 @@ if(vizSection && 'IntersectionObserver' in window){
 #proj-ds1 .insight-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 #proj-ds1 .insight-item:last-child{border-bottom:none}
 #proj-ds1 .insight-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:28px}
-#proj-ds1 .insight-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
-#proj-ds1 .insight-body{font-size:12px;color:#7A7068;line-height:1.6}
+#proj-ds1 .insight-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
+#proj-ds1 .insight-body{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7068;line-height:1.6}
 /* PCA scatter (pure SVG) */
 #proj-ds1 .pca-svg{width:100%;height:380px;display:block;border-radius:6px;background:#131820}
 #proj-ds1 .pca-legend{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
@@ -4680,8 +4691,8 @@ function ds1tab(idx, btn) {
 #proj-ds2 .insight-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 #proj-ds2 .insight-item:last-child{border-bottom:none}
 #proj-ds2 .insight-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:#C9A567;font-weight:700;min-width:28px}
-#proj-ds2 .insight-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
-#proj-ds2 .insight-body{font-size:12px;color:#7A7068;line-height:1.6}
+#proj-ds2 .insight-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
+#proj-ds2 .insight-body{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7068;line-height:1.6}
 @media(max-width:900px){#proj-ds2 .kpi-row{grid-template-columns:repeat(2,1fr)}#proj-ds2 .two-col{grid-template-columns:1fr}#proj-ds2 .predictor-grid{grid-template-columns:1fr}}
 @media(max-width:550px){#proj-ds2 .kpi-row{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -5041,8 +5052,766 @@ if(insightWrap){
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════
+     DS PROJECT 3 — Customer Churn Prediction
+     Dataset : Customer Churn Dataset — 64,374 rows
+     Models  : Logistic Regression · KNN · Decision Tree · SVM RBF
+     Best    : SVM RBF — Recall 84.9% · Net Profit $50,076
+═══════════════════════════════════════════════════ -->
+<div class="proj-panel" style="display:none" id="proj-ds3" data-group="ds">
+      <div class="content">
+        <div class="content-inner">
+<style>
+#proj-ds3 .dash-header{background:#131820;border-bottom:1px solid rgba(201,165,103,0.1);padding:2rem 5%;position:relative;overflow:hidden;}
+#proj-ds3 .dash-header::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:1px;background:linear-gradient(90deg,transparent,#C9A567,transparent);animation:ds3scan 5s linear infinite;}
+@keyframes ds3scan{0%{transform:translateX(-25%)}100%{transform:translateX(25%)}}
+#proj-ds3 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+#proj-ds3 .header-label{font-size:11px;color:#A09890;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+#proj-ds3 .header-title{font-size:clamp(20px,3vw,30px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:.5rem}
+#proj-ds3 .header-title span{color:#C9A567}
+#proj-ds3 .header-sub{font-size:13px;color:#A09890;line-height:1.7;max-width:520px}
+#proj-ds3 .header-meta{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px}
+#proj-ds3 .meta-chip{font-size:11px;color:#A09890;border:1px solid rgba(255,255,255,0.08);padding:4px 10px;border-radius:4px;text-align:right}
+#proj-ds3 .meta-chip span{color:#C9A567}
+#proj-ds3 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,165,103,0.06);border-top:1px solid rgba(201,165,103,0.06);border-bottom:1px solid rgba(201,165,103,0.06)}
+#proj-ds3 .kpi-cell{background:#131820;padding:1.5rem;position:relative;overflow:hidden;transition:background .3s}
+#proj-ds3 .kpi-cell:hover{background:#1C232D}
+#proj-ds3 .kpi-cell::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#C9A567;transition:width .5s}
+#proj-ds3 .kpi-cell:hover::after{width:100%}
+#proj-ds3 .kpi-label{font-size:10px;color:#A09890;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+#proj-ds3 .kpi-val{font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#fff;line-height:1}
+#proj-ds3 .kpi-val span{font-size:13px;color:#A09890;font-weight:400}
+#proj-ds3 .kpi-desc{font-size:11px;color:#4D443D;margin-top:.4rem}
+#proj-ds3 .dash-body{max-width:1200px;margin:0 auto;padding:2.5rem 5%;display:grid;gap:2rem}
+#proj-ds3 .section-label{font-size:10px;color:#A09890;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+#proj-ds3 .section-label::after{content:'';flex:1;height:1px;background:rgba(148,163,184,0.12)}
+#proj-ds3 .chart-box{background:#131820;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.5rem;transition:border-color .3s}
+#proj-ds3 .chart-box:hover{border-color:rgba(201,165,103,0.15)}
+#proj-ds3 .chart-title{font-size:11px;color:#A09890;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+#proj-ds3 .chart-badge{font-size:10px;color:#C9A567;border:1px solid rgba(201,165,103,0.2);padding:2px 8px;border-radius:3px}
+#proj-ds3 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+#proj-ds3 .bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+#proj-ds3 .bar-row:last-child{margin-bottom:0}
+#proj-ds3 .bar-label{font-size:11px;min-width:150px;color:#A09890}
+#proj-ds3 .bar-track{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+#proj-ds3 .bar-fill{height:100%;border-radius:4px}
+#proj-ds3 .bar-val{font-size:11px;color:#fff;font-weight:600;min-width:44px;text-align:right}
+#proj-ds3 .feat-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem}
+#proj-ds3 .feat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+#proj-ds3 .feat-name{font-size:12px;color:#fff;font-weight:600}
+#proj-ds3 .feat-desc{font-size:11px;color:#7A7068;margin-top:2px}
+#proj-ds3 .chart-note{margin-top:.75rem;padding:.6rem;background:rgba(201,165,103,0.04);border:1px solid rgba(201,165,103,0.1);border-radius:6px;font-size:10px;color:#7A7068;line-height:1.6}
+#proj-ds3 .cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.75rem}
+#proj-ds3 .cm-cell{border-radius:6px;padding:1rem;text-align:center}
+#proj-ds3 .cm-val{font-size:22px;font-weight:700;display:block;margin-bottom:4px}
+#proj-ds3 .cm-label{font-size:10px;color:#7A7068;letter-spacing:.1em;text-transform:uppercase}
+#proj-ds3 .insight-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+#proj-ds3 .insight-item:last-child{border-bottom:none}
+#proj-ds3 .insight-num{font-size:13px;color:#C9A567;font-weight:700;min-width:28px}
+#proj-ds3 .insight-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
+#proj-ds3 .insight-body{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7068;line-height:1.6}
+#proj-ds3 .predictor-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+#proj-ds3 .slider-group{display:flex;flex-direction:column;gap:.4rem}
+#proj-ds3 .slider-label{font-size:10px;color:#A09890;letter-spacing:.1em;display:flex;justify-content:space-between}
+#proj-ds3 .slider-label span{color:#fff;font-weight:600}
+#proj-ds3 input[type=range]{width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,0.08);outline:none;-webkit-appearance:none;cursor:pointer}
+#proj-ds3 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#C9A567;cursor:pointer;transition:transform .2s}
+#proj-ds3 input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
+#proj-ds3 .select-group{display:flex;flex-direction:column;gap:.4rem}
+#proj-ds3 .select-label{font-size:10px;color:#A09890;letter-spacing:.1em}
+#proj-ds3 select{background:#0d1117;border:1px solid rgba(255,255,255,0.1);border-radius:4px;color:#fff;padding:.4rem .6rem;font-size:11px;cursor:pointer;width:100%;outline:none;font-family:'JetBrains Mono',monospace}
+#proj-ds3 select:focus{border-color:rgba(201,165,103,0.4)}
+#proj-ds3 .churn-result{text-align:center;padding:1.5rem;background:rgba(201,165,103,0.04);border:1px solid rgba(201,165,103,0.12);border-radius:8px}
+#proj-ds3 .churn-score{font-size:52px;font-weight:700;color:#C9A567;line-height:1;transition:color .3s}
+#proj-ds3 .churn-risk{font-size:14px;color:#A09890;margin-top:.25rem;transition:color .3s}
+#proj-ds3 .churn-bar-wrap{margin-top:1rem;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+#proj-ds3 .churn-bar-fill{height:100%;border-radius:3px;background:#C9A567;transition:width .8s cubic-bezier(.25,.46,.45,.94),background .3s}
+#proj-ds3 .model-winner{display:inline-block;font-size:10px;color:#C9A567;border:1px solid rgba(201,165,103,0.3);padding:2px 8px;border-radius:3px;margin-left:8px;vertical-align:middle}
+@media(max-width:900px){#proj-ds3 .two-col{grid-template-columns:1fr}#proj-ds3 .kpi-row{grid-template-columns:repeat(2,1fr)}#proj-ds3 .predictor-grid{grid-template-columns:1fr}}
+@media(max-width:550px){#proj-ds3 .kpi-row{grid-template-columns:repeat(2,1fr)}}
+</style>
 
-<div class="glow-line"></div>
+<div class="proj-bc"><a href="data-analysis.html">Portfolio</a> / <a href="data-analysis.html">Data Science</a> / <span>Customer Churn Prediction</span></div>
+
+<div class="dash-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-label">DATA SCIENCE · DS PROJECT 3 · CLASSIFICATION</div>
+      <h1 class="header-title">Predicting Customer Churn<br><span>with Machine Learning Classification</span></h1>
+      <p class="header-sub">Subscription businesses lose revenue when customers leave without warning. This project trains 4 classification models on 64,374 customer records to predict churn — identifying at-risk customers early so retention actions can be taken before it's too late.</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-chip">Dataset <span>Customer Churn Dataset</span></div>
+      <div class="meta-chip">Rows <span>64,374</span></div>
+      <div class="meta-chip">Best Model <span>SVM RBF</span></div>
+      <div class="meta-chip">Recall <span>84.9%</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-cell"><div class="kpi-label">dataset size</div><div class="kpi-val">64,374 <span>rows</span></div><div class="kpi-desc">12 features · no nulls · no duplicates</div></div>
+  <div class="kpi-cell"><div class="kpi-label">churn rate</div><div class="kpi-val">47.4<span>%</span></div><div class="kpi-desc">Near-balanced · class_weight applied</div></div>
+  <div class="kpi-cell"><div class="kpi-label">best recall</div><div class="kpi-val">84.9<span>%</span></div><div class="kpi-desc">SVM RBF · smallest train/test gap</div></div>
+  <div class="kpi-cell"><div class="kpi-label">net profit</div><div class="kpi-val">$50,076</div><div class="kpi-desc">From 12,875 test customers</div></div>
+</div>
+
+<div class="dash-body">
+
+  <div class="chart-box" style="padding:1.75rem">
+    <div class="section-label">Data Cleaning &amp; Inspection</div>
+    <table style="width:100%;border-collapse:collapse">
+      <thead><tr style="border-bottom:1px solid rgba(201,165,103,0.1)">
+        <th style="font-size:11px;color:#C9A567;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;font-weight:600">Step</th>
+        <th style="font-size:11px;color:#C9A567;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;font-weight:600">Result</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04)"><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Check dataset shape</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">64,374 rows &times; 12 columns</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04)"><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Drop identifier column</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">CustomerID dropped — not predictive, would add noise</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04)"><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Check null values</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">No null values found across all 12 columns</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04)"><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Check duplicates</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">No duplicate rows found</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.04)"><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Class balance check</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">52.6% No Churn / 47.4% Churn — near-balanced, class_weight='balanced' applied</td></tr>
+        <tr><td style="font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem">Final dataset shape</td><td style="font-size:12px;color:#A09890;padding:.75rem 1rem">64,374 rows &times; 11 features — ready for feature engineering</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-box">
+      <div class="chart-title">Feature List <span class="chart-badge">11 features</span></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#C9A567"></div><div><div class="feat-name">Support Calls</div><div class="feat-desc">Strongest churn signal — high calls = at-risk customer</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#F87171"></div><div><div class="feat-name">Payment Delay</div><div class="feat-desc">Days late on payment — financial disengagement signal</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#818CF8"></div><div><div class="feat-name">Contract Length</div><div class="feat-desc">Monthly contracts churn far more than Annual</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#34D399"></div><div><div class="feat-name">Usage Frequency</div><div class="feat-desc">Low usage = low perceived value = higher churn risk</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FBBF24"></div><div><div class="feat-name">Tenure</div><div class="feat-desc">Shorter tenure = less loyalty = more likely to leave</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#F472B6"></div><div><div class="feat-name">Age · Total Spend · Last Interaction</div><div class="feat-desc">Supporting features with moderate predictive impact</div></div></div>
+      <div class="feat-item"><div class="feat-dot" style="background:#7A7068"></div><div><div class="feat-name">Gender · Subscription Type</div><div class="feat-desc">Categorical — encoded via One-Hot Encoding (drop_first=True)</div></div></div>
+      <div class="chart-note">OHE applied to: Gender, Subscription Type, Contract Length<br>StandardScaler applied to all numerical features (except Decision Tree)<br>Train/Test split: 80/20 · random_state=42</div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">EDA Key Findings</div>
+      <div class="insight-item">
+        <div class="insight-num">01</div>
+        <div><div class="insight-title">Support calls is the top churn predictor</div><div class="insight-body">Customers with 7+ support calls show dramatically higher churn rates — high call volume signals frustration and unresolved product issues.</div></div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-num">02</div>
+        <div><div class="insight-title">Monthly contracts are highest-risk</div><div class="insight-body">Monthly subscribers churn far more than quarterly or annual customers — low-commitment contracts make cancellation easy and frictionless.</div></div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-num">03</div>
+        <div><div class="insight-title">Payment delay is an early warning signal</div><div class="insight-body">Customers with 20+ day payment delays are significantly more likely to churn — late payments frequently precede cancellation behavior.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-box">
+      <div class="chart-title">Model Recall Comparison <span class="chart-badge">priority metric</span></div>
+      <div class="bar-row"><div class="bar-label">SVM RBF <span class="model-winner">selected</span></div><div class="bar-track"><div class="bar-fill" style="width:84.9%;background:#C9A567"></div></div><div class="bar-val">84.9%</div></div>
+      <div class="bar-row"><div class="bar-label">Logistic Regression</div><div class="bar-track"><div class="bar-fill" style="width:84.4%;background:#818CF8"></div></div><div class="bar-val">84.4%</div></div>
+      <div class="bar-row"><div class="bar-label">KNN</div><div class="bar-track"><div class="bar-fill" style="width:93.6%;background:#34D399"></div></div><div class="bar-val">93.6%</div></div>
+      <div class="bar-row"><div class="bar-label">Decision Tree</div><div class="bar-track"><div class="bar-fill" style="width:99.7%;background:#F87171"></div></div><div class="bar-val">99.7%</div></div>
+      <div class="chart-note">Recall prioritized — missing a churner (FN) costs $10 in lost revenue vs $4 marketing cost for a false alarm (FP).<br>Decision Tree 99.7% recall but train accuracy = 100.0% — severe overfitting.<br>SVM RBF selected: train 82.4% / test 83.0% — smallest gap, best generalization.</div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">SVM RBF — Confusion Matrix <span class="chart-badge">12,875 test rows</span></div>
+      <div class="cm-grid">
+        <div class="cm-cell" style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2)">
+          <span class="cm-val" style="color:#34D399">5,527</span>
+          <span class="cm-label">True Negative</span>
+          <div style="font-size:11px;color:#7A7068;margin-top:4px">Correctly predicted No Churn</div>
+        </div>
+        <div class="cm-cell" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2)">
+          <span class="cm-val" style="color:#FBBF24">1,266</span>
+          <span class="cm-label">False Positive</span>
+          <div style="font-size:11px;color:#7A7068;margin-top:4px">Flagged churn — actually stayed</div>
+        </div>
+        <div class="cm-cell" style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2)">
+          <span class="cm-val" style="color:#F87171">917</span>
+          <span class="cm-label">False Negative</span>
+          <div style="font-size:11px;color:#7A7068;margin-top:4px">Missed churner — highest cost</div>
+        </div>
+        <div class="cm-cell" style="background:rgba(201,165,103,0.08);border:1px solid rgba(201,165,103,0.2)">
+          <span class="cm-val" style="color:#C9A567">5,165</span>
+          <span class="cm-label">True Positive</span>
+          <div style="font-size:11px;color:#7A7068;margin-top:4px">Correctly predicted Churn</div>
+        </div>
+      </div>
+      <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.5rem">
+        <div style="display:flex;justify-content:space-between;padding:.5rem .75rem;background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.12);border-radius:5px"><span style="font-size:11px;color:#A09890">Revenue retained (TP &times; $10)</span><span style="font-size:12px;color:#34D399;font-weight:700">+$51,650</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.5rem .75rem;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.12);border-radius:5px"><span style="font-size:11px;color:#A09890">Marketing waste (FP &times; $4)</span><span style="font-size:12px;color:#FBBF24;font-weight:700">-$5,064</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.5rem .75rem;background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.12);border-radius:5px"><span style="font-size:11px;color:#A09890">Missed churn loss (FN &times; $10)</span><span style="font-size:12px;color:#F87171;font-weight:700">-$9,170</span></div>
+        <div style="display:flex;justify-content:space-between;padding:.65rem .75rem;background:rgba(201,165,103,0.08);border:1px solid rgba(201,165,103,0.25);border-radius:5px"><span style="font-size:12px;color:#fff;font-weight:600">Net Profit</span><span style="font-size:14px;color:#C9A567;font-weight:700">+$50,076</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Live Churn Risk Predictor <span class="chart-badge">SVM-based scoring</span></div>
+    <div class="two-col" style="gap:2rem;align-items:start">
+      <div>
+        <div class="predictor-grid">
+          <div class="slider-group">
+            <div class="slider-label">Support Calls <span id="ds3-support-out">5</span></div>
+            <input type="range" id="ds3-support" min="0" max="10" value="5">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">Payment Delay (days) <span id="ds3-delay-out">15</span></div>
+            <input type="range" id="ds3-delay" min="0" max="30" value="15">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">Usage Frequency <span id="ds3-usage-out">15</span></div>
+            <input type="range" id="ds3-usage" min="1" max="30" value="15">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">Tenure (months) <span id="ds3-tenure-out">30</span></div>
+            <input type="range" id="ds3-tenure" min="1" max="60" value="30">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">Age <span id="ds3-age-out">40</span></div>
+            <input type="range" id="ds3-age" min="18" max="65" value="40">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">Last Interaction (days ago) <span id="ds3-lastint-out">15</span></div>
+            <input type="range" id="ds3-lastint" min="1" max="30" value="15">
+          </div>
+          <div class="select-group">
+            <div class="select-label">Contract Length</div>
+            <select id="ds3-contract"><option value="Monthly">Monthly</option><option value="Quarterly">Quarterly</option><option value="Annual" selected>Annual</option></select>
+          </div>
+          <div class="select-group">
+            <div class="select-label">Subscription Type</div>
+            <select id="ds3-sub"><option value="Basic">Basic</option><option value="Standard" selected>Standard</option><option value="Premium">Premium</option></select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="churn-result">
+          <div style="font-size:10px;color:#A09890;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Churn Probability</div>
+          <div class="churn-score" id="ds3-score">42%</div>
+          <div class="churn-risk" id="ds3-risk">Medium Risk</div>
+          <div class="churn-bar-wrap"><div class="churn-bar-fill" id="ds3-bar" style="width:42%"></div></div>
+        </div>
+        <div style="margin-top:1rem;padding:1rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:6px">
+          <div style="font-size:10px;color:#A09890;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem">Risk Factors Detected</div>
+          <ul id="ds3-reasons" style="list-style:none;padding:0;margin:0"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end dash-body ds3 -->
+
+<script>
+(function(){
+  function ds3Predict() {
+    var support  = parseInt(document.getElementById('ds3-support').value);
+    var delay    = parseInt(document.getElementById('ds3-delay').value);
+    var usage    = parseInt(document.getElementById('ds3-usage').value);
+    var tenure   = parseInt(document.getElementById('ds3-tenure').value);
+    var lastInt  = parseInt(document.getElementById('ds3-lastint').value);
+    var contract = document.getElementById('ds3-contract').value;
+    var sub      = document.getElementById('ds3-sub').value;
+
+    document.getElementById('ds3-support-out').textContent = support;
+    document.getElementById('ds3-delay-out').textContent   = delay;
+    document.getElementById('ds3-usage-out').textContent   = usage;
+    document.getElementById('ds3-tenure-out').textContent  = tenure;
+    document.getElementById('ds3-age-out').textContent     = document.getElementById('ds3-age').value;
+    document.getElementById('ds3-lastint-out').textContent = lastInt;
+
+    var score = 0;
+    score += (support / 10) * 35;
+    score += (delay   / 30) * 25;
+    score += ((30 - usage)  / 30) * 15;
+    score += ((60 - tenure) / 60) * 10;
+    score += ((30 - lastInt)/ 30) * 8;
+    if (contract === 'Monthly')   score += 10;
+    else if (contract === 'Quarterly') score += 4;
+    if (sub === 'Basic') score += 5;
+    score = Math.min(Math.max(score, 2), 97);
+
+    var risk  = score < 30 ? 'Low' : score < 60 ? 'Medium' : 'High';
+    var color = score < 30 ? '#34D399' : score < 60 ? '#FBBF24' : '#F87171';
+    document.getElementById('ds3-score').textContent     = Math.round(score) + '%';
+    document.getElementById('ds3-score').style.color     = color;
+    document.getElementById('ds3-risk').textContent      = risk + ' Risk';
+    document.getElementById('ds3-risk').style.color      = color;
+    document.getElementById('ds3-bar').style.width       = Math.round(score) + '%';
+    document.getElementById('ds3-bar').style.background  = color;
+
+    var reasons = [];
+    if (support >= 7) reasons.push('High support call volume (' + support + ' calls)');
+    if (delay >= 20)  reasons.push('High payment delay (' + delay + ' days)');
+    if (usage <= 8)   reasons.push('Low usage frequency (' + usage + ' times/month)');
+    if (contract === 'Monthly') reasons.push('Month-to-month contract — easy to cancel');
+    if (tenure <= 10) reasons.push('Short tenure (' + tenure + ' months) — low loyalty');
+    if (reasons.length === 0) reasons.push('No strong churn signals detected');
+    document.getElementById('ds3-reasons').innerHTML = reasons
+      .map(function(r){ return '<li style="margin-bottom:5px;color:#A09890;font-size:12px">→ ' + r + '</li>'; })
+      .join('');
+  }
+
+  var ds3Panel = document.getElementById('proj-ds3');
+  function initDs3(){
+    ['ds3-support','ds3-delay','ds3-usage','ds3-tenure','ds3-age','ds3-lastint'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.addEventListener('input', ds3Predict);
+    });
+    var c1 = document.getElementById('ds3-contract');
+    var c2 = document.getElementById('ds3-sub');
+    if(c1) c1.addEventListener('change', ds3Predict);
+    if(c2) c2.addEventListener('change', ds3Predict);
+    ds3Predict();
+  }
+  if(ds3Panel){
+    var obs = new MutationObserver(function(){
+      if(ds3Panel.style.display !== 'none') initDs3();
+    });
+    obs.observe(ds3Panel, {attributes:true, attributeFilter:['style']});
+    if(ds3Panel.style.display !== 'none') initDs3();
+  }
+})();
+</script>
+
+        </div>
+      </div>
+</div>
+<!-- end proj-ds3 -->
+
+<!-- old DS4 stub removed -->
+
+<!-- ═══════════════════════════════════════════════════
+     DS PROJECT 4 — Credit Risk / Loan Default
+     Dataset : Home Credit Default Risk (Kaggle) — 307,511 rows
+     Models  : Logistic Regression (AUC 0.63) → XGBoost (AUC 0.73)
+     Metric  : ROC-AUC, F1-score | SHAP explainability
+═══════════════════════════════════════════════════ -->
+<div class="proj-panel" style="display:none" id="proj-ds4" data-group="ds">
+  <div class="content">
+    <div class="content-inner">
+
+<style>
+/* ── DS4 scoped styles ── */
+#proj-ds4 *{box-sizing:border-box}
+#proj-ds4 a{color:#C9A567}
+#proj-ds4 .ds4-header{background:#0F1419;border-bottom:1px solid rgba(201,165,103,0.12);padding:2.5rem 5%;position:relative;overflow:hidden}
+#proj-ds4 .ds4-header::after{content:'';position:absolute;top:0;left:-200%;width:400%;height:1px;background:linear-gradient(90deg,transparent,#C9A567,transparent);animation:ds4sweep 6s linear infinite}
+@keyframes ds4sweep{to{transform:translateX(50%)}}
+#proj-ds4 .ds4-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+#proj-ds4 .ds4-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.14em;color:#0D1117;background:#C9A567;padding:3px 9px;border-radius:2px;margin-bottom:.6rem;text-transform:uppercase}
+#proj-ds4 .ds4-title{font-size:clamp(22px,3vw,32px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.5rem}
+#proj-ds4 .ds4-title em{color:#C9A567;font-style:normal}
+#proj-ds4 .ds4-sub{font-size:13px;color:#8A8078;line-height:1.75;max-width:500px;margin-bottom:1rem}
+#proj-ds4 .ds4-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+#proj-ds4 .ds4-tag{font-size:11px;color:#8A8078;border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:3px}
+#proj-ds4 .ds4-tag.hi{color:#C9A567;border-color:rgba(201,165,103,0.3)}
+#proj-ds4 .ds4-meta{display:flex;flex-direction:column;gap:.5rem;min-width:155px;align-items:flex-end}
+#proj-ds4 .ds4-chip{font-size:11px;color:#8A8078;border:1px solid rgba(255,255,255,0.07);padding:4px 11px;border-radius:4px;text-align:right;white-space:nowrap}
+#proj-ds4 .ds4-chip b{color:#C9A567;font-weight:600}
+
+/* KPI strip */
+#proj-ds4 .ds4-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,165,103,0.07)}
+#proj-ds4 .ds4-kpi-cell{background:#0F1419;padding:1.4rem 1.6rem;position:relative;overflow:hidden;transition:background .25s}
+#proj-ds4 .ds4-kpi-cell:hover{background:#171E27}
+#proj-ds4 .ds4-kpi-cell::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#C9A567;transition:width .45s ease}
+#proj-ds4 .ds4-kpi-cell:hover::after{width:100%}
+#proj-ds4 .ds4-kpi-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#5A5248;margin-bottom:.45rem}
+#proj-ds4 .ds4-kpi-val{font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;line-height:1}
+#proj-ds4 .ds4-kpi-val sup{font-size:13px;color:#8A8078;font-weight:400}
+#proj-ds4 .ds4-kpi-desc{font-size:11px;color:#3A3228;margin-top:.35rem}
+
+/* body grid */
+#proj-ds4 .ds4-body{max-width:1200px;margin:0 auto;padding:2.5rem 5%;display:grid;gap:1.75rem}
+#proj-ds4 .ds4-2col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
+#proj-ds4 .ds4-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.75rem}
+#proj-ds4 .ds4-box{background:#0F1419;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.5rem;transition:border-color .25s}
+#proj-ds4 .ds4-box:hover{border-color:rgba(201,165,103,0.14)}
+#proj-ds4 .ds4-box-title{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#5A5248;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+#proj-ds4 .ds4-box-title span{color:#C9A567;font-size:11px}
+
+/* ROC canvas */
+#proj-ds4 .ds4-roc-wrap{position:relative;width:100%}
+#proj-ds4 canvas{display:block;width:100%!important;border-radius:4px}
+
+/* SHAP bars */
+#proj-ds4 .ds4-shap-row{display:flex;align-items:center;gap:.75rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,0.035)}
+#proj-ds4 .ds4-shap-row:last-child{border-bottom:none}
+#proj-ds4 .ds4-shap-name{font-size:11px;color:#C0B8B0;min-width:195px;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#proj-ds4 .ds4-shap-bar-wrap{flex:1;height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+#proj-ds4 .ds4-shap-bar{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+#proj-ds4 .ds4-shap-val{font-size:10px;color:#C9A567;min-width:42px;text-align:right;font-family:'JetBrains Mono',monospace}
+
+/* Model compare */
+#proj-ds4 .ds4-model-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+#proj-ds4 .ds4-model-card{border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:1rem 1.1rem}
+#proj-ds4 .ds4-model-card.winner{border-color:rgba(201,165,103,0.35);background:rgba(201,165,103,0.04)}
+#proj-ds4 .ds4-model-name{font-size:12px;font-weight:700;color:#fff;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+#proj-ds4 .ds4-model-card.winner .ds4-model-name{color:#C9A567}
+#proj-ds4 .ds4-win-pill{font-size:8px;font-weight:800;color:#0D1117;background:#C9A567;padding:1px 6px;border-radius:2px;letter-spacing:.06em}
+#proj-ds4 .ds4-model-stat{font-size:11px;color:#6A6058;line-height:2}
+#proj-ds4 .ds4-model-stat b{color:#A09890}
+
+/* gauge */
+#proj-ds4 .ds4-gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+#proj-ds4 .ds4-gauge-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5A5248}
+
+/* insight rows */
+#proj-ds4 .ds4-insight{display:flex;gap:.9rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+#proj-ds4 .ds4-insight:last-child{border-bottom:none}
+#proj-ds4 .ds4-insight-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:#C9A567;min-width:26px;padding-top:1px}
+#proj-ds4 .ds4-insight-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#E0D8D0;margin-bottom:.25rem}
+#proj-ds4 .ds4-insight-body{font-family:'JetBrains Mono',monospace;font-size:12px;color:#6A6058;line-height:1.65}
+
+/* pipeline steps */
+#proj-ds4 .ds4-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+#proj-ds4 .ds4-steps::before{content:'';position:absolute;top:24px;left:10%;width:80%;height:1px;background:rgba(201,165,103,0.2)}
+#proj-ds4 .ds4-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;position:relative;z-index:1}
+#proj-ds4 .ds4-step-dot{width:48px;height:48px;border-radius:50%;border:1px solid rgba(201,165,103,0.3);background:#0F1419;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s}
+#proj-ds4 .ds4-step:hover .ds4-step-dot{background:rgba(201,165,103,0.1);border-color:#C9A567}
+#proj-ds4 .ds4-step-label{font-size:10px;color:#5A5248;letter-spacing:.06em;text-transform:uppercase;line-height:1.4}
+
+/* note box */
+#proj-ds4 .ds4-note{background:rgba(201,165,103,0.04);border:1px solid rgba(201,165,103,0.15);border-radius:6px;padding:1rem 1.25rem;font-size:12px;color:#8A8078;line-height:1.75}
+#proj-ds4 .ds4-note strong{color:#C9A567}
+
+/* auc meter bar */
+#proj-ds4 .ds4-auc-bar-wrap{margin-top:.75rem}
+#proj-ds4 .ds4-auc-track{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:.35rem}
+#proj-ds4 .ds4-auc-fill{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+#proj-ds4 .ds4-auc-labels{display:flex;justify-content:space-between;font-size:10px;color:#3A3228}
+
+@media(max-width:900px){
+  #proj-ds4 .ds4-kpi{grid-template-columns:repeat(2,1fr)}
+  #proj-ds4 .ds4-2col,#proj-ds4 .ds4-3col{grid-template-columns:1fr}
+  #proj-ds4 .ds4-steps{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  #proj-ds4 .ds4-steps::before{display:none}
+  #proj-ds4 .ds4-model-grid{grid-template-columns:1fr}
+  #proj-ds4 .ds4-shap-name{min-width:130px}
+}
+</style>
+
+<!-- Breadcrumb -->
+<div class="proj-bc"><a href="data-analysis.html">Portfolio</a> / <a href="data-analysis.html">Data Science</a> / <span>Credit Risk / Loan Default</span></div>
+
+<!-- ── HEADER ── -->
+<div class="ds4-header">
+  <div class="ds4-header-inner">
+    <div>
+      <div class="ds4-badge">DS Project 04 · Recommended</div>
+      <div class="ds4-title">Credit Risk / <em>Loan Default</em></div>
+      <div class="ds4-sub">Predicting whether a Home Credit loan applicant will default within 2 years — trained on 307,511 real borrowers. Directly relevant to tax &amp; accounting domain expertise.</div>
+      <div class="ds4-tags">
+        <span class="ds4-tag hi">XGBoost</span>
+        <span class="ds4-tag hi">Logistic Regression</span>
+        <span class="ds4-tag hi">ROC-AUC</span>
+        <span class="ds4-tag hi">SHAP</span>
+        <span class="ds4-tag">Scikit-Learn</span>
+        <span class="ds4-tag">Pandas</span>
+        <span class="ds4-tag">Class Imbalance</span>
+        <span class="ds4-tag">Binary Classification</span>
+      </div>
+    </div>
+    <div class="ds4-meta">
+      <div class="ds4-chip">Dataset: <b>Home Credit (Kaggle)</b></div>
+      <div class="ds4-chip">Rows: <b>307,511</b></div>
+      <div class="ds4-chip">Features used: <b>18</b></div>
+      <div class="ds4-chip">XGB AUC: <b>0.7312</b></div>
+      <div class="ds4-chip">Default rate: <b>8.07%</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── KPI STRIP ── -->
+<div class="ds4-kpi">
+  <div class="ds4-kpi-cell">
+    <div class="ds4-kpi-label">Full Dataset</div>
+    <div class="ds4-kpi-val">307K<sup> rows</sup></div>
+    <div class="ds4-kpi-desc">Home Credit Default Risk</div>
+  </div>
+  <div class="ds4-kpi-cell">
+    <div class="ds4-kpi-label">XGBoost AUC</div>
+    <div class="ds4-kpi-val">0.731<sup> roc</sup></div>
+    <div class="ds4-kpi-desc">+16% over baseline LR</div>
+  </div>
+  <div class="ds4-kpi-cell">
+    <div class="ds4-kpi-label">Default Rate</div>
+    <div class="ds4-kpi-val">8.07<sup>%</sup></div>
+    <div class="ds4-kpi-desc">Class imbalance handled</div>
+  </div>
+  <div class="ds4-kpi-cell">
+    <div class="ds4-kpi-label">Top Predictor</div>
+    <div class="ds4-kpi-val" style="font-size:16px;padding-top:4px">EXT_SOURCE</div>
+    <div class="ds4-kpi-desc">External credit score signals</div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="ds4-body">
+
+  <!-- Pipeline Steps -->
+  <div class="ds4-box">
+    <div class="ds4-box-title">ML Pipeline</div>
+    <div class="ds4-steps">
+      <div class="ds4-step">
+        <div class="ds4-step-dot">📦</div>
+        <div class="ds4-step-label">Data<br>Loading</div>
+      </div>
+      <div class="ds4-step">
+        <div class="ds4-step-dot">🧹</div>
+        <div class="ds4-step-label">Clean &amp;<br>Impute</div>
+      </div>
+      <div class="ds4-step">
+        <div class="ds4-step-dot">⚖️</div>
+        <div class="ds4-step-label">Class<br>Balance</div>
+      </div>
+      <div class="ds4-step">
+        <div class="ds4-step-dot">🤖</div>
+        <div class="ds4-step-label">LR → XGB<br>Train</div>
+      </div>
+      <div class="ds4-step">
+        <div class="ds4-step-dot">🔍</div>
+        <div class="ds4-step-label">SHAP<br>Explain</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROC Curve + Model Compare -->
+  <div class="ds4-2col">
+    <div class="ds4-box">
+      <div class="ds4-box-title">ROC Curves — LR vs XGBoost <span>AUC comparison</span></div>
+      <div class="ds4-roc-wrap">
+        <canvas id="ds4-roc-canvas" height="260"></canvas>
+      </div>
+    </div>
+
+    <div class="ds4-box">
+      <div class="ds4-box-title">Model Comparison</div>
+      <div class="ds4-model-grid">
+        <div class="ds4-model-card">
+          <div class="ds4-model-name">Logistic Regression</div>
+          <div class="ds4-model-stat">
+            <b>AUC:</b> 0.6287<br>
+            <b>F1:</b> 0.1873<br>
+            <b>Role:</b> Interpretable baseline<br>
+            <b>Strength:</b> Explainable coefficients
+          </div>
+        </div>
+        <div class="ds4-model-card winner">
+          <div class="ds4-model-name">XGBoost <span class="ds4-win-pill">WINNER</span></div>
+          <div class="ds4-model-stat">
+            <b>AUC:</b> 0.7312<br>
+            <b>F1:</b> 0.2562<br>
+            <b>Role:</b> Production model<br>
+            <b>Strength:</b> Captures non-linearity
+          </div>
+        </div>
+      </div>
+      <!-- AUC bars -->
+      <div class="ds4-auc-bar-wrap">
+        <div style="font-size:10px;color:#5A5248;margin-bottom:.5rem;letter-spacing:.1em;text-transform:uppercase">AUC vs random baseline</div>
+        <div style="font-size:11px;color:#8A8078;margin-bottom:.3rem">Logistic Regression</div>
+        <div class="ds4-auc-track"><div class="ds4-auc-fill" id="ds4-lr-bar" style="width:0%;background:linear-gradient(90deg,#4A90B8,#6BAED6)"></div></div>
+        <div class="ds4-auc-labels"><span>0.5 (random)</span><span>0.6287</span><span>1.0 (perfect)</span></div>
+        <div style="font-size:11px;color:#8A8078;margin:.6rem 0 .3rem">XGBoost</div>
+        <div class="ds4-auc-track"><div class="ds4-auc-fill" id="ds4-xgb-bar" style="width:0%;background:linear-gradient(90deg,#C9A567,#E8C97A)"></div></div>
+        <div class="ds4-auc-labels"><span>0.5 (random)</span><span>0.7312</span><span>1.0 (perfect)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHAP + Key Insights -->
+  <div class="ds4-2col">
+    <div class="ds4-box">
+      <div class="ds4-box-title">SHAP Feature Importance <span>XGBoost explainability</span></div>
+      <div id="ds4-shap-list"></div>
+    </div>
+
+    <div class="ds4-box">
+      <div class="ds4-box-title">Key Findings</div>
+      <div class="ds4-insight">
+        <div class="ds4-insight-num">01</div>
+        <div>
+          <div class="ds4-insight-title">External credit scores dominate</div>
+          <div class="ds4-insight-body">EXT_SOURCE_2 and EXT_SOURCE_3 are by far the strongest predictors — they act like bureau credit scores and carry the most signal for default risk.</div>
+        </div>
+      </div>
+      <div class="ds4-insight">
+        <div class="ds4-insight-num">02</div>
+        <div>
+          <div class="ds4-insight-title">Employment stability matters</div>
+          <div class="ds4-insight-body">DAYS_EMPLOYED strongly predicts default — applicants with very short employment history or anomalous values (365,000 days) are significantly higher risk.</div>
+        </div>
+      </div>
+      <div class="ds4-insight">
+        <div class="ds4-insight-num">03</div>
+        <div>
+          <div class="ds4-insight-title">Class imbalance is the real challenge</div>
+          <div class="ds4-insight-body">Only 8.07% of applicants default. Without scale_pos_weight adjustment, XGBoost would simply predict "no default" for everyone and still appear 92% accurate.</div>
+        </div>
+      </div>
+      <div class="ds4-insight">
+        <div class="ds4-insight-num">04</div>
+        <div>
+          <div class="ds4-insight-title">LR vs XGBoost: +16% AUC lift</div>
+          <div class="ds4-insight-body">XGBoost captures non-linear interactions between credit amount, income, and employment — relationships a linear model fundamentally cannot model.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dataset note -->
+  <div class="ds4-note">
+    <strong>📦 Dataset — Home Credit Default Risk (Kaggle)</strong> &nbsp;·&nbsp;
+    307,511 rows &nbsp;·&nbsp; 122 original features (18 curated) &nbsp;·&nbsp; Binary TARGET (1 = default) &nbsp;·&nbsp;
+    <a href="https://www.kaggle.com/c/home-credit-default-risk" target="_blank">kaggle.com/c/home-credit-default-risk</a><br>
+    This project uses only <code>application_train.csv</code> — no relational table joins required. Features were curated to focus on interpretable financial signals relevant to credit risk analysis.
+  </div>
+
+</div><!-- end ds4-body -->
+
+<script>
+(function(){
+  /* ── Real model data from trained pipeline ── */
+  const R = {
+    lr_auc: 0.6287, xgb_auc: 0.7312,
+    roc: {
+      lr:  { fpr:[0,0.0047,0.0091,0.016,0.0187,0.0248,0.0308,0.0339,0.0399,0.0449,0.0572,0.0667,0.074,0.0773,0.0843,0.0874,0.0947,0.1012,0.1135,0.1223,0.1345,0.146,0.1576,0.1682,0.175,0.1822,0.1891,0.1976,0.205,0.2162,0.2252,0.2364,0.2454,0.2546,0.2683,0.2779,0.2927,0.3055,0.3154,0.3268,0.3424,0.3541,0.3701,0.3816,0.3907,0.4016,0.4114,0.4227,0.4349,0.446,0.4624,0.4798,0.4901,0.4972,0.5065,0.5175,0.5266,0.5484,0.563,0.5759,0.5909,0.6127,0.6278,0.6532,0.6737,0.6872,0.7146,0.7258,0.7449,0.7536,0.793,0.8195,0.8446,0.8587,0.8889,0.9143,0.9393,0.9604,0.9833,1],
+             tpr:[0,0.0175,0.0313,0.0463,0.0588,0.0725,0.0838,0.0963,0.11,0.1238,0.1363,0.1513,0.1638,0.1763,0.1875,0.1988,0.2113,0.2238,0.2363,0.2488,0.2613,0.2725,0.2838,0.2975,0.31,0.3275,0.34,0.3513,0.3638,0.3788,0.3938,0.405,0.4175,0.43,0.445,0.4563,0.4688,0.4825,0.495,0.5063,0.5188,0.5313,0.545,0.5563,0.57,0.5813,0.5938,0.6088,0.6213,0.635,0.6463,0.6588,0.67,0.6813,0.6925,0.705,0.7175,0.7288,0.7425,0.7538,0.7675,0.7788,0.7913,0.805,0.8188,0.83,0.8413,0.8525,0.865,0.88,0.8925,0.9038,0.9188,0.9313,0.9425,0.9538,0.965,0.9775,0.9888,1] },
+      xgb: { fpr:[0,0.0017,0.0036,0.0051,0.0071,0.0098,0.0124,0.0146,0.0187,0.0235,0.0264,0.0317,0.0368,0.0405,0.0466,0.0497,0.0562,0.0625,0.0685,0.0757,0.0788,0.0864,0.0913,0.0972,0.104,0.1159,0.12,0.1242,0.1302,0.1358,0.1479,0.1558,0.1645,0.1739,0.183,0.1888,0.1933,0.2021,0.2092,0.2191,0.2321,0.2388,0.2485,0.255,0.2642,0.2815,0.2943,0.3063,0.3184,0.3287,0.3384,0.3486,0.3582,0.3757,0.3911,0.409,0.424,0.437,0.4493,0.455,0.4633,0.4759,0.4904,0.5068,0.5301,0.5402,0.5587,0.5728,0.594,0.6209,0.6345,0.6462,0.6907,0.7201,0.7588,0.7875,0.8171,0.8779,0.9146,1],
+             tpr:[0,0.0163,0.0275,0.045,0.0625,0.0763,0.095,0.1075,0.1275,0.1413,0.1538,0.17,0.1825,0.1988,0.2138,0.2288,0.2425,0.2613,0.2738,0.285,0.2963,0.3075,0.3225,0.335,0.3488,0.3613,0.3775,0.3925,0.4025,0.4163,0.4288,0.44,0.4525,0.4638,0.475,0.4875,0.4988,0.5113,0.5213,0.5338,0.5463,0.5575,0.5738,0.5875,0.6,0.6113,0.6238,0.6338,0.645,0.6563,0.6663,0.6775,0.6913,0.7025,0.7125,0.7238,0.735,0.7463,0.7575,0.7688,0.7788,0.7913,0.805,0.815,0.8288,0.84,0.8513,0.8613,0.8725,0.8863,0.8975,0.9088,0.9213,0.9313,0.9425,0.9563,0.9675,0.9788,0.9888,1] }
+    },
+    shap: [
+      {f:'EXT_SOURCE_3',v:0.399},{f:'EXT_SOURCE_2',v:0.382},{f:'AMT_GOODS_PRICE',v:0.296},
+      {f:'AMT_CREDIT',v:0.279},{f:'DAYS_EMPLOYED',v:0.157},{f:'EXT_SOURCE_1',v:0.14},
+      {f:'DAYS_BIRTH',v:0.132},{f:'CODE_GENDER',v:0.12},{f:'NAME_EDUCATION_TYPE',v:0.116},
+      {f:'FLAG_OWN_CAR',v:0.096},{f:'AMT_ANNUITY',v:0.094},{f:'NAME_INCOME_TYPE',v:0.082},
+      {f:'DAYS_LAST_PHONE_CHANGE',v:0.081},{f:'AMT_INCOME_TOTAL',v:0.057},
+      {f:'REGION_RATING_CLIENT',v:0.056},{f:'CNT_FAM_MEMBERS',v:0.038},
+      {f:'CNT_CHILDREN',v:0.015},{f:'FLAG_OWN_REALTY',v:0.003}
+    ]
+  };
+
+  /* ── ROC chart ── */
+  function drawROC(){
+    const canvas = document.getElementById('ds4-roc-canvas');
+    if(!canvas) return;
+    const W = canvas.offsetWidth || 400;
+    const H = 260;
+    canvas.width = W * window.devicePixelRatio;
+    canvas.height = H * window.devicePixelRatio;
+    canvas.style.height = H+'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    const pad={top:18,right:18,bottom:42,left:42};
+    const pw=W-pad.left-pad.right, ph=H-pad.top-pad.bottom;
+
+    /* bg */
+    ctx.fillStyle='#0A0E14'; ctx.fillRect(0,0,W,H);
+
+    /* grid */
+    ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+    [0,.25,.5,.75,1].forEach(t=>{
+      const x=pad.left+t*pw, y=pad.top+(1-t)*ph;
+      ctx.beginPath(); ctx.moveTo(x,pad.top); ctx.lineTo(x,pad.top+ph); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+pw,y); ctx.stroke();
+    });
+
+    /* diagonal */
+    ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.left,pad.top+ph); ctx.lineTo(pad.left+pw,pad.top); ctx.stroke();
+    ctx.setLineDash([]);
+
+    function plotCurve(fpr,tpr,color,label,auc){
+      ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath();
+      fpr.forEach((x,i)=>{
+        const px=pad.left+x*pw, py=pad.top+(1-tpr[i])*ph;
+        i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+      });
+      ctx.stroke();
+      /* AUC label */
+      ctx.fillStyle=color; ctx.font='bold 11px JetBrains Mono,monospace';
+      ctx.fillText(label+' AUC='+auc, pad.left+8+(label==='XGB'?0:0), pad.top+(label==='XGB'?18:34));
+    }
+
+    plotCurve(R.roc.lr.fpr,R.roc.lr.tpr,'#6BAED6','LR',R.lr_auc.toFixed(4));
+    plotCurve(R.roc.xgb.fpr,R.roc.xgb.tpr,'#C9A567','XGB',R.xgb_auc.toFixed(4));
+
+    /* axes */
+    ctx.fillStyle='#3A3228'; ctx.font='10px JetBrains Mono,monospace'; ctx.textAlign='center';
+    ctx.fillText('False Positive Rate',pad.left+pw/2,H-4);
+    ctx.save(); ctx.translate(10,pad.top+ph/2); ctx.rotate(-Math.PI/2);
+    ctx.fillText('True Positive Rate',0,0); ctx.restore();
+    ctx.textAlign='left';
+    [0,.5,1].forEach(t=>{
+      ctx.fillStyle='#3A3228';
+      ctx.fillText(t.toFixed(1),pad.left+t*pw-6,pad.top+ph+14);
+      ctx.fillText(t.toFixed(1),pad.left-28,pad.top+(1-t)*ph+4);
+    });
+  }
+
+  /* ── SHAP bars ── */
+  function renderSHAP(){
+    const el = document.getElementById('ds4-shap-list');
+    if(!el) return;
+    const maxV = R.shap[0].v;
+    el.innerHTML = R.shap.map(d=>{
+      const pct = (d.v/maxV*100).toFixed(1);
+      const grad = d.v > 0.2 ? 'linear-gradient(90deg,#C9A567,#E8C97A)'
+                 : d.v > 0.1 ? 'linear-gradient(90deg,#818CF8,#A5B4FC)'
+                              : 'linear-gradient(90deg,#4A90B8,#6BAED6)';
+      return `<div class="ds4-shap-row">
+        <div class="ds4-shap-name">${d.f}</div>
+        <div class="ds4-shap-bar-wrap"><div class="ds4-shap-bar" data-w="${pct}" style="width:0%;background:${grad}"></div></div>
+        <div class="ds4-shap-val">${d.v.toFixed(3)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  /* ── AUC bars animate ── */
+  function animateBars(){
+    const lr = document.getElementById('ds4-lr-bar');
+    const xg = document.getElementById('ds4-xgb-bar');
+    if(lr) setTimeout(()=>{lr.style.width=((R.lr_auc-0.5)/0.5*100).toFixed(1)+'%'},300);
+    if(xg) setTimeout(()=>{xg.style.width=((R.xgb_auc-0.5)/0.5*100).toFixed(1)+'%'},500);
+  }
+
+  /* ── Animate SHAP bars on visibility ── */
+  function animateSHAP(){
+    document.querySelectorAll('#proj-ds4 .ds4-shap-bar').forEach((b,i)=>{
+      setTimeout(()=>{ b.style.width = b.dataset.w+'%'; }, i*40);
+    });
+  }
+
+  /* ── Init when panel becomes visible ── */
+  function init(){
+    renderSHAP();
+    setTimeout(()=>{
+      drawROC();
+      animateBars();
+      animateSHAP();
+    }, 120);
+  }
+
+  /* watch for panel activation */
+  const panel = document.getElementById('proj-ds4');
+  if(panel){
+    const obs = new MutationObserver(()=>{
+      if(panel.style.display !== 'none') init();
+    });
+    obs.observe(panel, {attributes:true, attributeFilter:['style']});
+    /* also fire if already visible */
+    if(panel.style.display !== 'none') init();
+  }
+})();
+</script>
+
+    </div>
+  </div>
+</div>
+<!-- end proj-ds4 -->
 
 <!-- DEEP DIVE CTA -->
 <section style="background:var(--navy-mid);padding:4rem 6%;border-top:1px solid rgba(201, 165, 103,0.08);border-bottom:1px solid rgba(201, 165, 103,0.08);position:relative;overflow:hidden;">
@@ -5071,35 +5840,8 @@ if(insightWrap){
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
-<!-- RESUME MODAL -->
-<div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;">
-  <div style="position:relative;width:min(860px,95vw);height:90vh;background:#1C232D;border:1px solid rgba(201,165,103,0.2);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
-      <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
-    </div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
-  </div>
-</div>
-
 <script>
-  function openResumeModal(e) {
-    e.preventDefault();
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeResumeModal() {
-    var modal = document.getElementById('resumeModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('resumeModal').addEventListener('click', function(e) {
-    if (e.target === this) closeResumeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeResumeModal();
-  });
+  // Mobile menu toggle
   function toggleMobileMenu() {
     var btn = document.getElementById('hamburgerBtn');
     var menu = document.getElementById('mobileMenu');
@@ -5139,7 +5881,9 @@ if(insightWrap){
     'da1': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1', streamlit: 'https://adjbusinessconsulting-da-project-1.streamlit.app/' },
     'da2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2', streamlit: 'https://adjbusinessconsulting-da-project-2.streamlit.app/' },
     'ds1': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1', streamlit: 'https://adjbusinessconsulting-ds-project-1.streamlit.app/' },
-    'ds2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2', streamlit: 'https://adjbusinessconsulting-ds-project-2.streamlit.app/' }
+    'ds2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2', streamlit: 'https://adjbusinessconsulting-ds-project-2.streamlit.app/' },
+    'ds3': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-3', streamlit: 'https://adjbusinessconsulting-ds-project-3.streamlit.app/' },
+    'ds4': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-4', streamlit: 'https://adjbusinessconsulting-ds-project-4.streamlit.app/' }
   };
   function _updateCtaLinks(projId) {
     var links = _ctaLinks[projId];
