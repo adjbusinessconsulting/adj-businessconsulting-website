@@ -170,6 +170,57 @@
       .hamburger { display:flex; }
       .cta-inner { flex-direction:column; }
     }
+  
+    /* View Cert Button */
+    .btn-view-cert { display:inline-block; margin-top:6px; font-family:var(--mono); font-size:11px; color:#C9A567; background:rgba(201,165,103,0.08); border:1px solid rgba(201,165,103,0.2); border-radius:3px; padding:3px 10px; cursor:pointer; letter-spacing:0.06em; transition:all 0.2s; }
+    .btn-view-cert:hover { background:rgba(201,165,103,0.15); border-color:#C9A567; }
+    /* About block styles */
+    .about-block { background:var(--navy-mid); padding:6rem 6%; border-top:1px solid var(--navy-line); }
+    .about-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:4rem; align-items:start; }
+    .about-photo-col { position:sticky; top:90px; }
+    .about-photo-wrap { position:relative; }
+    .about-photo { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:8px; border:1px solid var(--navy-line); display:block; background:var(--navy); }
+    .about-photo-border { position:absolute; top:12px; left:12px; right:-12px; bottom:-12px; border:1px solid rgba(201,165,103,0.2); border-radius:8px; pointer-events:none; z-index:-1; }
+    .about-eyebrow { font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .about-eyebrow::before { content:''; width:24px; height:1px; background:var(--cyan); }
+    .about-name { font-family:var(--h); font-size:24px; font-weight:700; color:var(--white); margin-bottom:0.25rem; }
+    .about-role { font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5rem; }
+    .about-bio { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; line-height:1.9; margin-bottom:2rem; }
+    .about-sub { font-family:var(--mono); font-size:11px; color:#A09890; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.75rem; margin-top:1.75rem; }
+    .edu-list { display:flex; flex-direction:column; gap:10px; margin-bottom:0.5rem; }
+    .cert-item-edu { display:flex; align-items:flex-start; gap:10px; }
+    .cert-dot { width:6px; height:6px; border-radius:50%; background:var(--cyan); flex-shrink:0; margin-top:5px; box-shadow:0 0 8px rgba(201,165,103,0.4); }
+    .cert-text { font-family:var(--h); font-size:13px; color:var(--white); font-weight:500; line-height:1.4; display:block; }
+    .cert-issuer-edu { font-family:var(--mono); font-size:11px; color:var(--gray-3); margin-top:2px; display:block; }
+    .about-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:2rem; }
+    .btn-about { font-family:var(--mono); font-size:13px; font-weight:600; background:var(--cyan); color:var(--navy); padding:10px 22px; border-radius:4px; text-decoration:none; display:inline-block; transition:all 0.3s; letter-spacing:0.04em; cursor:pointer; border:none; }
+    .btn-about:hover { background:#D9B97C; transform:translateY(-1px); }
+    .btn-about-outline { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); border:1px solid var(--navy-line); padding:10px 22px; border-radius:4px; text-decoration:none; display:inline-block; transition:all 0.3s; background:transparent; }
+    .btn-about-outline:hover { border-color:rgba(201,165,103,0.3); color:var(--cyan); transform:translateY(-1px); }
+    .btn-linkedin { font-family:var(--mono); font-size:13px; font-weight:600; color:#0A66C2; border:1px solid rgba(10,102,194,0.3); padding:10px 18px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; background:transparent; }
+    .btn-linkedin:hover { background:rgba(10,102,194,0.08); border-color:#0A66C2; transform:translateY(-1px); }
+    /* Certs gallery */
+    .certs-gallery { background:var(--navy); padding:4rem 6%; border-top:1px solid rgba(201,165,103,0.08); }
+    .certs-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; max-width:1200px; margin:0 auto; }
+    .cert-card { display:flex; align-items:center; gap:10px; padding:11px 14px; background:var(--navy-mid); border:1px solid rgba(201,165,103,0.10); border-radius:6px; transition:all 0.2s; text-decoration:none; color:inherit; }
+    .cert-card:hover { border-color:rgba(201,165,103,0.3); transform:translateY(-1px); }
+    .cert-logo-wrap { width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .cert-logo-wrap svg { width:28px; height:28px; }
+    .cert-meta { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .cert-card-name { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--white); line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .cert-card-org { font-family:var(--mono); font-size:10.5px; color:var(--gray-3); letter-spacing:0.04em; }
+    /* PDF/Cert Modal */
+    .cert-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); align-items:center; justify-content:center; }
+    .cert-modal.open { display:flex; }
+    .cert-modal-inner { position:relative; width:90%; max-width:860px; height:90vh; background:#131820; border:1px solid rgba(201,165,103,0.2); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; }
+    .cert-modal-header { display:flex; align-items:center; justify-content:space-between; padding:.85rem 1.25rem; border-bottom:1px solid rgba(201,165,103,0.12); flex-shrink:0; }
+    .cert-modal-title { font-family:var(--mono); font-size:12px; color:#A09890; letter-spacing:.08em; text-transform:uppercase; }
+    .cert-modal-close { background:none; border:none; color:#A09890; font-size:20px; cursor:pointer; line-height:1; padding:4px 8px; }
+    .cert-modal-close:hover { color:#C9A567; }
+    .cert-modal iframe { flex:1; width:100%; border:none; }
+    .cert-modal-img-wrap { flex:1; overflow:auto; display:flex; align-items:center; justify-content:center; padding:1rem; background:#0D1117; }
+    .cert-modal-img-wrap img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; }
+    @media(max-width:900px) { .about-inner { grid-template-columns:1fr; gap:2rem; } .about-photo-col { position:static; max-width:220px; } }
   </style>
 </head>
 <body>
@@ -268,6 +319,65 @@
     </div>
   </div>
 </div>
+
+<div class="glow-line"></div>
+
+<section class="about-block">
+  <div class="about-inner">
+    <div class="about-photo-col">
+      <div class="about-photo-wrap">
+        <img class="about-photo" src="photo.JPG" alt="Anthony Djiady Djie — Founder ADJ Business Consulting">
+        <div class="about-photo-border"></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="about-eyebrow" data-en="About" data-id="Tentang">Tentang</div>
+      <div class="about-name">Anthony Djiady Djie, B.S., CTAP</div>
+      <div class="about-role" data-en="Founder of ADJ Business Consulting" data-id="Founder of ADJ Business Consulting">Founder of ADJ Business Consulting</div>
+      <p class="about-bio"
+         data-en="Designer, analyst, and business consultant — I build websites that are fast, professional, and actually convert. With a background spanning data analytics, finance, and tax, I understand that a website is a business tool first. Every project I deliver is clean, on-brand, and built to make your business look as credible as it is."
+         data-id="Desainer, analis, dan konsultan bisnis — saya membangun website yang cepat, profesional, dan benar-benar mengonversi. Dengan latar belakang di analitik data, keuangan, dan pajak, saya memahami bahwa website adalah alat bisnis yang utama. Setiap proyek yang saya kerjakan bersih, sesuai brand, dan dirancang untuk membuat bisnis Anda terlihat seprofessional yang seharusnya.">
+        Desainer, analis, dan konsultan bisnis — saya membangun website yang cepat, profesional, dan benar-benar mengonversi. Dengan latar belakang di analitik data, keuangan, dan pajak, saya memahami bahwa website adalah alat bisnis yang utama. Setiap proyek yang saya kerjakan bersih, sesuai brand, dan dirancang untuk membuat bisnis Anda terlihat seprofessional yang seharusnya.
+      </p>
+
+      <div class="about-sub" data-en="Education" data-id="Pendidikan">Pendidikan</div>
+      <div class="edu-list">
+        <div class="cert-item-edu">
+          <div class="cert-dot"></div>
+          <div>
+            <span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span>
+            <span class="cert-issuer-edu">Jimly School of Law and Government · Apr 2026 — May 2026</span>
+            <button class="btn-view-cert" onclick="openCertModal('pkp3-modal')">Lihat Sertifikat</button>
+          </div>
+        </div>
+        <div class="cert-item-edu">
+          <div class="cert-dot"></div>
+          <div>
+            <span class="cert-text">Data Analyst / Data Scientist Bootcamp</span>
+            <span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026 · A+ (95.75)</span>
+            <button class="btn-view-cert" onclick="openCertModal('dibimbing-modal')">Lihat Sertifikat</button>
+          </div>
+        </div>
+        <div class="cert-item-edu">
+          <div class="cert-dot"></div>
+          <div>
+            <span class="cert-text">Brevet Pajak A &amp; B</span>
+            <span class="cert-issuer-edu">IAI Daan Mogot · Jun 2018 — Sep 2018 · 101 SKP</span>
+            <button class="btn-view-cert" onclick="openCertModal('brevet-modal')">Lihat Sertifikat</button>
+          </div>
+        </div>
+        <div class="cert-item-edu">
+          <div class="cert-dot"></div>
+          <div>
+            <span class="cert-text">B.S. in Business Administration and Management</span>
+            <span class="cert-issuer-edu">Biola University, California · 2013 — 2016 · GPA 3.39</span>
+            <button class="btn-view-cert" onclick="openCertModal('biola-modal')">Lihat Sertifikat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="glow-line"></div>
 
@@ -580,7 +690,7 @@
   </div>
 </section>
 
-<div class="glow-line"></div>
+
 
 <!-- CTA -->
 <section class="cta-section">
@@ -626,4 +736,43 @@
   })();
 </script>
 </body>
+
+<!-- PKP3 Certificate Modal -->
+<div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Praktisi/Pengacara Pajak (PKP3) — Jimly School of Law</span><button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button></div>
+    <iframe src="Surat_Kelulusan_Anthony_Djiady_Djie__BS___CTAP_.pdf"></iframe>
+  </div>
+</div>
+<div id="dibimbing-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span><button class="cert-modal-close" onclick="closeCertModal('dibimbing-modal')">&times;</button></div>
+    <iframe src="Dibimbing_DADS.pdf"></iframe>
+  </div>
+</div>
+<div id="biola-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('biola-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">B.S. Business Administration — Biola University</span><button class="cert-modal-close" onclick="closeCertModal('biola-modal')">&times;</button></div>
+    <div class="cert-modal-img-wrap"><img src="Biola_University_Bachelor_Certificate.jpg" alt="Biola University Bachelor Certificate"></div>
+  </div>
+</div>
+<div id="brevet-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B — IAI</span><button class="cert-modal-close" onclick="closeCertModal('brevet-modal')">&times;</button></div>
+    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
+  </div>
+</div>
+<div id="resume-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('resume-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Resume — Anthony Djiady Djie</span><button class="cert-modal-close" onclick="closeCertModal('resume-modal')">&times;</button></div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf"></iframe>
+  </div>
+</div>
+<script>
+  function openCertModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeCertModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ document.querySelectorAll('.cert-modal.open').forEach(function(m){m.classList.remove('open');}); document.body.style.overflow=''; }});
+  var resumeBtn=document.getElementById('viewResumeBtn');
+  if(resumeBtn){resumeBtn.addEventListener('click',function(e){e.preventDefault();openCertModal('resume-modal');});}
+</script>
 </html>
