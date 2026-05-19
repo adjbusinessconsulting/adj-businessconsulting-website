@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website Design — ADJ Business Consulting</title>
+  <title>Website Design — Prospera Business Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +33,7 @@
     nav { position:sticky; top:0; z-index:50; background:rgba(13,17,23,0.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--navy-line); display:flex; align-items:center; justify-content:space-between; padding:0 5vw; height:56px; font-size:13px; transition:box-shadow 0.3s, background 0.3s; }
     nav.scrolled { box-shadow:0 4px 30px rgba(0,0,0,0.4); background:rgba(13,17,23,0.95); }
     .nav-logo { display:flex; align-items:center; color:var(--white); font-weight:700; text-decoration:none; letter-spacing:0.02em; font-family:var(--h); font-size:14px; position:relative; padding-left:32px; }
-    .nav-logo::before { content:'A'; position:absolute; left:0; top:50%; transform:translateY(-50%); width:22px; height:22px; border:1.5px solid var(--cyan); display:grid; place-items:center; font-size:11px; font-weight:800; color:var(--cyan); }
+    .nav-logo::before { content:'P'; position:absolute; left:0; top:50%; transform:translateY(-50%); width:22px; height:22px; border:1.5px solid var(--cyan); display:grid; place-items:center; font-size:11px; font-weight:800; color:var(--cyan); }
     .nav-logo::after { content:''; position:absolute; left:-3px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:1px solid var(--cyan); opacity:0.3; animation:logoPulse 2.4s ease-in-out infinite; }
     @keyframes logoPulse { 0%,100%{opacity:0.1;transform:translateY(-50%) scale(1)} 50%{opacity:0.4;transform:translateY(-50%) scale(1.08)} }
     .nav-logo span { color:var(--gray-3); font-weight:400; margin-left:6px; }
@@ -226,7 +226,7 @@
 <body>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">ADJ <span>Business Consulting</span></a>
+  <a href="index.html" class="nav-logo">Prospera <span>Business Consulting</span></a>
   <ul class="nav-links">
     <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
@@ -319,65 +319,6 @@
     </div>
   </div>
 </div>
-
-<div class="glow-line"></div>
-
-<section class="about-block">
-  <div class="about-inner">
-    <div class="about-photo-col">
-      <div class="about-photo-wrap">
-        <img class="about-photo" src="photo.JPG" alt="Anthony Djiady Djie — Founder ADJ Business Consulting">
-        <div class="about-photo-border"></div>
-      </div>
-    </div>
-    <div class="about-content">
-      <div class="about-eyebrow" data-en="About" data-id="Tentang">Tentang</div>
-      <div class="about-name">Anthony Djiady Djie, B.S., CTAP</div>
-      <div class="about-role" data-en="Founder of ADJ Business Consulting" data-id="Founder of ADJ Business Consulting">Founder of ADJ Business Consulting</div>
-      <p class="about-bio"
-         data-en="Designer, analyst, and business consultant — I build websites that are fast, professional, and actually convert. With a background spanning data analytics, finance, and tax, I understand that a website is a business tool first. Every project I deliver is clean, on-brand, and built to make your business look as credible as it is."
-         data-id="Desainer, analis, dan konsultan bisnis — saya membangun website yang cepat, profesional, dan benar-benar mengonversi. Dengan latar belakang di analitik data, keuangan, dan pajak, saya memahami bahwa website adalah alat bisnis yang utama. Setiap proyek yang saya kerjakan bersih, sesuai brand, dan dirancang untuk membuat bisnis Anda terlihat seprofessional yang seharusnya.">
-        Desainer, analis, dan konsultan bisnis — saya membangun website yang cepat, profesional, dan benar-benar mengonversi. Dengan latar belakang di analitik data, keuangan, dan pajak, saya memahami bahwa website adalah alat bisnis yang utama. Setiap proyek yang saya kerjakan bersih, sesuai brand, dan dirancang untuk membuat bisnis Anda terlihat seprofessional yang seharusnya.
-      </p>
-
-      <div class="about-sub" data-en="Education" data-id="Pendidikan">Pendidikan</div>
-      <div class="edu-list">
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div>
-            <span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span>
-            <span class="cert-issuer-edu">Jimly School of Law and Government · Apr 2026 — May 2026</span>
-            <button class="btn-view-cert" onclick="openCertModal('pkp3-modal')">Lihat Sertifikat</button>
-          </div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div>
-            <span class="cert-text">Data Analyst / Data Scientist Bootcamp</span>
-            <span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026 · A+ (95.75)</span>
-            <button class="btn-view-cert" onclick="openCertModal('dibimbing-modal')">Lihat Sertifikat</button>
-          </div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div>
-            <span class="cert-text">Brevet Pajak A &amp; B</span>
-            <span class="cert-issuer-edu">IAI Daan Mogot · Jun 2018 — Sep 2018 · 101 SKP</span>
-            <button class="btn-view-cert" onclick="openCertModal('brevet-modal')">Lihat Sertifikat</button>
-          </div>
-        </div>
-        <div class="cert-item-edu">
-          <div class="cert-dot"></div>
-          <div>
-            <span class="cert-text">B.S. in Business Administration and Management</span>
-            <span class="cert-issuer-edu">Biola University, California · 2013 — 2016 · GPA 3.39</span>
-            <button class="btn-view-cert" onclick="openCertModal('biola-modal')">Lihat Sertifikat</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <div class="glow-line"></div>
 
@@ -704,7 +645,7 @@
 </section>
 
 <footer>
-  <a href="index.html" class="footer-logo">ADJ <span>Business Consulting</span></a>
+  <a href="index.html" class="footer-logo">Prospera <span>Business Consulting</span></a>
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
