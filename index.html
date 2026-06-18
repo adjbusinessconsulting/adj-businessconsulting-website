@@ -1,1090 +1,350 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prospera Business Consulting</title>
-  <meta name="description" content="Prospera Business Consulting — Website Design, Tax Compliance, dan Data Analytics untuk bisnis Anda." />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #0D1117; --navy-mid: #131820; --navy-light: #1C232D;
-      --white: #F4EFE6; --gray-50: #131820; --gray-200: #1C232D;
-      --gray-400: #A09890; --gray-600: #4D443D;
-      --blue: #C9A567; --blue-light: rgba(201, 165, 103,0.08);
-      --h: 'JetBrains Mono', monospace; --mono: 'JetBrains Mono', monospace;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--h); background: var(--navy); color: var(--white); margin: 0; overflow-x: hidden; animation: pageIn 0.6s ease-out; font-size: 14px; line-height: 1.6; font-variant-numeric: tabular-nums; }
-    @keyframes pageIn { from{opacity:0} to{opacity:1} }
-
-    /* Grain texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.10;
-      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-      mix-blend-mode: overlay;
-    }
-    /* Global grid pattern */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(201, 165, 103,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201, 165, 103,0.025) 1px, transparent 1px);
-      background-size: 64px 64px;
-    }
-    body > * { position: relative; z-index: 2; }
-
-    /* ── Selection + Scrollbar ── */
-    ::selection { background: rgba(201, 165, 103,0.25); color: var(--white); }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--navy); }
-    ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 0; }
-    ::-webkit-scrollbar-thumb:hover { background: #8B6914; }
-
-    /* ══════════ NAV ══════════ */
-    nav { background: rgba(13, 17, 23,0.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 56px; position: sticky; top: 0; z-index: 100; transition: box-shadow 0.3s, background 0.3s; border-bottom: 1px solid rgba(201, 165, 103,0.10); font-size: 13px; }
-    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); background: rgba(13, 17, 23,0.95); }
-    .nav-logo { display: flex; align-items: center; color: var(--white); font-weight: 700; text-decoration: none; letter-spacing: 0.02em; font-family: var(--h); font-size: 14px; position: relative; padding-left: 32px; }
-    .nav-logo::before { content: 'P'; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border: 1.5px solid #C9A567; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #C9A567; }
-    .nav-logo::after { content: ''; position: absolute; left: -3px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border: 1px solid #C9A567; opacity: 0.3; animation: logoPulse 2.4s ease-in-out infinite; }
-    @keyframes logoPulse { 0%, 100% { opacity: 0.1; transform: translateY(-50%) scale(1); } 50% { opacity: 0.4; transform: translateY(-50%) scale(1.08); } }
-    .nav-logo span { color: #7A7068; font-weight: 400; margin-left: 6px; }
-    .nav-links { display: flex; gap: 0; list-style: none; font-size: 13px; }
-    .nav-links a { font-family: var(--mono); color: #A09890; text-decoration: none; padding: 8px 14px; border-radius: 3px; transition: all 0.15s ease; position: relative; letter-spacing: 0; }
-    .nav-links a:hover { color: var(--white); background: rgba(201, 165, 103,0.06); }
-    .nav-links a.active { color: #C9A567; }
-    .nav-links a.active::after { content: ''; position: absolute; left: 8px; right: 8px; bottom: 2px; height: 1px; background: #C9A567; box-shadow: 0 0 8px #C9A567; }
-    .nav-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--navy); background: #C9A567; padding: 8px 16px; border: none; cursor: pointer; border-radius: 3px; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.2s; }
-    .nav-cta:hover { background: #D9B97C; transform: translateY(-1px); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
-    .hamburger span { display: block; width: 22px; height: 1.5px; background: #A09890; border-radius: 1px; transition: all 0.3s; }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
-    .mobile-menu { display: none; position: absolute; top: 56px; left: 0; right: 0; background: var(--navy-mid); border-bottom: 1px solid rgba(201, 165, 103,0.1); padding: 1.5rem 5vw; flex-direction: column; gap: 1rem; z-index: 99; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-family: var(--mono); font-size: 15px; color: #A09890; text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; }
-    .mobile-menu a:hover, .mobile-menu a.active { color: #C9A567; }
-    .mobile-menu .nav-cta { margin-top: 0.5rem; text-align: center; }
-
-    /* HERO */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 7rem 6% 6rem; overflow: hidden; }
-    .hero::after { content: ''; position: absolute; inset: 0; background-image:
-      linear-gradient(rgba(201, 165, 103,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201, 165, 103,0.03) 1px, transparent 1px);
-      background-size: 60px 60px; pointer-events: none; z-index: 1; animation: gridShift 20s linear infinite; }
-    @keyframes gridShift { 0%{transform:translate(0,0)} 100%{transform:translate(60px,60px)} }
-    .hero-bg { position: absolute; inset: -20%; background-image: url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1400&q=80'); background-size: cover; background-position: center; will-change: transform; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(13, 17, 23,0.97) 0%, rgba(13, 17, 23,0.92) 55%, rgba(13, 17, 23,0.75) 100%); }
-    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; width: 100%; }
-    .hero-tag { font-family: var(--mono); font-size: 12px; color: #C9A567; letter-spacing: 0.18em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.2s forwards; text-transform: uppercase; }
-    .hero-tag::before { content: '//'; color: #C9A567; font-size: 12px; }
-    .hero-title { font-family: var(--h); font-size: clamp(28px,3.5vw,48px); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 1.5rem; color: var(--white); opacity: 0; transform: translateX(-40px); animation: slideRight 0.8s ease 0.35s forwards; text-shadow: 0 0 40px rgba(201, 165, 103,0.1); }
-    .hero-title span { color: #C9A567; }
-    .hero-sub { font-family: var(--h); font-size: 14px; font-weight: 400; line-height: 1.9; color: #A09890; margin-bottom: 2.5rem; max-width: 440px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.5s forwards; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.65s forwards; }
-    .btn-white { font-family: var(--mono); font-size: 13px; font-weight: 600; background: #C9A567; color: var(--navy); padding: 12px 24px; border: none; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .btn-white:hover { background: #D9B97C; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 165, 103,0.2); }
-    .btn-white:active { transform: scale(0.97); }
-    .btn-ghost { font-family: var(--mono); font-size: 13px; color: var(--white); border: 1px solid rgba(201, 165, 103,0.25); padding: 12px 24px; background: transparent; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .btn-ghost:hover { border-color: #C9A567; background: rgba(201, 165, 103,0.05); transform: translateY(-2px); }
-    .btn-ghost:active { transform: scale(0.97); }
-
-    /* HERO CARD */
-    .hero-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201, 165, 103,0.12); border-radius: 10px; padding: 1.75rem; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); opacity: 0; transform: translateX(40px); animation: slideLeft 0.8s ease 0.4s forwards; transition: border-color 0.4s; }
-    .hero-card:hover { border-color: rgba(201, 165, 103,0.25); }
-    .hero-card-label { font-family: var(--mono); font-size: 11px; color: #C9A567; letter-spacing: 0.15em; margin-bottom: 1.5rem; text-transform: uppercase; }
-    .metric-row { display: flex; justify-content: space-between; margin-bottom: 1.5rem; }
-    .metric { text-align: center; }
-    .metric-num { font-family: var(--h); font-size: 32px; font-weight: 700; color: #C9A567; display: block; text-shadow: 0 0 20px rgba(201, 165, 103,0.2); }
-    .metric-label { font-family: var(--mono); font-size: 11px; color: #4D443D; margin-top: 4px; }
-    .card-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 165, 103,0.15), transparent); margin-bottom: 1.5rem; }
-    .service-pills { display: flex; flex-direction: column; gap: 8px; }
-    .pill { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .pill:hover { background: rgba(201, 165, 103,0.06); border-color: rgba(201, 165, 103,0.15); transform: translateX(6px); }
-    .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: #C9A567; flex-shrink: 0; box-shadow: 0 0 8px rgba(201, 165, 103,0.4); }
-    .pill-text { font-family: var(--h); font-size: 14px; font-weight: 500; color: #D6D0C8; }
-    .pill-tag { font-family: var(--mono); font-size: 11px; color: #C9A567; margin-left: auto; }
-
-    /* SCROLL HINT */
-    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2; opacity: 0; animation: fadeUp 1s ease 1.2s forwards; }
-    .scroll-hint span { font-family: var(--mono); font-size: 11px; color: #4D443D; letter-spacing: 0.15em; text-transform: uppercase; }
-    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(201, 165, 103,0.4), transparent); animation: scrollAnim 1.5s ease infinite; }
-
-    .lang-toggle { font-family: var(--mono); font-size: 11px; font-weight: 600; color: #A09890; background: rgba(255,255,255,0.03); border: 1px solid rgba(201, 165, 103,0.10); padding: 5px 10px; border-radius: 3px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; }
-    .lang-toggle:hover { border-color: #C9A567; color: #C9A567; background: rgba(201, 165, 103,0.04); }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
-
-    /* STATS */
-    .stats-section { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 4rem 6%; }
-    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); }
-    .stat-item { text-align: center; padding: 0.5rem 2rem; position: relative; }
-    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 10%; height: 80%; width: 1px; background: var(--gray-200); }
-    .stat-num { font-family: var(--h); font-size: 42px; font-weight: 700; color: var(--white); display: block; }
-    .stat-label { font-family: var(--mono); font-size: 12px; color: var(--gray-400); margin-top: 6px; letter-spacing: 0.12em; display: block; text-transform: uppercase; }
-
-    /* SERVICES */
-    .services { background: var(--navy-mid); padding: 7rem 6%; }
-    .section-wrap { max-width: 1100px; margin: 0 auto; }
-    .section-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--blue); letter-spacing: 0.18em; margin-bottom: 0.75rem; display: block; text-transform: uppercase; }
-    .section-title { font-family: var(--h); font-size: clamp(20px,3vw,32px); font-weight: 700; line-height: 1.2; color: var(--white); max-width: 480px; margin-bottom: 3rem; }
-    .section-title span { color: var(--blue); }
-    .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
-    .service-card { background: var(--navy-mid); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); cursor: pointer; text-decoration: none; display: block; color: inherit; position: relative; overflow: hidden; }
-    .service-card::before { content: ''; position: absolute; inset: -1px; border-radius: 8px; background: linear-gradient(135deg, rgba(201, 165, 103,0.08), transparent 60%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
-    .service-card:hover::before { opacity: 1; }
-    .service-card:hover { border-color: rgba(201, 165, 103,0.3); transform: translateY(-6px); box-shadow: 0 24px 56px rgba(13, 17, 23,0.1); }
-    .service-card > * { position: relative; z-index: 1; }
-    .service-num { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.12em; margin-bottom: 1.5rem; display: block; }
-    .service-icon-wrap { width: 44px; height: 44px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 22px; color: #C9A567; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .service-card:hover .service-icon-wrap { background: #0E4552; transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px rgba(201, 165, 103,0.15); }
-    .service-name { font-family: var(--h); font-size: 17px; font-weight: 700; margin-bottom: 0.75rem; color: var(--white); }
-    .service-desc { font-family: var(--h); font-size: 14px; font-weight: 400; line-height: 1.8; color: var(--gray-400); margin-bottom: 1.5rem; }
-    .service-tag { font-family: var(--mono); font-size: 12px; color: #8B6914; background: rgba(201, 165, 103,0.08); padding: 4px 10px; border-radius: 4px; display: inline-block; transition: all 0.3s; }
-    .service-card:hover .service-tag { background: rgba(201, 165, 103,0.15); color: #C9A567; }
-
-    /* CTA */
-    .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
-    .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
-    /* Clients Section */
-    .clients-section { padding: 4rem 6%; background: var(--navy); }
-    .clients-inner { max-width: 1200px; margin: 0 auto; }
-    .clients-eyebrow { font-family: var(--mono); font-size: 11px; color: #A09890; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; margin-bottom: 2rem; }
-    .clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .client-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.10); border-radius: 8px; padding: 1.5rem 1.25rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
-    .client-card:hover { border-color: rgba(201,165,103,0.3); transform: translateY(-2px); }
-    .client-icon { font-size: 28px; margin-bottom: 0.75rem; }
-    .client-name { font-family: var(--h); font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
-    .client-desc { font-family: var(--mono); font-size: 11px; color: #A09890; letter-spacing: 0.04em; }
-    @media(max-width: 768px) { .clients-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width: 480px) { .clients-grid { grid-template-columns: 1fr; } }
-    .cta-section {
-      background: transparent;
-      padding: 4rem 5vw;
-      border-top: 1px solid rgba(201, 165, 103, 0.10);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 200%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #C9A567, transparent);
-      animation: scanLine 4s linear infinite;
-    }
-    @keyframes scanLine { 0%{transform:translateX(-50%)} 100%{transform:translateX(50%)} }
-    .cta-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .cta-text h2 {
-      font-family: var(--h);
-      font-size: clamp(20px, 2.6vw, 28px);
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.015em;
-    }
-    .cta-text h2 span { color: #C9A567; }
-    .cta-text p {
-      font-family: var(--sans);
-      font-size: 14.5px;
-      color: #A09890;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.005em;
-      margin: 0;
-    }
-    .btn-navy {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 600;
-      background: #C9A567;
-      color: var(--navy);
-      padding: 11px 18px;
-      border: none;
-      cursor: pointer;
-      border-radius: 3px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-      letter-spacing: 0.01em;
-      white-space: nowrap;
-    }
-    .btn-navy:hover {
-      background: #D9B97C;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(201, 165, 103, 0.3);
-    }
-    .btn-navy:active { transform: scale(0.97); }
-    @media (max-width: 720px) {
-      .cta-inner { flex-direction: column; align-items: flex-start; }
-    }
-
-    /* ABOUT */
-    .about-section { background: var(--navy-mid); padding: 6rem 6%; }
-    .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
-    .about-photo-wrap { position: relative; }
-    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; border: 1px solid var(--gray-200); display: block; background: var(--gray-50); }
-    .about-photo-border { position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; border: 1px solid rgba(201, 165, 103,0.2); border-radius: 8px; pointer-events: none; z-index: -1; }
-    .about-name { font-family: var(--h); font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
-    .about-role { font-family: var(--mono); font-size: 12px; color: #C9A567; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; }
-    .about-bio { font-family: var(--h); font-size: 14px; font-weight: 400; color: var(--gray-400); line-height: 1.9; margin-bottom: 2rem; }
-    .about-sub { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .cert-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 2rem; }
-    .cert-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 6px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-    .cert-item:hover { border-color: rgba(201, 165, 103,0.25); transform: translateX(4px); }
-    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: #C9A567; flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(201, 165, 103,0.3); }
-    .cert-text { font-family: var(--h); font-size: 13px; color: var(--white); font-weight: 500; line-height: 1.4; }
-    .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-top: 2px; display: block; }
-    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag { font-family: var(--mono); font-size: 12px; color: var(--white); background: var(--gray-50); border: 1px solid var(--gray-200); padding: 5px 12px; border-radius: 4px; transition: all 0.3s; }
-    .skill-tag:hover { border-color: rgba(201, 165, 103,0.3); color: #C9A567; }
-    .edu-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 2rem; }
-    .about-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 2rem; }
-    .btn-about { font-family: var(--mono); font-size: 13px; font-weight: 600; background: #C9A567; color: var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); letter-spacing: 0.04em; }
-    .btn-about:hover { background: #D9B97C; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 165, 103,0.2); }
-    .btn-about:active { transform: scale(0.97); }
-    .btn-about-outline { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--gray-200); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); background: transparent; }
-    .btn-about-outline:hover { border-color: rgba(201, 165, 103,0.3); color: #C9A567; transform: translateY(-1px); }
-    .btn-linkedin { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--gray-200); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); background: transparent; }
-    .btn-linkedin:hover { border-color: #0A66C2; background: rgba(10,102,194,0.08); color: #0A66C2; transform: translateY(-1px); }
-    .btn-linkedin svg { flex-shrink: 0; }
-
-    /* CERTIFICATIONS GALLERY */
-    .certs-gallery { background: var(--gray-50); padding: 6rem 6%; border-top: 1px solid var(--gray-200); }
-    .certs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
-    .cert-card { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--navy-mid); border: 1px solid rgba(201, 165, 103,0.10); border-radius: 6px; transition: all 0.2s; text-decoration: none; color: inherit; }
-    .cert-card:hover { border-color: rgba(201, 165, 103,0.3); transform: translateY(-1px); }
-    .cert-logo-wrap { width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; }
-    .cert-logo-wrap svg { width: 100%; height: 100%; }
-    .cert-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-    .cert-card-name { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--white); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cert-card-org { font-family: var(--mono); font-size: 10.5px; color: #7A7068; letter-spacing: 0.04em; }
-
-    /* CONTACT */
-    .contact-section { background: var(--gray-50); padding: 6rem 6%; border-top: 1px solid var(--gray-200); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
-    .contact-desc { font-family: var(--h); font-size: 14px; font-weight: 400; color: var(--gray-600); line-height: 1.9; max-width: 420px; margin-bottom: 2rem; }
-    .contact-info-row { display: flex; flex-direction: column; gap: 10px; }
-    .contact-info-item { display: flex; align-items: center; gap: 10px; }
-    .contact-info-icon { width: 28px; height: 28px; background: var(--navy); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #C9A567; font-family: var(--mono); flex-shrink: 0; }
-    .contact-info-text { font-family: var(--mono); font-size: 13px; color: var(--gray-600); }
-    .contact-form-wrap { background: var(--navy-mid); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2rem; transition: border-color 0.3s; }
-    .contact-form-wrap:focus-within { border-color: rgba(201, 165, 103,0.3); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    .form-group { margin-bottom: 12px; }
-    .form-row .form-group { margin-bottom: 0; }
-    .form-label { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; display: block; }
-    .form-input { width: 100%; font-family: var(--mono); font-size: 14px; color: var(--white); background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 6px; padding: 10px 14px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
-    .form-input::placeholder { color: var(--gray-400); font-size: 13px; }
-    .form-input:focus { border-color: #C9A567; box-shadow: 0 0 0 3px rgba(201, 165, 103,0.08); }
-    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A3B8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
-    .form-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
-    .btn-submit { width: 100%; font-family: var(--mono); font-size: 14px; font-weight: 600; background: #C9A567; color: var(--white); padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); letter-spacing: 0.04em; margin-top: 4px; }
-    .btn-submit:hover { background: #D9B97C; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 165, 103,0.2); }
-    .btn-submit:active { transform: scale(0.98); }
-    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-    .form-status { font-family: var(--mono); font-size: 13px; margin-top: 10px; text-align: center; min-height: 20px; }
-    .form-status.success { color: #059669; }
-    .form-status.error { color: #DC2626; }
-
-    /* FOOTER */
-    footer { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 2.5rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: var(--h); font-size: 20px; font-weight: 700; color: var(--white); text-decoration: none; transition: color 0.3s; }
-    .footer-logo span { color: var(--blue); }
-    .footer-logo:hover span { color: #C9A567; }
-    footer p { font-family: var(--mono); font-size: 13px; color: var(--gray-400); }
-
-    /* ANIMATIONS */
-    @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
-    @keyframes slideLeft { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    .sr { opacity: 1; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-    .sr-up { transform: none; }
-    .sr-left { transform: none; }
-    .sr-right { transform: none; }
-    .sr.visible { opacity: 1; transform: none; }
-    .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s} .d4{transition-delay:0.4s}
-
-    @media(max-width:1024px){
-      .hero-inner{grid-template-columns:1fr; gap:3rem}
-      .services-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:768px){
-      .hero-inner{grid-template-columns:1fr} .hero-card{display:none}
-      .services-grid{grid-template-columns:1fr}
-      .stats-inner{grid-template-columns:1fr}
-      .stat-item:not(:last-child)::after{display:none}
-      .nav-links{display:none}
-      .hamburger{display:flex}
-      .cta-inner{flex-direction:column}
-      .hero{padding:5rem 4% 4rem}
-      .hero-title{font-size:24px}
-      .contact-grid{grid-template-columns:1fr; gap:2rem}
-      .form-row{grid-template-columns:1fr}
-      .contact-form-wrap{padding:1.5rem}
-      .about-grid{grid-template-columns:1fr; gap:2rem}
-      .about-photo-wrap{max-width:220px}
-      .certs-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-    }
-    /* View Cert Button */
-    .btn-view-cert {
-      display: inline-block;
-      margin-top: 6px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: #C9A567;
-      background: rgba(201,165,103,0.08);
-      border: 1px solid rgba(201,165,103,0.2);
-      border-radius: 3px;
-      padding: 3px 10px;
-      cursor: pointer;
-      letter-spacing: 0.06em;
-      transition: all 0.2s;
-    }
-    .btn-view-cert:hover { background: rgba(201,165,103,0.15); border-color: #C9A567; }
-    /* PDF Modal */
-    .cert-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-    }
-    .cert-modal.open { display: flex; }
-    .cert-modal-inner {
-      position: relative;
-      width: 90%;
-      max-width: 860px;
-      height: 90vh;
-      background: #131820;
-      border: 1px solid rgba(201,165,103,0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .cert-modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .85rem 1.25rem;
-      border-bottom: 1px solid rgba(201,165,103,0.12);
-      flex-shrink: 0;
-    }
-    .cert-modal-title { font-family: var(--mono); font-size: 12px; color: #A09890; letter-spacing: .08em; text-transform: uppercase; }
-    .cert-modal-close { background: none; border: none; color: #A09890; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px 8px; }
-    .cert-modal-close:hover { color: #C9A567; }
-    .cert-modal iframe { flex: 1; width: 100%; border: none; }
-    /* For image-based certs */
-    .cert-modal-img-wrap { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 1rem; background: #0D1117; }
-    .cert-modal-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#0C0F14}
+  [data-reveal]{opacity:1;transform:none}
+  .motion [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .motion [data-reveal].is-visible{opacity:1;transform:none}
+  .p-link{transition:color .18s ease}
+  .p-link:hover{color:#ECE7DD !important}
+  .p-card{transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
+  .p-card:hover{border-color:rgba(201,165,103,0.32) !important;transform:translateY(-4px);box-shadow:0 24px 50px rgba(0,0,0,0.35)}
+  .p-btn{transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+  .p-btn:hover{transform:translateY(-2px)}
+  .p-chip{transition:border-color .25s ease,transform .25s ease}
+  .p-chip:hover{border-color:rgba(201,165,103,0.3) !important;transform:translateY(-2px)}
+  .p-input:focus{outline:none;border-color:var(--accent,#C9A567) !important;box-shadow:0 0 0 3px rgba(201,165,103,0.10)}
+</style>
+</helmet>
 
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">Prospera <span>Business Consulting</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active" data-en="Home" data-id="Beranda">Beranda</a></li>
-    <li><a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a></li>
-    <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
-    <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
-    <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
-  </ul>
-  <div class="nav-right">
-    <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
-    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
-    <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" class="active" data-en="Home" data-id="Beranda">Beranda</a>
-  <a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a>
-  <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
-  <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
-  <a href="website.html" data-en="Website" data-id="Website">Website</a>
-  <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
-</div>
+<div id="prospera-root" style="--accent: {{ accent }}; background:#0C0F14; color:#ECE7DD; font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; min-height:100vh;">
 
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <div>
-      <h1 class="hero-title" data-en="Transform Your Business with <span>Data, Strategy &amp; Expert Guidance</span>" data-id="Transformasi Bisnis Anda dengan <span>Data, Strategi &amp; Panduan Ahli</span>">Transformasi Bisnis Anda dengan <span>Data, Strategi &amp; Panduan Ahli</span></h1>
-      <p class="hero-sub" data-en="Prospera Business Consulting empowers your business growth — from professional website design, tax compliance, to sharp data analytics." data-id="Prospera Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.">Prospera Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.</p>
-      <div class="hero-actions">
-
-      </div>
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:0 max(24px,5vw); height:66px; background:rgba(12,15,20,0.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(201,165,103,0.10);">
+    <a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#ECE7DD;">
+      <img src="assets/prospera-mark.png" alt="Prospera" style="width:30px; height:30px; object-fit:contain; display:block;">
+      <span style="font-family:'Spectral',serif; font-size:18px; font-weight:500; letter-spacing:0.01em;">Prospera <span style="color:#6B655C; font-weight:400;">Consulting</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <a href="#services" class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#9A9388; text-decoration:none; padding:8px 14px; letter-spacing:0.02em;">Services</a>
+      <a href="#about" class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#9A9388; text-decoration:none; padding:8px 14px; letter-spacing:0.02em;">About</a>
+      <a href="#credentials" class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#9A9388; text-decoration:none; padding:8px 14px; letter-spacing:0.02em;">Credentials</a>
+      <a href="#contact" class="p-btn" style="font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600; color:#0C0F14; background:var(--accent,#C9A567); text-decoration:none; padding:9px 16px; border-radius:6px; margin-left:8px; letter-spacing:0.01em;">Get in touch</a>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
-      <div class="metric-row">
-        <div class="metric"><span class="metric-num">4</span><span class="metric-label" data-en="clients" data-id="klien">klien</span></div>
-        <div class="metric"><span class="metric-num">4</span><span class="metric-label" data-en="expertise" data-id="keahlian">keahlian</span></div>
-        <div class="metric"><span class="metric-num">100%</span><span class="metric-label" data-en="commitment" data-id="komitmen">komitmen</span></div>
-      </div>
-      <div class="card-divider"></div>
-      <div class="service-pills">
-        <div class="pill"><div class="pill-dot"></div><span class="pill-text">Data Analytics & Science</span><span class="pill-tag">data</span></div>
-        <div class="pill"><div class="pill-dot"></div><span class="pill-text" data-en="Accounting" data-id="Akuntansi">Akuntansi</span><span class="pill-tag">acc</span></div>
-        <div class="pill"><div class="pill-dot"></div><span class="pill-text" data-en="Tax Compliance (PPh 21 · SPT)" data-id="Kepatuhan Pajak (PPh 21 · SPT)">Kepatuhan Pajak (PPh 21 · SPT)</span><span class="pill-tag">tax</span></div>
-        <div class="pill"><div class="pill-dot"></div><span class="pill-text">Website Creation & Design</span><span class="pill-tag">web</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>scroll</span>
-  </div>
-</section>
+  </nav>
 
-<section class="stats-section">
-  <div class="stats-inner">
-    <div class="stat-item sr sr-up"><span class="stat-num" data-target="4" data-suffix="">0</span><span class="stat-label" data-en="clients" data-id="klien">klien</span></div>
-    <div class="stat-item sr sr-up d1"><span class="stat-num" data-target="3" data-suffix="">0</span><span class="stat-label" data-en="areas of expertise" data-id="bidang keahlian">bidang keahlian</span></div>
-    <div class="stat-item sr sr-up d2"><span class="stat-num" data-target="100" data-suffix="%">0</span><span class="stat-label" data-en="client commitment" data-id="komitmen klien">komitmen klien</span></div>
-  </div>
-</section>
-
-<section class="about-section" id="about">
-  <div class="section-wrap">
-    <div class="section-eyebrow" data-en="// about me" data-id="// tentang saya">// tentang saya</div>
-    <div class="about-grid">
-      <div class="about-photo-wrap sr sr-left">
-        <img class="about-photo" src="photo.JPG" alt="Anthony Djiady Djie — Founder Prospera Business Consulting">
-        <div class="about-photo-border"></div>
-      </div>
+  <header id="top" style="position:relative; padding:96px max(24px,5vw) 72px; overflow:hidden;">
+    <div style="position:absolute; top:-180px; right:-120px; width:560px; height:560px; background:radial-gradient(circle, rgba(201,165,103,0.10), transparent 65%); pointer-events:none;"></div>
+    <div style="position:relative; max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.08fr 0.92fr; gap:64px; align-items:center;">
       <div>
-        <h2 class="about-name sr sr-up">Anthony Djiady Djie, B.S., CTAP</h2>
-        <div class="about-role sr sr-up d1" data-en="Certified Tax Practitioner & Accountant · Independent Consultant · Founder of Prospera Business Consulting" data-id="Certified Tax Practitioner & Accountant · Independent Consultant · Founder of Prospera Business Consulting">Certified Tax Practitioner & Accountant · Independent Consultant · Founder of Prospera Business Consulting</div>
-        <p class="about-bio sr sr-up d2" data-en="A US graduate from Biola University, California and Jimly School of Law and Government — I am an independent consultant holding PKP3 (Tax Practitioner/Attorney), Brevet Pajak A&amp;B, and Xero Advisor certifications, available for direct engagement with no agency, no middleman. With over 6 years of experience in taxation, accounting, and financial reporting across multiple businesses in Indonesia, I help clients manage tax obligations, prepare financial statements, and make data-driven business decisions. I also offer data analytics and professional website design services to support your business growth end-to-end." data-id="Lulusan Biola University, California, Amerika Serikat dan Jimly School of Law and Government — saya adalah konsultan independen pemegang sertifikasi PKP3 (Praktisi/Pengacara Pajak) dan Brevet Pajak A&amp;B, siap mendampingi bisnis Anda langsung tanpa perantara. Dengan pengalaman lebih dari 6 tahun di bidang perpajakan, akuntansi, dan pelaporan keuangan di berbagai bisnis di Indonesia, saya membantu klien mengelola kewajiban pajak, menyusun laporan keuangan, dan membuat keputusan bisnis berbasis data. Selain itu, saya juga menyediakan layanan analisis data dan pembuatan website profesional untuk mendukung pertumbuhan bisnis Anda secara menyeluruh.">Lulusan Biola University, California, Amerika Serikat dan Jimly School of Law and Government — saya adalah konsultan independen pemegang sertifikasi PKP3 (Praktisi/Pengacara Pajak) dan Brevet Pajak A&amp;B, siap mendampingi bisnis Anda langsung tanpa perantara. Dengan pengalaman lebih dari 6 tahun di bidang perpajakan, akuntansi, dan pelaporan keuangan di berbagai bisnis di Indonesia, saya membantu klien mengelola kewajiban pajak, menyusun laporan keuangan, dan membuat keputusan bisnis berbasis data. Selain itu, saya juga menyediakan layanan analisis data dan pembuatan website profesional untuk mendukung pertumbuhan bisnis Anda secara menyeluruh.</p>
+        <div data-reveal style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:24px; display:flex; align-items:center; gap:10px;">
+          <span style="width:22px; height:1px; background:var(--accent,#C9A567); display:inline-block;"></span>Prospera Business Consulting
+        </div>
+        <h1 data-reveal style="font-family:'Spectral',serif; font-weight:500; font-size:clamp(34px,4.4vw,56px); line-height:1.12; letter-spacing:-0.015em; color:#F2EEE5; margin-bottom:24px;">Tax, accounting &amp; data — handled with <span style="color:var(--accent,#C9A567); font-style:italic; font-weight:400;">precision.</span></h1>
+        <p data-reveal style="font-size:17px; line-height:1.7; color:#A8A095; max-width:480px; margin-bottom:36px;">Independent consulting — no agency, no middleman. You work directly with a certified tax practitioner and accountant, with six years across taxation, financial reporting, and data analytics for businesses across Indonesia.</p>
+        <div data-reveal style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;">
+          <a href="#contact" class="p-btn" style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:#0C0F14; background:var(--accent,#C9A567); text-decoration:none; padding:14px 26px; border-radius:7px; letter-spacing:0.01em;">Start a conversation →</a>
+          <a href="#credentials" class="p-btn" style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#ECE7DD; text-decoration:none; padding:14px 26px; border-radius:7px; border:1px solid rgba(201,165,103,0.26); letter-spacing:0.01em;">View credentials</a>
+        </div>
+      </div>
 
-        <div class="about-sub sr sr-up d2" data-en="Education" data-id="Pendidikan">Pendidikan</div>
-        <div class="edu-list sr sr-up d2">
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div>
-              <span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span>
-              <span class="cert-issuer">Jimly School of Law and Government · Apr 2026 — May 2026</span>
-              <button type="button" class="btn-view-cert" onclick="openCertModal('pkp3-modal')" data-en="View Certificate" data-id="Lihat Sertifikat">Lihat Sertifikat</button>
-            </div>
+      <aside data-reveal id="credentials" style="background:#161B23; border:1px solid rgba(201,165,103,0.16); border-radius:16px; padding:30px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:24px;">At a glance</div>
+        <div style="display:flex; justify-content:space-between; gap:16px; margin-bottom:26px;">
+          <div>
+            <span style="font-family:'Spectral',serif; font-size:38px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">6<span style="color:var(--accent,#C9A567);">+</span></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.08em; margin-top:8px; display:block;">YEARS<br>EXPERIENCE</span>
           </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div>
-              <span class="cert-text">Brevet Pajak A &amp; B Terapan</span>
-              <span class="cert-issuer">PKPPI · Apr 2026 · Cert. No. 0670/PKPPI-BPAB/XXIV/2026</span>
-              <button type="button" class="btn-view-cert" onclick="openCertModal('brevet-pkppi-modal')" data-en="View Certificate" data-id="Lihat Sertifikat">Lihat Sertifikat</button>
-            </div>
+          <div>
+            <span style="font-family:'Spectral',serif; font-size:38px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">10<span style="color:var(--accent,#C9A567);">+</span></span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.08em; margin-top:8px; display:block;">PROFESSIONAL<br>CERTIFICATIONS</span>
           </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div>
-              <span class="cert-text">Data Analyst / Data Scientist Bootcamp</span>
-              <span class="cert-issuer">Dibimbing.id · Oct 2025 — Apr 2026 · A+ (95.75)</span>
-              <button type="button" class="btn-view-cert" onclick="openCertModal('dibimbing-modal')" data-en="View Certificate" data-id="Lihat Sertifikat">Lihat Sertifikat</button>
-            </div>
-          </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div>
-              <span class="cert-text">Brevet Pajak A &amp; B</span>
-              <span class="cert-issuer">IAI Daan Mogot · Jun 2018 — Sep 2018 · 101 SKP</span>
-              <button type="button" class="btn-view-cert" onclick="openCertModal('brevet-modal')" data-en="View Certificate" data-id="Lihat Sertifikat">Lihat Sertifikat</button>
-            </div>
-          </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div>
-              <span class="cert-text">B.S. in Business Administration and Management</span>
-              <span class="cert-issuer">Biola University, California · 2013 — 2016 · GPA 3.39</span>
-              <button type="button" class="btn-view-cert" onclick="openCertModal('biola-modal')" data-en="View Certificate" data-id="Lihat Sertifikat">Lihat Sertifikat</button>
-            </div>
+          <div>
+            <span style="font-family:'Spectral',serif; font-size:38px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">4</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.08em; margin-top:8px; display:block;">PRACTICE<br>AREAS</span>
           </div>
         </div>
-
-        <div class="about-sub sr sr-up d4" data-en="Skills & Tools" data-id="Keahlian & Tools">Keahlian & Tools</div>
-        <div class="skills-wrap sr sr-up d4">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">Pandas</span>
-          <span class="skill-tag">Scikit-Learn</span>
-          <span class="skill-tag">Power BI</span>
-          <span class="skill-tag">Tableau</span>
-          <span class="skill-tag">Excel (Advanced)</span>
-          <span class="skill-tag">Streamlit</span>
-          <span class="skill-tag">Xero</span>
-          <span class="skill-tag">HTML/CSS/JS</span>
-          <span class="skill-tag">PPh 21</span>
-          <span class="skill-tag">Tax Compliance</span>
-          <span class="skill-tag">Financial Reporting</span>
-          <span class="skill-tag">Bookkeeping</span>
+        <div style="height:1px; background:linear-gradient(90deg, transparent, rgba(201,165,103,0.2), transparent); margin-bottom:22px;"></div>
+        <div style="display:flex; flex-direction:column; gap:11px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span>
+            <span style="font-size:14px; color:#D8D2C7;">Certified Tax Practitioner (CTAP)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span>
+            <span style="font-size:14px; color:#D8D2C7;">Brevet Pajak A &amp; B Terapan</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span>
+            <span style="font-size:14px; color:#D8D2C7;">Xero Advisor Certified</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span>
+            <span style="font-size:14px; color:#D8D2C7;">Google Data Analytics</span>
+          </div>
         </div>
+      </aside>
+    </div>
+  </header>
 
-        <div class="about-actions sr sr-up d4">
-          <a href="#" class="btn-about" id="viewResumeBtn" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
-          <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
-          <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer" data-en="LinkedIn" data-id="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
+  <section style="border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); background:#0E1218;">
+    <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); padding:44px max(24px,5vw);">
+      <div data-reveal style="text-align:center; border-right:1px solid rgba(255,255,255,0.06);">
+        <span data-count="6" data-suffix="+" style="font-family:'Spectral',serif; font-size:46px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">6+</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.14em; text-transform:uppercase; margin-top:10px; display:block;">Years of experience</span>
+      </div>
+      <div data-reveal style="text-align:center; border-right:1px solid rgba(255,255,255,0.06);">
+        <span data-count="10" data-suffix="+" style="font-family:'Spectral',serif; font-size:46px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">10+</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.14em; text-transform:uppercase; margin-top:10px; display:block;">Certifications</span>
+      </div>
+      <div data-reveal style="text-align:center;">
+        <span data-count="100" data-suffix="%" style="font-family:'Spectral',serif; font-size:46px; font-weight:500; color:#F2EEE5; display:block; line-height:1;">100%</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.14em; text-transform:uppercase; margin-top:10px; display:block;">Direct, hands-on</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="background:#0C0F14; padding:88px max(24px,5vw);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:14px;">Services</div>
+      <h2 data-reveal style="font-family:'Spectral',serif; font-weight:500; font-size:clamp(26px,3.2vw,40px); line-height:1.18; letter-spacing:-0.01em; color:#F2EEE5; max-width:560px; margin-bottom:48px;">Complete solutions for your business <span style="color:var(--accent,#C9A567); font-style:italic; font-weight:400;">growth.</span></h2>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+
+        <a href="data-analysis.html" data-reveal class="p-card" style="text-decoration:none; background:#12161D; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:30px 26px; display:block;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:26px;">
+            <span style="width:46px; height:46px; border-radius:10px; background:#0C0F14; border:1px solid rgba(201,165,103,0.16); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12.5" y="7" width="3" height="11"/><rect x="18" y="13" width="3" height="5"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#4D483F; letter-spacing:0.08em;">01</span>
+          </div>
+          <h3 style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F2EEE5; margin-bottom:10px;">Data Analysis</h3>
+          <p style="font-size:14px; line-height:1.65; color:#9A9388; margin-bottom:20px;">Turn business data into strategic insight — measurable, data-driven decisions you can defend.</p>
+          <span class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567);">Learn more →</span>
+        </a>
+
+        <a href="accounting.html" data-reveal class="p-card" style="text-decoration:none; background:#12161D; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:30px 26px; display:block;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:26px;">
+            <span style="width:46px; height:46px; border-radius:10px; background:#0C0F14; border:1px solid rgba(201,165,103,0.16); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#4D483F; letter-spacing:0.08em;">02</span>
+          </div>
+          <h3 style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F2EEE5; margin-bottom:10px;">Accounting</h3>
+          <p style="font-size:14px; line-height:1.65; color:#9A9388; margin-bottom:20px;">Bookkeeping, financial reporting, payroll, and internal audit — accurate, compliant, audit-ready.</p>
+          <span class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567);">Learn more →</span>
+        </a>
+
+        <a href="tax.html" data-reveal class="p-card" style="text-decoration:none; background:#12161D; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:30px 26px; display:block;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:26px;">
+            <span style="width:46px; height:46px; border-radius:10px; background:#0C0F14; border:1px solid rgba(201,165,103,0.16); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#4D483F; letter-spacing:0.08em;">03</span>
+          </div>
+          <h3 style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F2EEE5; margin-bottom:10px;">Tax Compliance</h3>
+          <p style="font-size:14px; line-height:1.65; color:#9A9388; margin-bottom:20px;">PPh 21, SPT Tahunan, and Coretax filing — accurate and fully compliant with Indonesian regulations.</p>
+          <span class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567);">Learn more →</span>
+        </a>
+
+        <a href="website.html" data-reveal class="p-card" style="text-decoration:none; background:#12161D; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:30px 26px; display:block;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:26px;">
+            <span style="width:46px; height:46px; border-radius:10px; background:#0C0F14; border:1px solid rgba(201,165,103,0.16); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#4D483F; letter-spacing:0.08em;">04</span>
+          </div>
+          <h3 style="font-family:'Spectral',serif; font-size:20px; font-weight:500; color:#F2EEE5; margin-bottom:10px;">Website Design</h3>
+          <p style="font-size:14px; line-height:1.65; color:#9A9388; margin-bottom:20px;">A professional website that reflects your business identity — modern, fast, and built to compete.</p>
+          <span class="p-link" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567);">Learn more →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background:#0E1218; border-top:1px solid rgba(255,255,255,0.06); padding:88px max(24px,5vw);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:36px;">About</div>
+      <div style="display:grid; grid-template-columns:300px 1fr; gap:56px; align-items:start;">
+        <div data-reveal style="position:relative;">
+          <div style="position:absolute; top:14px; left:14px; right:-14px; bottom:-14px; border:1px solid rgba(201,165,103,0.22); border-radius:12px;"></div>
+          <div style="position:relative; aspect-ratio:3/4; border-radius:12px; border:1px solid rgba(255,255,255,0.08); background-image:repeating-linear-gradient(135deg, #161B23 0, #161B23 11px, #12161D 11px, #12161D 22px); display:flex; align-items:flex-end; padding:18px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; letter-spacing:0.08em;">[ founder photo ]</span>
+          </div>
+        </div>
+        <div data-reveal>
+          <h2 style="font-family:'Spectral',serif; font-size:30px; font-weight:500; color:#F2EEE5; margin-bottom:6px;">Anthony Djiady Djie, B.S., CTAP</h2>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567); letter-spacing:0.06em; margin-bottom:24px;">Certified Tax Practitioner &amp; Accountant · Founder, Prospera Business Consulting</div>
+          <p style="font-size:16px; line-height:1.75; color:#B0A89D; max-width:640px; margin-bottom:32px;">A US graduate from Biola University, California and Jimly School of Law and Government — an independent consultant holding PKP3 (Tax Practitioner), Brevet Pajak A&amp;B, and Xero Advisor certifications, available for direct engagement with no agency and no middleman. With over six years across taxation, accounting, and financial reporting for businesses in Indonesia, I help clients manage tax obligations, prepare financial statements, and make data-driven decisions — plus data analytics and website design to support growth end to end.</p>
+
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px;">Education &amp; certification</div>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:32px; max-width:640px;">
+            <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0; margin-top:7px;"></span>
+              <div><div style="font-size:14px; color:#E4DED4; font-weight:500;">Praktisi/Pengacara Pajak (PKP3)</div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; margin-top:3px;">Jimly School of Law and Government · 2026</div></div>
+            </div>
+            <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0; margin-top:7px;"></span>
+              <div><div style="font-size:14px; color:#E4DED4; font-weight:500;">Brevet Pajak A &amp; B Terapan</div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; margin-top:3px;">PKPPI · 2026 · Cert. No. 0670/PKPPI-BPAB/XXIV/2026</div></div>
+            </div>
+            <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0; margin-top:7px;"></span>
+              <div><div style="font-size:14px; color:#E4DED4; font-weight:500;">Data Analyst / Data Scientist Bootcamp</div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; margin-top:3px;">Dibimbing.id · 2025–2026 · A+ (95.75)</div></div>
+            </div>
+            <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0; margin-top:7px;"></span>
+              <div><div style="font-size:14px; color:#E4DED4; font-weight:500;">Brevet Pajak A &amp; B</div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; margin-top:3px;">IAI Daan Mogot · 2018 · 101 SKP</div></div>
+            </div>
+            <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0; margin-top:7px;"></span>
+              <div><div style="font-size:14px; color:#E4DED4; font-weight:500;">B.S. Business Administration &amp; Management</div><div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; margin-top:3px;">Biola University, California · 2013–2016 · GPA 3.39</div></div>
+            </div>
+          </div>
+
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px;">Skills &amp; tools</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">SQL</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Power BI</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Tableau</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Xero</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Excel (Advanced)</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">PPh 21</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#C7C0B5; background:#12161D; border:1px solid rgba(255,255,255,0.07); padding:6px 13px; border-radius:6px;">Financial Reporting</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="certs-gallery" id="certs-section">
-  <div class="section-wrap">
-    <div class="section-eyebrow" data-en="// certifications" data-id="// sertifikasi">// sertifikasi</div>
-    <h2 class="section-title sr sr-left" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
-    <div class="certs-grid">
-      <button onclick="openCertModal('google-modal')" class="cert-card sr sr-up d1" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 15.5 19.1 12 24 12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.5 0 10.4-1.8 14.3-5l-6.6-5.6C29.5 37 26.9 38 24 38c-6 0-11.1-4-12.9-9.7l-7 5.4C7.5 41.2 15.2 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.2-3.1 5.8-5.9 7.5l6.6 5.6C40 38 46 32 46 24c0-1.3-.2-2.7-.5-4z"/></svg>
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Google Data Analytics</span>
-          <span class="cert-card-org">Google · Coursera · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('sql-modal')" class="cert-card sr sr-up d2" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg>
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Microsoft SQL Server</span>
-          <span class="cert-card-org">Microsoft · Coursera · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('excel-modal')" class="cert-card sr sr-up d3" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg>
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Microsoft Excel Professional</span>
-          <span class="cert-card-org">Microsoft · Coursera · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('tableau-modal')" class="cert-card sr sr-up d1" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><path fill="#E97627" d="M24 6v16h-2V6h2zm0 20v16h-2V26h2z"/><path fill="#C72037" d="M6 24h16v-2H6v2zm20 0h16v-2H26v2z"/><path fill="#5B879B" d="M14 14l8 8-1.4 1.4L12.6 15.4 14 14z"/><path fill="#5B879B" d="M26.6 26.6L34 34l-1.4 1.4-7.4-7.4 1.4-1.4z"/><path fill="#EB9129" d="M34 14l-8 8-1.4-1.4 8-8L34 14z"/><path fill="#EB9129" d="M15.4 32.6L24 24l1.4 1.4-8.6 8.6-1.4-1.4z"/><circle fill="#E97627" cx="24" cy="24" r="3"/></svg>
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Tableau BI Analyst</span>
-          <span class="cert-card-org">Tableau · Coursera · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('python-modal')" class="cert-card sr sr-up d2" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 4c-6 0-9 2.7-9 6v4h10v2H12c-4 0-8 3.3-8 9s3 9 7 9h4v-5c0-4 3.3-7 7-7h10c3 0 6-2.7 6-6V10c0-3.3-4-6-10-6h-4zm-2 4a2 2 0 110 4 2 2 0 010-4z"/><path fill="#FFD43B" d="M24 44c6 0 9-2.7 9-6v-4H23v-2h13c4 0 8-3.3 8-9s-3-9-7-9h-4v5c0 4-3.3 7-7 7H16c-3 0-6 2.7-6 6v8c0 3.3 4 6 10 6h4zm2-4a2 2 0 110-4 2 2 0 010 4z"/></svg>
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Python for Data Science, AI</span>
-          <span class="cert-card-org">IBM · Coursera · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('xero-modal')" class="cert-card sr sr-up d3" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <img src="xero-logo-11609383483yebtmp69gf.webp" alt="Xero" style="width:28px;height:28px;object-fit:contain;border-radius:50%;">
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Xero Advisor Certified</span>
-          <span class="cert-card-org">Xero · 2025</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('dibimbing-cert-modal')" class="cert-card sr sr-up d2" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <img src="logo-dibimbing-blue-512.svg" alt="Dibimbing.id" style="width:28px;height:28px;object-fit:contain;border-radius:4px;">
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Data Science Bootcamp</span>
-          <span class="cert-card-org">Dibimbing.id · 2025–2026 · A+</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('brevet-cert-modal')" class="cert-card sr sr-up d1" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <img src="Logo-Ikatan-Akuntan-Indonesia-IAI.webp" alt="IAI" style="width:28px;height:28px;object-fit:contain;">
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span>
-          <span class="cert-card-org">IAI · 2018</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('biola-modal')" class="cert-card sr sr-up d2" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <img src="biola-university-logo.png" alt="Biola University" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#fff;padding:2px;">
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">B.S. Business Administration</span>
-          <span class="cert-card-org">Biola University · 2016</span>
-        </div>
-      </button>
-      <button onclick="openCertModal('pkp3-modal')" class="cert-card sr sr-up d3" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap">
-          <img src="Jimly_School_Of_Law.png" alt="Jimly School of Law" style="width:28px;height:28px;object-fit:cover;border-radius:4px;">
-        </div>
-        <div class="cert-meta">
-          <span class="cert-card-name">Praktisi Pajak (CTAP)</span>
-          <span class="cert-card-org">PKPPI · 2026</span>
-        </div>
-      </button>
+  <section style="background:#0C0F14; border-top:1px solid rgba(255,255,255,0.06); padding:88px max(24px,5vw);">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:14px;">Certifications</div>
+      <h2 data-reveal style="font-family:'Spectral',serif; font-weight:500; font-size:clamp(24px,3vw,36px); color:#F2EEE5; margin-bottom:40px;">Verified, current, and <span style="color:var(--accent,#C9A567); font-style:italic; font-weight:400;">documented.</span></h2>
+      <div data-reveal style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;">
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Google Data Analytics</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">Google · Coursera · 2025</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Microsoft SQL Server</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">Microsoft · Coursera · 2025</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Tableau BI Analyst</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">Tableau · Coursera · 2025</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Python for Data Science</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">IBM · Coursera · 2025</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Xero Advisor Certified</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">Xero · 2025</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Data Science Bootcamp</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">Dibimbing.id · 2025–2026 · A+</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Brevet Pajak A &amp; B</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">IAI · 2018</div></div></div>
+        <div class="p-chip" style="display:flex; align-items:center; gap:13px; padding:15px 17px; background:#12161D; border:1px solid rgba(201,165,103,0.1); border-radius:10px;"><span style="width:7px; height:7px; border-radius:50%; background:var(--accent,#C9A567); flex-shrink:0;"></span><div><div style="font-size:13.5px; color:#E4DED4; font-weight:500;">Praktisi Pajak (CTAP)</div><div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6B655C; margin-top:2px;">PKPPI · 2026</div></div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="services" id="services">
-  <div class="section-wrap">
-    
-    <h2 class="section-title sr sr-left d1" data-en="Complete Solutions for Your Business <span>Growth</span>" data-id="Solusi Lengkap untuk<br><span>Pertumbuhan</span> Bisnis Anda">Solusi Lengkap untuk<br><span>Pertumbuhan</span> Bisnis Anda</h2>
-    <div class="services-grid">
-      <a href="data-analysis.html" class="service-card sr sr-up d1">
-        <div class="service-icon-wrap">≋</div>
-        <div class="service-name">Data Analysis</div>
-        <p class="service-desc" data-en="Turn business data into strategic insights. Make smarter, measurable, data-driven decisions." data-id="Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.">Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.</p>
-        <span class="service-tag">View Portfolio →</span>
-      </a>
-      <a href="accounting.html" class="service-card sr sr-up d2">
-        <div class="service-icon-wrap">⊞</div>
-        <div class="service-name" data-en="Accounting" data-id="Akuntansi">Akuntansi</div>
-        <p class="service-desc" data-en="Bookkeeping, financial reporting, payroll, and internal audit to keep your business finances accurate and compliant." data-id="Pembukuan, laporan keuangan, payroll, dan audit internal untuk menjaga keuangan bisnis Anda tetap akurat dan patuh.">Pembukuan, laporan keuangan, payroll, dan audit internal untuk menjaga keuangan bisnis Anda tetap akurat dan patuh.</p>
-        <span class="service-tag">View Portfolio →</span>
-      </a>
-      <a href="tax.html" class="service-card sr sr-up d3">
-        <div class="service-icon-wrap">§</div>
-        <div class="service-name" data-en="Tax" data-id="Pajak">Pajak</div>
-        <p class="service-desc" data-en="PPh 21 calculation, SPT Tahunan reporting, and data input on Coretax — accurate and compliant with Indonesian tax regulations." data-id="Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.">Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.</p>
-        <span class="service-tag">View Portfolio →</span>
-      </a>
-      <a href="website.html" class="service-card sr sr-up d4">
-        <div class="service-icon-wrap">◈</div>
-        <div class="service-name">Website Design</div>
-        <p class="service-desc" data-en="A professional website that reflects your business identity. Modern, fast, and competitive design." data-id="Website profesional yang mencerminkan identitas bisnis Anda. Desain modern, cepat, dan siap bersaing.">Website profesional yang mencerminkan identitas bisnis Anda. Desain modern, cepat, dan siap bersaing.</p>
-        <span class="service-tag">View Portfolio →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="glow-line"></div>
-
-<div class="glow-line"></div>
-<section class="cta-section">
-  <div class="cta-inner sr sr-up">
-    <div class="cta-text">
-      <h2 data-en="Interested in <span>Working Together?</span>" data-id="Tertarik <span>Bekerja Sama?</span>">Tertarik <span>Bekerja Sama?</span></h2>
-      <p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p>
-    </div>
-    <a href="#contact" class="btn-navy" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
-  </div>
-</section>
-
-<section class="contact-section" id="contact">
-  <div class="section-wrap">
-    <div class="contact-grid">
-      <div>
-        <div class="section-eyebrow" data-en="// get in touch" data-id="// hubungi kami">// hubungi kami</div>
-        <h2 class="section-title sr sr-left" style="margin-bottom:1.5rem" data-en="Got a Project in Mind? <span>Let's Make It Happen.</span>" data-id="Punya Proyek? <span>Ayo Wujudkan Bersama.</span>">Punya Proyek? <span>Ayo Wujudkan Bersama.</span></h2>
-        <p class="contact-desc sr sr-left d1" data-en="First consultation is free. Fill out the form and we'll get back to you within 24 hours." data-id="Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.">Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.</p>
-        <div class="contact-info-row sr sr-left d2">
-          <div class="contact-info-item">
-            <span class="contact-info-icon">◎</span>
-            <span class="contact-info-text">Palu, Sulawesi Tengah</span>
+  <section id="contact" style="background:#0E1218; border-top:1px solid rgba(255,255,255,0.06); padding:88px max(24px,5vw);">
+    <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start;">
+      <div data-reveal>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent,#C9A567); margin-bottom:14px;">Get in touch</div>
+        <h2 style="font-family:'Spectral',serif; font-weight:500; font-size:clamp(26px,3.2vw,40px); line-height:1.18; color:#F2EEE5; margin-bottom:18px;">Got a project in mind? <span style="color:var(--accent,#C9A567); font-style:italic; font-weight:400;">Let's make it happen.</span></h2>
+        <p style="font-size:16px; line-height:1.7; color:#A8A095; max-width:380px; margin-bottom:32px;">The first consultation is free. Send a note and you'll hear back within 24 hours — directly from me.</p>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:34px; height:34px; border-radius:8px; background:#12161D; border:1px solid rgba(201,165,103,0.14); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-10.5A7 7 0 0 1 19 10.5C19 15.8 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.5"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#B0A89D;">Palu, Sulawesi Tengah</span>
           </div>
-          <div class="contact-info-item">
-            <span class="contact-info-icon">@</span>
-            <span class="contact-info-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="533237393126203a3d362020303c3d20263f273a3d3413343e323a3f7d303c3e">[email&#160;protected]</a></span>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:34px; height:34px; border-radius:8px; background:#12161D; border:1px solid rgba(201,165,103,0.14); display:grid; place-items:center; color:var(--accent,#C9A567);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#B0A89D;">pbconsulting.id@gmail.com</span>
           </div>
         </div>
       </div>
-      <div class="contact-form-wrap sr sr-up d1">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" data-en="Name" data-id="Nama">Nama</label>
-            <input type="text" class="form-input" id="cf-name" placeholder="John Doe" required>
+      <div data-reveal style="background:#12161D; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:30px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+          <div>
+            <label style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:7px;">Name</label>
+            <input class="p-input" type="text" placeholder="John Doe" style="width:100%; font-family:'Instrument Sans',sans-serif; font-size:14px; color:#ECE7DD; background:#0C0F14; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:11px 14px;">
           </div>
-          <div class="form-group">
-            <label class="form-label" data-en="Company" data-id="Perusahaan">Perusahaan</label>
-            <input type="text" class="form-input" id="cf-company" placeholder="PT Contoh Indonesia">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-input" id="cf-email" placeholder="john@company.com" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-en="Phone (optional)" data-id="Telepon (opsional)">Telepon (opsional)</label>
-            <input type="tel" class="form-input" id="cf-phone" placeholder="+62 812 3456 7890">
+          <div>
+            <label style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:7px;">Company</label>
+            <input class="p-input" type="text" placeholder="PT Contoh" style="width:100%; font-family:'Instrument Sans',sans-serif; font-size:14px; color:#ECE7DD; background:#0C0F14; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:11px 14px;">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" data-en="Service Needed" data-id="Layanan yang Dibutuhkan">Layanan yang Dibutuhkan</label>
-          <select class="form-input form-select" id="cf-service">
-            <option value="" disabled selected data-en="Select a service..." data-id="Pilih layanan...">Pilih layanan...</option>
-            <option value="Website Design">Website Design</option>
-            <option value="Tax Compliance" data-en="Tax Compliance (PPh 21)" data-id="Kepatuhan Pajak (PPh 21)">Kepatuhan Pajak (PPh 21)</option>
-            <option value="Data Analytics">Data Analytics & Science</option>
-            <option value="Accounting" data-en="Accounting & Audit" data-id="Akuntansi & Audit">Akuntansi & Audit</option>
-            <option value="Other" data-en="Other" data-id="Lainnya">Lainnya</option>
+        <div style="margin-bottom:14px;">
+          <label style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:7px;">Email</label>
+          <input class="p-input" type="email" placeholder="john@company.com" style="width:100%; font-family:'Instrument Sans',sans-serif; font-size:14px; color:#ECE7DD; background:#0C0F14; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:11px 14px;">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:7px;">Service needed</label>
+          <select class="p-input" style="width:100%; font-family:'Instrument Sans',sans-serif; font-size:14px; color:#ECE7DD; background:#0C0F14; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:11px 14px; cursor:pointer;">
+            <option>Tax Compliance (PPh 21)</option>
+            <option>Accounting &amp; Audit</option>
+            <option>Data Analytics &amp; Science</option>
+            <option>Website Design</option>
+            <option>Other</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label" data-en="Message" data-id="Pesan">Pesan</label>
-          <textarea class="form-input form-textarea" id="cf-message" rows="4" placeholder="" data-en-ph="Tell us about your project or what you need help with..." data-id-ph="Ceritakan tentang proyek atau kebutuhan Anda..."></textarea>
+        <div style="margin-bottom:18px;">
+          <label style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#7B756B; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:7px;">Message</label>
+          <textarea class="p-input" rows="4" placeholder="Tell me about your project..." style="width:100%; font-family:'Instrument Sans',sans-serif; font-size:14px; color:#ECE7DD; background:#0C0F14; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:11px 14px; resize:vertical; line-height:1.6;"></textarea>
         </div>
-        <button class="btn-submit" id="cf-submit" onclick="submitContactForm()">
-          <span id="cf-btn-text" data-en="Send Message →" data-id="Kirim Pesan →">Kirim Pesan →</span>
-          <span id="cf-btn-loading" style="display:none" data-en="Sending..." data-id="Mengirim...">Mengirim...</span>
-        </button>
-        <div class="form-status" id="cf-status"></div>
+        <button class="p-btn" style="width:100%; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:#0C0F14; background:var(--accent,#C9A567); border:none; border-radius:8px; padding:13px; cursor:pointer; letter-spacing:0.02em;">Send message →</button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <a href="index.html" class="footer-logo">Prospera <span>Business Consulting</span></a>
-  <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
-  <p style="font-family:var(--mono);font-size:11px;color:#4A4038;margin-top:6px;letter-spacing:0.08em;" data-en="Designed &amp; built by Anthony Djiady Djie — every line of code, every pixel." data-id="Dirancang &amp; dibangun oleh Anthony Djiady Djie — setiap baris kode, setiap piksel.">Dirancang &amp; dibangun oleh Anthony Djiady Djie — setiap baris kode, setiap piksel.</p>
-</footer>
+  <footer style="background:#0C0F14; border-top:1px solid rgba(255,255,255,0.06); padding:34px max(24px,5vw); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
+    <span style="display:flex; align-items:center; gap:10px;"><img src="assets/prospera-mark.png" alt="Prospera" style="width:26px; height:26px; object-fit:contain; display:block;"><span style="font-family:'Spectral',serif; font-size:17px; font-weight:500; color:#ECE7DD;">Prospera <span style="color:#6B655C; font-weight:400;">Consulting</span></span></span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#6B655C; letter-spacing:0.06em;">© 2026 · Palu, Sulawesi Tengah · Built by Anthony Djiady Djie</span>
+  </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  if (typeof emailjs !== 'undefined') { emailjs.init({ publicKey: '_UYS6jlzal211WHAX' }); }
-</script>
-<script>
-  // Mobile menu toggle
-  function toggleMobileMenu() {
-    var btn = document.getElementById('hamburgerBtn');
-    var menu = document.getElementById('mobileMenu');
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
-  }
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('visible');
-      const numEl = e.target.querySelector('[data-target]');
-      if (numEl) {
-        const target = parseInt(numEl.dataset.target);
-        const suffix = numEl.dataset.suffix || '';
-        let current = 0;
-        const step = Math.ceil(target / 50);
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          numEl.textContent = current + suffix;
-          if (current >= target) clearInterval(timer);
-        }, 25);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.sr').forEach(el => obs.observe(el));
-
-
-  // Language switcher
-  var currentLang = 'id';
-  function applyLang(lang) {
-    currentLang = lang;
-    document.querySelectorAll('[data-en][data-id]').forEach(el => {
-      const val = lang === 'en' ? el.dataset.en : el.dataset.id;
-      if (val !== undefined) el.innerHTML = val;
-    });
-    // Handle placeholder translations
-    document.querySelectorAll('[data-en-ph][data-id-ph]').forEach(el => {
-      el.placeholder = lang === 'en' ? el.dataset.enPh : el.dataset.idPh;
-    });
-    document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
-    document.documentElement.lang = lang === 'en' ? 'en' : 'id';
-    try { localStorage.setItem('adj_lang', lang); } catch(e) {}
-  }
-  function toggleLang() {
-    applyLang(currentLang === 'id' ? 'en' : 'id');
-  }
-  // On load, apply saved lang
-  (function() {
-    var saved = 'id';
-    try { saved = localStorage.getItem('adj_lang') || 'id'; } catch(e) {}
-    applyLang(saved);
-  })();
-
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    const bg = document.getElementById('heroBg');
-    if (bg) bg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
-    document.getElementById('navbar').classList.toggle('scrolled', y > 50);
-  }, { passive: true });
-
-  // ── Contact Form (EmailJS) ──
-  // SETUP: 1) Create free account at https://www.emailjs.com
-  //        2) Add an email service (Gmail) → copy Service ID
-  //        3) Create email template with variables: {{name}}, {{company}}, {{email}}, {{phone}}, {{service}}, {{message}}
-  //        4) Replace _UYS6jlzal211WHAX, service_yp742sw, template_5kg2tuh below
-
-  function submitContactForm() {
-    var name = document.getElementById('cf-name').value.trim();
-    var company = document.getElementById('cf-company').value.trim();
-    var email = document.getElementById('cf-email').value.trim();
-    var phone = document.getElementById('cf-phone').value.trim();
-    var service = document.getElementById('cf-service').value;
-    var message = document.getElementById('cf-message').value.trim();
-    var status = document.getElementById('cf-status');
-    var btn = document.getElementById('cf-submit');
-    var btnText = document.getElementById('cf-btn-text');
-    var btnLoad = document.getElementById('cf-btn-loading');
-    var lang = localStorage.getItem('adj_lang') || 'id';
-
-    // Validation
-    if (!name || !email || !message) {
-      status.className = 'form-status error';
-      status.textContent = lang === 'en' ? 'Please fill in name, email, and message.' : 'Mohon isi nama, email, dan pesan.';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      status.className = 'form-status error';
-      status.textContent = lang === 'en' ? 'Please enter a valid email address.' : 'Mohon masukkan alamat email yang valid.';
-      return;
-    }
-
-    // Show loading state
-    btn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoad.style.display = 'inline';
-    status.className = 'form-status';
-    status.textContent = '';
-
-    var templateParams = {
-      name: name,
-      company: company || '(not provided)',
-      email: email,
-      service: service || '(not selected)',
-      message: message + (phone ? '\n\nPhone: ' + phone : '')
-    };
-
-    // Check if EmailJS is loaded
-    if (typeof emailjs !== 'undefined') {
-      emailjs.send('service_yp742sw', 'template_5kg2tuh', templateParams)
-        .then(function() {
-          status.className = 'form-status success';
-          status.textContent = lang === 'en' ? 'Message sent! We\'ll get back to you within 24 hours.' : 'Pesan terkirim! Kami akan menghubungi Anda dalam 24 jam.';
-          document.getElementById('cf-name').value = '';
-          document.getElementById('cf-company').value = '';
-          document.getElementById('cf-email').value = '';
-          document.getElementById('cf-phone').value = '';
-          document.getElementById('cf-service').selectedIndex = 0;
-          document.getElementById('cf-message').value = '';
-          btn.disabled = false;
-          btnText.style.display = 'inline';
-          btnLoad.style.display = 'none';
-        }, function(err) {
-          status.className = 'form-status error';
-          status.textContent = lang === 'en' ? 'Failed to send: ' + (err.text || err.message || 'Unknown error') : 'Gagal mengirim: ' + (err.text || err.message || 'Error tidak diketahui');
-          btn.disabled = false;
-          btnText.style.display = 'inline';
-          btnLoad.style.display = 'none';
-          console.error('EmailJS error:', err);
-        });
-    } else {
-      // Fallback: open mailto
-      var subject = encodeURIComponent('Contact from ' + name + ' — ' + (service || 'General'));
-      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + (company || '-') + '\nEmail: ' + email + '\nPhone: ' + (phone || '-') + '\nService: ' + (service || '-') + '\n\nMessage:\n' + message);
-      window.open('mailto:adjbusinessconsulting@gmail.com?subject=' + subject + '&body=' + body);
-      status.className = 'form-status success';
-      status.textContent = lang === 'en' ? 'Opening your email client...' : 'Membuka aplikasi email...';
-      btn.disabled = false;
-      btnText.style.display = 'inline';
-      btnLoad.style.display = 'none';
-    }
-  }
-</script>
-
-<!-- Google Certificate Modal -->
-<div id="google-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('google-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Google Data Analytics — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('google-modal')">&times;</button></div>
-    <iframe src="Google_Data_Analytics_Certification.pdf"></iframe>
-  </div>
 </div>
-
-<!-- SQL Certificate Modal -->
-<div id="sql-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('sql-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Microsoft SQL Server — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('sql-modal')">&times;</button></div>
-    <iframe src="Micrososft_Sql_Server_Certification.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Excel Certificate Modal -->
-<div id="excel-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('excel-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Microsoft Excel Professional — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('excel-modal')">&times;</button></div>
-    <iframe src="Microsoft_Excel_Professional_Certificate.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Tableau Certificate Modal -->
-<div id="tableau-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('tableau-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Tableau BI Analyst — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('tableau-modal')">&times;</button></div>
-    <iframe src="Tableau_Business_Intelligence_Analyst_Certification.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Python Certificate Modal -->
-<div id="python-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('python-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Python for Data Science, AI — IBM / Coursera</span><button class="cert-modal-close" onclick="closeCertModal('python-modal')">&times;</button></div>
-    <iframe src="Python_for_Data_Science__AI___Development.pdf"></iframe>
-  </div>
-</div>
-
-
-<!-- Xero Certificate Modal -->
-<div id="xero-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('xero-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Xero Advisor Certified</span><button class="cert-modal-close" onclick="closeCertModal('xero-modal')">&times;</button></div>
-    <iframe src="Xero_Advisor.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Dibimbing Cert Modal (card trigger) -->
-<div id="dibimbing-cert-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-cert-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span><button class="cert-modal-close" onclick="closeCertModal('dibimbing-cert-modal')">&times;</button></div>
-    <iframe src="Dibimbing_DADS.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Brevet Cert Modal (card trigger) -->
-<div id="brevet-cert-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-cert-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B — IAI</span><button class="cert-modal-close" onclick="closeCertModal('brevet-cert-modal')">&times;</button></div>
-    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
-  </div>
-</div>
-
-<!-- PKP3 Certificate Modal -->
-<div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">Praktisi/Pengacara Pajak (PKP3) — Jimly School of Law</span>
-      <button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button>
-    </div>
-    <iframe src="Surat_Kelulusan_Anthony_Djiady_Djie__BS___CTAP_.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Dibimbing Certificate Modal -->
-<div id="dibimbing-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span>
-      <button class="cert-modal-close" onclick="closeCertModal('dibimbing-modal')">&times;</button>
-    </div>
-    <iframe src="Dibimbing_DADS.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Biola University Certificate Modal -->
-<div id="biola-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('biola-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">B.S. Business Administration — Biola University</span>
-      <button class="cert-modal-close" onclick="closeCertModal('biola-modal')">&times;</button>
-    </div>
-    <div class="cert-modal-img-wrap">
-      <img src="Biola_University_Bachelor_Certificate.jpg" alt="Biola University Bachelor Certificate">
-    </div>
-  </div>
-</div>
-
-<!-- Brevet A&B Certificate Modal -->
-<div id="brevet-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">Brevet Pajak A &amp; B — IAI Daan Mogot 2018</span>
-      <button class="cert-modal-close" onclick="closeCertModal('brevet-modal')">&times;</button>
-    </div>
-    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Brevet A&B Terapan PKPPI 2026 Modal -->
-<div id="brevet-pkppi-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-pkppi-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">Brevet Pajak A &amp; B Terapan — PKPPI 2026</span>
-      <button class="cert-modal-close" onclick="closeCertModal('brevet-pkppi-modal')">&times;</button>
-    </div>
-    <iframe src="Sertifikat_Brevet_Anthony_Djiady_Djie__B_S___CTAP.pdf"></iframe>
-  </div>
-</div>
-
-<!-- Resume Modal -->
-<div id="resume-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('resume-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header">
-      <span class="cert-modal-title">Resume — Anthony Djiady Djie</span>
-      <button class="cert-modal-close" onclick="closeCertModal('resume-modal')">&times;</button>
-    </div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf"></iframe>
-  </div>
-</div>
-
-<script>
-  function openCertModal(id) {
-    document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeCertModal(id) {
-    document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.cert-modal.open').forEach(function(m) {
-        m.classList.remove('open');
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280 },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;#C9A567&quot;, &quot;options&quot;: [&quot;#C9A567&quot;, &quot;#C9B98A&quot;, &quot;#C98567&quot;], &quot;tsType&quot;: &quot;string&quot; },
+  &quot;reduceMotion&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.getElementById('prospera-root');
+    if (!root) return;
+    if (this.props.reduceMotion) return;
+    root.classList.add('motion');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        const n = e.target.querySelector('[data-count]');
+        if (n && !n.dataset.done) { n.dataset.done = '1'; this.countUp(n); }
+        io.unobserve(e.target);
       });
-      document.body.style.overflow = '';
-    }
-  });
-  document.getElementById('viewResumeBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    openCertModal('resume-modal');
-  });
+    }, { threshold: 0.15 });
+    root.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+  }
+  countUp(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    let cur = 0;
+    const step = Math.max(1, Math.ceil(target / 40));
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = cur + suffix;
+      if (cur >= target) clearInterval(t);
+    }, 25);
+  }
+  renderVals() {
+    return { accent: this.props.accent || '#C9A567' };
+  }
+}
 </script>
 </body>
 </html>

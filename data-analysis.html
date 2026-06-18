@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Prospera Business Consulting</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════
        PROSPERA PORTFOLIO — CODING VIBE SHELL STYLES
@@ -37,9 +37,9 @@
       --red: #F87171;
       --amber: #FBBF24;
       --green: #34D399;
-      --h: 'JetBrains Mono', ui-monospace, monospace;
+      --h: 'Spectral', Georgia, serif;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
       --serif: 'Instrument Serif', Georgia, serif;
       /* FULL-DARK MODE: the "cream" variables now point to dark surfaces.
          Var names kept for minimal churn. --cream = page section bg (darkest),
@@ -2949,32 +2949,50 @@
     .cert-modal iframe { flex: 1; width: 100%; border: none; }
     .cert-modal-img-wrap { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 1rem; background: #0D1117; }
     .cert-modal-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
+  
+    /* ── Refined retheme overrides ── */
+    body { font-family:'Instrument Sans',system-ui,sans-serif; font-size:15px; }
+    body::before, body::after { display:none !important; }
+    .page-title::before { display:none !important; }
+    .page-title .cursor { display:none !important; }
+    .cyan-glow { text-shadow:none !important; }
+    .nav-logo::after { display:none !important; }
+    .nav-logo::before { content:'' !important; background:url('assets/prospera-mark.png') center/contain no-repeat !important; border:none !important; width:24px !important; height:24px !important; box-shadow:none !important; }
+    .nav-logo { padding-left:34px !important; }
+    .footer-logo { position:relative; padding-left:30px; }
+    .footer-logo::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:22px; height:22px; background:url('assets/prospera-mark.png') center/contain no-repeat; }
+    .page-title, .section-title, .about-name, .edu-card-title, .worked-heading, .cb-biz-name, .compliance-title, .cta-text h2, .coming-soon-title, .cb-bridge-title, .cb-placeholder-title, .footer-logo { font-weight:600 !important; letter-spacing:-0.005em !important; }
+    .page-title { letter-spacing:-0.01em !important; }
+    .section-title, .cream-zone-title, .proj-title, .sub-cat-name, .cat-name { font-family:'Spectral',Georgia,serif !important; }
+    .hero-positioning, .edu-card-body, .compliance-text, .worked-sub, .cb-biz-desc, .cb-bridge-desc, .cb-card-type, .cta-text p, .coming-soon-desc, .cb-placeholder-desc, .edu-intro, .about-bio, .service-row-desc { font-family:'Instrument Sans',system-ui,sans-serif !important; }
+    .about-photo { background:repeating-linear-gradient(135deg,#161B23 0,#161B23 11px,#12161D 11px,#12161D 22px) !important; }
+
   </style>
 </head>
 <body>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">Prospera <span>Business Consulting</span></a>
+  <a href="Prospera%20Home%20(Refined).dc.html" class="nav-logo">Prospera <span>Business Consulting</span></a>
   <ul class="nav-links">
-    <li><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a></li>
+    <li><a href="Prospera%20Home%20(Refined).dc.html" data-en="Home" data-id="Beranda">Beranda</a></li>
     <li><a href="data-analysis.html" class="active" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a></li>
     <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
     <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
     <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
   </ul>
   <div class="nav-right">
-    <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+    <a href="Prospera%20Home%20(Refined).dc.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
     <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-en="Home" data-id="Beranda">Beranda</a>
+  <a href="Prospera%20Home%20(Refined).dc.html" data-en="Home" data-id="Beranda">Beranda</a>
   <a href="data-analysis.html" class="active" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a>
   <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
   <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
   <a href="website.html" data-en="Website" data-id="Website">Website</a>
-  <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+  <a href="Prospera%20Home%20(Refined).dc.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
 
 <div class="page-header">
@@ -6902,12 +6920,12 @@ if(insightWrap){
 <section class="cta-section">
   <div class="cta-inner sr sr-up">
     <div class="cta-text"><h2 data-en="Interested in <span>Working Together?</span>" data-id="Tertarik <span>Bekerja Sama?</span>">Tertarik <span>Bekerja Sama?</span></h2><p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p></div>
-    <a href="index.html#contact" class="btn-navy" style="white-space:nowrap" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+    <a href="Prospera%20Home%20(Refined).dc.html#contact" class="btn-navy" style="white-space:nowrap" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
   </div>
 </section>
 
 <footer>
-  <a href="index.html" class="footer-logo">Prospera <span>Business Consulting</span></a>
+  <a href="Prospera%20Home%20(Refined).dc.html" class="footer-logo">Prospera <span>Business Consulting</span></a>
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
@@ -7237,6 +7255,7 @@ if(insightWrap){
     if (btn) btn.classList.add('j-btn-active');
   }
 </script>
+<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('img').forEach(function(i){i.addEventListener('error',function(){i.style.display='none';});if(i.complete&&i.naturalWidth===0){i.style.display='none';}});});</script>
 </body>
 <!-- Resume Modal -->
 <div id="resume-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
