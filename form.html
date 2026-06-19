@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website Design — Prospera Business Consulting</title>
+  <title>Formulir Klien — Prospera Business Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,54 +104,305 @@
 
     .glow-line { height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:0.2; margin:0; }
 
-    /* ── SHOWCASE SECTION ── */
-    .showcase-section { padding:4rem 5vw 6rem; }
-    .showcase-inner { max-width:1200px; margin:0 auto; }
-    .section-eyebrow { font-family:var(--mono); font-size:10px; color:var(--cyan); letter-spacing:0.18em; margin-bottom:0.75rem; display:block; text-transform:uppercase; }
-    .section-title { font-family:var(--h); font-size:clamp(18px,2.5vw,28px); font-weight:700; color:var(--white); margin-bottom:3rem; }
+    /* ── ABOUT ── */
+    .about-block { background: var(--navy-mid); padding: 6rem 6%; border-top: 1px solid var(--navy-line); }
+    .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+    .about-photo-col { position: sticky; top: 90px; }
+    .about-photo-wrap { position: relative; }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; border: 1px solid var(--navy-line); display: block; background: var(--navy-light); }
+    .about-photo-border { position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; border: 1px solid rgba(201,165,103,0.2); border-radius: 8px; pointer-events: none; z-index: -1; }
+    .about-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .about-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--cyan); }
+    .about-name { font-family: var(--h); font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .about-role { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .about-bio { font-family: var(--h); font-size: 14px; font-weight: 400; color: var(--gray-2); line-height: 1.9; margin-bottom: 2rem; }
+    .about-bio em { font-style: normal; color: var(--white); font-weight: 600; }
+    .about-sub { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; margin-top: 1.75rem; }
+    .edu-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 0.5rem; }
+    .cert-item-edu { display: flex; align-items: flex-start; gap: 10px; }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(201,165,103,0.3); }
+    .cert-text { font-family: var(--h); font-size: 13px; color: var(--white); font-weight: 500; line-height: 1.4; display: block; }
+    .cert-issuer-edu { font-family: var(--mono); font-size: 11px; color: var(--gray-3); margin-top: 2px; display: block; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.5rem; }
+    .skill-tag { font-family: var(--mono); font-size: 12px; color: var(--gray-1); background: rgba(201,165,103,0.05); border: 1px solid rgba(201,165,103,0.15); padding: 5px 12px; border-radius: 4px; transition: all 0.2s; }
+    .skill-tag:hover { border-color: rgba(201,165,103,0.35); color: var(--cyan); }
+    .about-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-about { font-family: var(--mono); font-size: 13px; font-weight: 600; background: var(--cyan); color: var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; letter-spacing: 0.04em; }
+    .btn-about:hover { background: #D9B97C; transform: translateY(-1px); }
+    .btn-about-outline { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--navy-line); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; background: transparent; }
+    .btn-about-outline:hover { border-color: rgba(201,165,103,0.3); color: var(--cyan); transform: translateY(-1px); }
+    .btn-linkedin { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--navy-line); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; background: transparent; }
+    .btn-linkedin:hover { border-color: #0A66C2; background: rgba(10,102,194,0.08); color: #0A66C2; transform: translateY(-1px); }
 
-    /* ── TEMPLATE CARDS ── */
-    .template-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:2rem; }
-    .template-card { background:var(--navy-mid); border:1px solid var(--navy-line); border-radius:10px; overflow:hidden; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); }
-    .template-card:hover { border-color:rgba(201,165,103,0.25); transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,0.35); }
+    /* ── CERTS GALLERY ── */
+    .certs-gallery { padding: 6rem 6%; border-top: 1px solid var(--navy-line); }
+    .section-wrap { max-width: 1200px; margin: 0 auto; }
+    .section-eyebrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; margin-bottom: 0.75rem; display: block; text-transform: uppercase; }
+    .section-title { font-family: var(--h); font-size: clamp(18px,2.5vw,28px); font-weight: 700; color: var(--white); margin-bottom: 2rem; }
+    .section-title span { color: var(--cyan); }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 10px; }
+    .cert-card { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.10); border-radius: 6px; transition: all 0.2s; text-decoration: none; color: inherit; }
+    .cert-card:hover { border-color: rgba(201,165,103,0.3); transform: translateY(-1px); }
+    .cert-logo-wrap { width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; }
+    .cert-logo-wrap svg { width: 100%; height: 100%; }
+    .cert-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+    .cert-card-name { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--white); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cert-card-org { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); letter-spacing: 0.04em; }
 
-    /* browser chrome */
-    .browser-chrome { background:#1a2030; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
-    .browser-dots { display:flex; gap:6px; }
-    .browser-dot { width:10px; height:10px; border-radius:50%; }
-    .browser-dot.red { background:#FF5F57; }
-    .browser-dot.yellow { background:#FEBC2E; }
-    .browser-dot.green { background:#28C840; }
-    .browser-bar { flex:1; background:rgba(255,255,255,0.05); border-radius:4px; padding:5px 10px; font-family:var(--mono); font-size:10px; color:var(--gray-3); display:flex; align-items:center; gap:6px; }
-    .browser-bar::before { content:'🔒'; font-size:9px; }
+    /* ── EDUCATIONAL PORTFOLIO ── */
+    .edu-section { padding: 5rem 5vw 4rem; }
+    .edu-inner { max-width: 1200px; margin: 0 auto; }
+    .edu-intro { font-family: var(--mono); font-size: 14px; color: var(--gray-2); line-height: 1.8; max-width: 680px; margin-bottom: 3rem; }
 
-    /* iframe preview */
-    .template-preview { position:relative; height:320px; overflow:hidden; background:#0a0a0a; }
-    .template-preview iframe { width:160%; height:160%; transform:scale(0.625); transform-origin:top left; border:none; pointer-events:none; }
-    .template-preview-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 60%, var(--navy-mid) 100%); pointer-events:none; }
+    /* Three concept cards */
+    .edu-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 4rem; }
+    .edu-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 8px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; transition: all 0.25s; position: relative; overflow: hidden; }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,165,103,0.4), transparent); opacity: 0; transition: opacity 0.3s; }
+    .edu-card:hover { border-color: rgba(201,165,103,0.3); transform: translateY(-2px); }
+    .edu-card:hover::before { opacity: 1; }
+    .edu-card-num { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; }
+    .edu-card-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .edu-card-body { font-family: var(--mono); font-size: 12.5px; color: var(--gray-2); line-height: 1.7; }
+    .edu-card-body em { font-style: normal; color: var(--white); font-weight: 600; }
 
-    /* card info */
-    .template-info { padding:1.25rem 1.5rem 1.5rem; }
-    .template-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.6rem; }
-    .template-name { font-family:var(--h); font-size:16px; font-weight:700; color:var(--white); }
-    .template-tag { font-family:var(--mono); font-size:10px; color:var(--cyan); background:rgba(201,165,103,0.08); border:1px solid rgba(201,165,103,0.15); padding:3px 9px; border-radius:3px; letter-spacing:0.08em; text-transform:uppercase; }
-    .template-desc { font-family:var(--mono); font-size:12px; color:var(--gray-3); line-height:1.6; margin-bottom:1.25rem; }
-    .template-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.25rem; }
-    .template-pill { font-family:var(--mono); font-size:10px; color:var(--gray-2); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:3px 8px; border-radius:3px; }
-    .template-actions { display:flex; gap:10px; }
-    .btn-preview { font-family:var(--mono); font-size:12px; font-weight:600; background:var(--cyan); color:var(--navy); padding:9px 18px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
-    .btn-preview:hover { background:#D9B97C; transform:translateY(-1px); }
-    .btn-order { font-family:var(--mono); font-size:12px; color:var(--gray-1); border:1px solid rgba(201,165,103,0.2); padding:9px 18px; background:transparent; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
-    .btn-order:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(201,165,103,0.04); }
+    /* Equation card */
+    .equation-box { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--cyan); background: rgba(201,165,103,0.05); border: 1px dashed rgba(201,165,103,0.3); padding: 1rem; border-radius: 5px; text-align: center; letter-spacing: 0.02em; }
+    .equation-box .eq-op { color: var(--gray-3); margin: 0 0.4rem; }
+    .warning-box { background: rgba(201,165,103,0.04); border-left: 2px solid var(--cyan); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0; }
+    .warning-box-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.4rem; display: block; }
+    .warning-box-text { font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); line-height: 1.65; }
+
+    /* Cycle card */
+    .cycle-list { display: flex; flex-direction: column; gap: 6px; }
+    .cycle-step { display: flex; align-items: center; gap: 10px; padding: 7px 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.08); border-radius: 4px; font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); transition: all 0.2s; }
+    .cycle-step:hover { border-color: rgba(201,165,103,0.2); background: rgba(201,165,103,0.03); }
+    .cycle-step-num { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--cyan); background: rgba(201,165,103,0.1); width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+    .cycle-step-name { flex: 1; }
+
+    /* Debit-Kredit card */
+    .dk-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
+    .dk-table th { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 6px 4px; border-bottom: 1px solid var(--navy-line); text-align: left; }
+    .dk-table th.center { text-align: center; }
+    .dk-table td { padding: 8px 4px; border-bottom: 1px solid rgba(201,165,103,0.06); color: var(--gray-1); }
+    .dk-table td.center { text-align: center; }
+    .dk-table .badge-d { display: inline-block; font-size: 10px; font-weight: 700; color: var(--cyan); background: rgba(201,165,103,0.1); padding: 2px 8px; border-radius: 3px; letter-spacing: 0.08em; }
+    .dk-table .badge-k { display: inline-block; font-size: 10px; font-weight: 700; color: #A09890; background: rgba(160,152,144,0.1); padding: 2px 8px; border-radius: 3px; letter-spacing: 0.08em; }
+    .dk-mnemonic { margin-top: 0.5rem; padding: 0.75rem; background: rgba(201,165,103,0.04); border: 1px solid rgba(201,165,103,0.15); border-radius: 4px; font-family: var(--mono); font-size: 11px; color: var(--gray-1); line-height: 1.6; }
+    .dk-mnemonic strong { color: var(--cyan); font-weight: 700; letter-spacing: 0.05em; }
+
+    /* Worked example */
+    .worked-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+    .worked-heading { font-family: var(--h); font-size: clamp(22px,2.8vw,30px); font-weight: 700; color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .worked-heading span { color: var(--cyan); }
+    .worked-sub { font-family: var(--mono); font-size: 13px; color: var(--gray-2); line-height: 1.7; margin-bottom: 2rem; max-width: 720px; }
+
+    .worked-wrap { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 10px; overflow: hidden; }
+    .worked-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-bottom: 1px solid var(--navy-line); }
+    .worked-flow-step { padding: 1.5rem 1.25rem; border-right: 1px solid var(--navy-line); position: relative; }
+    .worked-flow-step:last-child { border-right: none; }
+    .worked-flow-step::after { content: '→'; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); color: var(--cyan); font-size: 14px; background: var(--navy-mid); padding: 2px 4px; z-index: 2; }
+    .worked-flow-step:last-child::after { display: none; }
+    .worked-flow-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; margin-bottom: 6px; }
+    .worked-flow-name { font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .worked-flow-desc { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); line-height: 1.5; }
+
+    .journal-block { padding: 2rem; border-bottom: 1px solid var(--navy-line); }
+    .journal-block-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1rem; }
+    .journal-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
+    .journal-table th { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid var(--navy-line); text-align: left; }
+    .journal-table th.num { text-align: right; }
+    .journal-table td { padding: 9px 10px; border-bottom: 1px solid rgba(201,165,103,0.05); color: var(--gray-1); vertical-align: top; }
+    .journal-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .journal-table tr:last-child td { border-bottom: none; }
+    .journal-table .j-date { color: var(--gray-3); white-space: nowrap; }
+    .journal-table .j-acc { color: var(--cyan); }
+
+    .worked-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .worked-col { padding: 2rem; }
+    .worked-col:first-child { border-right: 1px solid var(--navy-line); }
+    .worked-col-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(201,165,103,0.05); font-family: var(--mono); font-size: 12px; }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-row .s-label { color: var(--gray-2); }
+    .summary-row .s-val { color: var(--white); font-variant-numeric: tabular-nums; }
+    .summary-row.s-total { border-top: 1px solid var(--cyan); margin-top: 8px; padding-top: 12px; font-weight: 700; }
+    .summary-row.s-total .s-label { color: var(--cyan); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+    .summary-row.s-total .s-val { color: var(--cyan); font-size: 14px; }
+    .summary-row.s-sub .s-label { color: var(--gray-3); font-size: 11px; padding-left: 1rem; }
+    .summary-row.s-sub .s-val { color: var(--gray-2); font-size: 11px; }
+
+    /* Compliance callout */
+    .compliance-block { padding: 4rem 5vw 5rem; }
+    .compliance-inner { max-width: 1200px; margin: 0 auto; }
+    .compliance-box { background: linear-gradient(135deg, rgba(201,165,103,0.08) 0%, rgba(201,165,103,0.02) 100%); border: 1px solid rgba(201,165,103,0.25); border-radius: 10px; padding: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; position: relative; overflow: hidden; }
+    .compliance-box::before { content: '§'; position: absolute; top: -20px; right: -10px; font-family: var(--h); font-size: 180px; color: var(--cyan); opacity: 0.06; font-weight: 700; line-height: 1; pointer-events: none; }
+    .compliance-icon { width: 48px; height: 48px; border: 1.5px solid var(--cyan); border-radius: 6px; display: grid; place-items: center; font-family: var(--h); font-size: 22px; font-weight: 700; color: var(--cyan); flex-shrink: 0; position: relative; z-index: 2; }
+    .compliance-content { position: relative; z-index: 2; }
+    .compliance-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .compliance-title { font-family: var(--h); font-size: clamp(18px,2vw,22px); font-weight: 700; color: var(--white); margin-bottom: 0.75rem; line-height: 1.3; }
+    .compliance-text { font-family: var(--mono); font-size: 13px; color: var(--gray-1); line-height: 1.75; margin-bottom: 1rem; }
+    .compliance-stats { display: flex; gap: 2rem; padding-top: 1rem; border-top: 1px solid rgba(201,165,103,0.15); flex-wrap: wrap; }
+    .compliance-stat { display: flex; flex-direction: column; gap: 4px; }
+    .compliance-stat-num { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--cyan); letter-spacing: -0.01em; }
+    .compliance-stat-label { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .edu-cards { grid-template-columns: 1fr; }
+      .worked-flow { grid-template-columns: repeat(2, 1fr); }
+      .worked-flow-step:nth-child(2)::after { display: none; }
+      .worked-flow-step:nth-child(2) { border-right: none; }
+      .worked-flow-step:nth-child(1), .worked-flow-step:nth-child(2) { border-bottom: 1px solid var(--navy-line); }
+      .worked-summary { grid-template-columns: 1fr; }
+      .worked-col:first-child { border-right: none; border-bottom: 1px solid var(--navy-line); }
+      .compliance-box { grid-template-columns: 1fr; padding: 2rem; }
+      .compliance-stats { gap: 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .journal-table { font-size: 10.5px; }
+      .journal-table th, .journal-table td { padding: 7px 6px; }
+      .dk-table { font-size: 10.5px; }
+    }
+
+    /* ── CLIENT CASEBOOK ── */
+    .casebook-section { padding: 5rem 5vw 4rem; }
+    .casebook-inner { max-width: 1200px; margin: 0 auto; }
+    .casebook-intro { font-family: var(--mono); font-size: 14px; color: var(--gray-2); line-height: 1.8; max-width: 740px; margin-bottom: 2.5rem; }
+    .casebook-intro em { font-style: normal; color: var(--white); font-weight: 600; }
+
+    /* Project picker */
+    .cb-picker { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.12); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+    .cb-picker-label { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 600; }
+    .cb-cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.85rem; }
+    .cb-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.08); border-radius: 6px; padding: 1.1rem; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.5rem; min-height: 150px; }
+    .cb-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; }
+    .cb-card:hover { border-color: rgba(201,165,103,0.25); transform: translateY(-2px); }
+    .cb-card.active { border-color: rgba(201,165,103,0.4); background: rgba(201,165,103,0.03); }
+    .cb-card.active::before { background: var(--cyan); }
+    .cb-card.placeholder { opacity: 0.55; cursor: default; }
+    .cb-card.placeholder:hover { transform: none; border-color: rgba(201,165,103,0.08); }
+    .cb-card-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; font-weight: 600; text-transform: uppercase; }
+    .cb-card-name { font-family: var(--h); font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .cb-card-type { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); line-height: 1.5; flex: 1; }
+    .cb-card-tag { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 9.5px; color: var(--cyan); background: rgba(201,165,103,0.08); border: 1px solid rgba(201,165,103,0.18); padding: 2px 7px; border-radius: 3px; letter-spacing: 0.08em; width: fit-content; font-weight: 600; }
+    .cb-card-tag.ph { color: var(--gray-3); background: rgba(160,152,144,0.05); border-color: rgba(160,152,144,0.15); }
+    .cb-card-arrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); margin-top: auto; font-weight: 600; letter-spacing: 0.04em; }
+
+    /* Project panels */
+    .cb-panel { display: none; }
+    .cb-panel.active { display: block; }
+
+    /* Business detail header */
+    .cb-biz-header { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.15); border-radius: 10px 10px 0 0; padding: 2rem 2.25rem; border-bottom: 1px solid rgba(201,165,103,0.25); }
+    .cb-biz-eyebrow { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; }
+    .cb-biz-name { font-family: var(--h); font-size: clamp(22px,2.8vw,30px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0.65rem; letter-spacing: -0.01em; }
+    .cb-biz-name span { color: var(--cyan); }
+    .cb-biz-desc { font-family: var(--mono); font-size: 13px; color: var(--gray-2); line-height: 1.75; max-width: 760px; margin-bottom: 1.25rem; }
+    .cb-biz-meta { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cb-meta-chip { font-family: var(--mono); font-size: 10.5px; color: var(--gray-2); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 5px 11px; border-radius: 4px; letter-spacing: 0.02em; }
+    .cb-meta-chip strong { color: var(--cyan); font-weight: 600; margin-left: 4px; }
+
+    /* Sheet container (tab-like) */
+    .cb-sheets-wrap { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.15); border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; }
+    .cb-tabs { display: flex; border-bottom: 1px solid rgba(201,165,103,0.15); background: var(--navy-light); overflow-x: auto; }
+    .cb-tab { font-family: var(--mono); font-size: 11.5px; color: var(--gray-3); background: none; border: none; padding: 0.9rem 1.4rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.2s; white-space: nowrap; border-bottom: 2px solid transparent; position: relative; }
+    .cb-tab:hover { color: var(--white); }
+    .cb-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); background: var(--navy-mid); }
+    .cb-tab-icon { display: inline-block; width: 10px; height: 10px; background: rgba(201,165,103,0.2); border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+    .cb-tab.active .cb-tab-icon { background: var(--cyan); }
+
+    .cb-sheet-content { padding: 2rem 2.25rem; display: none; }
+    .cb-sheet-content.active { display: block; }
+    .cb-sheet-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 600; }
+    .cb-sheet-sub { font-family: var(--mono); font-size: 12px; color: var(--gray-3); margin-bottom: 1.5rem; line-height: 1.6; }
+
+    /* Bookkeeping table (extends journal-table) */
+    .cb-table-wrap { overflow-x: auto; margin: 0 -2.25rem; padding: 0 2.25rem; }
+    .cb-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; min-width: 760px; }
+    .cb-table th { font-family: var(--mono); font-size: 9.5px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 10px 12px; border-bottom: 1px solid rgba(201,165,103,0.2); background: rgba(201,165,103,0.04); text-align: left; white-space: nowrap; position: sticky; top: 0; }
+    .cb-table th.num { text-align: right; }
+    .cb-table td { padding: 8px 12px; border-bottom: 1px solid rgba(201,165,103,0.04); color: var(--gray-1); vertical-align: top; }
+    .cb-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .cb-table td.muted { color: var(--gray-3); }
+    .cb-table tbody tr:hover td { background: rgba(201,165,103,0.03); }
+    .cb-table tr.cb-total td { background: rgba(201,165,103,0.06); color: var(--cyan); font-weight: 700; border-top: 1px solid rgba(201,165,103,0.2); padding-top: 12px; padding-bottom: 12px; font-size: 11px; letter-spacing: 0.04em; }
+    .cb-table .cb-date { color: var(--gray-3); white-space: nowrap; }
+    .cb-table .cb-desc { color: var(--gray-1); }
+    .cb-table .cb-acc-d { color: var(--cyan); font-size: 10.5px; }
+    .cb-table .cb-acc-k { color: #A09890; font-size: 10.5px; }
+
+    /* Summary footer under table */
+    .cb-summary { margin-top: 1.5rem; padding: 1.1rem 1.35rem; background: rgba(201,165,103,0.04); border-left: 2px solid var(--cyan); border-radius: 0 4px 4px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .cb-summary-item { display: flex; flex-direction: column; gap: 4px; }
+    .cb-summary-label { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.12em; text-transform: uppercase; }
+    .cb-summary-val { font-family: var(--mono); font-size: 16px; color: var(--white); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .cb-summary-val.pos { color: var(--cyan); }
+
+    /* HPP category table */
+    .cb-hpp-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; margin-top: 0.5rem; }
+    .cb-hpp-table th { padding: 10px 12px; font-size: 9.5px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border-bottom: 1px solid rgba(201,165,103,0.2); text-align: left; background: rgba(201,165,103,0.04); }
+    .cb-hpp-table th.num { text-align: right; }
+    .cb-hpp-table td { padding: 10px 12px; border-bottom: 1px solid rgba(201,165,103,0.04); color: var(--gray-1); }
+    .cb-hpp-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .cb-hpp-table .cat-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 10px; vertical-align: -1px; }
+
+    /* Reconciliation finding callout */
+    .cb-finding { margin-top: 1.75rem; padding: 1.1rem 1.35rem; background: rgba(251,146,60,0.04); border-left: 2px solid #FB923C; border-radius: 0 4px 4px 0; }
+    .cb-finding-label { font-family: var(--mono); font-size: 10px; color: #FB923C; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 700; }
+    .cb-finding-title { font-family: var(--mono); font-size: 13px; color: var(--white); font-weight: 700; margin-bottom: 0.6rem; line-height: 1.4; }
+    .cb-finding-text { font-family: var(--mono); font-size: 12px; color: var(--gray-1); line-height: 1.75; }
+    .cb-finding-text strong { color: #FB923C; font-weight: 600; }
+
+    /* Bridge to tax page */
+    .cb-bridge { margin-top: 2rem; padding: 1.75rem 2rem; background: linear-gradient(135deg, rgba(201,165,103,0.08) 0%, rgba(201,165,103,0.02) 100%); border: 1px solid rgba(201,165,103,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .cb-bridge-content { flex: 1; min-width: 260px; }
+    .cb-bridge-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 700; }
+    .cb-bridge-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; line-height: 1.3; }
+    .cb-bridge-desc { font-family: var(--mono); font-size: 12px; color: var(--gray-2); line-height: 1.65; }
+    .cb-bridge-btn { font-family: var(--mono); font-size: 12.5px; font-weight: 600; background: var(--cyan); color: var(--navy); padding: 11px 20px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.02em; }
+    .cb-bridge-btn:hover { background: #D9B97C; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,165,103,0.2); }
+    .cb-bridge-btn .arrow { transition: transform 0.2s; }
+    .cb-bridge-btn:hover .arrow { transform: translateX(3px); }
+
+    /* Placeholder panel */
+    .cb-placeholder-panel { background: var(--navy-mid); border: 1px dashed rgba(201,165,103,0.2); border-radius: 10px; padding: 4rem 3rem; text-align: center; }
+    .cb-placeholder-icon { font-size: 32px; color: var(--cyan); opacity: 0.3; margin-bottom: 1rem; font-family: var(--h); }
+    .cb-placeholder-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .cb-placeholder-desc { font-family: var(--mono); font-size: 12.5px; color: var(--gray-3); line-height: 1.7; max-width: 440px; margin: 0 auto; }
+
+    @media (max-width: 1024px) {
+      .cb-cards-row { grid-template-columns: repeat(3, 1fr); }
+      .cb-cards-row .cb-card:nth-child(n+4) { grid-column: span 1; }
+    }
+    @media (max-width: 768px) {
+      .cb-cards-row { grid-template-columns: repeat(2, 1fr); }
+      .cb-summary { grid-template-columns: 1fr; gap: 0.75rem; }
+      .cb-sheet-content { padding: 1.5rem 1.25rem; }
+      .cb-biz-header { padding: 1.5rem 1.5rem; }
+      .cb-bridge { padding: 1.5rem 1.25rem; }
+    }
+    @media (max-width: 540px) {
+      .cb-cards-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMING SOON ── */
+    .coming-soon-section { padding: 4rem 5vw 6rem; }
+    .coming-soon-inner { max-width: 1200px; margin: 0 auto; }
+    .coming-soon-box { border: 1px dashed rgba(201,165,103,0.2); border-radius: 10px; padding: 5rem 3rem; text-align: center; background: rgba(201,165,103,0.02); }
+    .coming-soon-icon { font-size: 40px; margin-bottom: 1.5rem; opacity: 0.4; }
+    .coming-soon-title { font-family: var(--h); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+    .coming-soon-desc { font-family: var(--mono); font-size: 13px; color: var(--gray-3); line-height: 1.7; max-width: 480px; margin: 0 auto 2rem; }
+    .btn-cta { font-family: var(--mono); font-size: 13px; font-weight: 600; background: var(--cyan); color: var(--navy); padding: 11px 24px; border-radius: 3px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .btn-cta:hover { background: #D9B97C; transform: translateY(-1px); }
 
     /* ── CTA ── */
-    .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); position:relative; overflow:hidden; }
+    .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); }
     .cta-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
     .cta-text h2 { font-family:var(--h); font-size:clamp(18px,2.5vw,26px); font-weight:700; color:var(--white); margin-bottom:0.5rem; }
     .cta-text h2 span { color:var(--cyan); }
-    .cta-text p { font-family:var(--sans); font-size:14px; color:var(--gray-2); line-height:1.6; }
+    .cta-text p { font-family:var(--mono); font-size:13px; color:var(--gray-2); line-height:1.7; }
     .btn-navy { font-family:var(--mono); font-size:13px; font-weight:600; background:var(--cyan); color:var(--navy); padding:11px 22px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s; white-space:nowrap; }
-    .btn-navy:hover { background:#D9B97C; transform:translateY(-1px); box-shadow:0 8px 24px rgba(201,165,103,0.25); }
+    .btn-navy:hover { background:#D9B97C; transform:translateY(-1px); }
 
     /* ── FOOTER ── */
     footer { background:var(--navy-mid); border-top:1px solid var(--navy-line); padding:2.5rem 5vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
@@ -163,64 +414,70 @@
     @media(max-width:900px) {
       .page-header-inner { grid-template-columns:1fr; gap:2rem; }
       .page-header-right { padding-top:0; }
-      .template-grid { grid-template-columns:1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo-col { position: static; max-width: 220px; }
     }
     @media(max-width:768px) {
       .nav-links { display:none; }
       .hamburger { display:flex; }
       .cta-inner { flex-direction:column; }
+      .certs-grid { grid-template-columns: repeat(2,1fr); }
     }
   
-    /* View Cert Button */
-    .btn-view-cert { display:inline-block; margin-top:6px; font-family:var(--mono); font-size:11px; color:#C9A567; background:rgba(201,165,103,0.08); border:1px solid rgba(201,165,103,0.2); border-radius:3px; padding:3px 10px; cursor:pointer; letter-spacing:0.06em; transition:all 0.2s; }
-    .btn-view-cert:hover { background:rgba(201,165,103,0.15); border-color:#C9A567; }
-    /* About block styles */
-    .about-block { background:var(--navy-mid); padding:6rem 6%; border-top:1px solid var(--navy-line); }
-    .about-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:4rem; align-items:start; }
-    .about-photo-col { position:sticky; top:90px; }
-    .about-photo-wrap { position:relative; }
-    .about-photo { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:8px; border:1px solid var(--navy-line); display:block; background:var(--navy); }
-    .about-photo-border { position:absolute; top:12px; left:12px; right:-12px; bottom:-12px; border:1px solid rgba(201,165,103,0.2); border-radius:8px; pointer-events:none; z-index:-1; }
-    .about-eyebrow { font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
-    .about-eyebrow::before { content:''; width:24px; height:1px; background:var(--cyan); }
-    .about-name { font-family:var(--h); font-size:24px; font-weight:700; color:var(--white); margin-bottom:0.25rem; }
-    .about-role { font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5rem; }
-    .about-bio { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; line-height:1.9; margin-bottom:2rem; }
-    .about-sub { font-family:var(--mono); font-size:11px; color:#A09890; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.75rem; margin-top:1.75rem; }
-    .edu-list { display:flex; flex-direction:column; gap:10px; margin-bottom:0.5rem; }
-    .cert-item-edu { display:flex; align-items:flex-start; gap:10px; }
-    .cert-dot { width:6px; height:6px; border-radius:50%; background:var(--cyan); flex-shrink:0; margin-top:5px; box-shadow:0 0 8px rgba(201,165,103,0.4); }
-    .cert-text { font-family:var(--h); font-size:13px; color:var(--white); font-weight:500; line-height:1.4; display:block; }
-    .cert-issuer-edu { font-family:var(--mono); font-size:11px; color:var(--gray-3); margin-top:2px; display:block; }
-    .about-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:2rem; }
-    .btn-about { font-family:var(--mono); font-size:13px; font-weight:600; background:var(--cyan); color:var(--navy); padding:10px 22px; border-radius:4px; text-decoration:none; display:inline-block; transition:all 0.3s; letter-spacing:0.04em; cursor:pointer; border:none; }
-    .btn-about:hover { background:#D9B97C; transform:translateY(-1px); }
-    .btn-about-outline { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); border:1px solid var(--navy-line); padding:10px 22px; border-radius:4px; text-decoration:none; display:inline-block; transition:all 0.3s; background:transparent; }
-    .btn-about-outline:hover { border-color:rgba(201,165,103,0.3); color:var(--cyan); transform:translateY(-1px); }
-    .btn-linkedin { font-family:var(--mono); font-size:13px; font-weight:600; color:#0A66C2; border:1px solid rgba(10,102,194,0.3); padding:10px 18px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; background:transparent; }
-    .btn-linkedin:hover { background:rgba(10,102,194,0.08); border-color:#0A66C2; transform:translateY(-1px); }
-    /* Certs gallery */
-    .certs-gallery { background:var(--navy); padding:4rem 6%; border-top:1px solid rgba(201,165,103,0.08); }
-    .certs-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; max-width:1200px; margin:0 auto; }
-    .cert-card { display:flex; align-items:center; gap:10px; padding:11px 14px; background:var(--navy-mid); border:1px solid rgba(201,165,103,0.10); border-radius:6px; transition:all 0.2s; text-decoration:none; color:inherit; }
-    .cert-card:hover { border-color:rgba(201,165,103,0.3); transform:translateY(-1px); }
-    .cert-logo-wrap { width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
-    .cert-logo-wrap svg { width:28px; height:28px; }
-    .cert-meta { display:flex; flex-direction:column; gap:2px; min-width:0; }
-    .cert-card-name { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--white); line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .cert-card-org { font-family:var(--mono); font-size:10.5px; color:var(--gray-3); letter-spacing:0.04em; }
+    /* Cert view button */
+    .btn-view-cert {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #C9A567;
+      background: rgba(201,165,103,0.08);
+      border: 1px solid rgba(201,165,103,0.2);
+      border-radius: 3px;
+      padding: 3px 10px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+    }
+    .btn-view-cert:hover { background: rgba(201,165,103,0.15); border-color: #C9A567; }
     /* PDF/Cert Modal */
-    .cert-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); align-items:center; justify-content:center; }
-    .cert-modal.open { display:flex; }
-    .cert-modal-inner { position:relative; width:90%; max-width:860px; height:90vh; background:#131820; border:1px solid rgba(201,165,103,0.2); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; }
-    .cert-modal-header { display:flex; align-items:center; justify-content:space-between; padding:.85rem 1.25rem; border-bottom:1px solid rgba(201,165,103,0.12); flex-shrink:0; }
-    .cert-modal-title { font-family:var(--mono); font-size:12px; color:#A09890; letter-spacing:.08em; text-transform:uppercase; }
-    .cert-modal-close { background:none; border:none; color:#A09890; font-size:20px; cursor:pointer; line-height:1; padding:4px 8px; }
-    .cert-modal-close:hover { color:#C9A567; }
-    .cert-modal iframe { flex:1; width:100%; border:none; }
-    .cert-modal-img-wrap { flex:1; overflow:auto; display:flex; align-items:center; justify-content:center; padding:1rem; background:#0D1117; }
-    .cert-modal-img-wrap img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; }
-    @media(max-width:900px) { .about-inner { grid-template-columns:1fr; gap:2rem; } .about-photo-col { position:static; max-width:220px; } }
+    .cert-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    .cert-modal.open { display: flex; }
+    .cert-modal-inner {
+      position: relative;
+      width: 90%;
+      max-width: 860px;
+      height: 90vh;
+      background: #131820;
+      border: 1px solid rgba(201,165,103,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .cert-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid rgba(201,165,103,0.12);
+      flex-shrink: 0;
+    }
+    .cert-modal-title { font-family: var(--mono); font-size: 12px; color: #A09890; letter-spacing: .08em; text-transform: uppercase; }
+    .cert-modal-close { background: none; border: none; color: #A09890; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px 8px; }
+    .cert-modal-close:hover { color: #C9A567; }
+    .cert-modal iframe { flex: 1; width: 100%; border: none; }
+    .cert-modal-img-wrap { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 1rem; background: #0D1117; }
+    .cert-modal-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
   
     /* ── Refined retheme overrides ── */
     body { font-family:'Instrument Sans',system-ui,sans-serif; font-size:15px; }
@@ -249,8 +506,8 @@
     <li><a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a></li>
     <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
     <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
-    <li><a href="website.html" class="active" data-en="Website" data-id="Website">Website</a></li>
-      <li><a href="form.html" data-en="Form" data-id="Formulir">Formulir</a></li>
+    <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
+      <li><a href="form.html" class="active" data-en="Form" data-id="Formulir">Formulir</a></li>
   </ul>
   <div class="nav-right">
     <a href="form.html" data-en="Form" data-id="Formulir">Formulir</a>
@@ -264,403 +521,230 @@
   <a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a>
   <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
   <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
-  <a href="website.html" class="active" data-en="Website" data-id="Website">Website</a>
-  <a href="form.html" data-en="Form" data-id="Formulir">Formulir</a>
+  <a href="website.html" data-en="Website" data-id="Website">Website</a>
+  <a href="form.html" class="active" data-en="Form" data-id="Formulir">Formulir</a>
   <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="page-header-left">
-      <h1 class="page-title cyan-glow" data-en="Website Design" data-id="Website Design">Website Design<span class="cursor">_</span></h1>
-      <p class="hero-positioning"
-         data-en="<em>Professional websites built for your business</em> — fast, modern, and designed to convert visitors into clients."
-         data-id="<em>Website profesional untuk bisnis Anda</em> — cepat, modern, dan dirancang untuk mengubah pengunjung menjadi klien.">
-        Website profesional untuk bisnis Anda — cepat, modern, dan dirancang untuk mengubah pengunjung menjadi klien.
-      </p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">3<span class="hero-stat-unit">+</span></div>
-          <div class="hero-stat-label" data-en="templates ready" data-id="template siap">template siap</div>
-        </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">100<span class="hero-stat-unit">%</span></div>
-          <div class="hero-stat-label" data-en="custom design" data-id="desain custom">desain custom</div>
-        </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">6<span class="hero-stat-unit">y</span></div>
-          <div class="hero-stat-label" data-en="experience" data-id="pengalaman">pengalaman</div>
-        </div>
-      </div>
-    </div>
-    <div class="page-header-right">
-      <div class="layanan-card">
-        <div class="layanan-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
-        <div class="layanan-stats-row">
-          <div class="layanan-stat">
-            <span class="layanan-stat-num">3<span style="font-size:0.6em">+</span></span>
-            <span class="layanan-stat-label" data-en="templates ready" data-id="template siap">template siap</span>
-          </div>
-          <div class="layanan-stat">
-            <span class="layanan-stat-num">100<span style="font-size:0.6em">%</span></span>
-            <span class="layanan-stat-label" data-en="custom design" data-id="desain custom">desain custom</span>
-          </div>
-          <div class="layanan-stat">
-            <span class="layanan-stat-num">6<span style="font-size:0.6em">y</span></span>
-            <span class="layanan-stat-label" data-en="experience" data-id="pengalaman">pengalaman</span>
-          </div>
-        </div>
-        <div class="layanan-pills">
-          <div class="layanan-pill">
-            <div class="layanan-pill-dot"></div>
-            <span class="layanan-pill-name" data-en="Business Profile Website" data-id="Website Profil Bisnis">Website Profil Bisnis</span>
-            <span class="layanan-pill-tag">profil</span>
-          </div>
-          <div class="layanan-pill">
-            <div class="layanan-pill-dot"></div>
-            <span class="layanan-pill-name" data-en="E-Commerce Store" data-id="Toko Online (E-Commerce)">Toko Online (E-Commerce)</span>
-            <span class="layanan-pill-tag">store</span>
-          </div>
-          <div class="layanan-pill">
-            <div class="layanan-pill-dot"></div>
-            <span class="layanan-pill-name" data-en="Landing Page" data-id="Landing Page">Landing Page</span>
-            <span class="layanan-pill-tag">lead</span>
-          </div>
-          <div class="layanan-pill">
-            <div class="layanan-pill-dot"></div>
-            <span class="layanan-pill-name" data-en="Redesign & Revamp" data-id="Redesain & Pembaruan Website">Redesain &amp; Pembaruan Website</span>
-            <span class="layanan-pill-tag">revamp</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- FORM STYLES -->
+<style>
+  .form-hero { padding: 3.5rem 5vw 1.5rem; max-width: 820px; margin: 0 auto; }
+  .form-hero .breadcrumb { font-family: var(--mono); font-size: 12px; color: var(--gray-3); margin-bottom: 1.25rem; }
+  .form-hero .breadcrumb a { color: var(--gray-3); text-decoration: none; } .form-hero .breadcrumb a:hover { color: var(--white); } .form-hero .breadcrumb span { color: var(--white); }
+  .form-hero h1 { font-family: var(--h); font-size: clamp(30px,4.5vw,46px); font-weight: 600; color: var(--white); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: 0.85rem; }
+  .form-hero h1 span { color: var(--cyan); font-style: italic; font-weight: 400; }
+  .form-hero p { font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 16px; color: var(--gray-2); line-height: 1.7; max-width: 600px; }
+  .form-section { padding: 1.5rem 5vw 5rem; }
+  .form-wrap { max-width: 820px; margin: 0 auto; }
+  .fblock { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 12px; padding: 1.85rem 2rem; margin-bottom: 1.1rem; }
+  .fblock-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.5rem; }
+  .fblock-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--cyan); letter-spacing: 0.12em; }
+  .fblock-title { font-family: var(--h); font-size: 19px; font-weight: 600; color: var(--white); letter-spacing: -0.005em; }
+  .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; }
+  .field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; }
+  .field label .req { color: var(--cyan); margin-left: 2px; }
+  .field label .opt { color: var(--gray-4); margin-left: 4px; text-transform: none; letter-spacing: 0; font-size: 10.5px; }
+  .field input, .field select, .field textarea {
+    font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 14.5px; color: var(--white);
+    background: var(--navy); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px;
+    padding: 11px 14px; width: 100%; transition: border-color 0.2s, box-shadow 0.2s; line-height: 1.5;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--gray-4); }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(201,165,103,0.10);
+  }
+  .field select { cursor: pointer; appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A09890' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+  .check { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--navy); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; cursor: pointer; transition: all 0.18s; font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 13.5px; color: var(--gray-1); }
+  .check:hover { border-color: rgba(201,165,103,0.3); }
+  .check:has(input:checked) { border-color: var(--cyan); background: rgba(201,165,103,0.06); color: var(--white); }
+  .check input { width: 16px; height: 16px; accent-color: var(--cyan); cursor: pointer; flex-shrink: 0; }
+  .form-foot { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .submit-btn { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--navy); background: var(--cyan); border: none; border-radius: 8px; padding: 14px; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s, transform 0.2s; width: 100%; }
+  .submit-btn:hover { background: #D9B97C; transform: translateY(-1px); }
+  .submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .form-note { font-family: var(--mono); font-size: 11.5px; color: var(--gray-3); line-height: 1.6; text-align: center; }
+  .form-err { font-family: var(--mono); font-size: 12.5px; color: #FB7185; background: rgba(251,113,133,0.06); border: 1px solid rgba(251,113,133,0.25); border-radius: 8px; padding: 11px 14px; display: none; }
+  .thankyou { display: none; background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.25); border-radius: 12px; padding: 3rem 2.5rem; text-align: center; }
+  .thankyou-icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; border-radius: 50%; border: 1.5px solid var(--cyan); display: grid; place-items: center; color: var(--cyan); }
+  .thankyou h2 { font-family: var(--h); font-size: 26px; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+  .thankyou p { font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 15px; color: var(--gray-2); line-height: 1.7; max-width: 420px; margin: 0 auto 1.75rem; }
+  .thankyou a { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--navy); background: var(--cyan); padding: 11px 22px; border-radius: 8px; text-decoration: none; display: inline-block; }
+  .honeypot { position: absolute; left: -9999px; opacity: 0; }
+  @media (max-width: 680px) {
+    .fgrid { grid-template-columns: 1fr; }
+    .checks { grid-template-columns: 1fr 1fr; }
+    .fblock { padding: 1.5rem 1.35rem; }
+  }
+</style>
+
+<!-- FORM HERO -->
+<div class="form-hero">
+  <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Intake Form" data-id="Formulir">Formulir</span></div>
+  <h1 data-en="Let's get to know <span>your business.</span>" data-id="Mari kenali <span>bisnis Anda.</span>">Mari kenali <span>bisnis Anda.</span></h1>
+  <p data-en="Fill in your business details below. It takes about 3 minutes, and helps me scope the work and prepare a fair quote before we talk. The first consultation is free." data-id="Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.">Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.</p>
 </div>
 
-<div class="glow-line"></div>
+<!-- FORM -->
+<section class="form-section">
+  <div class="form-wrap">
+    <form id="intakeForm" autocomplete="on">
+      <!-- ⚠️ SETUP: replace YOUR_ACCESS_KEY_HERE with your Web3Forms access key from https://web3forms.com -->
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value="Formulir Klien Baru — Prospera">
+      <input type="hidden" name="from_name" value="Prospera Intake Form">
+      <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
 
-<!-- TEMPLATE SHOWCASE -->
-<section class="showcase-section">
-  <div class="showcase-inner">
-    <span class="section-eyebrow" data-en="template showcase" data-id="template showcase">template showcase</span>
-    <h2 class="section-title" data-en="Live Website Templates" data-id="Template Website Langsung">Template Website Langsung</h2>
-
-    <div class="template-grid">
-
-      <!-- E-COMMERCE -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
+      <!-- 01 IDENTITAS -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">01</span><span class="fblock-title" data-en="Identity" data-id="Identitas">Identitas</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Full name <span class='req'>*</span>" data-id="Nama lengkap <span class='req'>*</span>">Nama lengkap <span class="req">*</span></label>
+            <input type="text" name="Nama lengkap" required placeholder="Anthony Djiady">
           </div>
-          <div class="browser-bar">vltg-apparel.com</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="ecommerce-template.html" title="E-Commerce Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">VLTG — Apparel</span>
-            <span class="template-tag" data-en="e-commerce" data-id="toko online">toko online</span>
+          <div class="field">
+            <label data-en="Business / brand name <span class='opt'>(optional)</span>" data-id="Nama usaha / brand <span class='opt'>(opsional)</span>">Nama usaha / brand <span class="opt">(opsional)</span></label>
+            <input type="text" name="Nama usaha" placeholder="PT Contoh Jaya">
           </div>
-          <p class="template-desc" data-en="A high-energy streetwear storefront with product grid, cart interactions, and promo marquee. Built for fashion & retail brands that want to stand out." data-id="Toko streetwear berenergi tinggi dengan grid produk, interaksi keranjang, dan marquee promo. Cocok untuk brand fashion & retail yang ingin tampil beda.">Toko streetwear berenergi tinggi dengan grid produk, interaksi keranjang, dan marquee promo. Cocok untuk brand fashion &amp; retail yang ingin tampil beda.</p>
-          <div class="template-pills">
-            <span class="template-pill">Product Grid</span>
-            <span class="template-pill">Cart</span>
-            <span class="template-pill">Promo Banner</span>
-            <span class="template-pill">Animations</span>
+          <div class="field">
+            <label data-en="Business type <span class='req'>*</span>" data-id="Jenis usaha <span class='req'>*</span>">Jenis usaha <span class="req">*</span></label>
+            <select name="Jenis usaha" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Individual / Freelance" data-id="Perorangan / Freelance">Perorangan / Freelance</option>
+              <option>UMKM</option>
+              <option>CV</option>
+              <option>PT</option>
+              <option data-en="Other" data-id="Lainnya">Lainnya</option>
+            </select>
           </div>
-          <div class="template-actions">
-            <a href="ecommerce-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          <div class="field">
+            <label data-en="Industry / field <span class='req'>*</span>" data-id="Bidang usaha <span class='req'>*</span>">Bidang usaha <span class="req">*</span></label>
+            <input type="text" name="Bidang usaha" required placeholder="F&B, retail, jasa…">
+          </div>
+          <div class="field full">
+            <label data-en="City / domicile <span class='req'>*</span>" data-id="Kota / domisili <span class='req'>*</span>">Kota / domisili <span class="req">*</span></label>
+            <input type="text" name="Kota" required placeholder="Palu, Sulawesi Tengah">
           </div>
         </div>
       </div>
 
-      <!-- PROPERTY -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
+      <!-- 02 SKALA USAHA -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">02</span><span class="fblock-title" data-en="Business scale" data-id="Skala usaha">Skala usaha</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Est. monthly revenue <span class='req'>*</span>" data-id="Perkiraan omzet bulanan <span class='req'>*</span>">Perkiraan omzet bulanan <span class="req">*</span></label>
+            <select name="Omzet bulanan" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Under 10 million" data-id="< 10 juta">&lt; 10 juta</option>
+              <option data-en="10–50 million" data-id="10–50 juta">10–50 juta</option>
+              <option data-en="50–100 million" data-id="50–100 juta">50–100 juta</option>
+              <option data-en="Over 100 million" data-id="> 100 juta">&gt; 100 juta</option>
+              <option data-en="Not sure yet" data-id="Belum tahu">Belum tahu</option>
+            </select>
           </div>
-          <div class="browser-bar">haven-realestate.com</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="property-template.html" title="Property Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">HAVEN — Real Estate</span>
-            <span class="template-tag" data-en="property" data-id="properti">properti</span>
+          <div class="field">
+            <label data-en="Transactions / month <span class='req'>*</span>" data-id="Transaksi per bulan <span class='req'>*</span>">Transaksi per bulan <span class="req">*</span></label>
+            <select name="Transaksi per bulan" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Under 50" data-id="< 50">&lt; 50</option>
+              <option>50–200</option>
+              <option data-en="200+" data-id="200+">200+</option>
+              <option data-en="Not sure yet" data-id="Belum tahu">Belum tahu</option>
+            </select>
           </div>
-          <p class="template-desc" data-en="A luxury real estate showcase with property listings, gallery, and inquiry form. Elegant typography and a refined warm palette for premium brands." data-id="Showcase properti mewah dengan listing, galeri, dan form pertanyaan. Tipografi elegan dan palet hangat premium untuk brand berkelas.">Showcase properti mewah dengan listing, galeri, dan form pertanyaan. Tipografi elegan dan palet hangat premium untuk brand berkelas.</p>
-          <div class="template-pills">
-            <span class="template-pill">Property Listings</span>
-            <span class="template-pill">Gallery</span>
-            <span class="template-pill">Inquiry Form</span>
-            <span class="template-pill">Luxury Feel</span>
-          </div>
-          <div class="template-actions">
-            <a href="property-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CAFE -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">brule-coffee.com</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="cafe-template.html" title="Cafe Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">BRÛLÉ — Coffee</span>
-            <span class="template-tag" data-en="F&B / cafe" data-id="F&B / kafe">F&amp;B / kafe</span>
-          </div>
-          <p class="template-desc" data-en="A moody specialty coffee shop site with menu, origin stories, and reservation section. Perfect for cafes, restaurants, and F&B brands." data-id="Website kedai kopi spesialti dengan menu, cerita origin, dan bagian reservasi. Sempurna untuk kafe, restoran, dan brand F&B.">Website kedai kopi spesialti dengan menu, cerita origin, dan bagian reservasi. Sempurna untuk kafe, restoran, dan brand F&amp;B.</p>
-          <div class="template-pills">
-            <span class="template-pill">Menu Section</span>
-            <span class="template-pill">Reservations</span>
-            <span class="template-pill">Story Section</span>
-            <span class="template-pill">Dark Aesthetic</span>
-          </div>
-          <div class="template-actions">
-            <a href="cafe-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          <div class="field full">
+            <label data-en="Current bookkeeping <span class='req'>*</span>" data-id="Pembukuan saat ini <span class='req'>*</span>">Pembukuan saat ini <span class="req">*</span></label>
+            <select name="Pembukuan saat ini" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="None yet" data-id="Belum ada">Belum ada</option>
+              <option data-en="Manual / Excel" data-id="Manual / Excel">Manual / Excel</option>
+              <option data-en="Accounting software" data-id="Sudah pakai software">Sudah pakai software</option>
+            </select>
           </div>
         </div>
       </div>
 
-      <!-- CLINIC -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
+      <!-- 03 STATUS PAJAK -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">03</span><span class="fblock-title" data-en="Tax status" data-id="Status pajak">Status pajak</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Do you have an NPWP? <span class='req'>*</span>" data-id="Sudah punya NPWP? <span class='req'>*</span>">Sudah punya NPWP? <span class="req">*</span></label>
+            <select name="Status NPWP" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Yes" data-id="Ya">Ya</option>
+              <option data-en="Not yet" data-id="Belum">Belum</option>
+              <option data-en="In process" data-id="Dalam proses">Dalam proses</option>
+            </select>
           </div>
-          <div class="browser-bar">lumiere-clinic.com</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="clinic-template.html" title="Clinic Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">LUMIÈRE — Clinic</span>
-            <span class="template-tag" data-en="beauty clinic" data-id="klinik kecantikan">klinik kecantikan</span>
-          </div>
-          <p class="template-desc" data-en="A premium aesthetic clinic site with services, doctor profile, treatments, and a booking form. Warm cream and blush palette — elegant and trustworthy." data-id="Website klinik kecantikan premium dengan layanan, profil dokter, treatment, dan form booking. Palet krem dan blush — elegan dan terpercaya.">Website klinik kecantikan premium dengan layanan, profil dokter, treatment, dan form booking.</p>
-          <div class="template-pills">
-            <span class="template-pill">Services Grid</span>
-            <span class="template-pill">Doctor Profile</span>
-            <span class="template-pill">Booking Form</span>
-            <span class="template-pill">Testimonials</span>
-          </div>
-          <div class="template-actions">
-            <a href="clinic-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          <div class="field">
+            <label data-en="Tax filing so far <span class='req'>*</span>" data-id="Pelaporan pajak selama ini <span class='req'>*</span>">Pelaporan pajak selama ini <span class="req">*</span></label>
+            <select name="Pelaporan pajak" required>
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Never filed" data-id="Belum pernah">Belum pernah</option>
+              <option data-en="Self-filed" data-id="Lapor sendiri">Lapor sendiri</option>
+              <option data-en="Another consultant" data-id="Konsultan lain">Konsultan lain</option>
+            </select>
           </div>
         </div>
       </div>
 
-      <!-- WEDDING -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">amore-wedding.co</div>
+      <!-- 04 KEBUTUHAN -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">04</span><span class="fblock-title" data-en="What you need" data-id="Kebutuhan">Kebutuhan</span></div>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif; font-size:13px; color:var(--gray-3); margin:-0.75rem 0 1.25rem; line-height:1.6;" data-en="Select one or more — whatever applies." data-id="Pilih satu atau lebih — sesuai kebutuhan Anda.">Pilih satu atau lebih — sesuai kebutuhan Anda.</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Pembukuan"><span data-en="Bookkeeping" data-id="Pembukuan">Pembukuan</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Kepatuhan Pajak"><span data-en="Tax compliance" data-id="Kepatuhan Pajak">Kepatuhan Pajak</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Laporan Keuangan"><span data-en="Financial reports" data-id="Laporan Keuangan">Laporan Keuangan</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Payroll"><span>Payroll</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Analytics"><span>Data Analytics</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Website"><span>Website</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Belum yakin"><span data-en="Not sure yet" data-id="Belum yakin">Belum yakin</span></label>
         </div>
-        <div class="template-preview">
-          <iframe src="wedding-template.html" title="Wedding Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">AMORE — Wedding</span>
-            <span class="template-tag" data-en="wedding organizer" data-id="wedding organizer">wedding organizer</span>
+        <div class="form-err" id="checkError" style="margin-top:1rem;" data-en="Please select at least one need." data-id="Mohon pilih minimal satu kebutuhan.">Mohon pilih minimal satu kebutuhan.</div>
+      </div>
+
+      <!-- 05 KONTAK -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">05</span><span class="fblock-title" data-en="Contact" data-id="Kontak">Kontak</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="WhatsApp <span class='req'>*</span>" data-id="WhatsApp <span class='req'>*</span>">WhatsApp <span class="req">*</span></label>
+            <input type="tel" name="WhatsApp" required placeholder="0812 3456 7890">
           </div>
-          <p class="template-desc" data-en="Romantic editorial wedding organizer site with packages, photo gallery, testimonials, and contact form. Blush white palette — soft and timeless." data-id="Website wedding organizer editorial romantis dengan paket, galeri foto, testimoni, dan form kontak. Palet blush putih — lembut dan timeless.">Website wedding organizer editorial romantis dengan paket, galeri foto, dan form kontak.</p>
-          <div class="template-pills">
-            <span class="template-pill">Packages</span>
-            <span class="template-pill">Photo Gallery</span>
-            <span class="template-pill">Testimonials</span>
-            <span class="template-pill">Contact Form</span>
+          <div class="field">
+            <label data-en="Email <span class='opt'>(optional)</span>" data-id="Email <span class='opt'>(opsional)</span>">Email <span class="opt">(opsional)</span></label>
+            <input type="email" name="Email" placeholder="nama@email.com">
           </div>
-          <div class="template-actions">
-            <a href="wedding-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
+          <div class="field full">
+            <label data-en="Notes / message <span class='opt'>(optional)</span>" data-id="Catatan / pesan <span class='opt'>(opsional)</span>">Catatan / pesan <span class="opt">(opsional)</span></label>
+            <textarea name="Catatan" placeholder="Ceritakan sedikit tentang kebutuhan Anda…"></textarea>
           </div>
         </div>
       </div>
 
-      <!-- KOS-KOSAN -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">nestkos.id</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="kos-template.html" title="Kos Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">NEST — Kos-Kosan</span>
-            <span class="template-tag" data-en="boarding house" data-id="kos-kosan">kos-kosan</span>
-          </div>
-          <p class="template-desc" data-en="Clean and practical boarding house site with room listings, facilities, location map, reviews, and booking form. Ideal for kos owners who want to attract more residents online." data-id="Website kos-kosan bersih dan praktis dengan listing kamar, fasilitas, peta lokasi, ulasan, dan form booking. Ideal untuk pemilik kos yang ingin menarik penghuni lebih banyak.">Website kos-kosan bersih dan praktis dengan listing kamar, fasilitas, lokasi, dan form booking.</p>
-          <div class="template-pills">
-            <span class="template-pill">Room Listings</span>
-            <span class="template-pill">Facilities</span>
-            <span class="template-pill">Location Map</span>
-            <span class="template-pill">Reviews</span>
-          </div>
-          <div class="template-actions">
-            <a href="kos-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
-          </div>
-        </div>
+      <div class="form-foot">
+        <div class="form-err" id="formError" data-en="Something went wrong. Please try again, or message me directly on WhatsApp." data-id="Terjadi kesalahan. Coba lagi, atau hubungi saya langsung via WhatsApp.">Terjadi kesalahan. Coba lagi, atau hubungi saya langsung via WhatsApp.</div>
+        <button type="submit" class="submit-btn" id="submitBtn" data-en="Send form →" data-id="Kirim Formulir →">Kirim Formulir →</button>
+        <p class="form-note" data-en="Your data is used only to prepare your consultation. No ID numbers or bank details are collected here." data-id="Data Anda hanya digunakan untuk menyiapkan konsultasi. Tidak ada nomor identitas atau rekening yang dikumpulkan di sini.">Data Anda hanya digunakan untuk menyiapkan konsultasi. Tidak ada nomor identitas atau rekening yang dikumpulkan di sini.</p>
       </div>
+    </form>
 
-      <!-- DURIAN -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">tanahlembah.id</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="durian-template.html" title="Durian Plantation Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">TANAH LEMBAH — Durian</span>
-            <span class="template-tag" data-en="plantation" data-id="perkebunan">perkebunan</span>
-          </div>
-          <p class="template-desc" data-en="An earthy plantation site for a durian buyer & farmer educator based in Palu. Farmers can sell their harvest and register for free growing workshops." data-id="Website perkebunan earthy untuk pembeli durian & edukator petani di Palu. Petani bisa jual panen dan daftar workshop budidaya gratis.">Website perkebunan untuk pembeli durian & edukator petani di Palu. Petani bisa jual panen dan daftar workshop gratis.</p>
-          <div class="template-pills">
-            <span class="template-pill">Sell to Us</span>
-            <span class="template-pill">Workshop Signup</span>
-            <span class="template-pill">Gallery</span>
-            <span class="template-pill">Testimonials</span>
-          </div>
-          <div class="template-actions">
-            <a href="durian-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- HOTEL -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">nusantarahouse.com</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="hotel-template.html" title="Hotel Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">NUSANTARA HOUSE</span>
-            <span class="template-tag" data-en="hotel" data-id="hotel">hotel</span>
-          </div>
-          <p class="template-desc" data-en="A warm boutique hotel site rooted in Indonesian culture. Room listings with booking form, facilities, gallery, testimonials, and location. Terracotta and rattan aesthetic." data-id="Website hotel boutique yang hangat dengan nuansa budaya Indonesia. Listing kamar dengan form booking, fasilitas, galeri, testimoni, dan lokasi.">Website hotel boutique dengan nuansa Indonesia. Listing kamar, form booking, fasilitas, galeri, dan lokasi.</p>
-          <div class="template-pills">
-            <span class="template-pill">Room Listings</span>
-            <span class="template-pill">Booking Form</span>
-            <span class="template-pill">Facilities</span>
-            <span class="template-pill">Gallery</span>
-          </div>
-          <div class="template-actions">
-            <a href="hotel-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- RESTAURANT -->
-      <div class="template-card">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-bar">rempah.id</div>
-        </div>
-        <div class="template-preview">
-          <iframe src="restaurant-template.html" title="Restaurant Template" scrolling="no" loading="lazy"></iframe>
-          <div class="template-preview-overlay"></div>
-        </div>
-        <div class="template-info">
-          <div class="template-meta">
-            <span class="template-name">REMPAH — Restaurant</span>
-            <span class="template-tag" data-en="restaurant" data-id="restoran">restoran</span>
-          </div>
-          <p class="template-desc" data-en="A dark moody site for a modern Indonesian fine-casual restaurant. Full menu with food photos, chef profile, dining experience section, and reservation form." data-id="Website dark moody untuk restoran Indonesia modern. Menu lengkap dengan foto makanan, profil chef, pengalaman dining, dan form reservasi.">Website dark moody untuk restoran Indonesia modern. Menu dengan foto, profil chef, dan form reservasi.</p>
-          <div class="template-pills">
-            <span class="template-pill">Full Menu</span>
-            <span class="template-pill">Chef Profile</span>
-            <span class="template-pill">Reservations</span>
-            <span class="template-pill">Gallery</span>
-          </div>
-          <div class="template-actions">
-            <a href="restaurant-template.html" target="_blank" class="btn-preview" data-en="View Live →" data-id="Lihat Live →">Lihat Live →</a>
-            <a href="form.html" class="btn-order" data-en="Order This" data-id="Pesan Ini">Pesan Ini</a>
-          </div>
-        </div>
-      </div>
-
+    <!-- THANK YOU -->
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2 data-en="Thank you — message received." data-id="Terima kasih — pesan Anda terkirim.">Terima kasih — pesan Anda terkirim.</h2>
+      <p data-en="I'll review your details and get back to you within 24 hours, directly. Talk soon." data-id="Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.">Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.</p>
+      <a href="index.html" data-en="Back to home" data-id="Kembali ke beranda">Kembali ke beranda</a>
     </div>
-  </div>
-</section>
-
-
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-inner">
-    <div class="cta-text">
-      <h2 data-en="Want a Website Like <span>This?</span>" data-id="Mau Website Seperti <span>Ini?</span>">Mau Website Seperti <span>Ini?</span></h2>
-      <p data-en="Tell me about your business and I'll suggest the right design direction. First consultation is free." data-id="Ceritakan bisnis Anda dan saya akan sarankan arah desain yang tepat. Konsultasi pertama gratis.">Ceritakan bisnis Anda dan saya akan sarankan arah desain yang tepat. Konsultasi pertama gratis.</p>
-    </div>
-    <a href="form.html" class="btn-navy" data-en="Let's Talk →" data-id="Hubungi Saya →">Hubungi Saya →</a>
   </div>
 </section>
 
@@ -674,11 +758,9 @@
     document.getElementById('hamburgerBtn').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
   }
-
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
-
   function applyLang(lang) {
     document.querySelectorAll('[data-en][data-id]').forEach(el => {
       el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.id;
@@ -695,46 +777,36 @@
     const saved = localStorage.getItem('adj_lang') || 'id';
     if (saved === 'en') applyLang('en');
   })();
+
+  // ── FORM SUBMIT (Web3Forms) ──
+  (function() {
+    const form = document.getElementById('intakeForm');
+    const btn = document.getElementById('submitBtn');
+    form.querySelectorAll('input[name="Kebutuhan"]').forEach(c => c.addEventListener('change', () => {
+      document.getElementById('checkError').style.display = 'none';
+    }));
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      document.getElementById('formError').style.display = 'none';
+      const checks = form.querySelectorAll('input[name="Kebutuhan"]:checked');
+      if (checks.length === 0) { document.getElementById('checkError').style.display = 'block'; return; }
+      const lang = localStorage.getItem('adj_lang') || 'id';
+      btn.disabled = true; btn.textContent = lang === 'en' ? 'Sending…' : 'Mengirim…';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+        const json = await res.json();
+        if (!json.success) throw new Error(json.message || 'failed');
+        form.style.display = 'none';
+        document.getElementById('thankyou').style.display = 'block';
+        const top = document.querySelector('.form-hero');
+        if (top) window.scrollTo({ top: top.offsetTop - 60, behavior: 'smooth' });
+      } catch (err) {
+        btn.disabled = false; btn.textContent = lang === 'en' ? 'Send form →' : 'Kirim Formulir →';
+        document.getElementById('formError').style.display = 'block';
+      }
+    });
+  })();
 </script>
 <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('img').forEach(function(i){i.addEventListener('error',function(){i.style.display='none';});if(i.complete&&i.naturalWidth===0){i.style.display='none';}});});</script>
 </body>
-
-<!-- PKP3 Certificate Modal -->
-<div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Praktisi/Pengacara Pajak (PKP3) — Jimly School of Law</span><button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button></div>
-    <iframe src="Surat_Kelulusan_Anthony_Djiady_Djie__BS___CTAP_.pdf"></iframe>
-  </div>
-</div>
-<div id="dibimbing-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span><button class="cert-modal-close" onclick="closeCertModal('dibimbing-modal')">&times;</button></div>
-    <iframe src="Dibimbing_DADS.pdf"></iframe>
-  </div>
-</div>
-<div id="biola-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('biola-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">B.S. Business Administration — Biola University</span><button class="cert-modal-close" onclick="closeCertModal('biola-modal')">&times;</button></div>
-    <div class="cert-modal-img-wrap"><img src="Biola_University_Bachelor_Certificate.jpg" alt="Biola University Bachelor Certificate"></div>
-  </div>
-</div>
-<div id="brevet-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B — IAI</span><button class="cert-modal-close" onclick="closeCertModal('brevet-modal')">&times;</button></div>
-    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
-  </div>
-</div>
-<div id="resume-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('resume-modal')">
-  <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Resume — Anthony Djiady Djie</span><button class="cert-modal-close" onclick="closeCertModal('resume-modal')">&times;</button></div>
-    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf"></iframe>
-  </div>
-</div>
-<script>
-  function openCertModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeCertModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ document.querySelectorAll('.cert-modal.open').forEach(function(m){m.classList.remove('open');}); document.body.style.overflow=''; }});
-  var resumeBtn=document.getElementById('viewResumeBtn');
-  if(resumeBtn){resumeBtn.addEventListener('click',function(e){e.preventDefault();openCertModal('resume-modal');});}
-</script>
 </html>
