@@ -510,7 +510,6 @@
       <li><a href="form.html" class="active" data-en="Form" data-id="Formulir">Formulir</a></li>
   </ul>
   <div class="nav-right">
-    <a href="form.html" data-en="Form" data-id="Formulir">Formulir</a>
   <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
     <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
@@ -588,6 +587,10 @@
   <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Intake Form" data-id="Formulir">Formulir</span></div>
   <h1 data-en="Let's get to know <span>your business.</span>" data-id="Mari kenali <span>bisnis Anda.</span>">Mari kenali <span>bisnis Anda.</span></h1>
   <p data-en="Fill in your business details below. It takes about 3 minutes, and helps me scope the work and prepare a fair quote before we talk. The first consultation is free." data-id="Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.">Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.</p>
+  <div style="display:inline-flex; align-items:center; gap:10px; margin-top:1.4rem; padding:10px 14px; background:rgba(201,165,103,0.06); border:1px solid rgba(201,165,103,0.22); border-radius:8px;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A567" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+    <span style="font-family:var(--mono); font-size:12.5px; color:var(--gray-2); letter-spacing:0.02em;" data-en="All information you share is strictly confidential — used only to prepare your consultation, never sold or shared." data-id="Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.">Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.</span>
+  </div>
 </div>
 
 <!-- FORM -->
@@ -701,11 +704,12 @@
         <div class="fblock-head"><span class="fblock-num">04</span><span class="fblock-title" data-en="What you need" data-id="Kebutuhan">Kebutuhan</span></div>
         <p style="font-family:'Instrument Sans',system-ui,sans-serif; font-size:13px; color:var(--gray-3); margin:-0.75rem 0 1.25rem; line-height:1.6;" data-en="Select one or more — whatever applies." data-id="Pilih satu atau lebih — sesuai kebutuhan Anda.">Pilih satu atau lebih — sesuai kebutuhan Anda.</p>
         <div class="checks">
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Pembukuan"><span data-en="Bookkeeping" data-id="Pembukuan">Pembukuan</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Pembukuan / Akuntansi"><span data-en="Bookkeeping / Accounting" data-id="Pembukuan / Akuntansi">Pembukuan / Akuntansi</span></label>
           <label class="check"><input type="checkbox" name="Kebutuhan" value="Kepatuhan Pajak"><span data-en="Tax compliance" data-id="Kepatuhan Pajak">Kepatuhan Pajak</span></label>
           <label class="check"><input type="checkbox" name="Kebutuhan" value="Laporan Keuangan"><span data-en="Financial reports" data-id="Laporan Keuangan">Laporan Keuangan</span></label>
           <label class="check"><input type="checkbox" name="Kebutuhan" value="Payroll"><span>Payroll</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Analytics"><span>Data Analytics</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Analysis"><span data-en="Data Analysis" data-id="Analisis Data">Analisis Data</span></label>
+          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Science"><span>Data Science</span></label>
           <label class="check"><input type="checkbox" name="Kebutuhan" value="Website"><span>Website</span></label>
           <label class="check"><input type="checkbox" name="Kebutuhan" value="Belum yakin"><span data-en="Not sure yet" data-id="Belum yakin">Belum yakin</span></label>
         </div>
