@@ -122,27 +122,9 @@
     .browser-bar::before { content:'🔒'; font-size:9px; }
 
     /* tool preview area */
-    .tool-preview { position:relative; height:220px; overflow:hidden; }
-    .tool-preview-mock { width:100%; height:100%; display:flex; flex-direction:column; padding:16px; gap:8px; }
-    .mock-topbar { height:28px; background:rgba(255,255,255,0.04); border-radius:4px; display:flex; align-items:center; gap:8px; padding:0 10px; }
-    .mock-topbar-dot { width:6px; height:6px; border-radius:50%; background:rgba(201,165,103,0.4); }
-    .mock-body { display:flex; gap:8px; flex:1; }
-    .mock-sidebar { width:80px; background:rgba(255,255,255,0.03); border-radius:4px; padding:8px; display:flex; flex-direction:column; gap:6px; }
-    .mock-sidebar-item { height:8px; border-radius:2px; background:rgba(255,255,255,0.08); }
-    .mock-sidebar-item.active { background:rgba(201,165,103,0.4); width:70%; }
-    .mock-main { flex:1; display:flex; flex-direction:column; gap:8px; }
-    .mock-row { display:flex; gap:6px; }
-    .mock-chip { height:24px; border-radius:4px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); flex:1; }
-    .mock-chip.active { background:rgba(201,165,103,0.15); border-color:rgba(201,165,103,0.35); }
-    .mock-card { border-radius:6px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); flex:1; padding:8px; display:flex; flex-direction:column; gap:5px; }
-    .mock-card-line { height:6px; border-radius:2px; background:rgba(255,255,255,0.07); }
-    .mock-card-line.short { width:60%; }
-    .mock-card-line.gold { background:rgba(201,165,103,0.3); width:40%; }
-    .mock-calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; flex:1; }
-    .mock-cal-cell { border-radius:3px; background:rgba(255,255,255,0.03); }
-    .mock-cal-cell.filled { background:rgba(201,165,103,0.15); }
-    .mock-cal-cell.bright { background:rgba(201,165,103,0.35); }
-    .tool-preview-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, var(--navy-mid) 100%); pointer-events:none; }
+    .tool-preview { position:relative; height:320px; overflow:hidden; background:#0a0a0a; }
+    .tool-preview iframe { width:160%; height:160%; transform:scale(0.625); transform-origin:top left; border:none; pointer-events:none; }
+    .tool-preview-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 55%, var(--navy-mid) 100%); pointer-events:none; }
     .tool-preview-coming { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(13,17,23,0.85); gap:12px; }
     .coming-soon-badge { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--gray-3); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:6px 14px; border-radius:3px; letter-spacing:0.12em; text-transform:uppercase; }
     .coming-soon-icon { font-size:32px; opacity:0.3; }
@@ -308,40 +290,9 @@
           <!-- Replace the href in the Launch App button below with your deployed Content Studio URL -->
           <div class="browser-bar">prospera.app/studio</div>
         </div>
-        <div class="tool-preview" style="background:#0D1117;">
-          <div class="tool-preview-mock">
-            <div class="mock-topbar">
-              <div class="mock-topbar-dot"></div>
-              <div style="height:6px;border-radius:2px;background:rgba(201,165,103,0.25);width:120px;"></div>
-            </div>
-            <div class="mock-body">
-              <div class="mock-sidebar">
-                <div class="mock-sidebar-item active"></div>
-                <div class="mock-sidebar-item"></div>
-                <div class="mock-sidebar-item"></div>
-                <div class="mock-sidebar-item"></div>
-              </div>
-              <div class="mock-main">
-                <div class="mock-row">
-                  <div class="mock-chip active"></div>
-                  <div class="mock-chip active"></div>
-                  <div class="mock-chip"></div>
-                </div>
-                <div class="mock-row" style="flex:1;">
-                  <div class="mock-card">
-                    <div class="mock-card-line gold"></div>
-                    <div class="mock-card-line short"></div>
-                    <div class="mock-card-line"></div>
-                  </div>
-                  <div class="mock-card">
-                    <div class="mock-card-line"></div>
-                    <div class="mock-card-line short"></div>
-                    <div class="mock-card-line gold"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="tool-preview">
+          <!-- Replace the src URL below with your deployed Content Studio URL -->
+          <iframe src="https://prospera-studio.vercel.app" loading="lazy" title="Prospera Content Studio"></iframe>
           <div class="tool-preview-overlay"></div>
         </div>
         <div class="tool-info">
@@ -375,28 +326,7 @@
           </div>
           <div class="browser-bar" style="color:#4D443D;">prospera.app/pos</div>
         </div>
-        <div class="tool-preview" style="background:#0D1117;">
-          <div class="tool-preview-mock" style="opacity:0.3;">
-            <div class="mock-topbar">
-              <div class="mock-topbar-dot"></div>
-              <div style="height:6px;border-radius:2px;background:rgba(255,255,255,0.1);width:100px;"></div>
-            </div>
-            <div class="mock-body">
-              <div class="mock-sidebar">
-                <div class="mock-sidebar-item"></div>
-                <div class="mock-sidebar-item"></div>
-                <div class="mock-sidebar-item"></div>
-              </div>
-              <div class="mock-main">
-                <div class="mock-calendar">
-                  <div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div>
-                  <div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell bright"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div>
-                  <div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell"></div>
-                  <div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell bright"></div><div class="mock-cal-cell"></div><div class="mock-cal-cell filled"></div><div class="mock-cal-cell"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="tool-preview">
           <div class="tool-preview-coming">
             <div class="coming-soon-icon">🖥️</div>
             <div class="coming-soon-badge" data-en="In Development" data-id="Dalam Pengembangan">Dalam Pengembangan</div>
