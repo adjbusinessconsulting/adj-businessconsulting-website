@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apps — Prospera Business Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0D1117; --navy-mid: #131820; --navy-light: #1C232D;
+      --navy-line: rgba(201,165,103,0.10);
+      --cyan: #C9A567; --cyan-dim: #8B6914;
+      --cyan-glow: rgba(201,165,103,0.15);
+      --white: #F4EFE6;
+      --gray-1: #D6D0C8; --gray-2: #A09890; --gray-3: #7A7068; --gray-4: #4D443D;
+      --h: 'Spectral', Georgia, serif;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--mono); background: var(--navy); color: var(--gray-1); font-size: 14px; line-height: 1.6; overflow-x: hidden; animation: pageIn 0.6s ease-out; }
+    @keyframes pageIn { from{opacity:0} to{opacity:1} }
+
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.10; background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); mix-blend-mode:overlay; }
+    body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:0; background-image: linear-gradient(rgba(201,165,103,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,165,103,0.025) 1px, transparent 1px); background-size:64px 64px; }
+    body > * { position:relative; z-index:2; }
+
+    ::selection { background:rgba(201,165,103,0.25); color:var(--white); }
+    ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:var(--navy); } ::-webkit-scrollbar-thumb { background:var(--navy-light); } ::-webkit-scrollbar-thumb:hover { background:var(--cyan-dim); }
+
+    /* ── NAV ── */
+    nav { position:sticky; top:0; z-index:50; background:rgba(13,17,23,0.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--navy-line); display:flex; align-items:center; justify-content:space-between; padding:0 5vw; height:56px; font-size:13px; transition:box-shadow 0.3s, background 0.3s; }
+    nav.scrolled { box-shadow:0 4px 30px rgba(0,0,0,0.4); background:rgba(13,17,23,0.95); }
+    .nav-logo { display:flex; align-items:center; color:var(--white); font-weight:700; text-decoration:none; letter-spacing:0.02em; font-family:var(--h); font-size:14px; position:relative; padding-left:32px; }
+    .nav-logo::before { content:'P'; position:absolute; left:0; top:50%; transform:translateY(-50%); width:22px; height:22px; border:1.5px solid var(--cyan); display:grid; place-items:center; font-size:11px; font-weight:800; color:var(--cyan); }
+    .nav-logo::after { content:''; position:absolute; left:-3px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:1px solid var(--cyan); opacity:0.3; animation:logoPulse 2.4s ease-in-out infinite; }
+    @keyframes logoPulse { 0%,100%{opacity:0.1;transform:translateY(-50%) scale(1)} 50%{opacity:0.4;transform:translateY(-50%) scale(1.08)} }
+    .nav-logo span { color:var(--gray-3); font-weight:400; margin-left:6px; }
+    .nav-links { display:flex; gap:0; list-style:none; font-size:13px; }
+    .nav-links a { font-family:var(--mono); color:var(--gray-2); text-decoration:none; padding:8px 14px; border-radius:3px; transition:all 0.15s; position:relative; letter-spacing:0; }
+    .nav-links a:hover { color:var(--white); background:rgba(201,165,103,0.06); }
+    .nav-links a.active { color:var(--cyan); }
+    .nav-links a.active::after { content:''; position:absolute; left:8px; right:8px; bottom:2px; height:1px; background:var(--cyan); box-shadow:0 0 8px var(--cyan); }
+    .nav-cta { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--navy); background:var(--cyan); padding:8px 16px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; transition:all 0.2s; }
+    .nav-cta:hover { background:#D9B97C; transform:translateY(-1px); }
+    .nav-right { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--gray-2); background:rgba(255,255,255,0.03); border:1px solid var(--navy-line); padding:5px 10px; border-radius:3px; cursor:pointer; letter-spacing:0.08em; transition:all 0.2s; }
+    .lang-toggle:hover { border-color:var(--cyan); color:var(--cyan); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:1.5px; background:var(--gray-2); border-radius:1px; transition:all 0.3s; }
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)} .hamburger.open span:nth-child(2){opacity:0} .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+    .mobile-menu { display:none; position:absolute; top:56px; left:0; right:0; background:var(--navy-mid); border-bottom:1px solid rgba(201,165,103,0.1); padding:1.5rem 5vw; flex-direction:column; gap:1rem; z-index:99; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:var(--mono); font-size:15px; color:var(--gray-2); text-decoration:none; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); transition:color 0.2s; }
+    .mobile-menu a:hover, .mobile-menu a.active { color:var(--cyan); }
+    .mobile-menu .nav-cta { margin-top:0.5rem; text-align:center; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { background:transparent; padding:4rem 5vw 3rem; position:relative; overflow:hidden; }
+    .page-header-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+    .breadcrumb { font-family:var(--mono); font-size:12px; color:var(--gray-3); margin-bottom:1.5rem; letter-spacing:0.02em; }
+    .breadcrumb a { color:var(--gray-3); text-decoration:none; transition:color 0.2s; } .breadcrumb a:hover { color:var(--white); } .breadcrumb span { color:var(--white); }
+    @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes slideLeft  { from{opacity:0;transform:translateX(40px)}  to{opacity:1;transform:translateX(0)} }
+    @keyframes fadeUp     { from{opacity:0;transform:translateY(24px)}  to{opacity:1;transform:translateY(0)} }
+    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; opacity:0; animation:slideRight 0.8s ease 0.15s forwards; }
+    .page-title::before { content:''; position:absolute; left:-8%; top:50%; width:70%; height:280%; transform:translateY(-50%); background:radial-gradient(ellipse at center, rgba(201,165,103,0.22) 0%, rgba(201,165,103,0.10) 35%, rgba(201,165,103,0) 70%); filter:blur(40px); z-index:-1; pointer-events:none; animation:haloBreath 6s ease-in-out infinite; }
+    @keyframes haloBreath { 0%,100%{opacity:0.85;transform:translateY(-50%) scale(1)} 50%{opacity:1;transform:translateY(-50%) scale(1.05)} }
+    .page-title .cursor { display:inline-block; color:var(--cyan); animation:blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cyan-glow { text-shadow:0 0 40px rgba(201,165,103,0.15); }
+    .hero-positioning { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; max-width:540px; line-height:1.9; margin-bottom:2.5rem; margin-top:0.5rem; opacity:0; animation:slideRight 0.8s ease 0.3s forwards; }
+    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; opacity:0; animation:fadeUp 0.7s ease 0.45s forwards; }
+    .hero-stat { flex:1; display:flex; flex-direction:column; gap:3px; }
+    .hero-stat-num { font-family:var(--mono); font-size:clamp(28px,3.2vw,36px); font-weight:600; color:var(--white); line-height:1; letter-spacing:-0.02em; }
+    .hero-stat-unit { font-size:0.55em; color:var(--cyan); font-weight:500; margin-left:1px; }
+    .hero-stat-label { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px; }
+    .hero-stat-divider { width:1px; height:40px; background:var(--navy-line); margin:0 1.25rem; }
+
+    /* ── RIGHT COLUMN ── */
+    .page-header-right { padding-top:3.5rem; opacity:0; animation:slideLeft 0.8s ease 0.3s forwards; }
+    .layanan-card { background:rgba(255,255,255,0.03); border:1px solid rgba(201,165,103,0.18); border-radius:10px; padding:2rem; display:flex; flex-direction:column; gap:1.5rem; }
+    .layanan-card-label { font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:0.18em; text-transform:uppercase; }
+    .layanan-stats-row { display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:1.25rem; border-bottom:1px solid rgba(201,165,103,0.10); }
+    .layanan-stat { display:flex; flex-direction:column; gap:4px; }
+    .layanan-stat-num { font-family:var(--mono); font-size:clamp(28px,3vw,38px); font-weight:600; color:var(--cyan); line-height:1; }
+    .layanan-stat-label { font-family:var(--mono); font-size:11px; color:var(--gray-3); letter-spacing:0.04em; }
+    .layanan-pills { display:flex; flex-direction:column; gap:8px; }
+    .layanan-pill { display:flex; align-items:center; gap:12px; padding:13px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:6px; transition:all 0.2s; }
+    .layanan-pill:hover { border-color:rgba(201,165,103,0.25); background:rgba(201,165,103,0.04); }
+    .layanan-pill-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; box-shadow:0 0 8px rgba(201,165,103,0.5); }
+    .layanan-pill-dot.live { background:var(--cyan); box-shadow:0 0 8px rgba(201,165,103,0.5); }
+    .layanan-pill-dot.soon { background:var(--gray-4); box-shadow:none; }
+    .layanan-pill-name { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); flex:1; }
+    .layanan-pill-tag { font-family:var(--mono); font-size:11px; color:var(--cyan); opacity:0.75; letter-spacing:0.04em; white-space:nowrap; }
+    .layanan-pill-tag.soon { color:var(--gray-3); opacity:1; }
+
+    .glow-line { height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:0.2; margin:0; }
+
+    /* ── TOOLS SECTION ── */
+    .tools-section { padding:4rem 5vw 6rem; }
+    .tools-inner { max-width:1200px; margin:0 auto; }
+    .section-eyebrow { font-family:var(--mono); font-size:10px; color:var(--cyan); letter-spacing:0.18em; margin-bottom:0.75rem; display:block; text-transform:uppercase; }
+    .section-title { font-family:var(--h); font-size:clamp(18px,2.5vw,28px); font-weight:700; color:var(--white); margin-bottom:3rem; }
+
+    /* ── TOOL CARDS ── */
+    .tool-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:2rem; }
+    .tool-card { background:var(--navy-mid); border:1px solid var(--navy-line); border-radius:10px; overflow:hidden; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .tool-card:hover { border-color:rgba(201,165,103,0.25); transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,0.35); }
+    .tool-card.coming-soon { opacity:0.7; }
+    .tool-card.coming-soon:hover { transform:none; box-shadow:none; border-color:var(--navy-line); }
+
+    /* browser chrome */
+    .browser-chrome { background:#1a2030; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .browser-dots { display:flex; gap:6px; }
+    .browser-dot { width:10px; height:10px; border-radius:50%; }
+    .browser-dot.red { background:#FF5F57; }
+    .browser-dot.yellow { background:#FEBC2E; }
+    .browser-dot.green { background:#28C840; }
+    .browser-bar { flex:1; background:rgba(255,255,255,0.05); border-radius:4px; padding:5px 10px; font-family:var(--mono); font-size:10px; color:var(--gray-3); display:flex; align-items:center; gap:6px; }
+    .browser-bar::before { content:'🔒'; font-size:9px; }
+
+    /* tool preview area */
+    .tool-preview { position:relative; height:320px; overflow:hidden; background:#0a0a0a; }
+    .tool-preview iframe { width:160%; height:160%; transform:scale(0.625); transform-origin:top left; border:none; pointer-events:none; }
+    .tool-preview-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 55%, var(--navy-mid) 100%); pointer-events:none; }
+    .tool-preview-coming { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(13,17,23,0.85); gap:12px; }
+    .coming-soon-badge { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--gray-3); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:6px 14px; border-radius:3px; letter-spacing:0.12em; text-transform:uppercase; }
+    .coming-soon-icon { font-size:32px; opacity:0.3; }
+
+    /* card info */
+    .tool-info { padding:1.25rem 1.5rem 1.5rem; }
+    .tool-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.6rem; }
+    .tool-name { font-family:var(--h); font-size:16px; font-weight:700; color:var(--white); }
+    .tool-status { font-family:var(--mono); font-size:10px; padding:3px 9px; border-radius:3px; letter-spacing:0.08em; text-transform:uppercase; }
+    .tool-status.live { color:var(--cyan); background:rgba(201,165,103,0.08); border:1px solid rgba(201,165,103,0.15); }
+    .tool-status.dev { color:var(--gray-3); background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); }
+    .tool-desc { font-family:var(--mono); font-size:12px; color:var(--gray-3); line-height:1.6; margin-bottom:1rem; font-family:var(--sans); }
+    .tool-features { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.25rem; }
+    .tool-feature { font-family:var(--mono); font-size:10px; color:var(--gray-2); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:3px 8px; border-radius:3px; }
+    .tool-actions { display:flex; gap:10px; }
+    .btn-launch { font-family:var(--mono); font-size:12px; font-weight:600; background:var(--cyan); color:var(--navy); padding:9px 18px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
+    .btn-launch:hover { background:#D9B97C; transform:translateY(-1px); }
+    .btn-ghost { font-family:var(--mono); font-size:12px; color:var(--gray-1); border:1px solid rgba(201,165,103,0.2); padding:9px 18px; background:transparent; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; flex:1; justify-content:center; }
+    .btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(201,165,103,0.04); }
+    .btn-disabled { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--gray-4); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:9px 18px; border-radius:3px; display:inline-flex; align-items:center; gap:6px; flex:1; justify-content:center; cursor:not-allowed; }
+
+    /* ── CTA ── */
+    .cta-section { padding:4rem 5vw; border-top:1px solid var(--navy-line); position:relative; overflow:hidden; }
+    .cta-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .cta-text h2 { font-family:var(--h); font-size:clamp(18px,2.5vw,26px); font-weight:700; color:var(--white); margin-bottom:0.5rem; }
+    .cta-text h2 span { color:var(--cyan); }
+    .cta-text p { font-family:var(--sans); font-size:14px; color:var(--gray-2); line-height:1.6; }
+    .btn-navy { font-family:var(--mono); font-size:13px; font-weight:600; background:var(--cyan); color:var(--navy); padding:11px 22px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s; white-space:nowrap; }
+    .btn-navy:hover { background:#D9B97C; transform:translateY(-1px); box-shadow:0 8px 24px rgba(201,165,103,0.25); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--navy-mid); border-top:1px solid var(--navy-line); padding:2.5rem 5vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .footer-logo { font-family:var(--h); font-size:16px; font-weight:700; color:var(--white); text-decoration:none; }
+    .footer-logo span { color:var(--cyan); }
+    footer p { font-family:var(--mono); font-size:12px; color:var(--gray-3); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .page-header-inner { grid-template-columns:1fr; gap:2rem; }
+      .page-header-right { padding-top:0; }
+      .nav-links, .nav-right > a:not(.nav-cta), .nav-right > .lang-toggle { display:none; }
+      .hamburger { display:flex; }
+      .nav-right { gap:8px; }
+      .tool-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px) {
+      .hero-stat-num { font-size:24px; }
+      .layanan-stat-num { font-size:24px; }
+      .cta-inner { flex-direction:column; align-items:flex-start; }
+    }
+
+    /* ── DC OVERRIDES ── */
+    .nav-logo { padding-left:34px !important; }
+    .footer-logo { position:relative; padding-left:30px; }
+    .footer-logo::before { content:'P'; position:absolute; left:0; top:50%; transform:translateY(-50%); width:20px; height:20px; border:1.5px solid var(--cyan); display:grid; place-items:center; font-size:10px; font-weight:800; color:var(--cyan); font-family:var(--mono); }
+    .page-title, .section-title, .cta-text h2, .tool-name, .footer-logo { font-weight:600 !important; letter-spacing:-0.005em !important; }
+    .hero-positioning, .tool-desc, .cta-text p { font-family:'Instrument Sans',system-ui,sans-serif !important; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Prospera <span>Business Consulting</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a></li>
+    <li><a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a></li>
+    <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
+    <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
+    <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
+    <li><a href="apps.html" class="active" data-en="Apps" data-id="Apps">Apps</a></li>
+    <li><a href="form.html" data-en="Form" data-id="Formulir">Formulir</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-en="Home" data-id="Beranda">Beranda</a>
+  <a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a>
+  <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
+  <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
+  <a href="website.html" data-en="Website" data-id="Website">Website</a>
+  <a href="apps.html" class="active" data-en="Apps" data-id="Apps">Apps</a>
+  <a href="form.html" data-en="Form" data-id="Formulir">Formulir</a>
+  <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-left">
+      <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Apps" data-id="Apps">Apps</span></div>
+      <h1 class="page-title cyan-glow" data-en="Apps" data-id="Apps">Apps<span class="cursor">_</span></h1>
+      <p class="hero-positioning" data-en="Practical software built to support smarter business operations — from social media planning to client management. Each tool is designed with real consulting workflows in mind." data-id="Perangkat lunak praktis yang dirancang untuk mendukung operasi bisnis yang lebih cerdas — dari perencanaan media sosial hingga manajemen klien. Setiap alat dirancang dengan alur kerja konsultasi nyata.">Perangkat lunak praktis yang dirancang untuk mendukung operasi bisnis yang lebih cerdas — dari perencanaan media sosial hingga manajemen klien. Setiap alat dirancang dengan alur kerja konsultasi nyata.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2<span class="hero-stat-unit">apps</span></div>
+          <div class="hero-stat-label" data-en="Live Now" data-id="Tersedia">Tersedia</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">1<span class="hero-stat-unit">+</span></div>
+          <div class="hero-stat-label" data-en="In Development" data-id="Dalam Pengembangan">Dalam Pengembangan</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">0<span class="hero-stat-unit">IDR</span></div>
+          <div class="hero-stat-label" data-en="Cost to Try" data-id="Biaya Coba">Biaya Coba</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header-right">
+      <div class="layanan-card">
+        <div class="layanan-card-label" data-en="Available Apps" data-id="Daftar Apps">Daftar Apps</div>
+        <div class="layanan-stats-row">
+          <div class="layanan-stat">
+            <div class="layanan-stat-num">2</div>
+            <div class="layanan-stat-label" data-en="Apps Built" data-id="Apps Dibangun">Apps Dibangun</div>
+          </div>
+          <div class="layanan-stat">
+            <div class="layanan-stat-num">2</div>
+            <div class="layanan-stat-label" data-en="Live" data-id="Live">Live</div>
+          </div>
+        </div>
+        <div class="layanan-pills">
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot live"></div>
+            <div class="layanan-pill-name" data-en="Content Studio" data-id="Content Studio">Content Studio</div>
+            <div class="layanan-pill-tag" data-en="Live" data-id="Live">Live</div>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot live"></div>
+            <div class="layanan-pill-name" data-en="POS System" data-id="Sistem POS">Sistem POS</div>
+            <div class="layanan-pill-tag" data-en="Live" data-id="Live">Live</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- TOOLS GRID -->
+<section class="tools-section">
+  <div class="tools-inner">
+    <span class="section-eyebrow" data-en="Our Apps" data-id="Apps Kami">Apps Kami</span>
+    <h2 class="section-title" data-en="Software Built for Real Workflows" data-id="Perangkat Lunak untuk Alur Kerja Nyata">Perangkat Lunak untuk Alur Kerja Nyata</h2>
+
+    <div class="tool-grid">
+
+      <!-- CONTENT STUDIO -->
+      <div class="tool-card">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <!-- Replace the href in the Launch App button below with your deployed Content Studio URL -->
+          <div class="browser-bar">prospera.app/studio</div>
+        </div>
+        <div class="tool-preview">
+          <!-- Replace the src URL below with your deployed Content Studio URL -->
+          <iframe src="https://prospera-content-studio-lkr2.vercel.app" loading="lazy" title="Prospera Content Studio"></iframe>
+          <div class="tool-preview-overlay"></div>
+        </div>
+        <div class="tool-info">
+          <div class="tool-meta">
+            <div class="tool-name" data-en="Prospera Content Studio" data-id="Prospera Content Studio">Prospera Content Studio</div>
+            <div class="tool-status live" data-en="Live" data-id="Live">Live</div>
+          </div>
+          <p class="tool-desc" data-en="Plan, draft, and schedule social media content across Facebook, Instagram, and TikTok — all in one place. Built for consultants and business owners who manage their own content." data-id="Rencanakan, buat, dan jadwalkan konten media sosial di Facebook, Instagram, dan TikTok — semuanya dalam satu tempat. Dibuat untuk konsultan dan pemilik bisnis yang mengelola konten mereka sendiri.">Rencanakan, buat, dan jadwalkan konten media sosial di Facebook, Instagram, dan TikTok — semuanya dalam satu tempat. Dibuat untuk konsultan dan pemilik bisnis yang mengelola konten mereka sendiri.</p>
+          <div class="tool-features">
+            <span class="tool-feature" data-en="Multi-platform" data-id="Multi-platform">Multi-platform</span>
+            <span class="tool-feature" data-en="Content Calendar" data-id="Kalender Konten">Kalender Konten</span>
+            <span class="tool-feature" data-en="File Upload" data-id="Upload File">Upload File</span>
+            <span class="tool-feature" data-en="Caption Editor" data-id="Editor Caption">Editor Caption</span>
+            <span class="tool-feature" data-en="Post Scheduler" data-id="Penjadwal Post">Penjadwal Post</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://prospera-content-studio-lkr2.vercel.app" target="_blank" class="btn-launch" data-en="Launch App →" data-id="Buka Aplikasi →">Buka Aplikasi →</a>
+            <a href="form.html" class="btn-ghost" data-en="Request Access" data-id="Minta Akses">Minta Akses</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- POS SYSTEM -->
+      <div class="tool-card">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="browser-bar">prospera-pos.vercel.app</div>
+        </div>
+        <div class="tool-preview">
+          <iframe src="https://prospera-pos.vercel.app/?demo=true" loading="lazy" title="Prospera POS"></iframe>
+          <div class="tool-preview-overlay"></div>
+        </div>
+        <div class="tool-info">
+          <div class="tool-meta">
+            <div class="tool-name" data-en="Prospera POS" data-id="Prospera POS">Prospera POS</div>
+            <div class="tool-status live" data-en="Live" data-id="Live">Live</div>
+          </div>
+          <p class="tool-desc" data-en="A web-based point-of-sale system for Indonesian SMEs — works on tablet and desktop, supports QRIS payment, and prints receipts via Bluetooth or USB thermal printer." data-id="Sistem kasir berbasis web untuk UKM Indonesia — berfungsi di tablet dan desktop, mendukung pembayaran QRIS, dan mencetak struk via printer thermal Bluetooth atau USB.">Sistem kasir berbasis web untuk UKM Indonesia — berfungsi di tablet dan desktop, mendukung pembayaran QRIS, dan mencetak struk via printer thermal Bluetooth atau USB.</p>
+          <div class="tool-features">
+            <span class="tool-feature" data-en="QRIS Payment" data-id="Pembayaran QRIS">Pembayaran QRIS</span>
+            <span class="tool-feature" data-en="Thermal Printing" data-id="Cetak Struk">Cetak Struk</span>
+            <span class="tool-feature" data-en="Inventory" data-id="Inventaris">Inventaris</span>
+            <span class="tool-feature" data-en="Sales Reports" data-id="Laporan Penjualan">Laporan Penjualan</span>
+            <span class="tool-feature" data-en="Multi-device" data-id="Multi-perangkat">Multi-perangkat</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://prospera-pos.vercel.app/?demo=true" target="_blank" class="btn-launch" data-en="Launch App →" data-id="Buka Aplikasi →">Buka Aplikasi →</a>
+            <a href="form.html" class="btn-ghost" data-en="Request Access" data-id="Minta Akses">Minta Akses</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2 data-en="Have an idea for an <span>app</span>?" data-id="Punya ide untuk <span>app</span> baru?">Punya ide untuk <span>app</span> baru?</h2>
+      <p data-en="If there's a workflow in your business that could be automated or simplified, let's talk. We build practical apps for real problems." data-id="Jika ada alur kerja di bisnis Anda yang bisa diotomasi atau disederhanakan, mari berdiskusi. Kami membangun aplikasi praktis untuk masalah nyata.">Jika ada alur kerja di bisnis Anda yang bisa diotomasi atau disederhanakan, mari berdiskusi. Kami membangun aplikasi praktis untuk masalah nyata.</p>
+    </div>
+    <a href="form.html" class="btn-navy" data-en="Let's Talk →" data-id="Hubungi Kami →">Hubungi Kami →</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Prospera <span>Business Consulting</span></a>
+  <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en][data-id]').forEach(el => {
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.id;
+    });
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'id';
+    localStorage.setItem('adj_lang', lang);
+  }
+  function toggleLang() {
+    const cur = localStorage.getItem('adj_lang') || 'id';
+    applyLang(cur === 'id' ? 'en' : 'id');
+  }
+  (function() {
+    const saved = localStorage.getItem('adj_lang') || 'id';
+    if (saved === 'en') applyLang('en');
+  })();
+</script>
+</body>
+</html>
