@@ -49,15 +49,18 @@
   .mobile-menu a:hover{color:#C9A567;background:rgba(201,165,103,0.06)}
   .mobile-menu .nav-cta{margin-top:0.5rem;justify-content:center}
   @media(max-width:860px){
-    .nav-links{display:none!important}
-    .nav-right>a.nav-cta{display:none!important}
-    .nav-right>.lang-toggle{display:none!important}
-    .hamburger{display:flex!important}
     .hero-grid{grid-template-columns:1fr!important;gap:32px!important}
     .hero-aside{display:none!important}
     .services-grid{grid-template-columns:repeat(2,1fr)!important}
     .contact-grid{grid-template-columns:1fr!important;gap:40px!important}
     .contact-form-grid{grid-template-columns:1fr!important}
+  }
+  @media(max-width:720px){
+    .nav-links{display:none!important}
+    .nav-cta{display:none!important}
+    .hamburger{display:flex!important}
+    .nav-right{gap:8px!important}
+    .lang-toggle{padding:5px 8px!important}
   }
   @media(max-width:560px){
     .services-grid{grid-template-columns:1fr!important}

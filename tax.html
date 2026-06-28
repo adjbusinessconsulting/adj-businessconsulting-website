@@ -417,9 +417,12 @@
       .about-inner { grid-template-columns: 1fr; gap: 2rem; }
       .about-photo-col { position: static; max-width: 220px; }
     }
-    @media(max-width:768px) {
+    @media(max-width:720px) {
       .nav-links { display:none; }
       .hamburger { display:flex; }
+      .nav-right { gap:8px; }
+      .nav-cta { display:none; }
+      .lang-toggle { padding:5px 8px; }
       .cta-inner { flex-direction:column; }
       .certs-grid { grid-template-columns: repeat(2,1fr); }
     }

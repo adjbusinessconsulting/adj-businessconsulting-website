@@ -165,10 +165,14 @@
     @media(max-width:900px) {
       .page-header-inner { grid-template-columns:1fr; gap:2rem; }
       .page-header-right { padding-top:0; }
-      .nav-links, .nav-right > a:not(.nav-cta), .nav-right > .lang-toggle { display:none; }
+      .tool-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:720px) {
+      .nav-links { display:none; }
       .hamburger { display:flex; }
       .nav-right { gap:8px; }
-      .tool-grid { grid-template-columns:1fr; }
+      .nav-cta { display:none; }
+      .lang-toggle { padding:5px 8px; }
     }
     @media(max-width:600px) {
       .hero-stat-num { font-size:24px; }
