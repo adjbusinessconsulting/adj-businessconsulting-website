@@ -75,10 +75,30 @@ function applyLang(lang){
   try{ localStorage.setItem('adj_lang', lang); }catch(err){}
 }
 function applySavedLang(){ var l='id'; try{ l=localStorage.getItem('adj_lang')||'id'; }catch(err){} applyLang(l); }
-function wireLang(){ if(document.__langWired) return; if(!document.querySelector('nav [data-id]')) return; document.__langWired=true; applySavedLang(); }
-[0,300,700,1500,3000].forEach(function(t){ setTimeout(wireLang, t); });
-function toggleLang(){ var l='id'; try{l=localStorage.getItem('adj_lang')||'id';}catch(e){} applyLang(l==='id'?'en':'id'); }
-function toggleMobileMenu(){ var m=document.getElementById('mobileMenu'); var h=document.getElementById('hamburgerBtn'); if(m&&h){m.classList.toggle('open');h.classList.toggle('open');} }
+function wireNav(){
+  if(document.__navWired) return;
+  if(!document.getElementById('hamburgerBtn')) return;
+  document.__navWired=true;
+  applySavedLang();
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    while(t&&t!==document){
+      if(t.id==='langBtn'||t.closest&&t.closest('#langBtn')){
+        var l='id'; try{l=localStorage.getItem('adj_lang')||'id';}catch(err){} applyLang(l==='id'?'en':'id'); return;
+      }
+      if(t.id==='hamburgerBtn'||t.closest&&t.closest('#hamburgerBtn')){
+        var m=document.getElementById('mobileMenu');var h=document.getElementById('hamburgerBtn');
+        if(m&&h){m.classList.toggle('open');h.classList.toggle('open');} return;
+      }
+      if(t.tagName==='A'&&t.closest&&t.closest('#mobileMenu')){
+        var m2=document.getElementById('mobileMenu');var h2=document.getElementById('hamburgerBtn');
+        if(m2&&h2){m2.classList.remove('open');h2.classList.remove('open');} return;
+      }
+      t=t.parentElement;
+    }
+  });
+}
+[0,300,700,1500,3000].forEach(function(t){ setTimeout(wireNav, t); });
 document.addEventListener('submit', function(e){
   var f = e.target;
   if(!f || f.id !== 'homeContactForm') return;
@@ -119,8 +139,8 @@ document.addEventListener('submit', function(e){
     </ul>
     <div class="nav-right">
       <a href="#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
-      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
-      <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+      <button class="lang-toggle" id="langBtn">EN</button>
+      <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
