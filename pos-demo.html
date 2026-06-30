@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospera POS — Live Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAFAF7;--navy:#0B1129;--gold:#C9A55F;--gold-bg:rgba(201,165,95,.15);
+  --muted:#7A776F;--border:#ECE7DD;--cream-light:#F2EDE3;--white:#FFFFFF;
+  --green:#2E7D5A;--red:#C0392B;--font:'Inter',sans-serif
+}
+body{font-family:var(--font);background:#0D1628;color:var(--navy);min-height:100vh}
+
+/* DEMO SHELL */
+.demo-header{background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.06)}
+.demo-back{color:#6A7F9A;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color .2s}
+.demo-back:hover{color:#FAFAF7}
+.demo-title{color:#FAFAF7;font-size:14px;font-weight:600;letter-spacing:.03em}
+.demo-title span{color:var(--gold)}
+.demo-badge{font-size:10px;background:rgba(201,165,95,.18);color:var(--gold);border:1px solid rgba(201,165,95,.3);border-radius:4px;padding:3px 8px;letter-spacing:.06em;font-weight:600}
+
+.tab-bar{display:flex;justify-content:center;gap:8px;padding:20px 24px 0}
+.tab-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#6A7F9A;padding:8px 28px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--font)}
+.tab-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
+.screen-nav{display:flex;align-items:center;justify-content:center;gap:12px;padding:16px 24px 20px}
+.screen-arrow{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#6A7F9A;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:var(--font)}
+.screen-arrow:hover{background:rgba(255,255,255,.15);color:#fff}
+.screen-dots{display:flex;gap:6px;align-items:center}
+.screen-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;border:none;padding:0;transition:all .2s}
+.screen-dot.active{background:var(--gold);transform:scale(1.4)}
+.screen-name{color:#C8D8E8;font-size:12px;font-weight:500;min-width:140px;text-align:center}
+
+.viewport{display:flex;justify-content:center;padding:0 24px 48px}
+.scaler-wrap{width:100%;display:flex;justify-content:center}
+.desktop-wrap{width:100%;overflow:visible}
+.mobile-wrap{display:flex;justify-content:center}
+
+/* SCREENS VISIBILITY */
+.d-screen,.m-screen{display:none}
+.d-screen.active,.m-screen.active{display:flex}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* POS FRAME (desktop 1280×800) */
+.pos-frame{width:1280px;height:800px;border-radius:14px;overflow:hidden;display:flex;font-family:var(--font);background:var(--cream);transform-origin:top left;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+
+/* PHONE FRAME (mobile 390×844) */
+.phone{width:390px;height:844px;border-radius:42px;overflow:hidden;display:flex;flex-direction:column;font-family:var(--font);background:var(--cream);box-shadow:0 24px 80px rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.08);transform-origin:top center}
+
+/* SIDEBAR */
+.sidebar{width:80px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:2px;flex-shrink:0}
+.s-logo{width:42px;height:42px;background:var(--navy);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:18px}
+.nav-btn{width:56px;height:56px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;color:var(--muted);font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:none;background:transparent;font-family:var(--font)}
+.nav-btn .ni{font-size:20px}
+.nav-btn.active{background:var(--navy);color:var(--cream-light)}
+.s-spacer{flex:1}
+.s-avatar{width:36px;height:36px;border-radius:50%;background:var(--gold-bg);border:1.5px solid rgba(201,165,95,.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#A6843F}
+
+/* MAIN AREA */
+.main-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:12px;background:var(--white);flex-shrink:0}
+.topbar-title{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.topbar-sub{font-size:12px;color:var(--muted)}
+.tier-pill{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--gold-bg);color:#A6843F;border:1px solid rgba(201,165,95,.3)}
+.content{flex:1;overflow:hidden;display:flex}
+
+/* LOGIN */
+.login-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.login-box{width:380px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:44px 36px;text-align:center;box-shadow:0 4px 24px rgba(11,17,41,.06)}
+.login-logo{width:52px;height:52px;background:var(--navy);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:22px}
+.login-store{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.login-address{font-size:11px;color:var(--muted);margin-bottom:8px}
+.login-role-tabs{display:flex;gap:6px;margin-bottom:24px;background:var(--cream);border-radius:10px;padding:4px}
+.lr-tab{flex:1;padding:8px;border-radius:7px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;text-align:center;border:none;background:transparent;font-family:var(--font)}
+.lr-tab.active{background:var(--white);color:var(--navy);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.l-field{width:100%;border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;font-family:var(--font);color:var(--navy);background:var(--cream);margin-bottom:10px;text-align:left;display:block}
+.btn-login{width:100%;background:var(--navy);color:var(--cream);border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);margin-top:6px}
+.login-hint{margin-top:18px;font-size:11px;color:var(--muted)}
+.login-hint a{color:var(--gold);text-decoration:none;font-weight:500}
+
+/* PIN */
+.pin-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.pin-box{width:460px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(11,17,41,.06)}
+.pin-title{font-size:15px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px}
+.pin-sub{font-size:12px;color:var(--muted);text-align:center;margin-bottom:24px}
+.kasir-cards{display:flex;gap:10px;margin-bottom:24px}
+.kasir-card{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer}
+.kasir-card.sel{border-color:var(--navy);background:var(--navy)}
+.kasir-card.sel .kc-name,.kasir-card.sel .kc-role{color:var(--cream-light)}
+.kc-av{width:38px;height:38px;border-radius:50%;background:var(--gold-bg);border:1.5px solid rgba(201,165,95,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#A6843F;margin:0 auto 8px}
+.kasir-card.sel .kc-av{background:rgba(201,165,95,.2);border-color:rgba(201,165,95,.4);color:var(--gold)}
+.kc-name{font-size:11px;font-weight:600;color:var(--navy)}
+.kc-role{font-size:10px;color:var(--muted);margin-top:2px}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:22px}
+.p-dot{width:13px;height:13px;border-radius:50%;border:2px solid var(--border)}
+.p-dot.f{background:var(--navy);border-color:var(--navy)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pk{padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--cream);font-size:18px;font-weight:400;color:var(--navy);text-align:center;cursor:pointer;font-family:var(--font)}
+.pk.del{font-size:12px;color:var(--muted)}
+
+/* SALES */
+.product-panel{flex:1;padding:16px;overflow-y:auto;background:var(--cream)}
+.search-bar{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:var(--muted)}
+.cat-tabs{display:flex;gap:6px;margin-bottom:14px}
+.ct{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--muted)}
+.ct.active{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px;cursor:pointer}
+.prod-img{width:100%;aspect-ratio:1;border-radius:7px;background:var(--cream);margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.prod-name{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px}
+.prod-price{font-size:12px;color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
+.prod-stock{font-size:10px;color:var(--muted);margin-top:2px}
+.add-btn{width:24px;height:24px;border-radius:6px;background:var(--navy);color:var(--cream);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;margin-top:8px}
+
+.cart-panel{width:300px;border-left:1px solid var(--border);background:var(--white);display:flex;flex-direction:column;flex-shrink:0}
+.cart-hd{padding:14px 18px 12px;border-bottom:1px solid var(--border)}
+.cart-hd-title{font-size:13px;font-weight:600;color:var(--navy)}
+.cart-hd-sub{font-size:11px;color:var(--muted)}
+.cart-items{flex:1;overflow-y:auto;padding:10px 18px}
+.cart-item{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)}
+.ci-info{flex:1}
+.ci-name{font-size:12px;font-weight:500;color:var(--navy)}
+.ci-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.qty-ctrl{display:flex;align-items:center;gap:5px}
+.qb{width:20px;height:20px;border-radius:5px;border:1px solid var(--border);background:var(--cream);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qv{font-size:12px;font-weight:600;width:16px;text-align:center}
+.ci-total{font-size:12px;font-weight:600;color:var(--navy);min-width:60px;text-align:right;font-variant-numeric:tabular-nums}
+.cart-ft{padding:14px 18px;border-top:1px solid var(--border)}
+.cart-sub-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:4px}
+.cart-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px;font-variant-numeric:tabular-nums}
+.btn-pay{width:100%;background:var(--navy);color:var(--cream);border:none;border-radius:10px;padding:13px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font)}
+
+/* PAYMENT */
+.payment-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.payment-box{width:540px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(11,17,41,.06)}
+.pay-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.pay-total-lbl{font-size:11px;color:var(--muted);margin-bottom:4px}
+.pay-total-amt{font-size:28px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;margin-bottom:24px}
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}
+.pay-method{border:1.5px solid var(--border);border-radius:12px;padding:16px 10px;text-align:center;cursor:pointer}
+.pay-method.active{border-color:var(--navy);background:#F0F2F8}
+.pm-icon{font-size:24px;margin-bottom:5px}
+.pm-label{font-size:11px;font-weight:600;color:var(--navy)}
+.pm-sub{font-size:10px;color:var(--muted)}
+.cash-lbl{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:6px}
+.cash-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-size:18px;font-weight:600;font-family:var(--font);color:var(--navy);background:var(--cream);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.quick-cash{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.qc-btn{padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--cream);font-size:11px;font-weight:500;color:var(--navy);cursor:pointer;font-family:var(--font);font-variant-numeric:tabular-nums}
+.change-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#E8F5EF;border-radius:10px;margin-bottom:20px}
+.change-lbl{font-size:13px;color:#2E7D5A;font-weight:500}
+.change-val{font-size:16px;font-weight:700;color:#2E7D5A;font-variant-numeric:tabular-nums}
+
+/* RECEIPT */
+.receipt-wrap{flex:1;display:flex;align-items:center;justify-content:center;gap:36px;background:var(--cream)}
+.receipt-paper{width:300px;background:var(--white);border-radius:4px;padding:24px 20px;box-shadow:0 4px 24px rgba(11,17,41,.08);font-size:12px}
+.rp-header{text-align:center;border-bottom:1px dashed #C8C0B0;padding-bottom:14px;margin-bottom:14px}
+.rp-store{font-size:14px;font-weight:700;color:var(--navy)}
+.rp-meta{font-size:10px;color:var(--muted);line-height:1.7;margin-top:4px}
+.rp-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px;color:var(--muted)}
+.rp-div{border:none;border-top:1px dashed #C8C0B0;margin:10px 0}
+.rp-total{display:flex;justify-content:space-between;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:4px}
+.rp-change{display:flex;justify-content:space-between;font-weight:600;font-size:12px;color:var(--green)}
+.rp-footer{text-align:center;margin-top:18px;font-size:10px;color:var(--muted);line-height:1.6}
+.receipt-actions{display:flex;flex-direction:column;gap:10px;min-width:190px}
+.ra-success{text-align:center;margin-bottom:20px}
+.ra-icon{width:56px;height:56px;background:#E8F5EF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:26px}
+.ra-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.ra-sub{font-size:12px;color:var(--muted)}
+.ra-btn{display:flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--navy);font-family:var(--font)}
+.ra-btn.primary{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.ra-btn-icon{font-size:18px}
+
+/* PRODUK */
+.produk-area{flex:1;padding:20px 24px;overflow-y:auto;background:var(--cream)}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-title{font-size:15px;font-weight:700;color:var(--navy)}
+.btn-add{padding:8px 16px;background:var(--navy);color:var(--cream);border:none;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.prod-table{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.pt-head,.pt-row{display:grid;grid-template-columns:2fr 1fr 1fr 80px;padding:10px 16px;font-size:11px;align-items:center}
+.pt-head{background:var(--cream);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pt-row{font-size:12px;border-bottom:1px solid var(--border)}
+.pt-row:last-child{border-bottom:none}
+.pt-name{font-weight:500;color:var(--navy)}
+.pt-cat{font-size:10px;color:var(--muted);margin-top:2px}
+.pt-price{font-variant-numeric:tabular-nums;font-weight:500;color:var(--navy)}
+.stk{font-size:10px;padding:3px 8px;border-radius:4px;font-weight:600;display:inline-block}
+.stk-ok{background:#E8F5EF;color:var(--green)}
+.stk-low{background:#FEF3E8;color:#D97706}
+.lock-card{background:var(--white);border:1.5px dashed rgba(201,165,95,.55);border-radius:13px;padding:20px;display:flex;align-items:center;gap:14px;opacity:.75;margin-bottom:12px}
+.lock-icon{font-size:22px;flex-shrink:0}
+.lock-txt{flex:1}
+.lock-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.lock-desc{font-size:11px;color:var(--muted)}
+.upgrade-tag{font-size:9px;color:#A6843F;background:rgba(201,165,95,.2);padding:3px 8px;border-radius:4px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+
+/* LAPORAN RIWAYAT */
+.laporan-area{flex:1;padding:20px 24px;overflow-y:auto;background:var(--cream)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px}
+.stat-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px}
+.stat-val{font-size:20px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.stat-ch{font-size:10px;color:var(--green);margin-top:3px}
+.rep-table{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.rep-head,.rep-row{display:grid;grid-template-columns:50px 1fr 80px 80px 100px;padding:10px 16px;font-size:11px;align-items:center}
+.rep-head{background:var(--cream);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.rep-row{font-size:12px;border-bottom:1px solid var(--border)}
+.rep-row:last-child{border-bottom:none}
+.rep-no{font-size:11px;color:var(--muted)}
+.rep-time{font-size:11px;color:var(--muted)}
+.rep-amt{font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy)}
+.mbadge{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;display:inline-block}
+.mb-cash{background:#E8F5EF;color:var(--green)}
+.mb-qris{background:#EEF0FB;color:#4B5FD6}
+.mb-transfer{background:#F5F0FB;color:#7B4DB8}
+
+/* LAPORAN KASIR */
+.lk-area{flex:1;padding:20px 24px;overflow-y:auto;background:var(--cream)}
+.lk-top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.lk-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px}
+.lk-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.lk-val{font-size:20px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.lk-val.gold{color:#A6843F}
+.kasir-summary{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.ks-head{padding:12px 16px;background:var(--cream);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ks-row{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12px}
+.ks-row:last-child{border-bottom:none}
+.ks-name{font-weight:500;color:var(--navy)}
+.ks-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.ks-trx{font-size:11px;color:var(--muted)}
+.ks-amt{font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy)}
+
+/* PINDAH SHIFT */
+.shift-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.shift-box{width:460px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(11,17,41,.06);text-align:center}
+.shift-icon{width:56px;height:56px;background:var(--gold-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px}
+.shift-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.shift-sub{font-size:12px;color:var(--muted);margin-bottom:26px}
+.shift-summary{background:var(--cream);border-radius:12px;padding:18px;margin-bottom:22px;text-align:left}
+.ss-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:9px}
+.ss-row:last-child{margin-bottom:0}
+.ss-row span:last-child{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.shift-btns{display:flex;gap:10px}
+.btn-cancel{flex:1;padding:13px;border:1.5px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.btn-confirm{flex:2;padding:13px;border:none;border-radius:10px;background:var(--navy);color:var(--cream);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font)}
+
+/* TUTUP TOKO */
+.tutup-wrap{flex:1;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.tutup-box{width:500px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(11,17,41,.06)}
+.tutup-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.tutup-date{font-size:12px;color:var(--muted);margin-bottom:24px}
+.tutup-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tutup-stat{background:var(--cream);border-radius:10px;padding:14px}
+.ts-lbl{font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.ts-val{font-size:17px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.tutup-warn{display:flex;gap:10px;background:#FEF9ED;border:1px solid rgba(201,165,95,.3);border-radius:10px;padding:14px;margin-bottom:22px;font-size:12px;color:#856A2E;align-items:flex-start}
+.btn-tutup{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
+
+/* ===================== MOBILE ===================== */
+.statusbar{height:44px;padding:14px 28px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.sb-time{font-size:15px;font-weight:600;color:var(--navy)}
+.sb-icons{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--navy)}
+.home-ind{height:28px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:8px;flex-shrink:0}
+.home-bar{width:134px;height:5px;border-radius:3px;background:var(--navy);opacity:.2}
+
+.m-content{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;min-height:0}
+
+/* Mobile login */
+.ml-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;background:var(--cream)}
+.ml-logo{width:60px;height:60px;background:var(--navy);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:26px}
+.ml-store{font-size:19px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px}
+.ml-addr{font-size:12px;color:var(--muted);text-align:center;margin-bottom:28px}
+.m-role-row{display:flex;gap:8px;width:100%;margin-bottom:22px}
+.m-role-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);font-size:13px;font-weight:500;color:var(--muted);text-align:center;cursor:pointer;font-family:var(--font)}
+.m-role-btn.active{border-color:var(--navy);background:var(--navy);color:var(--cream);font-weight:600}
+.m-field{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:13px 16px;font-size:15px;font-family:var(--font);color:var(--navy);background:var(--white);margin-bottom:12px}
+.m-btn-primary{width:100%;padding:15px;background:var(--navy);color:var(--cream);border:none;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);margin-top:4px}
+
+/* Mobile PIN */
+.mp-wrap{flex:1;display:flex;flex-direction:column;padding:20px 20px 16px;background:var(--cream)}
+.mp-title{font-size:19px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px}
+.mp-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
+.mk-scroll{display:flex;gap:12px;overflow-x:auto;margin-bottom:24px;padding-bottom:2px}
+.mk-chip{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.mk-av{width:46px;height:46px;border-radius:50%;background:var(--gold-bg);border:2px solid rgba(201,165,95,.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#A6843F}
+.mk-chip.sel .mk-av{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.mk-nm{font-size:10px;font-weight:500;color:var(--navy);text-align:center;max-width:62px}
+.mp-dots{display:flex;justify-content:center;gap:14px;margin-bottom:22px}
+.mp-dot{width:15px;height:15px;border-radius:50%;border:2px solid var(--border)}
+.mp-dot.f{background:var(--navy);border-color:var(--navy)}
+.m-numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
+.m-key{padding:18px;border-radius:14px;border:1.5px solid var(--border);background:var(--white);font-size:22px;font-weight:400;color:var(--navy);text-align:center;cursor:pointer;font-family:var(--font)}
+.m-key.del{font-size:14px;color:var(--muted)}
+
+/* Mobile Sales */
+.m-topbar{padding:12px 18px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.m-tb-title{font-size:16px;font-weight:700;color:var(--navy)}
+.m-tb-sub{font-size:11px;color:var(--muted)}
+.m-search{margin:12px 16px 10px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:9px 14px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);flex-shrink:0}
+.m-prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;overflow-y:auto;flex:1}
+.m-prod-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px}
+.m-prod-img{width:100%;aspect-ratio:1;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:8px}
+.m-prod-name{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.m-prod-price{font-size:12px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums}
+.m-cart-bar{background:var(--white);border-top:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.m-cb-info{flex:1}
+.m-cb-count{font-size:11px;color:var(--muted)}
+.m-cb-total{font-size:15px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.m-btn-cart{background:var(--navy);color:var(--cream);border:none;border-radius:12px;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.m-btm-tab{background:var(--white);border-top:1px solid var(--border);display:flex;padding:8px 0 0;flex-shrink:0}
+.m-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0 10px;font-size:10px;font-weight:500;color:var(--muted);cursor:pointer}
+.m-tab.active{color:var(--navy)}
+.m-tab-i{font-size:20px}
+
+/* Mobile Payment */
+.mpy-wrap{flex:1;overflow-y:auto;padding:18px 16px;background:var(--cream)}
+.mpy-total-lbl{font-size:12px;color:var(--muted);text-align:center;margin-bottom:4px}
+.mpy-total-amt{font-size:30px;font-weight:700;color:var(--navy);text-align:center;font-variant-numeric:tabular-nums;margin-bottom:22px}
+.mpy-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.mpy-m{border:1.5px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer}
+.mpy-m.active{border-color:var(--navy);background:#F0F2F8}
+.mpy-mi{font-size:22px;margin-bottom:3px}
+.mpy-ml{font-size:12px;font-weight:600;color:var(--navy)}
+.m-cash-input{width:100%;border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;font-size:20px;font-weight:600;font-family:var(--font);color:var(--navy);background:var(--white);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.m-change{display:flex;justify-content:space-between;align-items:center;background:#E8F5EF;border-radius:12px;padding:13px 16px;margin-bottom:18px}
+.m-ch-lbl{font-size:13px;color:var(--green);font-weight:500}
+.m-ch-val{font-size:18px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums}
+
+/* Mobile Receipt */
+.mrc-wrap{flex:1;overflow-y:auto;padding:18px 16px;background:var(--cream)}
+.mrc-success{text-align:center;margin-bottom:18px}
+.mrc-icon{width:60px;height:60px;background:#E8F5EF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px}
+.mrc-title{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.mrc-sub{font-size:12px;color:var(--muted)}
+.mrc-paper{background:var(--white);border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 2px 12px rgba(11,17,41,.06)}
+.mrc-ph{text-align:center;border-bottom:1px dashed #C8C0B0;padding-bottom:12px;margin-bottom:12px}
+.mrc-pstore{font-size:13px;font-weight:700;color:var(--navy)}
+.mrc-pmeta{font-size:10px;color:var(--muted);line-height:1.7;margin-top:3px}
+.mrc-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px}
+.mrc-total{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--navy);margin-top:8px;font-variant-numeric:tabular-nums}
+.mrc-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mrc-btn{padding:13px;border-radius:14px;border:1.5px solid var(--border);background:var(--white);font-size:13px;font-weight:500;color:var(--navy);text-align:center;cursor:pointer;font-family:var(--font)}
+.mrc-btn.primary{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+
+/* Mobile Laporan */
+.mlp-wrap{flex:1;overflow-y:auto;padding:14px 16px;background:var(--cream)}
+.mlp-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mlp-stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px}
+.mlp-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:4px}
+.mlp-val{font-size:17px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.mlp-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.mlp-ch{padding:9px 14px;background:var(--cream);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.mlp-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.mlp-row:last-child{border-bottom:none}
+.m-lock{background:var(--white);border:1.5px dashed rgba(201,165,95,.55);border-radius:13px;padding:16px;display:flex;align-items:center;gap:12px;opacity:.75;margin-bottom:10px}
+.ml-txt{flex:1}
+.ml-title{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.ml-desc{font-size:10px;color:var(--muted)}
+
+/* Mobile Produk */
+.mpr-wrap{flex:1;overflow-y:auto;padding:14px 16px;background:var(--cream)}
+.mpr-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.mpr-img{width:46px;height:46px;border-radius:10px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.mpr-info{flex:1}
+.mpr-name{font-size:13px;font-weight:500;color:var(--navy)}
+.mpr-price{font-size:12px;color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+.mpr-stk{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* Mobile Shift/Tutup */
+.msh-wrap{flex:1;overflow-y:auto;padding:22px 20px;background:var(--cream)}
+.msh-icon{width:60px;height:60px;background:var(--gold-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px}
+.msh-title{font-size:19px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:5px}
+.msh-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:22px}
+.msh-summary{background:var(--white);border-radius:14px;padding:18px;margin-bottom:18px}
+.msh-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:10px}
+.msh-row:last-child{margin-bottom:0}
+.msh-row span:last-child{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.msh-btns{display:flex;gap:10px}
+.msh-cancel{flex:1;padding:15px;border:1.5px solid var(--border);border-radius:14px;background:transparent;color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.msh-confirm{flex:2;padding:15px;border:none;border-radius:14px;background:var(--navy);color:var(--cream);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.msh-confirm.red{background:var(--red)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="demo-header">
+  <a href="apps.html" class="demo-back">← Kembali ke Apps</a>
+  <div class="demo-title">Prospera <span>POS</span></div>
+  <span class="demo-badge">FREE TIER DEMO</span>
+</header>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('desktop')">🖥 Desktop</button>
+  <button class="tab-btn" onclick="switchTab('mobile')">📱 Mobile</button>
+</div>
+
+<!-- SCREEN NAV -->
+<div class="screen-nav">
+  <button class="screen-arrow" onclick="prevScreen()">‹</button>
+  <div class="screen-dots" id="screenDots"></div>
+  <button class="screen-arrow" onclick="nextScreen()">›</button>
+</div>
+<div style="display:flex;justify-content:center;margin-bottom:6px">
+  <span class="screen-name" id="screenName">Owner Login</span>
+</div>
+
+<!-- VIEWPORT -->
+<div class="viewport">
+  <div class="scaler-wrap">
+
+    <!-- DESKTOP TAB -->
+    <div class="tab-panel active" id="tab-desktop">
+      <div class="desktop-wrap" id="desktopWrap">
+
+        <!-- D1: Owner Login -->
+        <div class="d-screen active pos-frame" id="d0">
+          <div class="login-wrap" style="background:var(--cream)">
+            <div class="login-box">
+              <div class="login-logo">🏪</div>
+              <div class="login-store">Toko Sembako Maju</div>
+              <div class="login-address">Palu, Sulawesi Tengah</div>
+              <div class="login-role-tabs">
+                <button class="lr-tab active">Pemilik</button>
+                <button class="lr-tab">Kasir</button>
+              </div>
+              <input class="l-field" type="text" placeholder="Username" value="anthony_djiady">
+              <input class="l-field" type="password" placeholder="Password" value="••••••••">
+              <button class="btn-login">Masuk sebagai Pemilik</button>
+              <div class="login-hint">Kasir? <a href="#">Pilih kasir di sini</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2: Kasir PIN -->
+        <div class="d-screen pos-frame" id="d1">
+          <div class="pin-wrap" style="background:var(--cream)">
+            <div class="pin-box">
+              <div class="pin-title">Pilih Kasir</div>
+              <div class="pin-sub">Masukkan PIN untuk mulai sesi</div>
+              <div class="kasir-cards">
+                <div class="kasir-card sel">
+                  <div class="kc-av">AE</div>
+                  <div class="kc-name">Aerith Djiady</div>
+                  <div class="kc-role">Kasir</div>
+                </div>
+                <div class="kasir-card">
+                  <div class="kc-av">SC</div>
+                  <div class="kc-name">Stevany Carolin</div>
+                  <div class="kc-role">Kasir</div>
+                </div>
+                <div class="kasir-card">
+                  <div class="kc-av">AN</div>
+                  <div class="kc-name">Anthony Djiady</div>
+                  <div class="kc-role">Pemilik</div>
+                </div>
+              </div>
+              <div class="pin-dots">
+                <div class="p-dot f"></div><div class="p-dot f"></div>
+                <div class="p-dot f"></div><div class="p-dot"></div>
+                <div class="p-dot"></div><div class="p-dot"></div>
+              </div>
+              <div class="pin-pad">
+                <div class="pk">1</div><div class="pk">2</div><div class="pk">3</div>
+                <div class="pk">4</div><div class="pk">5</div><div class="pk">6</div>
+                <div class="pk">7</div><div class="pk">8</div><div class="pk">9</div>
+                <div class="pk del">⌫</div><div class="pk">0</div><div class="pk" style="background:var(--navy);color:var(--cream);font-size:14px;font-weight:600">OK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3: Sales / Jual -->
+        <div class="d-screen pos-frame" id="d2">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn active"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AE</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Penjualan</div>
+              <div class="topbar-sub">Senin, 30 Jun 2025  ·  09:42</div>
+            </div>
+            <div class="content">
+              <div class="product-panel">
+                <div class="search-bar">🔍 Cari produk...</div>
+                <div class="cat-tabs">
+                  <div class="ct active">Semua</div>
+                  <div class="ct">Sembako</div>
+                  <div class="ct">Bahan Kue</div>
+                  <div class="ct">Mi &amp; Snack</div>
+                  <div class="ct">Kebersihan</div>
+                </div>
+                <div class="product-grid">
+                  <div class="product-card">
+                    <div class="prod-img">🌾</div>
+                    <div class="prod-name">Beras Premium 5kg</div>
+                    <div class="prod-price">Rp 78.000</div>
+                    <div class="prod-stock">Stok: 42 karung</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                  <div class="product-card">
+                    <div class="prod-img">🛢</div>
+                    <div class="prod-name">Minyak Goreng 2L</div>
+                    <div class="prod-price">Rp 35.500</div>
+                    <div class="prod-stock">Stok: 28 botol</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                  <div class="product-card">
+                    <div class="prod-img">🧂</div>
+                    <div class="prod-name">Gula Pasir 1kg</div>
+                    <div class="prod-price">Rp 18.000</div>
+                    <div class="prod-stock">Stok: 60 bungkus</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                  <div class="product-card">
+                    <div class="prod-img">🌾</div>
+                    <div class="prod-name">Tepung Terigu 1kg</div>
+                    <div class="prod-price">Rp 12.500</div>
+                    <div class="prod-stock">Stok: 35 bungkus</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                  <div class="product-card">
+                    <div class="prod-img">🍜</div>
+                    <div class="prod-name">Indomie Goreng</div>
+                    <div class="prod-price">Rp 3.500</div>
+                    <div class="prod-stock">Stok: 144 pcs</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                  <div class="product-card">
+                    <div class="prod-img">🧼</div>
+                    <div class="prod-name">Sabun Lifebuoy</div>
+                    <div class="prod-price">Rp 8.000</div>
+                    <div class="prod-stock">Stok: 52 pcs</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="cart-panel">
+                <div class="cart-hd">
+                  <div class="cart-hd-title">Keranjang</div>
+                  <div class="cart-hd-sub">3 item dipilih</div>
+                </div>
+                <div class="cart-items">
+                  <div class="cart-item">
+                    <div class="ci-info">
+                      <div class="ci-name">Beras Premium 5kg</div>
+                      <div class="ci-sub">Rp 78.000 / karung</div>
+                    </div>
+                    <div class="qty-ctrl"><div class="qb">−</div><div class="qv">1</div><div class="qb">+</div></div>
+                    <div class="ci-total">Rp 78.000</div>
+                  </div>
+                  <div class="cart-item">
+                    <div class="ci-info">
+                      <div class="ci-name">Minyak Goreng 2L</div>
+                      <div class="ci-sub">Rp 35.500 / botol</div>
+                    </div>
+                    <div class="qty-ctrl"><div class="qb">−</div><div class="qv">2</div><div class="qb">+</div></div>
+                    <div class="ci-total">Rp 71.000</div>
+                  </div>
+                  <div class="cart-item">
+                    <div class="ci-info">
+                      <div class="ci-name">Gula Pasir 1kg</div>
+                      <div class="ci-sub">Rp 18.000 / bungkus</div>
+                    </div>
+                    <div class="qty-ctrl"><div class="qb">−</div><div class="qv">1</div><div class="qb">+</div></div>
+                    <div class="ci-total">Rp 18.000</div>
+                  </div>
+                </div>
+                <div class="cart-ft">
+                  <div class="cart-sub-row"><span>Subtotal</span><span>Rp 167.000</span></div>
+                  <div class="cart-sub-row"><span>Diskon</span><span>—</span></div>
+                  <div class="cart-total-row"><span>Total</span><span>Rp 167.000</span></div>
+                  <button class="btn-pay">Bayar Rp 167.000</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D4: Payment -->
+        <div class="d-screen pos-frame" id="d3">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn active"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AE</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Pembayaran</div>
+              <div class="topbar-sub">3 item  ·  Trx #00124</div>
+            </div>
+            <div class="content">
+              <div class="payment-wrap">
+                <div class="payment-box">
+                  <div class="pay-title">Pilih Metode Bayar</div>
+                  <div class="pay-total-lbl">Total yang harus dibayar</div>
+                  <div class="pay-total-amt">Rp 167.000</div>
+                  <div class="pay-methods">
+                    <div class="pay-method active">
+                      <div class="pm-icon">💵</div>
+                      <div class="pm-label">Tunai</div>
+                      <div class="pm-sub">Cash</div>
+                    </div>
+                    <div class="pay-method">
+                      <div class="pm-icon">📱</div>
+                      <div class="pm-label">QRIS</div>
+                      <div class="pm-sub">Scan QR</div>
+                    </div>
+                    <div class="pay-method">
+                      <div class="pm-icon">🏦</div>
+                      <div class="pm-label">Transfer</div>
+                      <div class="pm-sub">Bank / e-Wallet</div>
+                    </div>
+                  </div>
+                  <div class="cash-lbl">Uang yang diterima</div>
+                  <input class="cash-input" type="text" value="Rp 200.000">
+                  <div class="quick-cash">
+                    <button class="qc-btn">Rp 170.000</button>
+                    <button class="qc-btn">Rp 200.000</button>
+                    <button class="qc-btn">Rp 250.000</button>
+                    <button class="qc-btn">Rp 500.000</button>
+                  </div>
+                  <div class="change-row">
+                    <span class="change-lbl">✓ Kembalian</span>
+                    <span class="change-val">Rp 33.000</span>
+                  </div>
+                  <button class="btn-pay" style="width:100%">Proses Pembayaran →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D5: Receipt -->
+        <div class="d-screen pos-frame" id="d4">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn active"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AE</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Struk Pembayaran</div>
+              <div class="topbar-sub">Trx #00124  ·  Tunai</div>
+            </div>
+            <div class="content">
+              <div class="receipt-wrap">
+                <div>
+                  <div class="receipt-paper">
+                    <div class="rp-header">
+                      <div class="rp-store">Toko Sembako Maju</div>
+                      <div class="rp-meta">Jl. Pramuka No. 12, Palu<br>Kasir: Aerith Djiady<br>30 Jun 2025  ·  09:47</div>
+                    </div>
+                    <div class="rp-row"><span>Beras Premium 5kg x1</span><span>Rp 78.000</span></div>
+                    <div class="rp-row"><span>Minyak Goreng 2L x2</span><span>Rp 71.000</span></div>
+                    <div class="rp-row"><span>Gula Pasir 1kg x1</span><span>Rp 18.000</span></div>
+                    <hr class="rp-div">
+                    <div class="rp-total"><span>TOTAL</span><span>Rp 167.000</span></div>
+                    <div class="rp-row"><span>Tunai</span><span>Rp 200.000</span></div>
+                    <div class="rp-change"><span>Kembalian</span><span>Rp 33.000</span></div>
+                    <div class="rp-footer">Terima kasih sudah berbelanja!<br>— Toko Sembako Maju —</div>
+                  </div>
+                </div>
+                <div class="receipt-actions">
+                  <div class="ra-success">
+                    <div class="ra-icon">✓</div>
+                    <div class="ra-title">Pembayaran Berhasil</div>
+                    <div class="ra-sub">Trx #00124  ·  Rp 167.000</div>
+                  </div>
+                  <button class="ra-btn primary"><span class="ra-btn-icon">🖨</span>Cetak Struk</button>
+                  <button class="ra-btn"><span class="ra-btn-icon">📲</span>Kirim via WhatsApp</button>
+                  <button class="ra-btn" style="margin-top:8px;background:var(--cream);border-color:var(--border)"><span class="ra-btn-icon">🛒</span>Transaksi Baru</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D6: Produk -->
+        <div class="d-screen pos-frame" id="d5">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn active"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AE</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Daftar Produk</div>
+              <div class="tier-pill">FREE · Maks 50 Produk</div>
+            </div>
+            <div class="produk-area">
+              <div class="sec-hd">
+                <div class="sec-title">Produk (6 dari 50)</div>
+                <button class="btn-add">+ Tambah Produk</button>
+              </div>
+              <div class="prod-table">
+                <div class="pt-head"><span>Nama Produk</span><span>Harga Jual</span><span>Stok</span><span>Aksi</span></div>
+                <div class="pt-row">
+                  <div><div class="pt-name">Beras Premium 5kg</div><div class="pt-cat">Sembako</div></div>
+                  <div class="pt-price">Rp 78.000</div>
+                  <div><span class="stk stk-ok">42 karung</span></div>
+                  <div style="font-size:12px;color:var(--muted);cursor:pointer">✏️</div>
+                </div>
+                <div class="pt-row">
+                  <div><div class="pt-name">Minyak Goreng 2L</div><div class="pt-cat">Sembako</div></div>
+                  <div class="pt-price">Rp 35.500</div>
+                  <div><span class="stk stk-ok">28 botol</span></div>
+                  <div style="font-size:12px;color:var(--muted);cursor:pointer">✏️</div>
+                </div>
+                <div class="pt-row">
+                  <div><div class="pt-name">Gula Pasir 1kg</div><div class="pt-cat">Sembako</div></div>
+                  <div class="pt-price">Rp 18.000</div>
+                  <div><span class="stk stk-ok">60 bungkus</span></div>
+                  <div style="font-size:12px;color:var(--muted);cursor:pointer">✏️</div>
+                </div>
+                <div class="pt-row">
+                  <div><div class="pt-name">Tepung Terigu 1kg</div><div class="pt-cat">Bahan Kue</div></div>
+                  <div class="pt-price">Rp 12.500</div>
+                  <div><span class="stk stk-low">6 bungkus</span></div>
+                  <div style="font-size:12px;color:var(--muted);cursor:pointer">✏️</div>
+                </div>
+                <div class="pt-row">
+                  <div><div class="pt-name">Indomie Goreng</div><div class="pt-cat">Mi &amp; Snack</div></div>
+                  <div class="pt-price">Rp 3.500</div>
+                  <div><span class="stk stk-ok">144 pcs</span></div>
+                  <div style="font-size:12px;color:var(--muted);cursor:pointer">✏️</div>
+                </div>
+              </div>
+              <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <div class="lock-txt">
+                  <div class="lock-title">Barcode Scanner &amp; Import Excel</div>
+                  <div class="lock-desc">Tambah produk massal via scan barcode atau upload file Excel</div>
+                </div>
+                <span class="upgrade-tag">STANDARD</span>
+              </div>
+              <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <div class="lock-txt">
+                  <div class="lock-title">Varian Produk</div>
+                  <div class="lock-desc">Ukuran, warna, dan varian produk lainnya</div>
+                </div>
+                <span class="upgrade-tag">PREMIUM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D7: Laporan Riwayat -->
+        <div class="d-screen pos-frame" id="d6">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn active"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AN</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Riwayat Penjualan</div>
+              <div class="topbar-sub">Hari Ini  ·  30 Jun 2025</div>
+            </div>
+            <div class="laporan-area">
+              <div class="stats-row">
+                <div class="stat-card">
+                  <div class="stat-lbl">Total Penjualan</div>
+                  <div class="stat-val">Rp 1.245.500</div>
+                  <div class="stat-ch">↑ 12% dari kemarin</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-lbl">Jumlah Transaksi</div>
+                  <div class="stat-val">23 trx</div>
+                  <div class="stat-ch">↑ 3 dari kemarin</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-lbl">Rata-rata Transaksi</div>
+                  <div class="stat-val">Rp 54.150</div>
+                </div>
+              </div>
+              <div class="rep-table">
+                <div class="rep-head"><span>#</span><span>Waktu &amp; Kasir</span><span>Metode</span><span>Item</span><span>Total</span></div>
+                <div class="rep-row">
+                  <span class="rep-no">#124</span>
+                  <div><div style="font-size:12px;font-weight:500;color:var(--navy)">09:47  ·  Aerith D.</div><div class="rep-time">3 item</div></div>
+                  <span><span class="mbadge mb-cash">Tunai</span></span>
+                  <span style="font-size:12px;color:var(--muted)">3 item</span>
+                  <span class="rep-amt">Rp 167.000</span>
+                </div>
+                <div class="rep-row">
+                  <span class="rep-no">#123</span>
+                  <div><div style="font-size:12px;font-weight:500;color:var(--navy)">09:31  ·  Aerith D.</div><div class="rep-time">5 item</div></div>
+                  <span><span class="mbadge mb-qris">QRIS</span></span>
+                  <span style="font-size:12px;color:var(--muted)">5 item</span>
+                  <span class="rep-amt">Rp 89.500</span>
+                </div>
+                <div class="rep-row">
+                  <span class="rep-no">#122</span>
+                  <div><div style="font-size:12px;font-weight:500;color:var(--navy)">09:15  ·  Stevany C.</div><div class="rep-time">2 item</div></div>
+                  <span><span class="mbadge mb-cash">Tunai</span></span>
+                  <span style="font-size:12px;color:var(--muted)">2 item</span>
+                  <span class="rep-amt">Rp 53.000</span>
+                </div>
+                <div class="rep-row">
+                  <span class="rep-no">#121</span>
+                  <div><div style="font-size:12px;font-weight:500;color:var(--navy)">08:58  ·  Stevany C.</div><div class="rep-time">7 item</div></div>
+                  <span><span class="mbadge mb-transfer">Transfer</span></span>
+                  <span style="font-size:12px;color:var(--muted)">7 item</span>
+                  <span class="rep-amt">Rp 214.000</span>
+                </div>
+                <div class="rep-row">
+                  <span class="rep-no">#120</span>
+                  <div><div style="font-size:12px;font-weight:500;color:var(--navy)">08:42  ·  Aerith D.</div><div class="rep-time">1 item</div></div>
+                  <span><span class="mbadge mb-qris">QRIS</span></span>
+                  <span style="font-size:12px;color:var(--muted)">1 item</span>
+                  <span class="rep-amt">Rp 78.000</span>
+                </div>
+              </div>
+              <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <div class="lock-txt">
+                  <div class="lock-title">Ekspor Laporan (Excel / PDF)</div>
+                  <div class="lock-desc">Download laporan penjualan harian, mingguan, atau bulanan</div>
+                </div>
+                <span class="upgrade-tag">STANDARD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D8: Laporan Kasir -->
+        <div class="d-screen pos-frame" id="d7">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn active"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AN</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar">
+              <div class="topbar-title">Laporan Kasir &amp; Uang Kas</div>
+              <div class="topbar-sub">30 Jun 2025  ·  Sesi Pagi</div>
+            </div>
+            <div class="lk-area">
+              <div class="lk-top">
+                <div class="lk-card">
+                  <div class="lk-lbl">Kas Awal</div>
+                  <div class="lk-val">Rp 500.000</div>
+                </div>
+                <div class="lk-card">
+                  <div class="lk-lbl">Kas Akhir (Est.)</div>
+                  <div class="lk-val gold">Rp 1.392.000</div>
+                </div>
+                <div class="lk-card">
+                  <div class="lk-lbl">Penjualan Tunai</div>
+                  <div class="lk-val">Rp 892.000</div>
+                </div>
+                <div class="lk-card">
+                  <div class="lk-lbl">Penjualan QRIS</div>
+                  <div class="lk-val">Rp 353.500</div>
+                </div>
+              </div>
+              <div class="kasir-summary">
+                <div class="ks-head">Rekap per Kasir — Hari Ini</div>
+                <div class="ks-row">
+                  <div><div class="ks-name">Aerith Djiady</div><div class="ks-sub">Sesi: 08:00 — sekarang</div></div>
+                  <div class="ks-trx">14 trx</div>
+                  <div class="ks-amt">Rp 742.000</div>
+                </div>
+                <div class="ks-row">
+                  <div><div class="ks-name">Stevany Carolin</div><div class="ks-sub">Sesi: 08:00 — 12:00</div></div>
+                  <div class="ks-trx">9 trx</div>
+                  <div class="ks-amt">Rp 503.500</div>
+                </div>
+              </div>
+              <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <div class="lock-txt">
+                  <div class="lock-title">Rekonsiliasi Kas &amp; Setoran</div>
+                  <div class="lock-desc">Input kas fisik, selisih otomatis, dan rekap setoran harian</div>
+                </div>
+                <span class="upgrade-tag">STANDARD</span>
+              </div>
+              <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <div class="lock-txt">
+                  <div class="lock-title">Laporan Laba Rugi Otomatis</div>
+                  <div class="lock-desc">Hitung HPP dan margin keuntungan setiap produk</div>
+                </div>
+                <span class="upgrade-tag">PREMIUM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D9: Pindah Shift -->
+        <div class="d-screen pos-frame" id="d8">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn active"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AE</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar"><div class="topbar-title">Pindah Shift</div></div>
+            <div class="content">
+              <div class="shift-wrap">
+                <div class="shift-box">
+                  <div class="shift-icon">🔄</div>
+                  <div class="shift-title">Pindah Shift Kasir</div>
+                  <div class="shift-sub">Aerith Djiady akan menyerahkan kasir ke sesi berikutnya</div>
+                  <div class="shift-summary">
+                    <div class="ss-row"><span>Kasir aktif</span><span>Aerith Djiady</span></div>
+                    <div class="ss-row"><span>Mulai sesi</span><span>08:00</span></div>
+                    <div class="ss-row"><span>Total transaksi</span><span>14 trx</span></div>
+                    <div class="ss-row"><span>Total penjualan</span><span>Rp 742.000</span></div>
+                    <div class="ss-row"><span>Kasir berikutnya</span><span>Stevany Carolin</span></div>
+                  </div>
+                  <div class="shift-btns">
+                    <button class="btn-cancel">Batal</button>
+                    <button class="btn-confirm">Konfirmasi Pindah Shift</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D10: Tutup Toko -->
+        <div class="d-screen pos-frame" id="d9">
+          <div class="sidebar">
+            <div class="s-logo">🏪</div>
+            <div class="nav-btn active"><div class="ni">🛒</div>JUAL</div>
+            <div class="nav-btn"><div class="ni">📦</div>PRODUK</div>
+            <div class="nav-btn"><div class="ni">📊</div>LAPORAN</div>
+            <div class="s-spacer"></div>
+            <div class="tier-pill">FREE</div>
+            <div class="s-avatar" style="margin-top:12px">AN</div>
+          </div>
+          <div class="main-area">
+            <div class="topbar"><div class="topbar-title">Tutup Toko</div><div class="topbar-sub">30 Jun 2025</div></div>
+            <div class="content">
+              <div class="tutup-wrap">
+                <div class="tutup-box">
+                  <div class="tutup-title">Tutup Toko Hari Ini</div>
+                  <div class="tutup-date">Senin, 30 Juni 2025  ·  Toko Sembako Maju</div>
+                  <div class="tutup-stats">
+                    <div class="tutup-stat"><div class="ts-lbl">Total Penjualan</div><div class="ts-val">Rp 1.245.500</div></div>
+                    <div class="tutup-stat"><div class="ts-lbl">Transaksi</div><div class="ts-val">23 trx</div></div>
+                    <div class="tutup-stat"><div class="ts-lbl">Kas Awal</div><div class="ts-val">Rp 500.000</div></div>
+                    <div class="tutup-stat"><div class="ts-lbl">Kas Akhir</div><div class="ts-val">Rp 1.392.000</div></div>
+                  </div>
+                  <div class="tutup-warn">
+                    <span>⚠️</span>
+                    <span>Setelah tutup toko, kasir tidak bisa memproses transaksi baru hari ini. Pastikan semua struk sudah tercetak.</span>
+                  </div>
+                  <button class="btn-tutup">🔒 Tutup Toko Sekarang</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /desktop-wrap -->
+    </div><!-- /tab-desktop -->
+
+    <!-- MOBILE TAB -->
+    <div class="tab-panel" id="tab-mobile">
+      <div class="mobile-wrap" id="mobileWrap">
+
+        <!-- M1: Login -->
+        <div class="m-screen active phone" id="m0">
+          <div class="statusbar"><span class="sb-time">09:41</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-content">
+            <div class="ml-wrap">
+              <div class="ml-logo">🏪</div>
+              <div class="ml-store">Toko Sembako Maju</div>
+              <div class="ml-addr">Palu, Sulawesi Tengah</div>
+              <div class="m-role-row">
+                <div class="m-role-btn active">Pemilik</div>
+                <div class="m-role-btn">Kasir</div>
+              </div>
+              <input class="m-field" type="text" placeholder="Username" value="anthony_djiady">
+              <input class="m-field" type="password" placeholder="Password" value="••••••••">
+              <button class="m-btn-primary">Masuk →</button>
+            </div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M2: Kasir PIN -->
+        <div class="m-screen phone" id="m1">
+          <div class="statusbar"><span class="sb-time">09:41</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-content">
+            <div class="mp-wrap">
+              <div class="mp-title">Pilih Kasir</div>
+              <div class="mp-sub">Masukkan PIN untuk mulai sesi</div>
+              <div class="mk-scroll">
+                <div class="mk-chip sel">
+                  <div class="mk-av">AE</div>
+                  <div class="mk-nm">Aerith Djiady</div>
+                </div>
+                <div class="mk-chip">
+                  <div class="mk-av">SC</div>
+                  <div class="mk-nm">Stevany Carolin</div>
+                </div>
+                <div class="mk-chip">
+                  <div class="mk-av">AN</div>
+                  <div class="mk-nm">Anthony Djiady</div>
+                </div>
+              </div>
+              <div class="mp-dots">
+                <div class="mp-dot f"></div><div class="mp-dot f"></div>
+                <div class="mp-dot f"></div><div class="mp-dot"></div>
+                <div class="mp-dot"></div><div class="mp-dot"></div>
+              </div>
+              <div class="m-numpad">
+                <div class="m-key">1</div><div class="m-key">2</div><div class="m-key">3</div>
+                <div class="m-key">4</div><div class="m-key">5</div><div class="m-key">6</div>
+                <div class="m-key">7</div><div class="m-key">8</div><div class="m-key">9</div>
+                <div class="m-key del">⌫</div><div class="m-key">0</div>
+                <div class="m-key" style="background:var(--navy);color:var(--cream);font-size:14px;font-weight:600;border-color:var(--navy)">OK</div>
+              </div>
+            </div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M3: Sales -->
+        <div class="m-screen phone" id="m2">
+          <div class="statusbar"><span class="sb-time">09:42</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-topbar"><div class="m-tb-title">Penjualan</div><div class="m-tb-sub">30 Jun 2025</div></div>
+          <div class="m-search">🔍 Cari produk...</div>
+          <div class="m-prod-grid" style="padding-bottom:10px">
+            <div class="m-prod-card">
+              <div class="m-prod-img">🌾</div>
+              <div class="m-prod-name">Beras Premium 5kg</div>
+              <div class="m-prod-price">Rp 78.000</div>
+            </div>
+            <div class="m-prod-card">
+              <div class="m-prod-img">🛢</div>
+              <div class="m-prod-name">Minyak Goreng 2L</div>
+              <div class="m-prod-price">Rp 35.500</div>
+            </div>
+            <div class="m-prod-card">
+              <div class="m-prod-img">🧂</div>
+              <div class="m-prod-name">Gula Pasir 1kg</div>
+              <div class="m-prod-price">Rp 18.000</div>
+            </div>
+            <div class="m-prod-card">
+              <div class="m-prod-img">🍜</div>
+              <div class="m-prod-name">Indomie Goreng</div>
+              <div class="m-prod-price">Rp 3.500</div>
+            </div>
+          </div>
+          <div class="m-cart-bar">
+            <div class="m-cb-info">
+              <div class="m-cb-count">3 item dipilih</div>
+              <div class="m-cb-total">Rp 167.000</div>
+            </div>
+            <button class="m-btn-cart">Bayar →</button>
+          </div>
+          <div class="m-btm-tab">
+            <div class="m-tab active"><div class="m-tab-i">🛒</div>JUAL</div>
+            <div class="m-tab"><div class="m-tab-i">📦</div>PRODUK</div>
+            <div class="m-tab"><div class="m-tab-i">📊</div>LAPORAN</div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M4: Payment -->
+        <div class="m-screen phone" id="m3">
+          <div class="statusbar"><span class="sb-time">09:46</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-topbar"><div class="m-tb-title">Pembayaran</div><div class="m-tb-sub">Trx #00124</div></div>
+          <div class="mpy-wrap">
+            <div class="mpy-total-lbl">Total yang harus dibayar</div>
+            <div class="mpy-total-amt">Rp 167.000</div>
+            <div class="mpy-methods">
+              <div class="mpy-m active"><div class="mpy-mi">💵</div><div class="mpy-ml">Tunai</div></div>
+              <div class="mpy-m"><div class="mpy-mi">📱</div><div class="mpy-ml">QRIS</div></div>
+              <div class="mpy-m"><div class="mpy-mi">🏦</div><div class="mpy-ml">Transfer</div></div>
+              <div class="mpy-m" style="opacity:.45;position:relative"><div class="mpy-mi">🔒</div><div class="mpy-ml" style="font-size:10px">Kartu Debit</div><span style="position:absolute;top:4px;right:4px;font-size:8px;background:var(--gold-bg);color:#A6843F;padding:1px 5px;border-radius:3px">STD</span></div>
+            </div>
+            <div class="cash-lbl" style="font-size:13px;color:var(--muted);margin-bottom:8px">Uang diterima</div>
+            <input class="m-cash-input" type="text" value="Rp 200.000">
+            <div class="m-change">
+              <span class="m-ch-lbl">✓ Kembalian</span>
+              <span class="m-ch-val">Rp 33.000</span>
+            </div>
+            <button class="m-btn-primary">Proses Pembayaran →</button>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M5: Receipt -->
+        <div class="m-screen phone" id="m4">
+          <div class="statusbar"><span class="sb-time">09:47</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="mrc-wrap">
+            <div class="mrc-success">
+              <div class="mrc-icon">✓</div>
+              <div class="mrc-title">Pembayaran Berhasil!</div>
+              <div class="mrc-sub">Rp 167.000  ·  Tunai  ·  Trx #00124</div>
+            </div>
+            <div class="mrc-paper">
+              <div class="mrc-ph">
+                <div class="mrc-pstore">Toko Sembako Maju</div>
+                <div class="mrc-pmeta">Jl. Pramuka No. 12, Palu<br>Kasir: Aerith Djiady  ·  30 Jun 2025  09:47</div>
+              </div>
+              <div class="mrc-row"><span>Beras Premium 5kg x1</span><span>Rp 78.000</span></div>
+              <div class="mrc-row"><span>Minyak Goreng 2L x2</span><span>Rp 71.000</span></div>
+              <div class="mrc-row"><span>Gula Pasir 1kg x1</span><span>Rp 18.000</span></div>
+              <div class="mrc-row" style="border-top:1px dashed #C8C0B0;padding-top:8px;margin-top:8px"><span>Tunai</span><span>Rp 200.000</span></div>
+              <div class="mrc-row" style="color:var(--green);font-weight:500"><span>Kembalian</span><span>Rp 33.000</span></div>
+              <div class="mrc-total"><span>TOTAL</span><span>Rp 167.000</span></div>
+            </div>
+            <div class="mrc-btns">
+              <button class="mrc-btn primary">🖨 Cetak</button>
+              <button class="mrc-btn">📲 WhatsApp</button>
+            </div>
+            <button class="m-btn-primary" style="margin-top:10px">Transaksi Baru</button>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M6: Laporan Riwayat -->
+        <div class="m-screen phone" id="m5">
+          <div class="statusbar"><span class="sb-time">10:00</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-topbar"><div class="m-tb-title">Riwayat Penjualan</div><div class="m-tb-sub">Hari Ini</div></div>
+          <div class="mlp-wrap">
+            <div class="mlp-stats">
+              <div class="mlp-stat"><div class="mlp-lbl">Total Hari Ini</div><div class="mlp-val">Rp 1,2jt</div></div>
+              <div class="mlp-stat"><div class="mlp-lbl">Transaksi</div><div class="mlp-val">23 trx</div></div>
+            </div>
+            <div class="mlp-card">
+              <div class="mlp-ch">Transaksi Terbaru</div>
+              <div class="mlp-row">
+                <div><div style="font-size:12px;font-weight:500;color:var(--navy)">#124  ·  09:47</div><div style="font-size:10px;color:var(--muted)">Aerith D.  ·  3 item</div></div>
+                <div style="text-align:right"><div style="font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy)">Rp 167.000</div><span class="mbadge mb-cash" style="font-size:9px">Tunai</span></div>
+              </div>
+              <div class="mlp-row">
+                <div><div style="font-size:12px;font-weight:500;color:var(--navy)">#123  ·  09:31</div><div style="font-size:10px;color:var(--muted)">Aerith D.  ·  5 item</div></div>
+                <div style="text-align:right"><div style="font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy)">Rp 89.500</div><span class="mbadge mb-qris" style="font-size:9px">QRIS</span></div>
+              </div>
+              <div class="mlp-row">
+                <div><div style="font-size:12px;font-weight:500;color:var(--navy)">#122  ·  09:15</div><div style="font-size:10px;color:var(--muted)">Stevany C.  ·  2 item</div></div>
+                <div style="text-align:right"><div style="font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--navy)">Rp 53.000</div><span class="mbadge mb-cash" style="font-size:9px">Tunai</span></div>
+              </div>
+            </div>
+            <div class="m-lock">
+              <span style="font-size:20px">🔒</span>
+              <div class="ml-txt">
+                <div class="ml-title">Ekspor Laporan</div>
+                <div class="ml-desc">Download Excel / PDF laporan penjualan</div>
+              </div>
+              <span class="upgrade-tag">STD</span>
+            </div>
+          </div>
+          <div class="m-btm-tab">
+            <div class="m-tab"><div class="m-tab-i">🛒</div>JUAL</div>
+            <div class="m-tab"><div class="m-tab-i">📦</div>PRODUK</div>
+            <div class="m-tab active"><div class="m-tab-i">📊</div>LAPORAN</div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M7: Produk -->
+        <div class="m-screen phone" id="m6">
+          <div class="statusbar"><span class="sb-time">10:00</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-topbar"><div class="m-tb-title">Daftar Produk</div><div style="font-size:10px;background:var(--gold-bg);color:#A6843F;padding:2px 8px;border-radius:4px;font-weight:600">FREE · 6/50</div></div>
+          <div class="mpr-wrap">
+            <div class="mpr-item">
+              <div class="mpr-img">🌾</div>
+              <div class="mpr-info"><div class="mpr-name">Beras Premium 5kg</div><div class="mpr-price">Rp 78.000</div><div class="mpr-stk">Stok: 42 karung</div></div>
+              <span style="font-size:13px;color:var(--muted)">✏️</span>
+            </div>
+            <div class="mpr-item">
+              <div class="mpr-img">🛢</div>
+              <div class="mpr-info"><div class="mpr-name">Minyak Goreng 2L</div><div class="mpr-price">Rp 35.500</div><div class="mpr-stk">Stok: 28 botol</div></div>
+              <span style="font-size:13px;color:var(--muted)">✏️</span>
+            </div>
+            <div class="mpr-item">
+              <div class="mpr-img">🧂</div>
+              <div class="mpr-info"><div class="mpr-name">Gula Pasir 1kg</div><div class="mpr-price">Rp 18.000</div><div class="mpr-stk">Stok: 60 bungkus</div></div>
+              <span style="font-size:13px;color:var(--muted)">✏️</span>
+            </div>
+            <div class="mpr-item">
+              <div class="mpr-img">🌾</div>
+              <div class="mpr-info"><div class="mpr-name">Tepung Terigu 1kg</div><div class="mpr-price">Rp 12.500</div><div class="mpr-stk" style="color:#D97706">Stok: 6 bungkus ⚠️</div></div>
+              <span style="font-size:13px;color:var(--muted)">✏️</span>
+            </div>
+            <div class="mpr-item">
+              <div class="mpr-img">🍜</div>
+              <div class="mpr-info"><div class="mpr-name">Indomie Goreng</div><div class="mpr-price">Rp 3.500</div><div class="mpr-stk">Stok: 144 pcs</div></div>
+              <span style="font-size:13px;color:var(--muted)">✏️</span>
+            </div>
+            <div class="m-lock" style="margin-top:4px">
+              <span style="font-size:18px">🔒</span>
+              <div class="ml-txt"><div class="ml-title">Import via Barcode / Excel</div><div class="ml-desc">Tambah produk massal</div></div>
+              <span class="upgrade-tag">STD</span>
+            </div>
+          </div>
+          <div class="m-btm-tab">
+            <div class="m-tab"><div class="m-tab-i">🛒</div>JUAL</div>
+            <div class="m-tab active"><div class="m-tab-i">📦</div>PRODUK</div>
+            <div class="m-tab"><div class="m-tab-i">📊</div>LAPORAN</div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M8: Laporan Kasir -->
+        <div class="m-screen phone" id="m7">
+          <div class="statusbar"><span class="sb-time">10:00</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-topbar"><div class="m-tb-title">Laporan Kasir</div><div class="m-tb-sub">Hari Ini</div></div>
+          <div class="mlp-wrap">
+            <div class="mlp-stats">
+              <div class="mlp-stat"><div class="mlp-lbl">Kas Awal</div><div class="mlp-val" style="font-size:15px">Rp 500rb</div></div>
+              <div class="mlp-stat"><div class="mlp-lbl">Kas Akhir</div><div class="mlp-val" style="font-size:15px;color:#A6843F">Rp 1,39jt</div></div>
+            </div>
+            <div class="mlp-card">
+              <div class="mlp-ch">Rekap per Kasir</div>
+              <div class="mlp-row">
+                <div><div style="font-size:13px;font-weight:500;color:var(--navy)">Aerith Djiady</div><div style="font-size:10px;color:var(--muted)">14 transaksi</div></div>
+                <div style="font-size:13px;font-weight:600;color:var(--navy);font-variant-numeric:tabular-nums">Rp 742.000</div>
+              </div>
+              <div class="mlp-row">
+                <div><div style="font-size:13px;font-weight:500;color:var(--navy)">Stevany Carolin</div><div style="font-size:10px;color:var(--muted)">9 transaksi</div></div>
+                <div style="font-size:13px;font-weight:600;color:var(--navy);font-variant-numeric:tabular-nums">Rp 503.500</div>
+              </div>
+            </div>
+            <div class="m-lock">
+              <span style="font-size:18px">🔒</span>
+              <div class="ml-txt"><div class="ml-title">Rekonsiliasi Kas</div><div class="ml-desc">Input kas fisik &amp; rekap setoran harian</div></div>
+              <span class="upgrade-tag">STD</span>
+            </div>
+            <div class="m-lock">
+              <span style="font-size:18px">🔒</span>
+              <div class="ml-txt"><div class="ml-title">Laporan Laba Rugi</div><div class="ml-desc">HPP &amp; margin keuntungan otomatis</div></div>
+              <span class="upgrade-tag">PRE</span>
+            </div>
+          </div>
+          <div class="m-btm-tab">
+            <div class="m-tab"><div class="m-tab-i">🛒</div>JUAL</div>
+            <div class="m-tab"><div class="m-tab-i">📦</div>PRODUK</div>
+            <div class="m-tab active"><div class="m-tab-i">📊</div>LAPORAN</div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M9: Pindah Shift -->
+        <div class="m-screen phone" id="m8">
+          <div class="statusbar"><span class="sb-time">12:00</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-content">
+            <div class="msh-wrap">
+              <div class="msh-icon">🔄</div>
+              <div class="msh-title">Pindah Shift</div>
+              <div class="msh-sub">Aerith Djiady menyerahkan sesi ke kasir berikutnya</div>
+              <div class="msh-summary">
+                <div class="msh-row"><span>Kasir aktif</span><span>Aerith Djiady</span></div>
+                <div class="msh-row"><span>Mulai sesi</span><span>08:00</span></div>
+                <div class="msh-row"><span>Total transaksi</span><span>14 trx</span></div>
+                <div class="msh-row"><span>Total penjualan</span><span>Rp 742.000</span></div>
+                <div class="msh-row"><span>Kasir berikutnya</span><span>Stevany Carolin</span></div>
+              </div>
+              <div class="msh-btns">
+                <button class="msh-cancel">Batal</button>
+                <button class="msh-confirm">Konfirmasi →</button>
+              </div>
+            </div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+        <!-- M10: Tutup Toko -->
+        <div class="m-screen phone" id="m9">
+          <div class="statusbar"><span class="sb-time">17:00</span><span class="sb-icons">▲ ● ▌▌</span></div>
+          <div class="m-content">
+            <div class="msh-wrap">
+              <div class="msh-icon">🔒</div>
+              <div class="msh-title">Tutup Toko</div>
+              <div class="msh-sub">Senin, 30 Juni 2025  ·  Toko Sembako Maju</div>
+              <div class="msh-summary">
+                <div class="msh-row"><span>Total penjualan</span><span>Rp 1.245.500</span></div>
+                <div class="msh-row"><span>Transaksi</span><span>23 trx</span></div>
+                <div class="msh-row"><span>Kas awal</span><span>Rp 500.000</span></div>
+                <div class="msh-row"><span>Kas akhir</span><span>Rp 1.392.000</span></div>
+              </div>
+              <div style="background:#FEF9ED;border:1px solid rgba(201,165,95,.3);border-radius:12px;padding:12px 14px;margin-bottom:18px;font-size:12px;color:#856A2E">
+                ⚠️ Setelah tutup, kasir tidak bisa transaksi hari ini
+              </div>
+              <div class="msh-btns">
+                <button class="msh-cancel">Batal</button>
+                <button class="msh-confirm red">Tutup Toko</button>
+              </div>
+            </div>
+          </div>
+          <div class="home-ind"><div class="home-bar"></div></div>
+        </div>
+
+      </div><!-- /mobile-wrap -->
+    </div><!-- /tab-mobile -->
+
+  </div><!-- /scaler-wrap -->
+</div><!-- /viewport -->
+
+<script>
+const DESKTOP_SCREENS = [
+  {id:'d0', name:'Owner Login'},
+  {id:'d1', name:'Kasir PIN'},
+  {id:'d2', name:'Penjualan (Jual)'},
+  {id:'d3', name:'Pembayaran'},
+  {id:'d4', name:'Struk'},
+  {id:'d5', name:'Daftar Produk'},
+  {id:'d6', name:'Laporan Riwayat'},
+  {id:'d7', name:'Laporan Kasir'},
+  {id:'d8', name:'Pindah Shift'},
+  {id:'d9', name:'Tutup Toko'},
+];
+const MOBILE_SCREENS = [
+  {id:'m0', name:'Login'},
+  {id:'m1', name:'Kasir PIN'},
+  {id:'m2', name:'Penjualan'},
+  {id:'m3', name:'Pembayaran'},
+  {id:'m4', name:'Struk'},
+  {id:'m5', name:'Laporan Riwayat'},
+  {id:'m6', name:'Daftar Produk'},
+  {id:'m7', name:'Laporan Kasir'},
+  {id:'m8', name:'Pindah Shift'},
+  {id:'m9', name:'Tutup Toko'},
+];
+
+let currentTab = 'desktop';
+let currentIdx = 0;
+
+function currentList() {
+  return currentTab === 'desktop' ? DESKTOP_SCREENS : MOBILE_SCREENS;
+}
+
+function renderDots() {
+  const list = currentList();
+  const dots = document.getElementById('screenDots');
+  dots.innerHTML = list.map((s,i) =>
+    `<button class="screen-dot${i===currentIdx?' active':''}" onclick="goTo(${i})" title="${s.name}"></button>`
+  ).join('');
+  document.getElementById('screenName').textContent = list[currentIdx].name;
+}
+
+function showScreen(idx) {
+  const list = currentList();
+  const prefix = currentTab === 'desktop' ? 'd' : 'm';
+  document.querySelectorAll(`.${currentTab==='desktop'?'d-screen':'m-screen'}`).forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(list[idx].id);
+  if (el) el.classList.add('active');
+  currentIdx = idx;
+  renderDots();
+  scaleScreens();
+}
+
+function goTo(idx) { showScreen(idx); }
+function nextScreen() { showScreen((currentIdx + 1) % currentList().length); }
+function prevScreen() { showScreen((currentIdx - 1 + currentList().length) % currentList().length); }
+
+function switchTab(tab) {
+  currentTab = tab;
+  currentIdx = 0;
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', (i===0 && tab==='desktop') || (i===1 && tab==='mobile'));
+  });
+  document.getElementById('tab-desktop').classList.toggle('active', tab==='desktop');
+  document.getElementById('tab-mobile').classList.toggle('active', tab==='mobile');
+  document.querySelectorAll('.d-screen').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.m-screen').forEach(el => el.classList.remove('active'));
+  showScreen(0);
+}
+
+function scaleScreens() {
+  if (currentTab === 'desktop') {
+    const wrap = document.getElementById('desktopWrap');
+    const avail = wrap.clientWidth;
+    const scale = Math.min(1, avail / 1280);
+    const activeFrame = wrap.querySelector('.d-screen.active');
+    if (activeFrame) {
+      activeFrame.style.transform = `scale(${scale})`;
+      wrap.style.height = (800 * scale) + 'px';
+    }
+  } else {
+    const wrap = document.getElementById('mobileWrap');
+    const avail = Math.min(wrap.clientWidth, window.innerHeight - 220);
+    const scale = Math.min(1, avail / 844);
+    const activeFrame = wrap.querySelector('.m-screen.active');
+    if (activeFrame) {
+      activeFrame.style.transform = `scale(${scale})`;
+      activeFrame.style.transformOrigin = 'top center';
+      wrap.style.height = (844 * scale) + 'px';
+    }
+  }
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextScreen();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevScreen();
+});
+
+window.addEventListener('resize', scaleScreens);
+
+// Init
+renderDots();
+scaleScreens();
+</script>
+</body>
+</html>
