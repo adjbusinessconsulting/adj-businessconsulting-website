@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -191,29 +191,79 @@
     .nav-logo { padding-left:0 !important; }
     .nav-logo::before,.nav-logo::after { display:none !important; }
   </style>
+
+<style id="home-header-sync">
+  nav#navbar{position:sticky;top:0;z-index:50;background:rgba(13,17,23,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,165,103,0.10);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding:14px 24px;min-height:96px;font-size:13px}
+  nav#navbar .nav-logo{display:flex!important;flex-direction:column;align-items:center;gap:6px;color:#F4EFE6;text-decoration:none;line-height:1;justify-self:center;flex-shrink:0;padding:0!important}
+  nav#navbar .nav-logo::before,nav#navbar .nav-logo::after{content:none!important;display:none!important;background:none!important}
+  nav#navbar .nav-logo .word{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;letter-spacing:0.045em;color:#F4EFE6;line-height:1;margin:0}
+  nav#navbar .nav-logo .caption{font-family:'Instrument Sans',sans-serif;font-variant-numeric:tabular-nums;font-size:7.5px;letter-spacing:0.4em;color:#C9A567;font-weight:500;padding-left:0.4em;line-height:1;margin:0}
+  nav#navbar .nav-logo svg{display:block}
+  .nav-links-left{justify-self:end}
+  .nav-right-group{display:flex;align-items:center;gap:6px;justify-self:start;flex-wrap:nowrap}
+  nav#navbar .nav-links{display:flex;gap:24px;list-style:none}
+  nav#navbar .nav-links a{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#A09890;text-decoration:none;padding:7px 9px;border-radius:3px;transition:all 0.15s;letter-spacing:0;white-space:nowrap}
+  nav#navbar .nav-links a:hover{color:#F4EFE6;background:rgba(201,165,103,0.06)}
+  nav#navbar .nav-links a.active{color:#C9A567}
+  nav#navbar .nav-links a.active::after{content:none!important;display:none!important}
+  nav#navbar .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  nav#navbar .nav-cta{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#0C0F14;background:#C9A567;padding:8px 16px;border:none;cursor:pointer;border-radius:3px;text-decoration:none;display:inline-flex;align-items:center;transition:all 0.2s;letter-spacing:0.01em}
+  nav#navbar .nav-cta:hover{background:#D9B97C;transform:translateY(-1px)}
+  nav#navbar .lang-toggle{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#9A9388;background:rgba(255,255,255,0.03);border:1px solid rgba(201,165,103,0.22);padding:5px 10px;border-radius:3px;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s}
+  nav#navbar .lang-toggle:hover{border-color:#C9A567;color:#C9A567}
+  nav#navbar .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+  nav#navbar .hamburger span{display:block;width:20px;height:1.5px;background:#C9A567;border-radius:1px;transition:all 0.3s}
+  nav#navbar .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+  nav#navbar .hamburger.open span:nth-child(2){opacity:0}
+  nav#navbar .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+  .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#131820;border-bottom:1px solid rgba(201,165,103,0.10);padding:1rem 5vw;flex-direction:column;gap:0.25rem;z-index:49}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:14px;color:#A09890;text-decoration:none;padding:10px 12px;border-radius:3px;transition:all 0.15s;display:block}
+  .mobile-menu a:hover,.mobile-menu a.active{color:#C9A567;background:rgba(201,165,103,0.06)}
+  .mobile-menu .nav-cta{margin-top:0.5rem;justify-content:center}
+  @media(max-width:960px){
+    nav#navbar{display:flex!important;justify-content:flex-end!important;position:relative;padding:0 5vw!important;min-height:72px!important;height:72px;gap:0!important}
+    nav#navbar .nav-logo{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;justify-self:auto!important;flex-direction:column!important;align-items:center!important;gap:3px!important}
+    .nav-right-group{justify-self:auto!important;margin-left:auto!important}
+    nav#navbar .nav-logo .word{font-size:24px!important}
+    nav#navbar .nav-logo .caption{display:block!important;font-size:7.5px!important}
+    nav#navbar .nav-logo svg{width:36px!important;height:36px!important}
+    nav#navbar .nav-links,.nav-links-left,.nav-links-right{display:none!important}
+    nav#navbar .nav-cta{display:none!important}
+    nav#navbar .hamburger{display:flex!important}
+    nav#navbar .nav-right{gap:8px!important;margin-left:0!important}
+    nav#navbar .lang-toggle{padding:5px 8px!important}
+  }
+</style>
 </head>
 <body>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-logo"><img src="horizontal-dark.png" alt="Sterith Business Consulting" style="height:36px;width:auto;display:block;"></a>
-  <ul class="nav-links">
-    <li><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a></li>
-    <li><a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a></li>
+  <ul class="nav-links nav-links-left">
+    <li><a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a></li>
     <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
     <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
-    <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
-    <li><a href="apps.html" class="active" data-en="Apps" data-id="Apps">Apps</a></li>
-    <li><a href="form.html" data-en="Form" data-id="Formulir">Formulir</a></li>
   </ul>
-  <div class="nav-right">
-    <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
-    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
-    <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="nav-logo" aria-label="Sterith Business Consulting — Beranda">
+    <svg width="46" height="46" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="62" width="14" height="26" rx="3" fill="#A6843F"/><rect x="30" y="50" width="14" height="38" rx="3" fill="#C9A55F"/><rect x="50" y="34" width="14" height="54" rx="3" fill="#D4B36C"/><rect x="70" y="22" width="14" height="66" rx="3" fill="#E5C778"/><polygon points="63,22 91,22 77,4" fill="#E5C778"/></svg>
+    <span class="word">STERITH</span>
+    <span class="caption">BUSINESS&nbsp;CONSULTING</span>
+  </a>
+  <div class="nav-right-group">
+    <ul class="nav-links nav-links-right">
+      <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
+      <li><a href="apps.html" class="active" data-en="Apps" data-id="Apps">Apps</a></li>
+      <li><a href="form.html" data-en="Form" data-id="Formulir">Formulir</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-en="Home" data-id="Beranda">Beranda</a>
-  <a href="data-analysis.html" data-en="Data Analysis/Science" data-id="Data Analysis/Science">Data Analysis/Science</a>
+  <a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a>
   <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
   <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
   <a href="website.html" data-en="Website" data-id="Website">Website</a>
