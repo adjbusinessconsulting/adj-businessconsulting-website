@@ -62,12 +62,12 @@
     .contact-form-grid{grid-template-columns:1fr!important}
   }
   @media(max-width:960px){
-    nav{display:flex!important;padding:0 5vw!important;min-height:56px!important;height:56px;gap:0!important}
-    .nav-logo{justify-self:auto!important;flex-direction:row!important;gap:10px!important}
-    .nav-right-group{justify-self:auto!important}
+    nav{display:flex!important;justify-content:flex-end!important;position:relative;padding:0 5vw!important;min-height:56px!important;height:56px;gap:0!important}
+    .nav-logo{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;justify-self:auto!important;flex-direction:column!important;align-items:center!important;gap:3px!important}
+    .nav-right-group{justify-self:auto!important;margin-left:auto!important}
     .nav-logo .word{font-size:18px!important}
-    .nav-logo .caption{display:none!important}
-    .nav-logo svg{width:28px!important;height:28px!important}
+    .nav-logo .caption{display:block!important;font-size:6px!important}
+    .nav-logo svg{width:26px!important;height:26px!important}
     .nav-links,.nav-links-left,.nav-links-right{display:none!important}
     .nav-cta{display:none!important}
     .hamburger{display:flex!important}
