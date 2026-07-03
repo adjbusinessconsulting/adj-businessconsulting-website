@@ -16,7 +16,7 @@
   html{scroll-behavior:smooth}
   body{background:#0C0F14}
   html{overflow-x:hidden}
-  #prospera-root{overflow-x:visible!important}
+  #sterith-root{overflow-x:visible!important}
   [data-reveal]{opacity:1;transform:none}
   .p-link{transition:color .18s ease}
   .p-link:hover{color:#ECE7DD !important}
@@ -166,7 +166,7 @@ document.addEventListener('submit', function(e){
 </script>
 </helmet>
 
-<div id="prospera-root" style="--accent: #C9A567; --logo-scale: 1; --header-scale: 1; background:#0C0F14; color:#ECE7DD; font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; min-height:100vh;">
+<div id="sterith-root" style="--accent: #C9A567; --logo-scale: 1; --header-scale: 1; background:#0C0F14; color:#ECE7DD; font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; min-height:100vh;">
 
   <nav id="navbar">
   <ul class="nav-links nav-links-left">
@@ -535,7 +535,7 @@ class Component extends DCLogic {
     // Entrance animation intentionally omitted: the DC preview re-renders on a
     // loop, which restarts any opacity/transform-from-hidden animation every
     // frame and leaves content stuck invisible. Content is visible by default.
-    const root = document.getElementById('prospera-root');
+    const root = document.getElementById('sterith-root');
     if (root) root.classList.remove('motion');
   }
   countUp(el) {
@@ -631,11 +631,11 @@ class Component extends DCLogic {
       });
     }
     m.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
   function closeCertModal(id) {
     document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
   document.addEventListener('click', function(e) {
     var t = e.target && e.target.closest ? e.target.closest('[data-cert-modal]') : null;
@@ -646,7 +646,7 @@ class Component extends DCLogic {
       document.querySelectorAll('.cert-modal.open').forEach(function(m) {
         m.classList.remove('open');
       });
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   });
 </script>
