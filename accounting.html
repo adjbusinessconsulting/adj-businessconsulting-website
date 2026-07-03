@@ -18,8 +18,8 @@
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Instrument Sans', system-ui, sans-serif;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--mono); background: var(--navy); color: var(--gray-1); font-size: 14px; line-height: 1.6; overflow-x: hidden; animation: pageIn 0.6s ease-out; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--mono); background: var(--navy); color: var(--gray-1); font-size: 14px; line-height: 1.6; animation: pageIn 0.6s ease-out; }
     @keyframes pageIn { from{opacity:0} to{opacity:1} }
 
     body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.10; background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); mix-blend-mode:overlay; }
@@ -695,13 +695,17 @@
         <div class="cert-logo-wrap"><img src="Logo-Ikatan-Akuntan-Indonesia-IAI.webp" alt="IAI" style="width:28px;height:28px;object-fit:contain;"></div>
         <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI · 2018</span></div>
       </button>
+      <button onclick="openCertModal('brevet-jimly-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="PKPPI.png" alt="PKPPI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B (Applied)" data-id="Brevet Pajak A &amp; B Terapan">Brevet Pajak A &amp; B Terapan</span><span class="cert-card-org">Jimly School of Law and Government · 2026</span></div>
+      </button>
       <button onclick="openCertModal('biola-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
         <div class="cert-logo-wrap"><img src="biola-university-logo.png" alt="Biola University" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#fff;padding:2px;"></div>
         <div class="cert-meta"><span class="cert-card-name">B.S. Business Administration</span><span class="cert-card-org">Biola University · 2016</span></div>
       </button>
       <button onclick="openCertModal('pkp3-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
         <div class="cert-logo-wrap"><img src="Pengadilan_Pajak.png" alt="Pengadilan Pajak RI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
-        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Pengadilan Pajak RI · KHP-04695</span></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Jimly School of Law and Government · 2026</span></div>
       </button>
     </div>
   </div>
@@ -2566,7 +2570,7 @@
       <h2 data-en="Need Help with <span>Accounting?</span>" data-id="Butuh Bantuan <span>Akuntansi?</span>">Butuh Bantuan <span>Akuntansi?</span></h2>
       <p data-en="Let's keep your books clean, your reports accurate, and your business finances in order." data-id="Mari jaga pembukuan Anda bersih, laporan akurat, dan keuangan bisnis Anda teratur.">Mari jaga pembukuan Anda bersih, laporan akurat, dan keuangan bisnis Anda teratur.</p>
     </div>
-    <a href="form.html" class="btn-navy" data-en="Konsultasi Gratis →" data-id="Konsultasi Gratis →">Konsultasi Gratis →</a>
+    <a href="form.html" class="btn-navy" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
   </div>
 </section>
 
@@ -2724,10 +2728,16 @@
 </div>
 
 <!-- PKP3 Certificate Modal -->
+<div id="brevet-jimly-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-jimly-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B Terapan &mdash; Jimly School of Law and Government</span><button class="cert-modal-close" onclick="closeCertModal('brevet-jimly-modal')">&times;</button></div>
+    <iframe src="Sertifikat_Brevet_Anthony_Djiady_Djie__B_S___CTAP.pdf"></iframe>
+  </div>
+</div>
 <div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
   <div class="cert-modal-inner">
     <div class="cert-modal-header">
-      <span class="cert-modal-title">Kuasa Hukum Perpajakan (KHP-04695) — Pengadilan Pajak RI</span>
+      <span class="cert-modal-title">Kuasa Hukum Pajak — Jimly School of Law and Government</span>
       <button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button>
     </div>
     <iframe src="Kartu_IKH_Bidang_Perpajakan.pdf"></iframe>
@@ -2783,18 +2793,18 @@
 <script>
   function openCertModal(id) {
     document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
   function closeCertModal(id) {
     document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.cert-modal.open').forEach(function(m) {
         m.classList.remove('open');
       });
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   });
   // View Resume button

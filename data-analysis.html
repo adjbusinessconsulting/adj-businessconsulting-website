@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════
-       PROSPERA PORTFOLIO — CODING VIBE SHELL STYLES
+       STERITH PORTFOLIO — CODING VIBE SHELL STYLES
        Matches the index-page coding-vibe mockup.
        Restyles: nav, page-header, cat-selector, sub-cat,
        project picker, project panel shells, CTA, footer.
@@ -53,14 +53,13 @@
       --ochre: #C9A567;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--mono);
       background: var(--navy);
       color: var(--gray-1);
       font-size: 14px;
       line-height: 1.6;
-      overflow-x: hidden;
       font-variant-numeric: tabular-nums;
       font-feature-settings: "ss01", "cv11", "calt";
       animation: pageIn 0.6s ease-out;
@@ -3178,6 +3177,10 @@
           <span class="cert-card-org">IAI · 2018</span>
         </div>
       </button>
+      <button onclick="openCertModal('brevet-jimly-modal')" class="cert-card sr sr-up" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="PKPPI.png" alt="PKPPI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B (Applied)" data-id="Brevet Pajak A &amp; B Terapan">Brevet Pajak A &amp; B Terapan</span><span class="cert-card-org">Jimly School of Law and Government · 2026</span></div>
+      </button>
       <button onclick="openCertModal('biola-modal')" class="cert-card sr sr-up d2" style="cursor:pointer;text-align:left;width:100%;">
         <div class="cert-logo-wrap">
           <img src="biola-university-logo.png" alt="Biola University" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#fff;padding:2px;">
@@ -3188,7 +3191,7 @@
         <div class="cert-logo-wrap">
           <img src="Pengadilan_Pajak.png" alt="Pengadilan Pajak RI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;">
         </div>
-        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Pengadilan Pajak RI · KHP-04695</span></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Jimly School of Law and Government · 2026</span></div>
       </button>
     </div>
   </div>
@@ -7325,10 +7328,16 @@ if(insightWrap){
 </div>
 
 <!-- PKP3 Certificate Modal -->
+<div id="brevet-jimly-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-jimly-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B Terapan &mdash; Jimly School of Law and Government</span><button class="cert-modal-close" onclick="closeCertModal('brevet-jimly-modal')">&times;</button></div>
+    <iframe src="Sertifikat_Brevet_Anthony_Djiady_Djie__B_S___CTAP.pdf"></iframe>
+  </div>
+</div>
 <div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
   <div class="cert-modal-inner">
     <div class="cert-modal-header">
-      <span class="cert-modal-title">Kuasa Hukum Perpajakan (KHP-04695) — Pengadilan Pajak RI</span>
+      <span class="cert-modal-title">Kuasa Hukum Pajak — Jimly School of Law and Government</span>
       <button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button>
     </div>
     <iframe src="Kartu_IKH_Bidang_Perpajakan.pdf"></iframe>
@@ -7384,18 +7393,18 @@ if(insightWrap){
 <script>
   function openCertModal(id) {
     document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
   function closeCertModal(id) {
     document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.cert-modal.open').forEach(function(m) {
         m.classList.remove('open');
       });
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   });
   // View Resume button

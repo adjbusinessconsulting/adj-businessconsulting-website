@@ -371,6 +371,9 @@ document.addEventListener('submit', function(e){
           <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent,#C9A567); letter-spacing:0.06em; margin-bottom:24px;" data-en="Certified Tax Practitioner &amp; Accountant · Founder, Sterith Business Consulting" data-id="Praktisi Pajak Bersertifikat &amp; Akuntan · Pendiri, Sterith Business Consulting">Praktisi Pajak Bersertifikat &amp; Akuntan · Pendiri, Sterith Business Consulting</div>
           <p style="font-size:16px; line-height:1.75; color:#B0A89D; max-width:640px; margin-bottom:32px;" data-en="A US graduate from Biola University, California and Jimly School of Law and Government — an independent consultant holding PKP3 (Tax Practitioner), Brevet Pajak A&amp;B, and Xero Advisor certifications, available for direct engagement with no agency and no middleman. With over six years across taxation, accounting, and financial reporting for businesses in Indonesia, I help clients manage tax obligations, prepare financial statements, and make data-driven decisions — plus data analytics and website design to support growth end to end." data-id="Lulusan Biola University, California dan Jimly School of Law and Government — konsultan independen yang memegang sertifikasi PKP3 (Praktisi Pajak), Brevet Pajak A&amp;B, dan Xero Advisor, tersedia untuk kerja sama langsung tanpa agensi maupun perantara. Dengan pengalaman lebih dari enam tahun di bidang perpajakan, akuntansi, dan pelaporan keuangan untuk bisnis di Indonesia, saya membantu klien mengelola kewajiban pajak, menyusun laporan keuangan, dan mengambil keputusan berbasis data — ditambah analitik data dan desain website untuk mendukung pertumbuhan secara menyeluruh.">Lulusan Biola University, California dan Jimly School of Law and Government — konsultan independen yang memegang sertifikasi PKP3 (Praktisi Pajak), Brevet Pajak A&amp;B, dan Xero Advisor, tersedia untuk kerja sama langsung tanpa agensi maupun perantara. Dengan pengalaman lebih dari enam tahun di bidang perpajakan, akuntansi, dan pelaporan keuangan untuk bisnis di Indonesia, saya membantu klien mengelola kewajiban pajak, menyusun laporan keuangan, dan mengambil keputusan berbasis data — ditambah analitik data dan desain website untuk mendukung pertumbuhan secara menyeluruh.</p>
 
+          <style>.resume-btn:hover{ background:rgba(201,165,103,0.10); border-color:rgba(201,165,103,0.6); transform:translateY(-1px); }</style>
+          <button data-cert-modal="resume-modal" class="resume-btn" style="display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:var(--accent,#C9A567); background:transparent; border:1px solid rgba(201,165,103,0.35); padding:10px 20px; border-radius:6px; cursor:pointer; transition:all 0.2s; margin-bottom:34px;" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</button>
+
           <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#7B756B; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; scroll-margin-top:90px;" id="kredensial" data-en="Education &amp; certification" data-id="Pendidikan &amp; sertifikasi">Pendidikan &amp; sertifikasi</div>
           <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:32px; max-width:640px;">
             <div style="display:flex; gap:14px; padding:13px 16px; background:#12161D; border:1px solid rgba(255,255,255,0.06); border-radius:9px;">
@@ -449,17 +452,36 @@ document.addEventListener('submit', function(e){
         <div class="cert-logo-wrap"><img src="Logo-Ikatan-Akuntan-Indonesia-IAI.webp" alt="IAI" style="width:28px;height:28px;object-fit:contain;"></div>
         <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI &middot; 2018</span></div>
       </button>
+      <button data-cert-modal="brevet-jimly-modal" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="PKPPI.png" alt="PKPPI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B (Applied)" data-id="Brevet Pajak A &amp; B Terapan">Brevet Pajak A &amp; B Terapan</span><span class="cert-card-org">Jimly School of Law and Government &middot; 2026</span></div>
+      </button>
       <button data-cert-modal="biola-modal" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
         <div class="cert-logo-wrap"><img src="biola-university-logo.png" alt="Biola University" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#fff;padding:2px;"></div>
         <div class="cert-meta"><span class="cert-card-name">B.S. Business Administration</span><span class="cert-card-org">Biola University &middot; 2016</span></div>
       </button>
       <button data-cert-modal="pkp3-modal" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
         <div class="cert-logo-wrap"><img src="Pengadilan_Pajak.png" alt="Pengadilan Pajak RI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
-        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Pengadilan Pajak RI &middot; KHP-04695</span></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Jimly School of Law and Government &middot; 2026</span></div>
       </button>
     </div>
   </div>
 </section>
+
+  <!-- CTA band (matches the bottom CTA on the other pages) -->
+  <style>
+    .home-cta-btn:hover{ background:#D9B97C !important; transform:translateY(-1px); }
+    @media (max-width:640px){ .home-cta-inner{ flex-direction:column; align-items:flex-start !important; } }
+  </style>
+  <section style="background:#0C0F14; border-top:1px solid rgba(255,255,255,0.06); padding:64px max(24px,5vw);">
+    <div class="home-cta-inner" style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+      <div>
+        <h2 style="font-family:'Spectral',serif; font-size:clamp(18px,2.5vw,26px); font-weight:600; letter-spacing:-0.005em; color:#F4EFE6; margin:0 0 0.5rem;" data-en="Ready to <span style='color:var(--accent,#C9A567);'>Get Started?</span>" data-id="Siap <span style='color:var(--accent,#C9A567);'>Memulai?</span>">Siap <span style="color:var(--accent,#C9A567);">Memulai?</span></h2>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif; font-size:13px; color:#A09890; line-height:1.7; margin:0;" data-en="From bookkeeping to tax, finance, websites, and apps — all in one place." data-id="Dari pembukuan hingga pajak, keuangan, website, dan aplikasi — semua dalam satu tempat.">Dari pembukuan hingga pajak, keuangan, website, dan aplikasi — semua dalam satu tempat.</p>
+      </div>
+      <a href="#contact" class="home-cta-btn" style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; background:var(--accent,#C9A567); color:#0D1117; padding:11px 22px; border:none; cursor:pointer; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; transition:all 0.2s;" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+    </div>
+  </section>
 
   <section id="contact" style="background:#0E1218; border-top:1px solid rgba(255,255,255,0.06); padding:88px max(24px,5vw);">
     <div class="contact-grid" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start;">
@@ -615,9 +637,21 @@ class Component extends DCLogic {
     <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
   </div>
 </div>
+<div id="resume-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('resume-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Resume &mdash; Anthony Djiady Djie</span><button class="cert-modal-close" onclick="closeCertModal('resume-modal')">&times;</button></div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf"></iframe>
+  </div>
+</div>
+<div id="brevet-jimly-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-jimly-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B Terapan &mdash; Jimly School of Law and Government</span><button class="cert-modal-close" onclick="closeCertModal('brevet-jimly-modal')">&times;</button></div>
+    <iframe src="Sertifikat_Brevet_Anthony_Djiady_Djie__B_S___CTAP.pdf"></iframe>
+  </div>
+</div>
 <div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
   <div class="cert-modal-inner">
-    <div class="cert-modal-header"><span class="cert-modal-title">Praktisi/Pengacara Pajak (PKP3) &mdash; Jimly School of Law</span><button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button></div>
+    <div class="cert-modal-header"><span class="cert-modal-title">Kuasa Hukum Pajak &mdash; Jimly School of Law and Government</span><button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button></div>
     <iframe src="Kartu_IKH_Bidang_Perpajakan.pdf"></iframe>
   </div>
 </div>
