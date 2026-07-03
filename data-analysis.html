@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════
-       STERITH PORTFOLIO — CODING VIBE SHELL STYLES
+       PROSPERA PORTFOLIO — CODING VIBE SHELL STYLES
        Matches the index-page coding-vibe mockup.
        Restyles: nav, page-header, cat-selector, sub-cat,
        project picker, project panel shells, CTA, footer.
@@ -53,13 +53,14 @@
       --ochre: #C9A567;
     }
 
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--mono);
       background: var(--navy);
       color: var(--gray-1);
       font-size: 14px;
       line-height: 1.6;
+      overflow-x: hidden;
       font-variant-numeric: tabular-nums;
       font-feature-settings: "ss01", "cv11", "calt";
       animation: pageIn 0.6s ease-out;
@@ -7383,18 +7384,18 @@ if(insightWrap){
 <script>
   function openCertModal(id) {
     document.getElementById(id).classList.add('open');
-    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
   }
   function closeCertModal(id) {
     document.getElementById(id).classList.remove('open');
-    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
   }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.cert-modal.open').forEach(function(m) {
         m.classList.remove('open');
       });
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     }
   });
   // View Resume button
