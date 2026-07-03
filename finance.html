@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulir Klien — Sterith Business Consulting</title>
+  <title>Keuangan — Sterith Business Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -549,7 +549,7 @@
 
 <nav id="navbar">
   <ul class="nav-links nav-links-left">
-    <li><a href="finance.html" data-en="Finance" data-id="Keuangan">Keuangan</a></li>
+    <li><a href="finance.html" class="active" data-en="Finance" data-id="Keuangan">Keuangan</a></li>
     <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
     <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
   </ul>
@@ -572,7 +572,7 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="finance.html" data-en="Finance" data-id="Keuangan">Keuangan</a>
+  <a href="finance.html" class="active" data-en="Finance" data-id="Keuangan">Keuangan</a>
   <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
   <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
   <a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a>
@@ -581,230 +581,387 @@
   <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
 
-<!-- FORM STYLES -->
-<style>
-  .form-hero { padding: 3.5rem 5vw 1.5rem; max-width: 820px; margin: 0 auto; }
-  .form-hero .breadcrumb { font-family: var(--mono); font-size: 12px; color: var(--gray-3); margin-bottom: 1.25rem; }
-  .form-hero .breadcrumb a { color: var(--gray-3); text-decoration: none; } .form-hero .breadcrumb a:hover { color: var(--white); } .form-hero .breadcrumb span { color: var(--white); }
-  .form-hero h1 { font-family: var(--h); font-size: clamp(30px,4.5vw,46px); font-weight: 600; color: var(--white); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: 0.85rem; }
-  .form-hero h1 span { color: var(--cyan); font-style: italic; font-weight: 400; }
-  .form-hero p { font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 16px; color: var(--gray-2); line-height: 1.7; max-width: 600px; }
-  .form-section { padding: 1.5rem 5vw 5rem; }
-  .form-wrap { max-width: 820px; margin: 0 auto; }
-  .fblock { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 12px; padding: 1.85rem 2rem; margin-bottom: 1.1rem; }
-  .fblock-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.5rem; }
-  .fblock-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--cyan); letter-spacing: 0.12em; }
-  .fblock-title { font-family: var(--h); font-size: 19px; font-weight: 600; color: var(--white); letter-spacing: -0.005em; }
-  .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; }
-  .field { display: flex; flex-direction: column; gap: 0.5rem; }
-  .field.full { grid-column: 1 / -1; }
-  .field label { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; }
-  .field label .req { color: var(--cyan); margin-left: 2px; }
-  .field label .opt { color: var(--gray-4); margin-left: 4px; text-transform: none; letter-spacing: 0; font-size: 10.5px; }
-  .field input, .field select, .field textarea {
-    font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 14.5px; color: var(--white);
-    background: var(--navy); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px;
-    padding: 11px 14px; width: 100%; transition: border-color 0.2s, box-shadow 0.2s; line-height: 1.5;
-  }
-  .field input::placeholder, .field textarea::placeholder { color: var(--gray-4); }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(201,165,103,0.10);
-  }
-  .field select { cursor: pointer; appearance: none; -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A09890' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
-    background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
-  .field textarea { resize: vertical; min-height: 96px; }
-  .checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
-  .check { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--navy); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; cursor: pointer; transition: all 0.18s; font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 13.5px; color: var(--gray-1); }
-  .check:hover { border-color: rgba(201,165,103,0.3); }
-  .check:has(input:checked) { border-color: var(--cyan); background: rgba(201,165,103,0.06); color: var(--white); }
-  .check input { width: 16px; height: 16px; accent-color: var(--cyan); cursor: pointer; flex-shrink: 0; }
-  .form-foot { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
-  .submit-btn { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--navy); background: var(--cyan); border: none; border-radius: 8px; padding: 14px; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s, transform 0.2s; width: 100%; }
-  .submit-btn:hover { background: #D9B97C; transform: translateY(-1px); }
-  .submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
-  .form-note { font-family: var(--mono); font-size: 11.5px; color: var(--gray-3); line-height: 1.6; text-align: center; }
-  .form-err { font-family: var(--mono); font-size: 12.5px; color: #FB7185; background: rgba(251,113,133,0.06); border: 1px solid rgba(251,113,133,0.25); border-radius: 8px; padding: 11px 14px; display: none; }
-  .thankyou { display: none; background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.25); border-radius: 12px; padding: 3rem 2.5rem; text-align: center; }
-  .thankyou-icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; border-radius: 50%; border: 1.5px solid var(--cyan); display: grid; place-items: center; color: var(--cyan); }
-  .thankyou h2 { font-family: var(--h); font-size: 26px; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
-  .thankyou p { font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 15px; color: var(--gray-2); line-height: 1.7; max-width: 420px; margin: 0 auto 1.75rem; }
-  .thankyou a { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--navy); background: var(--cyan); padding: 11px 22px; border-radius: 8px; text-decoration: none; display: inline-block; }
-  .honeypot { position: absolute; left: -9999px; opacity: 0; }
-  @media (max-width: 680px) {
-    .fgrid { grid-template-columns: 1fr; }
-    .checks { grid-template-columns: 1fr 1fr; }
-    .fblock { padding: 1.5rem 1.35rem; }
-  }
-</style>
-
-<!-- FORM HERO -->
-<div class="form-hero">
-  <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Intake Form" data-id="Formulir">Formulir</span></div>
-  <h1 data-en="Let's get to know <span>your business.</span>" data-id="Mari kenali <span>bisnis Anda.</span>">Mari kenali <span>bisnis Anda.</span></h1>
-  <p data-en="Fill in your business details below. It takes about 3 minutes, and helps me scope the work and prepare a fair quote before we talk. The first consultation is free." data-id="Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.">Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.</p>
-  <div style="display:inline-flex; align-items:center; gap:10px; margin-top:1.4rem; padding:10px 14px; background:rgba(201,165,103,0.06); border:1px solid rgba(201,165,103,0.22); border-radius:8px;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A567" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-    <span style="font-family:var(--mono); font-size:12.5px; color:var(--gray-2); letter-spacing:0.02em;" data-en="All information you share is strictly confidential — used only to prepare your consultation, never sold or shared." data-id="Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.">Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.</span>
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-left">
+      <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Finance" data-id="Keuangan">Keuangan</span></div>
+      <h1 class="page-title cyan-glow" data-en="Finance" data-id="Keuangan">Keuangan<span class="cursor">_</span></h1>
+      <p class="hero-positioning"
+         data-en="Ratio and margin analysis, cash-flow and receivables review, break-even and cost-variance modelling — turning the same bookkeeping into decisions you can act on."
+         data-id="Analisis rasio dan margin, tinjauan arus kas dan piutang, pemodelan break-even dan varians biaya — mengubah pembukuan yang sama menjadi keputusan yang bisa Anda ambil.">
+        Analisis rasio dan margin, tinjauan arus kas dan piutang, pemodelan break-even dan varians biaya — mengubah pembukuan yang sama menjadi keputusan yang bisa Anda ambil.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">6<span class="hero-stat-unit">y</span></div>
+          <div class="hero-stat-label" data-en="experience" data-id="pengalaman">pengalaman</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100<span class="hero-stat-unit">%</span></div>
+          <div class="hero-stat-label" data-en="accurate" data-id="akurat">akurat</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10<span class="hero-stat-unit">+</span></div>
+          <div class="hero-stat-label" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-header-right">
+      <div class="layanan-card">
+        <div class="layanan-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
+        <div class="layanan-stats-row">
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">6<span style="font-size:0.6em">y</span></span>
+            <span class="layanan-stat-label" data-en="experience" data-id="pengalaman">pengalaman</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">100<span style="font-size:0.6em">%</span></span>
+            <span class="layanan-stat-label" data-en="accurate" data-id="akurat">akurat</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">10<span style="font-size:0.6em">+</span></span>
+            <span class="layanan-stat-label" data-en="certifications" data-id="sertifikasi">sertifikasi</span>
+          </div>
+        </div>
+        <div class="layanan-pills">
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Ratio &amp; Margin Analysis" data-id="Analisis Rasio &amp; Margin">Analisis Rasio &amp; Margin</span>
+            <span class="layanan-pill-tag">rasio</span>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Cash Flow &amp; Receivables" data-id="Arus Kas &amp; Piutang">Arus Kas &amp; Piutang</span>
+            <span class="layanan-pill-tag">kas</span>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Break-even &amp; Cost Variance" data-id="Break-even &amp; Varians Biaya">Break-even &amp; Varians Biaya</span>
+            <span class="layanan-pill-tag">model</span>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Working Capital &amp; Liquidity" data-id="Modal Kerja &amp; Likuiditas">Modal Kerja &amp; Likuiditas</span>
+            <span class="layanan-pill-tag">psak</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- FORM -->
-<section class="form-section">
-  <div class="form-wrap">
-    <form id="intakeForm" autocomplete="on">
-      <!-- ⚠️ SETUP: replace d14e6d6d-6ff0-4545-8b14-522bfd9d2f7e with your Web3Forms access key from https://web3forms.com -->
-      <input type="hidden" name="access_key" value="d14e6d6d-6ff0-4545-8b14-522bfd9d2f7e">
-      <input type="hidden" name="subject" value="Formulir Klien Baru — Sterith">
-      <input type="hidden" name="from_name" value="Sterith Intake Form">
-      <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+<div class="glow-line"></div>
 
-      <!-- 01 IDENTITAS -->
-      <div class="fblock">
-        <div class="fblock-head"><span class="fblock-num">01</span><span class="fblock-title" data-en="Identity" data-id="Identitas">Identitas</span></div>
-        <div class="fgrid">
-          <div class="field">
-            <label data-en="Full name <span class='req'>*</span>" data-id="Nama lengkap <span class='req'>*</span>">Nama lengkap <span class="req">*</span></label>
-            <input type="text" name="Nama lengkap" required placeholder="Anthony Djiady">
-          </div>
-          <div class="field">
-            <label data-en="Business / brand name <span class='opt'>(optional)</span>" data-id="Nama usaha / brand <span class='opt'>(opsional)</span>">Nama usaha / brand <span class="opt">(opsional)</span></label>
-            <input type="text" name="Nama usaha" placeholder="PT Contoh Jaya">
-          </div>
-          <div class="field">
-            <label data-en="Business type <span class='req'>*</span>" data-id="Jenis usaha <span class='req'>*</span>">Jenis usaha <span class="req">*</span></label>
-            <select name="Jenis usaha" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="Individual / Freelance" data-id="Perorangan / Freelance">Perorangan / Freelance</option>
-              <option>UMKM</option>
-              <option>CV</option>
-              <option>PT</option>
-              <option data-en="Other" data-id="Lainnya">Lainnya</option>
-            </select>
-          </div>
-          <div class="field">
-            <label data-en="Industry / field <span class='req'>*</span>" data-id="Bidang usaha <span class='req'>*</span>">Bidang usaha <span class="req">*</span></label>
-            <input type="text" name="Bidang usaha" required placeholder="F&B, retail, jasa…">
-          </div>
-          <div class="field full">
-            <label data-en="City / domicile <span class='req'>*</span>" data-id="Kota / domisili <span class='req'>*</span>">Kota / domisili <span class="req">*</span></label>
-            <input type="text" name="Kota" required placeholder="Palu, Sulawesi Tengah">
-          </div>
+<!-- CERTIFICATIONS -->
+<section class="certs-gallery" id="certs-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
+    <h2 class="section-title" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
+    <div class="certs-grid">
+      <button onclick="openCertModal('google-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 15.5 19.1 12 24 12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.5 0 10.4-1.8 14.3-5l-6.6-5.6C29.5 37 26.9 38 24 38c-6 0-11.1-4-12.9-9.7l-7 5.4C7.5 41.2 15.2 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.2-3.1 5.8-5.9 7.5l6.6 5.6C40 38 46 32 46 24c0-1.3-.2-2.7-.5-4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Google Data Analytics</span><span class="cert-card-org">Google · Coursera · 2025</span></div>
+      </button>
+      <button onclick="openCertModal('sql-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft SQL Server</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </button>
+      <button onclick="openCertModal('excel-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Microsoft Excel Professional</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
+      </button>
+      <button onclick="openCertModal('tableau-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#E97627" d="M24 6v16h-2V6h2zm0 20v16h-2V26h2z"/><path fill="#C72037" d="M6 24h16v-2H6v2zm20 0h16v-2H26v2z"/><path fill="#5B879B" d="M14 14l8 8-1.4 1.4L12.6 15.4 14 14z"/><path fill="#5B879B" d="M26.6 26.6L34 34l-1.4 1.4-7.4-7.4 1.4-1.4z"/><path fill="#EB9129" d="M34 14l-8 8-1.4-1.4 8-8L34 14z"/><path fill="#EB9129" d="M15.4 32.6L24 24l1.4 1.4-8.6 8.6-1.4-1.4z"/><circle fill="#E97627" cx="24" cy="24" r="3"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Tableau BI Analyst</span><span class="cert-card-org">Tableau · Coursera · 2025</span></div>
+      </button>
+      <button onclick="openCertModal('python-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 4c-6 0-9 2.7-9 6v4h10v2H12c-4 0-8 3.3-8 9s3 9 7 9h4v-5c0-4 3.3-7 7-7h10c3 0 6-2.7 6-6V10c0-3.3-4-6-10-6h-4zm-2 4a2 2 0 110 4 2 2 0 010-4z"/><path fill="#FFD43B" d="M24 44c6 0 9-2.7 9-6v-4H23v-2h13c4 0 8-3.3 8-9s-3-9-7-9h-4v5c0 4-3.3 7-7 7H16c-3 0-6 2.7-6 6v8c0 3.3 4 6 10 6h4zm2-4a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
+        <div class="cert-meta"><span class="cert-card-name">Python for Data Science, AI</span><span class="cert-card-org">IBM · Coursera · 2025</span></div>
+      </button>
+      <button onclick="openCertModal('dibimbing-cert-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap">
+          <img src="logo-dibimbing-blue-512.svg" alt="Dibimbing.id" style="width:28px;height:28px;object-fit:contain;border-radius:4px;">
         </div>
-      </div>
-
-      <!-- 02 SKALA USAHA -->
-      <div class="fblock">
-        <div class="fblock-head"><span class="fblock-num">02</span><span class="fblock-title" data-en="Business scale" data-id="Skala usaha">Skala usaha</span></div>
-        <div class="fgrid">
-          <div class="field">
-            <label data-en="Est. monthly revenue <span class='req'>*</span>" data-id="Perkiraan omzet bulanan <span class='req'>*</span>">Perkiraan omzet bulanan <span class="req">*</span></label>
-            <select name="Omzet bulanan" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="Under 10 million" data-id="< 10 juta">&lt; 10 juta</option>
-              <option data-en="10–50 million" data-id="10–50 juta">10–50 juta</option>
-              <option data-en="50–100 million" data-id="50–100 juta">50–100 juta</option>
-              <option data-en="Over 100 million" data-id="> 100 juta">&gt; 100 juta</option>
-              <option data-en="Not sure yet" data-id="Belum tahu">Belum tahu</option>
-            </select>
-          </div>
-          <div class="field">
-            <label data-en="Transactions / month <span class='req'>*</span>" data-id="Transaksi per bulan <span class='req'>*</span>">Transaksi per bulan <span class="req">*</span></label>
-            <select name="Transaksi per bulan" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="Under 50" data-id="< 50">&lt; 50</option>
-              <option>50–200</option>
-              <option data-en="200+" data-id="200+">200+</option>
-              <option data-en="Not sure yet" data-id="Belum tahu">Belum tahu</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label data-en="Current bookkeeping <span class='req'>*</span>" data-id="Pembukuan saat ini <span class='req'>*</span>">Pembukuan saat ini <span class="req">*</span></label>
-            <select name="Pembukuan saat ini" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="None yet" data-id="Belum ada">Belum ada</option>
-              <option data-en="Manual / Excel" data-id="Manual / Excel">Manual / Excel</option>
-              <option data-en="Accounting software" data-id="Sudah pakai software">Sudah pakai software</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 STATUS PAJAK -->
-      <div class="fblock">
-        <div class="fblock-head"><span class="fblock-num">03</span><span class="fblock-title" data-en="Tax status" data-id="Status pajak">Status pajak</span></div>
-        <div class="fgrid">
-          <div class="field">
-            <label data-en="Do you have an NPWP? <span class='req'>*</span>" data-id="Sudah punya NPWP? <span class='req'>*</span>">Sudah punya NPWP? <span class="req">*</span></label>
-            <select name="Status NPWP" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="Yes" data-id="Ya">Ya</option>
-              <option data-en="Not yet" data-id="Belum">Belum</option>
-              <option data-en="In process" data-id="Dalam proses">Dalam proses</option>
-            </select>
-          </div>
-          <div class="field">
-            <label data-en="Tax filing so far <span class='req'>*</span>" data-id="Pelaporan pajak selama ini <span class='req'>*</span>">Pelaporan pajak selama ini <span class="req">*</span></label>
-            <select name="Pelaporan pajak" required>
-              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
-              <option data-en="Never filed" data-id="Belum pernah">Belum pernah</option>
-              <option data-en="Self-filed" data-id="Lapor sendiri">Lapor sendiri</option>
-              <option data-en="Another consultant" data-id="Konsultan lain">Konsultan lain</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- 04 KEBUTUHAN -->
-      <div class="fblock">
-        <div class="fblock-head"><span class="fblock-num">04</span><span class="fblock-title" data-en="What you need" data-id="Kebutuhan">Kebutuhan</span></div>
-        <p style="font-family:'Instrument Sans',system-ui,sans-serif; font-size:13px; color:var(--gray-3); margin:-0.75rem 0 1.25rem; line-height:1.6;" data-en="Select one or more — whatever applies." data-id="Pilih satu atau lebih — sesuai kebutuhan Anda.">Pilih satu atau lebih — sesuai kebutuhan Anda.</p>
-        <div class="checks">
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Pembukuan / Akuntansi"><span data-en="Bookkeeping / Accounting" data-id="Pembukuan / Akuntansi">Pembukuan / Akuntansi</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Kepatuhan Pajak"><span data-en="Tax compliance" data-id="Kepatuhan Pajak">Kepatuhan Pajak</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Laporan Keuangan"><span data-en="Financial reports" data-id="Laporan Keuangan">Laporan Keuangan</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Payroll"><span>Payroll</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Analysis"><span data-en="Data Analysis" data-id="Analisis Data">Analisis Data</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Data Science"><span>Data Science</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Website"><span>Website</span></label>
-          <label class="check"><input type="checkbox" name="Kebutuhan" value="Belum yakin"><span data-en="Not sure yet" data-id="Belum yakin">Belum yakin</span></label>
-        </div>
-        <div class="form-err" id="checkError" style="margin-top:1rem;" data-en="Please select at least one need." data-id="Mohon pilih minimal satu kebutuhan.">Mohon pilih minimal satu kebutuhan.</div>
-      </div>
-
-      <!-- 05 KONTAK -->
-      <div class="fblock">
-        <div class="fblock-head"><span class="fblock-num">05</span><span class="fblock-title" data-en="Contact" data-id="Kontak">Kontak</span></div>
-        <div class="fgrid">
-          <div class="field">
-            <label data-en="WhatsApp <span class='req'>*</span>" data-id="WhatsApp <span class='req'>*</span>">WhatsApp <span class="req">*</span></label>
-            <input type="tel" name="WhatsApp" required placeholder="0812 3456 7890">
-          </div>
-          <div class="field">
-            <label data-en="Email <span class='opt'>(optional)</span>" data-id="Email <span class='opt'>(opsional)</span>">Email <span class="opt">(opsional)</span></label>
-            <input type="email" name="Email" placeholder="nama@email.com">
-          </div>
-          <div class="field full">
-            <label data-en="Notes / message <span class='opt'>(optional)</span>" data-id="Catatan / pesan <span class='opt'>(opsional)</span>">Catatan / pesan <span class="opt">(opsional)</span></label>
-            <textarea name="Catatan" placeholder="Ceritakan sedikit tentang kebutuhan Anda…"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-foot">
-        <div class="form-err" id="formError" data-en="Something went wrong. Please try again, or message me directly on WhatsApp." data-id="Terjadi kesalahan. Coba lagi, atau hubungi saya langsung via WhatsApp.">Terjadi kesalahan. Coba lagi, atau hubungi saya langsung via WhatsApp.</div>
-        <button type="submit" class="submit-btn" id="submitBtn" data-en="Send form →" data-id="Kirim Formulir →">Kirim Formulir →</button>
-        <p class="form-note" data-en="Your data is used only to prepare your consultation. No ID numbers or bank details are collected here." data-id="Data Anda hanya digunakan untuk menyiapkan konsultasi. Tidak ada nomor identitas atau rekening yang dikumpulkan di sini.">Data Anda hanya digunakan untuk menyiapkan konsultasi. Tidak ada nomor identitas atau rekening yang dikumpulkan di sini.</p>
-      </div>
-    </form>
-
-    <!-- THANK YOU -->
-    <div class="thankyou" id="thankyou">
-      <div class="thankyou-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h2 data-en="Thank you — message received." data-id="Terima kasih — pesan Anda terkirim.">Terima kasih — pesan Anda terkirim.</h2>
-      <p data-en="I'll review your details and get back to you within 24 hours, directly. Talk soon." data-id="Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.">Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.</p>
-      <a href="index.html" data-en="Back to home" data-id="Kembali ke beranda">Kembali ke beranda</a>
+        <div class="cert-meta"><span class="cert-card-name">Data Science Bootcamp</span><span class="cert-card-org">Dibimbing.id · 2025–2026 · A+</span></div>
+      </button>
+      <button onclick="openCertModal('xero-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="xero-logo-11609383483yebtmp69gf.webp" alt="Xero" style="width:28px;height:28px;object-fit:contain;border-radius:50%;"></div>
+        <div class="cert-meta"><span class="cert-card-name">Xero Advisor Certified</span><span class="cert-card-org">Xero · 2025</span></div>
+      </a>
+      <button onclick="openCertModal('brevet-cert-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="Logo-Ikatan-Akuntan-Indonesia-IAI.webp" alt="IAI" style="width:28px;height:28px;object-fit:contain;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI · 2018</span></div>
+      </button>
+      <button onclick="openCertModal('biola-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="biola-university-logo.png" alt="Biola University" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#fff;padding:2px;"></div>
+        <div class="cert-meta"><span class="cert-card-name">B.S. Business Administration</span><span class="cert-card-org">Biola University · 2016</span></div>
+      </button>
+      <button onclick="openCertModal('pkp3-modal')" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
+        <div class="cert-logo-wrap"><img src="Pengadilan_Pajak.png" alt="Pengadilan Pajak RI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Pengadilan Pajak RI · KHP-04695</span></div>
+      </button>
     </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- TAX GUIDE -->
+<section class="edu-section">
+  <div class="edu-inner">
+    <div class="section-eyebrow" data-en="guide &amp; resources" data-id="panduan &amp; sumber">panduan &amp; sumber</div>
+    <h2 class="section-title"
+        data-en="Finance Guide for <span>Business Owners</span>"
+        data-id="Panduan Keuangan untuk <span>Pemilik Bisnis</span>">Panduan Keuangan untuk <span>Pemilik Bisnis</span></h2>
+    <p class="edu-intro"
+       data-en="Bookkeeping tells you what happened; finance tells you what it means. Three ideas separate an owner who reads their numbers from one who is surprised by them — the gap between profit and cash, the ratios that reveal health, and the reporting standard that applies to your size."
+       data-id="Pembukuan memberi tahu apa yang terjadi; keuangan memberi tahu apa artinya. Tiga hal memisahkan pemilik yang membaca angkanya dari yang dikejutkan olehnya — jarak antara laba dan kas, rasio yang mengungkap kesehatan usaha, dan standar pelaporan yang berlaku sesuai ukuran bisnis Anda.">
+      Pembukuan memberi tahu apa yang terjadi; keuangan memberi tahu apa artinya. Tiga hal memisahkan pemilik yang membaca angkanya dari yang dikejutkan olehnya — jarak antara laba dan kas, rasio yang mengungkap kesehatan usaha, dan standar pelaporan yang berlaku sesuai ukuran bisnis Anda.
+    </p>
+
+    <div class="edu-cards">
+
+      <!-- CARD A: Profit vs Cash -->
+      <div class="edu-card">
+        <div class="edu-card-num">01 / Fundamental</div>
+        <div class="edu-card-title" data-en="Profit Is Not Cash" data-id="Laba Bukan Kas">Laba Bukan Kas</div>
+        <p class="edu-card-body"
+           data-en="A profitable month can still run out of money. Profit is recognised when you invoice; cash arrives when the client pays. The distance between them is where small businesses fail."
+           data-id="Bulan yang untung tetap bisa kehabisan uang. Laba diakui saat menerbitkan faktur; kas masuk saat klien membayar. Jarak di antara keduanya adalah tempat usaha kecil gagal.">
+          Bulan yang untung tetap bisa kehabisan uang. Laba diakui saat menerbitkan faktur; kas masuk saat klien membayar. Jarak di antara keduanya adalah tempat usaha kecil gagal.
+        </p>
+        <div class="cycle-list">
+          <div class="cycle-step"><span class="cycle-step-num">1</span><span class="cycle-step-name" data-en="Revenue — recognised when earned/invoiced" data-id="Pendapatan — diakui saat diperoleh/difaktur">Pendapatan — diakui saat diperoleh/difaktur</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">2</span><span class="cycle-step-name" data-en="Receivables — earned but not yet collected" data-id="Piutang — sudah diakui, belum diterima">Piutang — sudah diakui, belum diterima</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">3</span><span class="cycle-step-name" data-en="Cash — what actually landed in the bank" data-id="Kas — yang benar-benar masuk rekening">Kas — yang benar-benar masuk rekening</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">4</span><span class="cycle-step-name" data-en="Working capital — cash tied in stock &amp; AR" data-id="Modal kerja — kas terikat di stok &amp; piutang">Modal kerja — kas terikat di stok &amp; piutang</span></div>
+        </div>
+        <div class="warning-box">
+          <span class="warning-box-label" data-en="the trap" data-id="jebakannya">jebakannya</span>
+          <div class="warning-box-text"
+               data-en="CV Solusi Digital below booked Rp180 jt of revenue but is still owed Rp72 jt. On paper it's thriving; in the bank it depends on collections. Every case here is read through this lens first."
+               data-id="CV Solusi Digital di bawah membukukan pendapatan Rp180 jt tetapi masih memiliki piutang Rp72 jt. Di atas kertas berkembang; di rekening bergantung pada penagihan. Setiap kasus di sini dibaca lewat lensa ini lebih dulu.">
+            CV Solusi Digital di bawah membukukan pendapatan Rp180 jt tetapi masih memiliki piutang Rp72 jt. Di atas kertas berkembang; di rekening bergantung pada penagihan. Setiap kasus di sini dibaca lewat lensa ini lebih dulu.
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD B: Core ratios -->
+      <div class="edu-card">
+        <div class="edu-card-num">02 / Reference</div>
+        <div class="edu-card-title" data-en="Core Financial Ratios" data-id="Rasio Keuangan Inti">Rasio Keuangan Inti</div>
+        <p class="edu-card-body"
+           data-en="Five numbers that turn a stack of transactions into a health check. The targets are rules of thumb for Indonesian SMEs — the direction matters more than the decimal."
+           data-id="Lima angka yang mengubah tumpukan transaksi menjadi pemeriksaan kesehatan usaha. Targetnya adalah patokan umum untuk UMKM Indonesia — arahnya lebih penting daripada desimalnya.">
+          Lima angka yang mengubah tumpukan transaksi menjadi pemeriksaan kesehatan usaha. Targetnya adalah patokan umum untuk UMKM Indonesia — arahnya lebih penting daripada desimalnya.
+        </p>
+        <table class="dk-table">
+          <thead>
+            <tr>
+              <th data-en="Ratio" data-id="Rasio">Rasio</th>
+              <th class="center" data-en="Healthy" data-id="Target Sehat">Target Sehat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-en="Gross margin" data-id="Marjin kotor">Marjin kotor</td><td class="center"><span class="badge-d">&gt; 40%</span></td></tr>
+            <tr><td data-en="Net margin" data-id="Marjin bersih">Marjin bersih</td><td class="center"><span class="badge-d">&gt; 10%</span></td></tr>
+            <tr><td data-en="Current ratio" data-id="Rasio lancar">Rasio lancar</td><td class="center"><span class="badge-d">&gt; 1,5×</span></td></tr>
+            <tr><td data-en="Collection (DSO)" data-id="Penagihan (DSO)">Penagihan (DSO)</td><td class="center"><span class="badge-k">&lt; 30 hari</span></td></tr>
+            <tr><td data-en="Inventory turnover" data-id="Perputaran persediaan">Perputaran persediaan</td><td class="center"><span class="badge-k">&gt; 6×/th</span></td></tr>
+          </tbody>
+        </table>
+        <div class="dk-mnemonic"
+             data-en="Read together, not alone — a fat margin with a 90-day DSO is a business quietly lending money to its customers for free."
+             data-id="Dibaca bersama, bukan sendiri-sendiri — marjin tebal dengan DSO 90 hari adalah usaha yang diam-diam meminjamkan uang ke pelanggannya secara cuma-cuma.">
+          Dibaca bersama, bukan sendiri-sendiri — marjin tebal dengan DSO 90 hari adalah usaha yang diam-diam meminjamkan uang ke pelanggannya secara cuma-cuma.
+        </div>
+      </div>
+
+      <!-- CARD C: Reporting standards (PSAK framework) -->
+      <div class="edu-card">
+        <div class="edu-card-num">03 / Framework</div>
+        <div class="edu-card-title" data-en="Which Reporting Standard Applies" data-id="Standar Pelaporan yang Berlaku">Standar Pelaporan yang Berlaku</div>
+        <p class="edu-card-body"
+           data-en="Indonesia has a tiered set of standards (SAK). The right tier depends on your size and public accountability — using the wrong one is a credibility risk with banks and the tax office."
+           data-id="Indonesia memiliki standar berjenjang (SAK). Jenjang yang tepat bergantung pada ukuran dan akuntabilitas publik usaha Anda — memakai yang salah adalah risiko kredibilitas di mata bank dan kantor pajak.">
+          Indonesia memiliki standar berjenjang (SAK). Jenjang yang tepat bergantung pada ukuran dan akuntabilitas publik usaha Anda — memakai yang salah adalah risiko kredibilitas di mata bank dan kantor pajak.
+        </p>
+        <div class="cycle-list">
+          <div class="cycle-step"><span class="cycle-step-num">1</span><span class="cycle-step-name" data-en="PSAK (SAK Umum) — public entities, IFRS-converged" data-id="PSAK (SAK Umum) — entitas publik, selaras IFRS">PSAK (SAK Umum) — entitas publik, selaras IFRS</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">2</span><span class="cycle-step-name" data-en="SAK EP — private entities (replaced ETAP, 2025)" data-id="SAK EP — entitas privat (ganti ETAP, 2025)">SAK EP — entitas privat (ganti ETAP, 2025)</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">3</span><span class="cycle-step-name" data-en="SAK EMKM — micro, small &amp; medium (UMKM)" data-id="SAK EMKM — mikro, kecil &amp; menengah (UMKM)">SAK EMKM — mikro, kecil &amp; menengah (UMKM)</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">4</span><span class="cycle-step-name" data-en="SAK Syariah — Sharia-compliant entities" data-id="SAK Syariah — entitas berbasis syariah">SAK Syariah — entitas berbasis syariah</span></div>
+        </div>
+        <div class="warning-box">
+          <span class="warning-box-label" data-en="on this page" data-id="di halaman ini">di halaman ini</span>
+          <div class="warning-box-text"
+               data-en="A café or boarding house is a textbook SAK EMKM entity; a PT or CV usually sits under SAK EP. The formal financial statements themselves — prepared to PSAK presentation — live on the Accounting page, where two cases (CV Solusi Digital, PT Bangun Sulawesi) are shown as full statements."
+               data-id="Sebuah kafe atau kos-kosan adalah entitas SAK EMKM; PT atau CV umumnya di bawah SAK EP. Laporan keuangan formalnya sendiri — disusun sesuai penyajian PSAK — berada di halaman Akuntansi, di mana dua kasus (CV Solusi Digital, PT Bangun Sulawesi) disajikan sebagai laporan lengkap.">
+            Sebuah kafe atau kos-kosan adalah entitas SAK EMKM; PT atau CV umumnya di bawah SAK EP. Laporan keuangan formalnya sendiri — disusun sesuai penyajian PSAK — berada di halaman Akuntansi, di mana dua kasus (CV Solusi Digital, PT Bangun Sulawesi) disajikan sebagai laporan lengkap.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="casebook-section" id="casebook">
+  <div class="casebook-inner">
+    <div class="section-eyebrow" data-en="client casebook" data-id="casebook klien">casebook klien</div>
+    <h2 class="section-title" data-en="Casebook &mdash; <span>Palu SMEs</span>" data-id="Casebook &mdash; <span>UMKM Palu</span>">Casebook &mdash; <span>UMKM Palu</span></h2>
+    <p class="casebook-intro" data-en="The same five Palu businesses from the Accounting page &mdash; now read through a finance lens. Each case turns the bookkeeping into ratios, cash-flow and break-even analysis. Follow <em>Lihat pembukuan &rarr;</em> on any case to see the underlying books &mdash; where two cases are also prepared as formal <em>PSAK</em> statements. The same data, a third professional lens." data-id="Lima usaha Palu yang sama dari halaman Akuntansi &mdash; kini dibaca lewat lensa keuangan. Setiap kasus mengubah pembukuan menjadi analisis rasio, arus kas, dan break-even. Ikuti <em>Lihat pembukuan &rarr;</em> pada setiap kasus untuk melihat bukunya &mdash; di mana dua kasus juga disusun sebagai laporan formal <em>PSAK</em>. Data yang sama, lensa profesional ketiga.">Lima usaha Palu yang sama dari halaman Akuntansi &mdash; kini dibaca lewat lensa keuangan. Setiap kasus mengubah pembukuan menjadi analisis rasio, arus kas, dan break-even. Ikuti <em>Lihat pembukuan &rarr;</em> pada setiap kasus untuk melihat bukunya &mdash; di mana dua kasus juga disusun sebagai laporan formal <em>PSAK</em>. Data yang sama, lensa profesional ketiga.</p>
+
+    <div class="cb-picker">
+      <div class="cb-picker-label" data-en="select a case" data-id="pilih kasus">pilih kasus</div>
+      <div class="cb-cards-row">
+        <div class="cb-card active" data-cb="kopi"><div class="cb-card-num">Case 01</div><div class="cb-card-name">Kopi Tadulako</div><div class="cb-card-type" data-en="Caf&eacute; / F&amp;B" data-id="Kafe / F&amp;B">Kafe / F&amp;B</div><div class="cb-card-tag">Margin &amp; Break-even</div><div class="cb-card-arrow" data-en="View analysis &rarr;" data-id="Lihat analisis &rarr;">Lihat analisis &rarr;</div></div>
+        <div class="cb-card" data-cb="makmur"><div class="cb-card-num">Case 02</div><div class="cb-card-name">Toko Makmur</div><div class="cb-card-type" data-en="Grocery &middot; FIFO" data-id="Sembako &middot; FIFO">Sembako &middot; FIFO</div><div class="cb-card-tag">Perputaran &amp; PPN</div><div class="cb-card-arrow" data-en="View analysis &rarr;" data-id="Lihat analisis &rarr;">Lihat analisis &rarr;</div></div>
+        <div class="cb-card" data-cb="solusi"><div class="cb-card-num">Case 03</div><div class="cb-card-name">CV Solusi Digital</div><div class="cb-card-type" data-en="IT services" data-id="Jasa IT">Jasa IT</div><div class="cb-card-tag">Piutang &amp; DSO</div><div class="cb-card-arrow" data-en="View analysis &rarr;" data-id="Lihat analisis &rarr;">Lihat analisis &rarr;</div></div>
+        <div class="cb-card" data-cb="bangun"><div class="cb-card-num">Case 04</div><div class="cb-card-name">PT Bangun Sulawesi</div><div class="cb-card-type" data-en="Construction" data-id="Konstruksi">Konstruksi</div><div class="cb-card-tag">Varians &amp; Margin</div><div class="cb-card-arrow" data-en="View analysis &rarr;" data-id="Lihat analisis &rarr;">Lihat analisis &rarr;</div></div>
+        <div class="cb-card" data-cb="kos"><div class="cb-card-num">Case 05</div><div class="cb-card-name">Kos Pak Haris</div><div class="cb-card-type" data-en="Boarding &middot; 20 rooms" data-id="Kos &middot; 20 kamar">Kos &middot; 20 kamar</div><div class="cb-card-tag">Yield &amp; NOI</div><div class="cb-card-arrow" data-en="View analysis &rarr;" data-id="Lihat analisis &rarr;">Lihat analisis &rarr;</div></div>
+      </div>
+    </div>
+
+<div class="cb-panel active" id="cb-kopi" data-panel-id="kopi">
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 01 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Kopi <span>Tadulako</span></h3>
+        <p class="cb-biz-desc" data-en="Pak Hasan's small café. The books are clean — the finance question isn't &lsquo;how much profit&rsquo; but &lsquo;how safe&rsquo;: margin per menu line, and the minimum turnover before it loses money." data-id="Kafe kecil milik Pak Hasan. Pembukuannya rapi — pertanyaan keuangannya bukan &lsquo;berapa laba&rsquo; tapi &lsquo;seberapa aman&rsquo;: berapa margin per menu, dan berapa omzet minimum agar tidak rugi.">Kafe kecil milik Pak Hasan. Pembukuannya rapi — pertanyaan keuangannya bukan &lsquo;berapa laba&rsquo; tapi &lsquo;seberapa aman&rsquo;: berapa margin per menu, dan berapa omzet minimum agar tidak rugi.</p>
+        <div class="cb-biz-meta"><span class="cb-meta-chip" data-en="Business <strong>Café (F&amp;B)</strong>" data-id="Jenis <strong>Kafe (F&amp;B)</strong>">Jenis <strong>Kafe (F&amp;B)</strong></span><span class="cb-meta-chip" data-en="Location <strong>Palu, Sulteng</strong>" data-id="Lokasi <strong>Palu, Sulteng</strong>">Lokasi <strong>Palu, Sulteng</strong></span><span class="cb-meta-chip" data-en="Revenue <strong>Rp 32.93 M/mo</strong>" data-id="Omzet <strong>Rp 32,93 jt/bln</strong>">Omzet <strong>Rp 32,93 jt/bln</strong></span><span class="cb-meta-chip" data-en="Status <strong>Non-PKP · UMKM</strong>" data-id="Status <strong>Non-PKP · UMKM</strong>">Status <strong>Non-PKP · UMKM</strong></span><span class="cb-meta-chip" data-en="Lens <strong>Ratios &amp; Break-even</strong>" data-id="Lensa <strong>Rasio &amp; Break-even</strong>">Lensa <strong>Rasio &amp; Break-even</strong></span></div>
+      </div>
+      <div class="cb-sheets-wrap"><div class="cb-tabs" role="tablist"><button class="cb-tab active" data-sheet="rasio" data-panel="kopi"><span class="cb-tab-icon"></span><span data-en="Ratios &amp; Margin" data-id="Rasio &amp; Margin">Rasio &amp; Margin</span></button><button class="cb-tab" data-sheet="be" data-panel="kopi"><span class="cb-tab-icon"></span><span data-en="Break-even" data-id="Break-even">Break-even</span></button></div><div class="cb-sheet-content active" data-sheet-content="rasio" data-panel="kopi">
+          <div class="cb-sheet-title" data-en="Ratio &amp; Margin Analysis · January 2025" data-id="Analisis Rasio &amp; Margin · Januari 2025">Analisis Rasio &amp; Margin · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="Using the corrected COGS of Rp 12 M (see the Reconciliation Finding on the Accounting page), not the erroneous Rp 14 M in the income statement. The correction lifts reported profit." data-id="Memakai HPP terkoreksi Rp 12 jt (lihat Temuan Rekonsiliasi di halaman Akuntansi), bukan Rp 14 jt yang salah di Laba Rugi. Koreksi ini menaikkan laba yang dilaporkan.">Memakai HPP terkoreksi Rp 12 jt (lihat Temuan Rekonsiliasi di halaman Akuntansi), bukan Rp 14 jt yang salah di Laba Rugi. Koreksi ini menaikkan laba yang dilaporkan.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Ratio" data-id="Rasio">Rasio</th><th class="num" data-en="Value" data-id="Nilai">Nilai</th><th data-en="Target" data-id="Target">Target</th><th data-en="Read" data-id="Baca">Baca</th></tr></thead><tbody><tr><td data-en="Gross margin" data-id="Marjin kotor">Marjin kotor</td><td class="num">63,6%</td><td class="muted">&gt; 40%</td><td class="muted" data-en="Strong" data-id="Kuat">Kuat</td></tr><tr><td data-en="Net margin" data-id="Marjin bersih">Marjin bersih</td><td class="num">23,0%</td><td class="muted">&gt; 10%</td><td class="muted" data-en="Healthy" data-id="Sehat">Sehat</td></tr><tr><td data-en="OpEx / revenue" data-id="Beban operasional / omzet">Beban operasional / omzet</td><td class="num">40,0%</td><td class="muted">&lt; 45%</td><td class="muted" data-en="Reasonable" data-id="Wajar">Wajar</td></tr><tr><td data-en="Payroll / revenue" data-id="Beban gaji / omzet">Beban gaji / omzet</td><td class="num">24,3%</td><td class="muted">&lt; 30%</td><td class="muted" data-en="Controlled" data-id="Terkendali">Terkendali</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Gross Margin" data-id="Marjin Kotor">Marjin Kotor</div><div class="cb-summary-val pos">63,6%</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Net Margin" data-id="Marjin Bersih">Marjin Bersih</div><div class="cb-summary-val">23,0%</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Net Profit" data-id="Laba Bersih">Laba Bersih</div><div class="cb-summary-val pos">Rp 7,58 jt</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Margin insight" data-id="Wawasan margin">Wawasan margin</div>
+            <div class="cb-finding-title" data-en="Per-menu margin drives pricing" data-id="Margin per menu memandu penetapan harga">Margin per menu memandu penetapan harga</div>
+            <div class="cb-finding-text" data-en="The COGS breakdown shows espresso at only <strong>33% GM</strong> versus <strong>50%</strong> on snacks and <strong>44%</strong> on non-coffee drinks. Coffee brings people in, but the food menu pays the rent. Recommendation: push food + coffee bundles and lift espresso price by Rp 1,000 — the profit impact is larger than it looks." data-id="Rincian HPP menunjukkan kopi espresso hanya <strong>33% GM</strong>, sedangkan makanan ringan <strong>50%</strong> dan minuman non-kopi <strong>44%</strong>. Kopi menarik pelanggan tetapi menu makanan yang membiayai sewa. Rekomendasi: dorong bundling makanan + kopi, dan naikkan harga espresso Rp 1.000 — dampak ke laba lebih besar dari kelihatannya.">Rincian HPP menunjukkan kopi espresso hanya <strong>33% GM</strong>, sedangkan makanan ringan <strong>50%</strong> dan minuman non-kopi <strong>44%</strong>. Kopi menarik pelanggan tetapi menu makanan yang membiayai sewa. Rekomendasi: dorong bundling makanan + kopi, dan naikkan harga espresso Rp 1.000 — dampak ke laba lebih besar dari kelihatannya.</div>
+          </div></div><div class="cb-sheet-content" data-sheet-content="be" data-panel="kopi">
+          <div class="cb-sheet-title" data-en="Break-even Point · January 2025" data-id="Titik Impas (Break-even) · Januari 2025">Titik Impas (Break-even) · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="What is the minimum turnover that covers all fixed costs? Fixed cost divided by the contribution-margin ratio." data-id="Berapa omzet minimum agar kafe menutup seluruh biaya tetapnya? Beban tetap dibagi rasio contribution margin.">Berapa omzet minimum agar kafe menutup seluruh biaya tetapnya? Beban tetap dibagi rasio contribution margin.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Component" data-id="Komponen">Komponen</th><th class="num" data-en="Value" data-id="Nilai">Nilai</th></tr></thead><tbody><tr><td data-en="Monthly fixed cost (opex)" data-id="Beban tetap bulanan (opex)">Beban tetap bulanan (opex)</td><td class="num">Rp 13.183.333</td></tr><tr><td data-en="Contribution margin ratio" data-id="Contribution margin ratio">Contribution margin ratio</td><td class="num">63,6%</td></tr><tr><td data-en="Break-even revenue" data-id="Break-even omzet">Break-even omzet</td><td class="num">Rp 20.741.861</td></tr><tr><td data-en="Actual revenue" data-id="Omzet aktual">Omzet aktual</td><td class="num">Rp 32.930.000</td></tr><tr class="cb-total"><td colspan="1" data-en="Margin of safety" data-id="Margin of safety">Margin of safety</td><td class="num">37,0%</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Break-even" data-id="Break-even">Break-even</div><div class="cb-summary-val">Rp 20,74 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Actual" data-id="Omzet Aktual">Omzet Aktual</div><div class="cb-summary-val pos">Rp 32,93 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Margin of Safety" data-id="Margin of Safety">Margin of Safety</div><div class="cb-summary-val pos">37,0%</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Operational translation" data-id="Terjemahan operasional">Terjemahan operasional</div>
+            <div class="cb-finding-title" data-en="Break-even &asymp; 63 cups/day" data-id="Impas &asymp; 63 gelas/hari">Impas &asymp; 63 gelas/hari</div>
+            <div class="cb-finding-text" data-en="At a blended average price of &plusmn; Rp 11,000, the Rp 20.74 M break-even is about <strong>1,886 servings/month</strong> or <strong>&plusmn;63 a day</strong>. Current sales run &plusmn;90/day, so there is a 37% cushion — the café can absorb a slow month or a rent increase before it slips into a loss." data-id="Pada harga rata-rata gabungan &plusmn; Rp 11.000, break-even Rp 20,74 jt berarti sekitar <strong>1.886 porsi/bulan</strong> atau <strong>&plusmn;63 porsi/hari</strong>. Penjualan saat ini &plusmn;90/hari, jadi ada bantalan 37% — kafe bisa menyerap bulan sepi atau kenaikan sewa tanpa langsung merugi.">Pada harga rata-rata gabungan &plusmn; Rp 11.000, break-even Rp 20,74 jt berarti sekitar <strong>1.886 porsi/bulan</strong> atau <strong>&plusmn;63 porsi/hari</strong>. Penjualan saat ini &plusmn;90/hari, jadi ada bantalan 37% — kafe bisa menyerap bulan sepi atau kenaikan sewa tanpa langsung merugi.</div>
+          </div></div></div><a href="accounting.html#casebook" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label" data-en="Bookkeeping perspective" data-id="Perspektif pembukuan">Perspektif pembukuan</div>
+          <div class="cb-bridge-title" data-en="See the full bookkeeping for Kopi Tadulako" data-id="Lihat pembukuan lengkap Kopi Tadulako">Lihat pembukuan lengkap Kopi Tadulako</div>
+          <div class="cb-bridge-desc" data-en="Same data, recording lens — cash book, COGS schedule, income statement and payroll behind these numbers, on the Accounting page." data-id="Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.">Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.</div>
+        </div>
+        <span class="cb-bridge-btn" data-en="View Bookkeeping&nbsp;&nbsp;<span class='arrow'>&rarr;</span>" data-id="Lihat Pembukuan&nbsp;&nbsp;<span class='arrow'>&rarr;</span>">Lihat Pembukuan&nbsp;&nbsp;<span class="arrow">&rarr;</span></span>
+      </a></div>
+<div class="cb-panel" id="cb-makmur" data-panel-id="makmur">
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 02 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Toko <span>Makmur</span></h3>
+        <p class="cb-biz-desc" data-en="A PKP grocery store. Grocery margins are thin, so the finance turns on two things: how fast inventory converts to cash, and how much VAT must be remitted to the tax office." data-id="Toko sembako PKP. Margin sembako tipis, jadi keuangannya berputar pada dua hal: seberapa cepat persediaan berputar menjadi kas, dan berapa PPN yang harus disetor ke DJP.">Toko sembako PKP. Margin sembako tipis, jadi keuangannya berputar pada dua hal: seberapa cepat persediaan berputar menjadi kas, dan berapa PPN yang harus disetor ke DJP.</p>
+        <div class="cb-biz-meta"><span class="cb-meta-chip" data-en="Business <strong>Grocery store</strong>" data-id="Jenis <strong>Toko sembako</strong>">Jenis <strong>Toko sembako</strong></span><span class="cb-meta-chip" data-en="Location <strong>Palu, Sulteng</strong>" data-id="Lokasi <strong>Palu, Sulteng</strong>">Lokasi <strong>Palu, Sulteng</strong></span><span class="cb-meta-chip" data-en="Method <strong>FIFO</strong>" data-id="Metode <strong>FIFO</strong>">Metode <strong>FIFO</strong></span><span class="cb-meta-chip" data-en="Status <strong>PKP · PPN 11%</strong>" data-id="Status <strong>PKP · PPN 11%</strong>">Status <strong>PKP · PPN 11%</strong></span><span class="cb-meta-chip" data-en="Lens <strong>Turnover &amp; VAT</strong>" data-id="Lensa <strong>Perputaran &amp; PPN</strong>">Lensa <strong>Perputaran &amp; PPN</strong></span></div>
+      </div>
+      <div class="cb-sheets-wrap"><div class="cb-tabs" role="tablist"><button class="cb-tab active" data-sheet="turn" data-panel="makmur"><span class="cb-tab-icon"></span><span data-en="Turnover &amp; Working Capital" data-id="Perputaran &amp; Modal Kerja">Perputaran &amp; Modal Kerja</span></button><button class="cb-tab" data-sheet="ppn" data-panel="makmur"><span class="cb-tab-icon"></span><span data-en="VAT Position" data-id="Posisi PPN">Posisi PPN</span></button></div><div class="cb-sheet-content active" data-sheet-content="turn" data-panel="makmur">
+          <div class="cb-sheet-title" data-en="Inventory Turnover &amp; Working Capital · January 2025" data-id="Perputaran Persediaan &amp; Modal Kerja · Januari 2025">Perputaran Persediaan &amp; Modal Kerja · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="Inventory is cash parked on the shelves. The faster it turns, the less capital is tied up and the healthier the cash flow." data-id="Persediaan adalah kas yang &lsquo;terparkir&rsquo; di rak. Semakin cepat berputar, semakin sedikit modal yang terikat dan semakin sehat arus kas.">Persediaan adalah kas yang &lsquo;terparkir&rsquo; di rak. Semakin cepat berputar, semakin sedikit modal yang terikat dan semakin sehat arus kas.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Metric" data-id="Metrik">Metrik</th><th class="num" data-en="Value" data-id="Nilai">Nilai</th><th data-en="Read" data-id="Baca">Baca</th></tr></thead><tbody><tr><td data-en="Beginning inventory" data-id="Persediaan awal">Persediaan awal</td><td class="num">Rp 13.800.000</td><td class="muted"></td></tr><tr><td data-en="Ending inventory" data-id="Persediaan akhir">Persediaan akhir</td><td class="num">Rp 4.625.000</td><td class="muted"></td></tr><tr><td data-en="COGS (value out)" data-id="HPP (nilai keluar)">HPP (nilai keluar)</td><td class="num">Rp 27.460.000</td><td class="muted"></td></tr><tr><td data-en="Inventory turnover" data-id="Perputaran persediaan">Perputaran persediaan</td><td class="num">2,98&times;/bln</td><td class="muted" data-en="Fast" data-id="Cepat">Cepat</td></tr><tr><td data-en="Days inventory" data-id="Umur persediaan">Umur persediaan</td><td class="num">&asymp; 10 hari</td><td class="muted" data-en="Healthy" data-id="Sehat">Sehat</td></tr><tr><td data-en="Avg working capital in stock" data-id="Modal kerja terikat (rata-rata)">Modal kerja terikat (rata-rata)</td><td class="num">Rp 9.212.500</td><td class="muted"></td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Turnover" data-id="Perputaran">Perputaran</div><div class="cb-summary-val pos">2,98&times;/bln</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Days Inventory" data-id="Umur Persediaan">Umur Persediaan</div><div class="cb-summary-val pos">&asymp;10 hari</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Capital in Stock" data-id="Modal Terikat">Modal Terikat</div><div class="cb-summary-val">Rp 9,21 jt</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Margin caveat" data-id="Catatan margin">Catatan margin</div>
+            <div class="cb-finding-title" data-en="Rebuild the true markup at close" data-id="Rekonstruksi markup sebenarnya saat tutup buku">Rekonstruksi markup sebenarnya saat tutup buku</div>
+            <div class="cb-finding-text" data-en="In the source data the sales value ties to the cost basis (value-out = COGS), so the margin appears to be zero. For groceries — where margins are genuinely thin (5&ndash;15%) — the true markup must be rebuilt from the price list at close. What drives this business isn't per-unit margin but <strong>turnover speed</strong> and <strong>VAT-remittance timing</strong>." data-id="Pada data sumber, nilai penjualan menempel pada basis biaya (nilai keluar = HPP), sehingga marjin tampak nol. Untuk sembako yang margin-nya memang tipis (5&ndash;15%), markup sebenarnya harus direkonstruksi dari daftar harga jual saat tutup buku. Yang menggerakkan bisnis ini bukan margin per unit, melainkan <strong>kecepatan perputaran</strong> dan <strong>ketepatan waktu setor PPN</strong>.">Pada data sumber, nilai penjualan menempel pada basis biaya (nilai keluar = HPP), sehingga marjin tampak nol. Untuk sembako yang margin-nya memang tipis (5&ndash;15%), markup sebenarnya harus direkonstruksi dari daftar harga jual saat tutup buku. Yang menggerakkan bisnis ini bukan margin per unit, melainkan <strong>kecepatan perputaran</strong> dan <strong>ketepatan waktu setor PPN</strong>.</div>
+          </div></div><div class="cb-sheet-content" data-sheet-content="ppn" data-panel="makmur">
+          <div class="cb-sheet-title" data-en="VAT Position · January 2025" data-id="Posisi PPN · Januari 2025">Posisi PPN · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="As a PKP, Toko Makmur collects Output VAT on sales and pays Input VAT on purchases. The difference is remitted to the tax office — a real cash outflow that must be planned for." data-id="Sebagai PKP, Toko Makmur memungut PPN Keluaran saat menjual dan membayar PPN Masukan saat membeli. Selisihnya disetor ke DJP — dan itu adalah arus kas keluar nyata yang wajib dijaga.">Sebagai PKP, Toko Makmur memungut PPN Keluaran saat menjual dan membayar PPN Masukan saat membeli. Selisihnya disetor ke DJP — dan itu adalah arus kas keluar nyata yang wajib dijaga.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Component" data-id="Komponen">Komponen</th><th class="num" data-en="Value" data-id="Nilai">Nilai</th></tr></thead><tbody><tr><td data-en="Output VAT (collected on sales)" data-id="PPN Keluaran (dipungut atas penjualan)">PPN Keluaran (dipungut atas penjualan)</td><td class="num">Rp 3.020.600</td></tr><tr><td data-en="Input VAT (paid on purchases)" data-id="PPN Masukan (dibayar atas pembelian)">PPN Masukan (dibayar atas pembelian)</td><td class="num">Rp 2.011.350</td></tr><tr class="cb-total"><td colspan="1" data-en="VAT payable (remit to tax office)" data-id="PPN Kurang Bayar (disetor ke DJP)">PPN Kurang Bayar (disetor ke DJP)</td><td class="num">Rp 1.009.250</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Output VAT" data-id="PPN Keluaran">PPN Keluaran</div><div class="cb-summary-val">Rp 3,02 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Input VAT" data-id="PPN Masukan">PPN Masukan</div><div class="cb-summary-val">Rp 2,01 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Remit" data-id="Disetor ke DJP">Disetor ke DJP</div><div class="cb-summary-val pos">Rp 1,01 jt</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Cash discipline" data-id="Disiplin kas">Disiplin kas</div>
+            <div class="cb-finding-title" data-en="Ring-fence VAT, don't spend it on stock" data-id="Sisihkan PPN, jangan pakai untuk belanja stok">Sisihkan PPN, jangan pakai untuk belanja stok</div>
+            <div class="cb-finding-text" data-en="Collected VAT isn't the store's income — it's money held for the state. The most common UMKM mistake is spending Output-VAT cash on restocking, then falling short at the remittance deadline next month. My practice: move the Rp 1.01 M to a separate account the moment the periodic SPT is prepared." data-id="PPN yang dipungut bukan pendapatan toko — itu titipan negara. Kesalahan UMKM paling umum: memakai kas PPN Keluaran untuk restok, lalu kekurangan saat jatuh tempo setor akhir bulan berikutnya. Praktik saya: pindahkan Rp 1,01 jt ke rekening terpisah begitu SPT Masa disiapkan.">PPN yang dipungut bukan pendapatan toko — itu titipan negara. Kesalahan UMKM paling umum: memakai kas PPN Keluaran untuk restok, lalu kekurangan saat jatuh tempo setor akhir bulan berikutnya. Praktik saya: pindahkan Rp 1,01 jt ke rekening terpisah begitu SPT Masa disiapkan.</div>
+          </div></div></div><a href="accounting.html#casebook" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label" data-en="Bookkeeping perspective" data-id="Perspektif pembukuan">Perspektif pembukuan</div>
+          <div class="cb-bridge-title" data-en="See the full bookkeeping for Toko Makmur" data-id="Lihat pembukuan lengkap Toko Makmur">Lihat pembukuan lengkap Toko Makmur</div>
+          <div class="cb-bridge-desc" data-en="Same data, recording lens — cash book, COGS schedule, income statement and payroll behind these numbers, on the Accounting page." data-id="Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.">Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.</div>
+        </div>
+        <span class="cb-bridge-btn" data-en="View Bookkeeping&nbsp;&nbsp;<span class='arrow'>&rarr;</span>" data-id="Lihat Pembukuan&nbsp;&nbsp;<span class='arrow'>&rarr;</span>">Lihat Pembukuan&nbsp;&nbsp;<span class="arrow">&rarr;</span></span>
+      </a></div>
+<div class="cb-panel" id="cb-solusi" data-panel-id="solusi">
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 03 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">CV Solusi <span>Digital</span></h3>
+        <p class="cb-biz-desc" data-en="A software shop billing corporate clients. On paper it's very profitable — but Rp 72.1 M is still uncollected. A textbook &lsquo;profit isn&rsquo;t cash&rsquo; case &mdash; collection risk, not profitability, is the real question." data-id="Rumah perangkat lunak yang menagih klien badan. Di atas kertas sangat untung — tetapi Rp 72,1 jt piutang belum tertagih. Ini kasus klasik &lsquo;laba bukan kas&rsquo; &mdash; yang jadi soal adalah risiko penagihan, bukan profitabilitas.">Rumah perangkat lunak yang menagih klien badan. Di atas kertas sangat untung — tetapi Rp 72,1 jt piutang belum tertagih. Ini kasus klasik &lsquo;laba bukan kas&rsquo; &mdash; yang jadi soal adalah risiko penagihan, bukan profitabilitas.</p>
+        <div class="cb-biz-meta"><span class="cb-meta-chip" data-en="Business <strong>IT services</strong>" data-id="Jenis <strong>Jasa IT</strong>">Jenis <strong>Jasa IT</strong></span><span class="cb-meta-chip" data-en="Location <strong>Palu, Sulteng</strong>" data-id="Lokasi <strong>Palu, Sulteng</strong>">Lokasi <strong>Palu, Sulteng</strong></span><span class="cb-meta-chip" data-en="Revenue <strong>Rp 180 M/mo</strong>" data-id="Omzet <strong>Rp 180 jt/bln</strong>">Omzet <strong>Rp 180 jt/bln</strong></span><span class="cb-meta-chip" data-en="Status <strong>PKP · PPh 23</strong>" data-id="Status <strong>PKP · PPh 23</strong>">Status <strong>PKP · PPh 23</strong></span><span class="cb-meta-chip" data-en="Lens <strong>AR &amp; Cash</strong>" data-id="Lensa <strong>Piutang &amp; Kas</strong>">Lensa <strong>Piutang &amp; Kas</strong></span></div>
+      </div>
+      <div class="cb-sheets-wrap"><div class="cb-tabs" role="tablist"><button class="cb-tab active" data-sheet="ar" data-panel="solusi"><span class="cb-tab-icon"></span><span data-en="Receivables &amp; DSO" data-id="Piutang &amp; DSO">Piutang &amp; DSO</span></button></div><div class="cb-sheet-content active" data-sheet-content="ar" data-panel="solusi">
+          <div class="cb-sheet-title" data-en="Accounts Receivable &amp; DSO · January 2025" data-id="Piutang Usaha &amp; DSO · Januari 2025">Piutang Usaha &amp; DSO · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="The AR ageing shows how long money is stuck with clients. DSO (Days Sales Outstanding) measures the average days until an invoice turns into cash." data-id="Umur piutang menunjukkan berapa lama uang tertahan di klien. DSO (Days Sales Outstanding) mengukur rata-rata hari sampai tagihan menjadi kas.">Umur piutang menunjukkan berapa lama uang tertahan di klien. DSO (Days Sales Outstanding) mengukur rata-rata hari sampai tagihan menjadi kas.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Status" data-id="Status">Status</th><th class="num" data-en="Invoices" data-id="Invoice">Invoice</th><th class="num" data-en="Value (DPP)" data-id="Nilai DPP">Nilai DPP</th><th data-en="Read" data-id="Baca">Baca</th></tr></thead><tbody><tr><td data-en="Paid" data-id="Lunas">Lunas</td><td class="num">5</td><td class="num">Rp 89.000.000</td><td class="muted" data-en="Collected" data-id="Tertagih">Tertagih</td></tr><tr><td data-en="Partial" data-id="Sebagian">Sebagian</td><td class="num">2</td><td class="num">Rp 51.000.000</td><td class="muted" data-en="Rp 32.1 M left" data-id="Sisa Rp 32,1 jt">Sisa Rp 32,1 jt</td></tr><tr><td data-en="Unpaid" data-id="Belum lunas">Belum lunas</td><td class="num">3</td><td class="num">Rp 40.000.000</td><td class="muted" data-en="Due Feb" data-id="Jatuh tempo Feb">Jatuh tempo Feb</td></tr><tr class="cb-total"><td colspan="1" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">10</td><td class="num">Rp 180.000.000</td><td></td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Open AR" data-id="Piutang Terbuka">Piutang Terbuka</div><div class="cb-summary-val">Rp 72,1 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="DSO" data-id="DSO">DSO</div><div class="cb-summary-val pos">&asymp; 12 hari</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Ending Cash" data-id="Kas Akhir">Kas Akhir</div><div class="cb-summary-val pos">Rp 119,1 jt</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Concentration risk" data-id="Risiko konsentrasi">Risiko konsentrasi</div>
+            <div class="cb-finding-title" data-en="Collection is good, but watch two large debtors" data-id="Kolektibilitas bagus, tapi awasi dua debitur besar">Kolektibilitas bagus, tapi awasi dua debitur besar</div>
+            <div class="cb-finding-text" data-en="A &plusmn;12-day DSO is healthy — clients pay quickly. But the Rp 72.1 M open balance is concentrated in INV-003 (Rp 22 M) and the remainder of INV-009 (Rp 23.1 M). Recommendation: require a 30&ndash;50% deposit on projects over Rp 20 M so cash doesn't hinge on two collections. Note: the PPh 23 withheld by clients (2% &times; DPP = Rp 3.6 M) is a <strong>tax credit</strong>, not an expense." data-id="DSO &plusmn;12 hari itu sehat — klien membayar cepat. Namun Rp 72,1 jt terbuka terkonsentrasi pada INV-003 (Rp 22 jt) dan sisa INV-009 (Rp 23,1 jt). Rekomendasi: minta DP 30&ndash;50% untuk proyek &gt; Rp 20 jt agar kas tidak bergantung pada dua penagihan. Catatan: PPh 23 yang dipotong klien (2% &times; DPP = Rp 3,6 jt) adalah <strong>kredit pajak</strong>, bukan beban.">DSO &plusmn;12 hari itu sehat — klien membayar cepat. Namun Rp 72,1 jt terbuka terkonsentrasi pada INV-003 (Rp 22 jt) dan sisa INV-009 (Rp 23,1 jt). Rekomendasi: minta DP 30&ndash;50% untuk proyek &gt; Rp 20 jt agar kas tidak bergantung pada dua penagihan. Catatan: PPh 23 yang dipotong klien (2% &times; DPP = Rp 3,6 jt) adalah <strong>kredit pajak</strong>, bukan beban.</div>
+          </div></div></div><a href="accounting.html#casebook" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label" data-en="Bookkeeping perspective" data-id="Perspektif pembukuan">Perspektif pembukuan</div>
+          <div class="cb-bridge-title" data-en="See the full bookkeeping for CV Solusi Digital" data-id="Lihat pembukuan lengkap CV Solusi Digital">Lihat pembukuan lengkap CV Solusi Digital</div>
+          <div class="cb-bridge-desc" data-en="Same data, recording lens — cash book, COGS schedule, income statement and payroll behind these numbers, on the Accounting page." data-id="Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.">Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.</div>
+        </div>
+        <span class="cb-bridge-btn" data-en="View Bookkeeping&nbsp;&nbsp;<span class='arrow'>&rarr;</span>" data-id="Lihat Pembukuan&nbsp;&nbsp;<span class='arrow'>&rarr;</span>">Lihat Pembukuan&nbsp;&nbsp;<span class="arrow">&rarr;</span></span>
+      </a></div>
+<div class="cb-panel" id="cb-bangun" data-panel-id="bangun">
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 04 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">PT Bangun <span>Sulawesi</span></h3>
+        <p class="cb-biz-desc" data-en="A building contractor on a Rp 2.8 B, 3-month contract. The finance is project control: are costs on budget, and what the true project margin is as the work progresses." data-id="Kontraktor gedung dengan kontrak Rp 2,8 M selama 3 bulan. Keuangannya adalah pengendalian proyek: apakah biaya sesuai anggaran, dan berapa marjin proyek sebenarnya seiring pekerjaan berjalan.">Kontraktor gedung dengan kontrak Rp 2,8 M selama 3 bulan. Keuangannya adalah pengendalian proyek: apakah biaya sesuai anggaran, dan berapa marjin proyek sebenarnya seiring pekerjaan berjalan.</p>
+        <div class="cb-biz-meta"><span class="cb-meta-chip" data-en="Business <strong>Construction</strong>" data-id="Jenis <strong>Konstruksi</strong>">Jenis <strong>Konstruksi</strong></span><span class="cb-meta-chip" data-en="Contract <strong>Rp 2.8 B</strong>" data-id="Kontrak <strong>Rp 2,8 M</strong>">Kontrak <strong>Rp 2,8 M</strong></span><span class="cb-meta-chip" data-en="Duration <strong>3 months</strong>" data-id="Durasi <strong>3 bulan</strong>">Durasi <strong>3 bulan</strong></span><span class="cb-meta-chip" data-en="Status <strong>PKP · PPh 4(2)</strong>" data-id="Status <strong>PKP · PPh 4(2)</strong>">Status <strong>PKP · PPh 4(2)</strong></span><span class="cb-meta-chip" data-en="Lens <strong>Variance &amp; Margin</strong>" data-id="Lensa <strong>Varians &amp; Margin</strong>">Lensa <strong>Varians &amp; Margin</strong></span></div>
+      </div>
+      <div class="cb-sheets-wrap"><div class="cb-tabs" role="tablist"><button class="cb-tab active" data-sheet="var" data-panel="bangun"><span class="cb-tab-icon"></span><span data-en="Variance &amp; Margin" data-id="Varians &amp; Margin">Varians &amp; Margin</span></button></div><div class="cb-sheet-content active" data-sheet-content="var" data-panel="bangun">
+          <div class="cb-sheet-title" data-en="Cost Variance &amp; Project Margin · January 2025" data-id="Varians Biaya &amp; Margin Proyek · Januari 2025">Varians Biaya &amp; Margin Proyek · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="Budget vs actual gives an early warning on cost overruns. A positive variance is under budget; negative is overspend to chase down before the next progress claim." data-id="Anggaran vs realisasi memberi peringatan dini pembengkakan biaya. Varians positif = di bawah anggaran; negatif = pemborosan yang perlu dikejar sebelum termin berikutnya.">Anggaran vs realisasi memberi peringatan dini pembengkakan biaya. Varians positif = di bawah anggaran; negatif = pemborosan yang perlu dikejar sebelum termin berikutnya.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Item" data-id="Pos">Pos</th><th class="num" data-en="Budget Jan" data-id="Anggaran Jan">Anggaran Jan</th><th class="num" data-en="Actual Jan" data-id="Realisasi Jan">Realisasi Jan</th><th class="num" data-en="Variance" data-id="Varians">Varians</th></tr></thead><tbody><tr><td data-en="Materials" data-id="Material (semen, besi, dll)">Material (semen, besi, dll)</td><td class="num">555.000.000</td><td class="num">540.000.000</td><td class="num">15.000.000</td></tr><tr><td data-en="Labour" data-id="Upah (mandor, tukang, pekerja)">Upah (mandor, tukang, pekerja)</td><td class="num">115.000.000</td><td class="num">114.500.000</td><td class="num">500.000</td></tr><tr><td data-en="Equipment (plant hire)" data-id="Peralatan (sewa alat berat)">Peralatan (sewa alat berat)</td><td class="num">43.000.000</td><td class="num">41.000.000</td><td class="num">2.000.000</td></tr><tr><td data-en="Overhead &amp; safety" data-id="Overhead &amp; K3">Overhead &amp; K3</td><td class="num">50.000.000</td><td class="num">29.300.000</td><td class="num">20.700.000</td></tr><tr class="cb-total"><td colspan="1" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">763.000.000</td><td class="num">724.800.000</td><td class="num">38.200.000</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Actual vs Budget" data-id="Realisasi vs Anggaran">Realisasi vs Anggaran</div><div class="cb-summary-val pos">95,0%</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Variance (under)" data-id="Varians (di bawah)">Varians (di bawah)</div><div class="cb-summary-val pos">Rp 38,2 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Est. Contract Margin" data-id="Est. Marjin Kontrak">Est. Marjin Kontrak</div><div class="cb-summary-val pos">33,2%</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Read the variance" data-id="Baca varians">Baca varians</div>
+            <div class="cb-finding-title" data-en="Under budget &mdash; but check why" data-id="Di bawah anggaran &mdash; tapi cek penyebabnya">Di bawah anggaran &mdash; tapi cek penyebabnya</div>
+            <div class="cb-finding-text" data-en="January actuals are 5% under budget (Rp 38.2 M). Most of it comes from finishing items (paint, tiling) that <strong>haven't started</strong> — so this is <em>timing</em>, not a true saving. The overall contract margin is projected at a healthy 33.2% (Rp 930 M on Rp 2.8 B). The thing to watch: the 2.65% final PPh 4(2) withheld by the client each progress claim — Rp 22.26 M on Termin I." data-id="Realisasi Januari 5% di bawah anggaran (Rp 38,2 jt). Sebagian besar berasal dari pos finishing (cat, keramik) yang <strong>belum dimulai</strong> — jadi ini soal <em>waktu</em>, bukan penghematan sejati. Marjin kontrak keseluruhan diproyeksikan sehat 33,2% (Rp 930 jt atas Rp 2,8 M). Yang perlu dijaga: PPh Final 4(2) 2,65% dipotong pemberi kerja tiap termin — pada Termin I = Rp 22,26 jt.">Realisasi Januari 5% di bawah anggaran (Rp 38,2 jt). Sebagian besar berasal dari pos finishing (cat, keramik) yang <strong>belum dimulai</strong> — jadi ini soal <em>waktu</em>, bukan penghematan sejati. Marjin kontrak keseluruhan diproyeksikan sehat 33,2% (Rp 930 jt atas Rp 2,8 M). Yang perlu dijaga: PPh Final 4(2) 2,65% dipotong pemberi kerja tiap termin — pada Termin I = Rp 22,26 jt.</div>
+          </div></div></div><a href="accounting.html#casebook" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label" data-en="Bookkeeping perspective" data-id="Perspektif pembukuan">Perspektif pembukuan</div>
+          <div class="cb-bridge-title" data-en="See the full bookkeeping for PT Bangun Sulawesi" data-id="Lihat pembukuan lengkap PT Bangun Sulawesi">Lihat pembukuan lengkap PT Bangun Sulawesi</div>
+          <div class="cb-bridge-desc" data-en="Same data, recording lens — cash book, COGS schedule, income statement and payroll behind these numbers, on the Accounting page." data-id="Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.">Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.</div>
+        </div>
+        <span class="cb-bridge-btn" data-en="View Bookkeeping&nbsp;&nbsp;<span class='arrow'>&rarr;</span>" data-id="Lihat Pembukuan&nbsp;&nbsp;<span class='arrow'>&rarr;</span>">Lihat Pembukuan&nbsp;&nbsp;<span class="arrow">&rarr;</span></span>
+      </a></div>
+<div class="cb-panel" id="cb-kos" data-panel-id="kos">
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 05 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Kos <span>Pak Haris</span></h3>
+        <p class="cb-biz-desc" data-en="Pak Haris's 20-room boarding house. A small-property case: what matters isn't sales but occupancy, yield per room type, and net operating income (NOI) after the final rental tax." data-id="Kos 20 kamar milik Pak Haris. Ini kasus properti kecil: yang penting bukan penjualan tapi okupansi, yield per tipe kamar, dan laba operasi bersih (NOI) setelah pajak final sewa.">Kos 20 kamar milik Pak Haris. Ini kasus properti kecil: yang penting bukan penjualan tapi okupansi, yield per tipe kamar, dan laba operasi bersih (NOI) setelah pajak final sewa.</p>
+        <div class="cb-biz-meta"><span class="cb-meta-chip" data-en="Business <strong>Boarding house</strong>" data-id="Jenis <strong>Kos-kosan</strong>">Jenis <strong>Kos-kosan</strong></span><span class="cb-meta-chip" data-en="Capacity <strong>20 rooms</strong>" data-id="Kapasitas <strong>20 kamar</strong>">Kapasitas <strong>20 kamar</strong></span><span class="cb-meta-chip" data-en="Status <strong>Non-VAT · Final 10%</strong>" data-id="Status <strong>Non-PPN · Final 10%</strong>">Status <strong>Non-PPN · Final 10%</strong></span><span class="cb-meta-chip" data-en="Occupancy <strong>85%</strong>" data-id="Okupansi <strong>85%</strong>">Okupansi <strong>85%</strong></span><span class="cb-meta-chip" data-en="Lens <strong>Yield &amp; NOI</strong>" data-id="Lensa <strong>Yield &amp; NOI</strong>">Lensa <strong>Yield &amp; NOI</strong></span></div>
+      </div>
+      <div class="cb-sheets-wrap"><div class="cb-tabs" role="tablist"><button class="cb-tab active" data-sheet="occ" data-panel="kos"><span class="cb-tab-icon"></span><span data-en="Occupancy &amp; Yield" data-id="Okupansi &amp; Yield">Okupansi &amp; Yield</span></button><button class="cb-tab" data-sheet="noi" data-panel="kos"><span class="cb-tab-icon"></span><span data-en="NOI &amp; Break-even" data-id="NOI &amp; Break-even">NOI &amp; Break-even</span></button></div><div class="cb-sheet-content active" data-sheet-content="occ" data-panel="kos">
+          <div class="cb-sheet-title" data-en="Occupancy &amp; Yield by Room Type · January 2025" data-id="Okupansi &amp; Yield per Tipe Kamar · Januari 2025">Okupansi &amp; Yield per Tipe Kamar · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="Occupancy measures how many rooms are filled; yield measures actual revenue against full potential. An empty room is permanently lost revenue — it can't be &lsquo;sold&rsquo; next month." data-id="Okupansi mengukur berapa kamar terisi; yield mengukur pendapatan aktual terhadap potensi penuh. Kamar kosong adalah pendapatan yang hilang permanen — tidak bisa &lsquo;dijual&rsquo; bulan depan.">Okupansi mengukur berapa kamar terisi; yield mengukur pendapatan aktual terhadap potensi penuh. Kamar kosong adalah pendapatan yang hilang permanen — tidak bisa &lsquo;dijual&rsquo; bulan depan.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Room type" data-id="Tipe kamar">Tipe kamar</th><th class="num" data-en="Units" data-id="Unit">Unit</th><th class="num" data-en="Filled" data-id="Terisi">Terisi</th><th class="num" data-en="Potential" data-id="Pot. (Rp)">Pot. (Rp)</th><th class="num" data-en="Actual" data-id="Aktual (Rp)">Aktual (Rp)</th><th class="num" data-en="Yield" data-id="Yield">Yield</th></tr></thead><tbody><tr><td data-en="AC Deluxe" data-id="AC Deluxe">AC Deluxe</td><td class="num">5</td><td class="num">5</td><td class="num">6.000.000</td><td class="num">6.000.000</td><td class="num">100%</td></tr><tr><td data-en="AC Standard" data-id="AC Standard">AC Standard</td><td class="num">5</td><td class="num">4</td><td class="num">4.500.000</td><td class="num">3.600.000</td><td class="num">80%</td></tr><tr><td data-en="Non-AC" data-id="Non-AC">Non-AC</td><td class="num">10</td><td class="num">8</td><td class="num">6.500.000</td><td class="num">5.200.000</td><td class="num">80%</td></tr><tr class="cb-total"><td colspan="1" data-en="TOTAL" data-id="TOTAL">TOTAL</td><td class="num">20</td><td class="num">17</td><td class="num">17.000.000</td><td class="num">14.800.000</td><td class="num">87%</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Occupancy" data-id="Okupansi">Okupansi</div><div class="cb-summary-val pos">85% (17/20)</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Potential Revenue" data-id="Pendapatan Potensial">Pendapatan Potensial</div><div class="cb-summary-val">Rp 17,0 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Yield" data-id="Yield">Yield</div><div class="cb-summary-val pos">87%</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="The weak spot" data-id="Titik lemah">Titik lemah</div>
+            <div class="cb-finding-title" data-en="Two empty Non-AC rooms = Rp 1.3 M/mo lost" data-id="Dua kamar Non-AC kosong = Rp 1,3 jt/bln hilang">Dua kamar Non-AC kosong = Rp 1,3 jt/bln hilang</div>
+            <div class="cb-finding-text" data-en="AC Deluxe is full (100%) — strong demand at the premium tier. The weakness is Non-AC (80%): two empty rooms are Rp 1.3 M of revenue lost every month, and it never comes back. Recommendation: narrow the Deluxe&ndash;Non-AC price gap or add fans/ventilation to make Non-AC more sellable — filling those two rooms adds roughly 47% to net profit." data-id="AC Deluxe penuh (100%) — permintaan kuat di tipe premium. Kelemahan ada di Non-AC (80%): 2 kamar kosong = Rp 1,3 jt pendapatan hilang tiap bulan, dan tidak pernah kembali. Rekomendasi: kecilkan selisih harga Deluxe&ndash;Non-AC atau tambah kipas/ventilasi agar Non-AC lebih laku — mengisi 2 kamar itu langsung menambah &plusmn;47% ke laba bersih.">AC Deluxe penuh (100%) — permintaan kuat di tipe premium. Kelemahan ada di Non-AC (80%): 2 kamar kosong = Rp 1,3 jt pendapatan hilang tiap bulan, dan tidak pernah kembali. Rekomendasi: kecilkan selisih harga Deluxe&ndash;Non-AC atau tambah kipas/ventilasi agar Non-AC lebih laku — mengisi 2 kamar itu langsung menambah &plusmn;47% ke laba bersih.</div>
+          </div></div><div class="cb-sheet-content" data-sheet-content="noi" data-panel="kos">
+          <div class="cb-sheet-title" data-en="Net Operating Income (NOI) &amp; Break-even · January 2025" data-id="Laba Operasi Bersih (NOI) &amp; Break-even · Januari 2025">Laba Operasi Bersih (NOI) &amp; Break-even · Januari 2025</div>
+          <p class="cb-sheet-sub" data-en="NOI is the profit from running the boarding house after all costs and the final rental tax. Break-even occupancy shows the minimum rooms that must be filled to avoid a loss." data-id="NOI adalah laba dari operasi kos setelah seluruh beban dan pajak final sewa. Break-even occupancy menunjukkan berapa kamar minimal harus terisi agar tidak merugi.">NOI adalah laba dari operasi kos setelah seluruh beban dan pajak final sewa. Break-even occupancy menunjukkan berapa kamar minimal harus terisi agar tidak merugi.</p><div class="cb-table-wrap"><table class="cb-table"><thead><tr><th data-en="Description" data-id="Keterangan">Keterangan</th><th class="num" data-en="Amount (Rp)" data-id="Jumlah (Rp)">Jumlah (Rp)</th></tr></thead><tbody><tr><td data-en="Rent received" data-id="Pendapatan sewa diterima">Pendapatan sewa diterima</td><td class="num">15.450.000</td></tr><tr><td data-en="Operating cost" data-id="Beban operasional (listrik, gaji, dll)">Beban operasional (listrik, gaji, dll)</td><td class="num muted">(11.109.000)</td></tr><tr class="cb-total"><td colspan="1" data-en="PROFIT BEFORE TAX" data-id="LABA SEBELUM PAJAK">LABA SEBELUM PAJAK</td><td class="num">4.341.000</td></tr><tr><td data-en="Final PPh 4(2) &mdash; 10% of gross" data-id="PPh Final Psl 4(2) &mdash; 10% &times; bruto">PPh Final Psl 4(2) &mdash; 10% &times; bruto</td><td class="num muted">(1.545.000)</td></tr><tr class="cb-total"><td colspan="1" data-en="NET PROFIT (NOI)" data-id="LABA BERSIH (NOI)">LABA BERSIH (NOI)</td><td class="num">2.796.000</td></tr></tbody></table></div><div class="cb-summary"><div class="cb-summary-item"><div class="cb-summary-label" data-en="Monthly NOI" data-id="NOI Bulanan">NOI Bulanan</div><div class="cb-summary-val pos">Rp 2,80 jt</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Break-even Occupancy" data-id="Break-even Okupansi">Break-even Okupansi</div><div class="cb-summary-val">&asymp; 65% (13 kamar)</div></div><div class="cb-summary-item"><div class="cb-summary-label" data-en="Cushion" data-id="Bantalan">Bantalan</div><div class="cb-summary-val pos">20% (4 kamar)</div></div></div><div class="cb-finding">
+            <div class="cb-finding-label" data-en="Strength &amp; risk" data-id="Kekuatan &amp; risiko">Kekuatan &amp; risiko</div>
+            <div class="cb-finding-title" data-en="Safe today, but thin against the mortgage" data-id="Aman hari ini, tapi tipis terhadap KPR">Aman hari ini, tapi tipis terhadap KPR</div>
+            <div class="cb-finding-text" data-en="Break-even is &plusmn;13 of 20 rooms (65%); actual 85% occupancy gives a 4-room cushion. But NOI of Rp 2.8 M/month is thin against the Rp 4.5 M mortgage instalment — real cash flow depends on avoiding prolonged vacancies. The 10% final tax is exactly that: it can't be credited and can't offset other income." data-id="Break-even &plusmn;13 dari 20 kamar (65%); okupansi aktual 85% memberi bantalan 4 kamar. Namun NOI Rp 2,8 jt/bulan tipis relatif terhadap cicilan KPR Rp 4,5 jt — arus kas nyata bergantung pada tidak adanya kamar kosong berkepanjangan. PPh Final 10% bersifat final: tidak dapat dikreditkan dan tidak mengurangi penghasilan lain.">Break-even &plusmn;13 dari 20 kamar (65%); okupansi aktual 85% memberi bantalan 4 kamar. Namun NOI Rp 2,8 jt/bulan tipis relatif terhadap cicilan KPR Rp 4,5 jt — arus kas nyata bergantung pada tidak adanya kamar kosong berkepanjangan. PPh Final 10% bersifat final: tidak dapat dikreditkan dan tidak mengurangi penghasilan lain.</div>
+          </div></div></div><a href="accounting.html#casebook" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label" data-en="Bookkeeping perspective" data-id="Perspektif pembukuan">Perspektif pembukuan</div>
+          <div class="cb-bridge-title" data-en="See the full bookkeeping for Kos Pak Haris" data-id="Lihat pembukuan lengkap Kos Pak Haris">Lihat pembukuan lengkap Kos Pak Haris</div>
+          <div class="cb-bridge-desc" data-en="Same data, recording lens — cash book, COGS schedule, income statement and payroll behind these numbers, on the Accounting page." data-id="Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.">Data yang sama, dari sisi pencatatan — buku harian, skema HPP, laporan laba rugi, dan payroll di balik angka ini, di halaman Akuntansi.</div>
+        </div>
+        <span class="cb-bridge-btn" data-en="View Bookkeeping&nbsp;&nbsp;<span class='arrow'>&rarr;</span>" data-id="Lihat Pembukuan&nbsp;&nbsp;<span class='arrow'>&rarr;</span>">Lihat Pembukuan&nbsp;&nbsp;<span class="arrow">&rarr;</span></span>
+      </a></div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2 data-en="Numbers That <span>Guide Decisions?</span>" data-id="Angka yang <span>Memandu Keputusan?</span>">Angka yang <span>Memandu Keputusan?</span></h2>
+      <p data-en="From clean books on the Accounting page to compliant filing on the Tax page — finance is the lens in between that turns your numbers into decisions." data-id="Dari pembukuan yang rapi di halaman Akuntansi hingga pelaporan yang patuh di halaman Pajak — keuangan adalah lensa di antaranya yang mengubah angka Anda menjadi keputusan.">Dari pembukuan yang rapi di halaman Akuntansi hingga pelaporan yang patuh di halaman Pajak — keuangan adalah lensa di antaranya yang mengubah angka Anda menjadi keputusan.</p>
+    </div>
+    <a href="form.html" class="btn-navy" data-en="Konsultasi Gratis →" data-id="Konsultasi Gratis →">Konsultasi Gratis →</a>
   </div>
 </section>
 
@@ -838,35 +995,221 @@
     if (saved === 'en') applyLang('en');
   })();
 
-  // ── FORM SUBMIT (Web3Forms) ──
+  /* ── CLIENT CASEBOOK ── tab + project card switching */
   (function() {
-    const form = document.getElementById('intakeForm');
-    const btn = document.getElementById('submitBtn');
-    form.querySelectorAll('input[name="Kebutuhan"]').forEach(c => c.addEventListener('change', () => {
-      document.getElementById('checkError').style.display = 'none';
-    }));
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      document.getElementById('formError').style.display = 'none';
-      const checks = form.querySelectorAll('input[name="Kebutuhan"]:checked');
-      if (checks.length === 0) { document.getElementById('checkError').style.display = 'block'; return; }
-      const lang = localStorage.getItem('adj_lang') || 'id';
-      btn.disabled = true; btn.textContent = lang === 'en' ? 'Sending…' : 'Mengirim…';
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
-        const json = await res.json();
-        if (!json.success) throw new Error(json.message || 'failed');
-        form.style.display = 'none';
-        document.getElementById('thankyou').style.display = 'block';
-        const top = document.querySelector('.form-hero');
-        if (top) window.scrollTo({ top: top.offsetTop - 60, behavior: 'smooth' });
-      } catch (err) {
-        btn.disabled = false; btn.textContent = lang === 'en' ? 'Send form →' : 'Kirim Formulir →';
-        document.getElementById('formError').style.display = 'block';
-      }
+    // Project card picker
+    document.querySelectorAll('.cb-card').forEach(card => {
+      card.addEventListener('click', function() {
+        if (this.classList.contains('placeholder')) return; // do nothing for coming-soon cards
+        const target = this.dataset.cb;
+        document.querySelectorAll('.cb-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.cb-panel').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const panel = document.getElementById('cb-' + target);
+        if (panel) panel.classList.add('active');
+      });
     });
+
+    // Sheet tabs within a panel
+    document.querySelectorAll('.cb-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const sheet = this.dataset.sheet;
+        const panel = this.dataset.panel;
+        // Deactivate all tabs & sheets in this panel
+        document.querySelectorAll('.cb-tab[data-panel="' + panel + '"]').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.cb-sheet-content[data-panel="' + panel + '"]').forEach(s => s.classList.remove('active'));
+        // Activate clicked
+        this.classList.add('active');
+        const content = document.querySelector('.cb-sheet-content[data-sheet-content="' + sheet + '"][data-panel="' + panel + '"]');
+        if (content) content.classList.add('active');
+      });
+    });
+  })();
+
+  /* deep-link: finance.html#cb-<key> opens that case */
+  (function(){
+    function openHash(){
+      var h=(location.hash||'').replace('#','');
+      if(!h) return;
+      var card=document.querySelector('.cb-card[data-cb="'+h.replace('cb-','')+'"]');
+      if(card){card.click();var s=document.getElementById('casebook');if(s)s.scrollIntoView({behavior:'smooth'});}
+    }
+    window.addEventListener('hashchange',openHash); openHash();
   })();
 </script>
 <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('img').forEach(function(i){i.addEventListener('error',function(){i.style.display='none';});if(i.complete&&i.naturalWidth===0){i.style.display='none';}});});</script>
 </body>
+<!-- Resume Modal -->
+<div id="resume-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="position:relative;width:90%;max-width:860px;height:90vh;background:#131820;border:1px solid rgba(201,165,103,0.2);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;letter-spacing:.08em;">RESUME</span>
+      <button onclick="document.getElementById('resume-modal').style.display='none'" style="background:none;border:none;color:#A09890;font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;">&times;</button>
+    </div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf" style="flex:1;width:100%;border:none;"></iframe>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.btn-about[data-en="Lihat Resume →"]').forEach(function(btn){
+    btn.removeAttribute('href');
+    btn.style.cursor='pointer';
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      document.getElementById('resume-modal').style.display='flex';
+    });
+  });
+  document.getElementById('resume-modal').addEventListener('click',function(e){
+    if(e.target===this) this.style.display='none';
+  });
+</script>
+
+
+<!-- Google Certificate Modal -->
+<div id="google-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('google-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Google Data Analytics — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('google-modal')">&times;</button></div>
+    <iframe src="Google_Data_Analytics_Certification.pdf"></iframe>
+  </div>
+</div>
+
+<!-- SQL Certificate Modal -->
+<div id="sql-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('sql-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Microsoft SQL Server — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('sql-modal')">&times;</button></div>
+    <iframe src="Micrososft_Sql_Server_Certification.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Excel Certificate Modal -->
+<div id="excel-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('excel-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Microsoft Excel Professional — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('excel-modal')">&times;</button></div>
+    <iframe src="Microsoft_Excel_Professional_Certificate.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Tableau Certificate Modal -->
+<div id="tableau-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('tableau-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Tableau BI Analyst — Coursera</span><button class="cert-modal-close" onclick="closeCertModal('tableau-modal')">&times;</button></div>
+    <iframe src="Tableau_Business_Intelligence_Analyst_Certification.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Python Certificate Modal -->
+<div id="python-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('python-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Python for Data Science, AI — IBM / Coursera</span><button class="cert-modal-close" onclick="closeCertModal('python-modal')">&times;</button></div>
+    <iframe src="Python_for_Data_Science__AI___Development.pdf"></iframe>
+  </div>
+</div>
+
+
+<!-- Xero Certificate Modal -->
+<div id="xero-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('xero-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Xero Advisor Certified</span><button class="cert-modal-close" onclick="closeCertModal('xero-modal')">&times;</button></div>
+    <iframe src="Xero_Advisor.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Dibimbing Cert Modal (card trigger) -->
+<div id="dibimbing-cert-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-cert-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span><button class="cert-modal-close" onclick="closeCertModal('dibimbing-cert-modal')">&times;</button></div>
+    <iframe src="Dibimbing_DADS.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Brevet Cert Modal (card trigger) -->
+<div id="brevet-cert-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-cert-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header"><span class="cert-modal-title">Brevet Pajak A &amp; B — IAI</span><button class="cert-modal-close" onclick="closeCertModal('brevet-cert-modal')">&times;</button></div>
+    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
+  </div>
+</div>
+
+<!-- PKP3 Certificate Modal -->
+<div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title">Kuasa Hukum Perpajakan (KHP-04695) — Pengadilan Pajak RI</span>
+      <button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button>
+    </div>
+    <iframe src="Kartu_IKH_Bidang_Perpajakan.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Dibimbing Certificate Modal -->
+<div id="dibimbing-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('dibimbing-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title">Data Science Bootcamp — Dibimbing.id</span>
+      <button class="cert-modal-close" onclick="closeCertModal('dibimbing-modal')">&times;</button>
+    </div>
+    <iframe src="Dibimbing_DADS.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Biola University Certificate Modal -->
+<div id="biola-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('biola-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title">B.S. Business Administration — Biola University</span>
+      <button class="cert-modal-close" onclick="closeCertModal('biola-modal')">&times;</button>
+    </div>
+    <div class="cert-modal-img-wrap">
+      <img src="Biola_University_Bachelor_Certificate.jpg" alt="Biola University Bachelor Certificate">
+    </div>
+  </div>
+</div>
+
+<!-- Brevet A&B Certificate Modal -->
+<div id="brevet-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('brevet-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title">Brevet Pajak A &amp; B — IAI</span>
+      <button class="cert-modal-close" onclick="closeCertModal('brevet-modal')">&times;</button>
+    </div>
+    <iframe src="Brevert_A_and_B_66DM_RS-1_AD.pdf"></iframe>
+  </div>
+</div>
+
+<!-- Resume Modal -->
+<div id="resume-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('resume-modal')">
+  <div class="cert-modal-inner">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title">Resume — Anthony Djiady Djie</span>
+      <button class="cert-modal-close" onclick="closeCertModal('resume-modal')">&times;</button>
+    </div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf"></iframe>
+  </div>
+</div>
+
+<script>
+  function openCertModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCertModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.cert-modal.open').forEach(function(m) {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+  // View Resume button
+  var resumeBtn = document.getElementById('viewResumeBtn');
+  if (resumeBtn) {
+    resumeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openCertModal('resume-modal');
+    });
+  }
+</script>
 </html>

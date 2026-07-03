@@ -166,47 +166,41 @@ document.addEventListener('submit', function(e){
 </script>
 </helmet>
 
-<div id="prospera-root" style="--accent: {{ accent }}; --logo-scale: {{ logoScale }}; --header-scale: {{ headerScale }}; background:#0C0F14; color:#ECE7DD; font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; min-height:100vh;">
+<div id="prospera-root" style="--accent: #C9A567; --logo-scale: 1; --header-scale: 1; background:#0C0F14; color:#ECE7DD; font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; min-height:100vh;">
 
   <nav id="navbar">
-    <ul class="nav-links nav-links-left">
+  <ul class="nav-links nav-links-left">
+    <li><a href="finance.html" data-en="Finance" data-id="Keuangan">Keuangan</a></li>
+    <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
+    <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo" aria-label="Sterith Business Consulting — Beranda">
+    <svg width="46" height="46" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="62" width="14" height="26" rx="3" fill="#A6843F"/><rect x="30" y="50" width="14" height="38" rx="3" fill="#C9A55F"/><rect x="50" y="34" width="14" height="54" rx="3" fill="#D4B36C"/><rect x="70" y="22" width="14" height="66" rx="3" fill="#E5C778"/><polygon points="63,22 91,22 77,4" fill="#E5C778"/></svg>
+    <span class="word">STERITH</span>
+    <span class="caption">BUSINESS&nbsp;CONSULTING</span>
+  </a>
+  <div class="nav-right-group">
+    <ul class="nav-links nav-links-right">
       <li><a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a></li>
-      <li><a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a></li>
-      <li><a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a></li>
+      <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
+      <li><a href="apps.html" data-en="Apps" data-id="Apps">Apps</a></li>
     </ul>
-    <a href="#top" class="nav-logo" aria-label="Sterith Business Consulting — Beranda">
-      <svg width="46" height="46" viewBox="0 0 100 100" aria-hidden="true">
-        <rect x="10" y="62" width="14" height="26" rx="3" fill="#A6843F"/>
-        <rect x="30" y="50" width="14" height="38" rx="3" fill="#C9A55F"/>
-        <rect x="50" y="34" width="14" height="54" rx="3" fill="#D4B36C"/>
-        <rect x="70" y="22" width="14" height="66" rx="3" fill="#E5C778"/>
-        <polygon points="63,22 91,22 77,4" fill="#E5C778"/>
-      </svg>
-      <span class="word">STERITH</span>
-      <span class="caption">BUSINESS&nbsp;CONSULTING</span>
-    </a>
-    <div class="nav-right-group">
-      <ul class="nav-links nav-links-right">
-        <li><a href="website.html" data-en="Website" data-id="Website">Website</a></li>
-        <li><a href="apps.html" data-en="Apps" data-id="Apps">Apps</a></li>
-        <li><a href="form.html" data-en="Form" data-id="Formulir">Formulir</a></li>
-      </ul>
-      <div class="nav-right">
-        <a href="#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
-        <button class="lang-toggle" id="langBtn">EN</button>
-        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
-      </div>
+    <div class="nav-right">
+      <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
     </div>
-  </nav>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a>
-    <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
-    <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
-    <a href="website.html" data-en="Website" data-id="Website">Website</a>
-    <a href="apps.html" data-en="Apps" data-id="Apps">Apps</a>
-    <a href="form.html" data-en="Form" data-id="Formulir">Formulir</a>
-    <a href="#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
   </div>
+</nav>
+  <div class="mobile-menu" id="mobileMenu">
+  <a href="finance.html" data-en="Finance" data-id="Keuangan">Keuangan</a>
+  <a href="accounting.html" data-en="Accounting" data-id="Akuntansi">Akuntansi</a>
+  <a href="tax.html" data-en="Tax" data-id="Pajak">Pajak</a>
+  <a href="data-analysis.html" data-en="Data Analysis" data-id="Data Analysis">Data Analysis</a>
+  <a href="website.html" data-en="Website" data-id="Website">Website</a>
+  <a href="apps.html" data-en="Apps" data-id="Apps">Apps</a>
+  <a href="form.html" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
+</div>
 
   <header id="top" style="position:relative; padding:96px max(24px,5vw) 72px; overflow:hidden;">
     <div style="position:absolute; top:-180px; right:-120px; width:560px; height:560px; background:radial-gradient(circle, rgba(201,165,103,0.10), transparent 65%); pointer-events:none;"></div>
@@ -448,8 +442,8 @@ document.addEventListener('submit', function(e){
         <div class="cert-meta"><span class="cert-card-name">B.S. Business Administration</span><span class="cert-card-org">Biola University &middot; 2016</span></div>
       </button>
       <button data-cert-modal="pkp3-modal" class="cert-card" style="cursor:pointer;text-align:left;width:100%;">
-        <div class="cert-logo-wrap"><img src="Jimly_School_Of_Law.png" alt="Jimly School of Law" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
-        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Practitioner (CTAP)" data-id="Praktisi Pajak (CTAP)">Praktisi Pajak (CTAP)</span><span class="cert-card-org">PKPPI &middot; 2026</span></div>
+        <div class="cert-logo-wrap"><img src="Pengadilan_Pajak.png" alt="Pengadilan Pajak RI" style="width:28px;height:28px;object-fit:cover;border-radius:4px;"></div>
+        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Court Attorney" data-id="Kuasa Hukum Pajak">Kuasa Hukum Pajak</span><span class="cert-card-org">Pengadilan Pajak RI &middot; KHP-04695</span></div>
       </button>
     </div>
   </div>
@@ -612,7 +606,7 @@ class Component extends DCLogic {
 <div id="pkp3-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('pkp3-modal')">
   <div class="cert-modal-inner">
     <div class="cert-modal-header"><span class="cert-modal-title">Praktisi/Pengacara Pajak (PKP3) &mdash; Jimly School of Law</span><button class="cert-modal-close" onclick="closeCertModal('pkp3-modal')">&times;</button></div>
-    <iframe src="Surat_Kelulusan_Anthony_Djiady_Djie__BS___CTAP_.pdf"></iframe>
+    <iframe src="Kartu_IKH_Bidang_Perpajakan.pdf"></iframe>
   </div>
 </div>
 <div id="biola-modal" class="cert-modal" onclick="if(event.target===this)closeCertModal('biola-modal')">
