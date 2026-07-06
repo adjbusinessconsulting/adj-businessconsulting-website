@@ -636,22 +636,51 @@
     .checks { grid-template-columns: 1fr 1fr; }
     .fblock { padding: 1.5rem 1.35rem; }
   }
+
+  /* ── FORM TABS (Jasa / POS) ── */
+  .form-tabs { max-width: 820px; margin: 0 auto 1.6rem; display: flex; border-bottom: 1px solid var(--navy-line); }
+  .form-tab { flex: 1; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--gray-3); background: none; border: none; outline: none; padding: 0.9rem 1rem; cursor: pointer; letter-spacing: 0.02em; border-bottom: 2px solid transparent; margin-bottom: -1px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; transition: color 0.2s, background 0.2s; }
+  .form-tab:hover { color: var(--white); background: rgba(201,165,103,0.04); }
+  .form-tab:focus-visible { background: rgba(201,165,103,0.08); }
+  .form-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .form-tab-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.45; }
+  .form-tab.active .form-tab-dot { opacity: 1; box-shadow: 0 0 8px var(--cyan); }
+  .form-panel { display: none; }
+  .form-panel.active { display: block; animation: fadeUp 0.4s ease both; }
+
+  /* ── POS tier picker ── */
+  .tier-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+  .tier-opt { text-align: left; background: var(--navy); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; padding: 14px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; transition: all 0.18s; }
+  .tier-opt:hover { border-color: rgba(201,165,103,0.3); }
+  .tier-opt.active { border-color: var(--cyan); background: rgba(201,165,103,0.06); }
+  .tier-opt-name { font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; }
+  .tier-opt.active .tier-opt-name { color: var(--cyan); }
+  .tier-opt-desc { font-family: 'Instrument Sans',system-ui,sans-serif; font-size: 12px; color: var(--gray-3); line-height: 1.5; }
+  .lainnya-wrap { display: none; margin-top: 0.6rem; }
+  .lainnya-wrap.show { display: block; }
+  @media (max-width: 680px) { .tier-row { grid-template-columns: 1fr; } }
 </style>
 
 <!-- FORM HERO -->
 <div class="form-hero">
-  <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Intake Form" data-id="Formulir">Formulir</span></div>
-  <h1 data-en="Let's get to know <span>your business.</span>" data-id="Mari kenali <span>bisnis Anda.</span>">Mari kenali <span>bisnis Anda.</span></h1>
-  <p data-en="Fill in your business details below. It takes about 3 minutes, and helps me scope the work and prepare a fair quote before we talk. The first consultation is free." data-id="Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.">Isi detail bisnis Anda di bawah ini. Hanya butuh sekitar 3 menit, dan membantu saya memetakan kebutuhan serta menyiapkan penawaran yang wajar sebelum kita bicara. Konsultasi pertama gratis.</p>
+  <div class="breadcrumb"><a href="index.html" data-en="Home" data-id="Beranda">Beranda</a> / <span data-en="Contact" data-id="Hubungi Saya">Hubungi Saya</span></div>
+  <h1 data-en="Let's get <span>started together.</span>" data-id="Mari mulai <span>bersama Sterith.</span>">Mari mulai <span>bersama Sterith.</span></h1>
+  <p data-en="Pick what you need below — a free accounting &amp; tax consultation, or register your store for Sterith POS. Either way, I'll get back to you personally." data-id="Pilih layanan yang Anda butuhkan di bawah — konsultasi akuntansi &amp; pajak gratis, atau daftarkan toko Anda ke Sterith POS. Apa pun pilihannya, saya akan menghubungi Anda langsung.">Pilih layanan yang Anda butuhkan di bawah — konsultasi akuntansi &amp; pajak gratis, atau daftarkan toko Anda ke Sterith POS. Apa pun pilihannya, saya akan menghubungi Anda langsung.</p>
   <div style="display:inline-flex; align-items:center; gap:10px; margin-top:1.4rem; padding:10px 14px; background:rgba(201,165,103,0.06); border:1px solid rgba(201,165,103,0.22); border-radius:8px;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A567" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-    <span style="font-family:var(--mono); font-size:12.5px; color:var(--gray-2); letter-spacing:0.02em;" data-en="All information you share is strictly confidential — used only to prepare your consultation, never sold or shared." data-id="Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.">Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk menyiapkan konsultasi, tidak akan dibagikan atau dijual.</span>
+    <span style="font-family:var(--mono); font-size:12.5px; color:var(--gray-2); letter-spacing:0.02em;" data-en="All information you share is strictly confidential — used only to process your request, never sold or shared." data-id="Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk memproses permintaan Anda, tidak akan dibagikan atau dijual.">Semua informasi yang Anda berikan bersifat rahasia — hanya digunakan untuk memproses permintaan Anda, tidak akan dibagikan atau dijual.</span>
   </div>
 </div>
 
 <!-- FORM -->
 <section class="form-section">
+  <div class="form-tabs">
+    <button type="button" class="form-tab active" data-tab="jasa" onclick="switchFormTab('jasa')"><span class="form-tab-dot"></span><span data-en="Accounting &amp; Tax" data-id="Konsultasi Jasa">Konsultasi Jasa</span></button>
+    <button type="button" class="form-tab" data-tab="pos" onclick="switchFormTab('pos')"><span class="form-tab-dot"></span><span data-en="Register for POS" data-id="Daftar POS">Daftar POS</span></button>
+  </div>
   <div class="form-wrap">
+    <!-- ===== PANEL: JASA (accounting & tax consultation) ===== -->
+    <div class="form-panel active" id="panel-jasa">
     <form id="intakeForm" autocomplete="on">
       <!-- ⚠️ SETUP: replace d14e6d6d-6ff0-4545-8b14-522bfd9d2f7e with your Web3Forms access key from https://web3forms.com -->
       <input type="hidden" name="access_key" value="d14e6d6d-6ff0-4545-8b14-522bfd9d2f7e">
@@ -805,6 +834,152 @@
       <p data-en="I'll review your details and get back to you within 24 hours, directly. Talk soon." data-id="Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.">Saya akan meninjau detail Anda dan membalas dalam 24 jam, langsung dari saya. Sampai jumpa.</p>
       <a href="index.html" data-en="Back to home" data-id="Kembali ke beranda">Kembali ke beranda</a>
     </div>
+    </div><!-- /panel-jasa -->
+
+    <!-- ===== PANEL: POS (store self-registration) ===== -->
+    <div class="form-panel" id="panel-pos">
+    <form id="posForm" autocomplete="on">
+      <input type="hidden" name="tier" id="tierInput" value="standard">
+
+      <!-- 01 IDENTITAS PEMILIK -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">01</span><span class="fblock-title" data-en="Owner identity" data-id="Identitas Pemilik">Identitas Pemilik</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Full name <span class='req'>*</span>" data-id="Nama lengkap <span class='req'>*</span>">Nama lengkap <span class="req">*</span></label>
+            <input type="text" name="nama" required placeholder="Budi Santoso" autocomplete="name">
+          </div>
+          <div class="field">
+            <label data-en="WhatsApp <span class='req'>*</span>" data-id="WhatsApp <span class='req'>*</span>">WhatsApp <span class="req">*</span></label>
+            <input type="tel" name="wa" required placeholder="0812 3456 7890" autocomplete="tel">
+          </div>
+          <div class="field full">
+            <label data-en="Email <span class='req'>*</span>" data-id="Email <span class='req'>*</span>">Email <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="budi@usaha.co.id" autocomplete="email">
+            <p class="form-note" style="text-align:left; margin-top:2px;" data-en="Used to log in to Sterith POS — make sure it's active." data-id="Digunakan untuk login ke Sterith POS — pastikan aktif.">Digunakan untuk login ke Sterith POS — pastikan aktif.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 INFORMASI TOKO -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">02</span><span class="fblock-title" data-en="Store information" data-id="Informasi Toko">Informasi Toko</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Store name <span class='opt'>(optional)</span>" data-id="Nama toko <span class='opt'>(opsional)</span>">Nama toko <span class="opt">(opsional)</span></label>
+            <input type="text" name="store_name" placeholder="Toko Sembako Maju" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label data-en="Business type <span class='opt'>(optional)</span>" data-id="Jenis usaha <span class='opt'>(opsional)</span>">Jenis usaha <span class="opt">(opsional)</span></label>
+            <select name="business_type" id="posBizType" onchange="handlePosBiz(this.value)">
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option>Warung Kelontong</option><option>Minimarket</option><option>Toko Sembako</option>
+              <option>Toko Obat</option><option>Warung Makan</option><option>Toko Pakaian</option>
+              <option>Toko Elektronik</option><option value="Lainnya" data-en="Other" data-id="Lainnya">Lainnya</option>
+            </select>
+            <div class="lainnya-wrap" id="posLainnya"><input type="text" name="business_type_custom" id="posBizCustom" placeholder="Tuliskan jenis usaha Anda…"></div>
+          </div>
+          <div class="field full">
+            <label data-en="Store address <span class='opt'>(optional)</span>" data-id="Alamat toko <span class='opt'>(opsional)</span>">Alamat toko <span class="opt">(opsional)</span></label>
+            <input type="text" name="store_address" placeholder="Jl. Mawar No. 12, Palu Selatan" autocomplete="street-address">
+          </div>
+          <div class="field">
+            <label data-en="Business entity <span class='opt'>(optional)</span>" data-id="Badan usaha <span class='opt'>(opsional)</span>">Badan usaha <span class="opt">(opsional)</span></label>
+            <select name="badan_usaha">
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Sole proprietor" data-id="Perseorangan">Perseorangan</option>
+              <option>UD</option><option>CV</option><option>Firma</option><option>PT</option><option data-en="Cooperative" data-id="Koperasi">Koperasi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-en="Employees <span class='opt'>(optional)</span>" data-id="Jumlah karyawan <span class='opt'>(opsional)</span>">Jumlah karyawan <span class="opt">(opsional)</span></label>
+            <select name="jumlah_karyawan">
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="Just me" data-id="Saya sendiri">Saya sendiri</option>
+              <option data-en="1–5 people" data-id="1–5 orang">1–5 orang</option>
+              <option data-en="6–20 people" data-id="6–20 orang">6–20 orang</option>
+              <option data-en="21–50 people" data-id="21–50 orang">21–50 orang</option>
+              <option data-en="&gt; 50 people" data-id="&gt; 50 orang">&gt; 50 orang</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 KEUANGAN & LEGAL -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">03</span><span class="fblock-title" data-en="Finance &amp; legal" data-id="Keuangan &amp; Legal">Keuangan &amp; Legal</span></div>
+        <div class="fgrid">
+          <div class="field">
+            <label data-en="Est. monthly revenue <span class='opt'>(optional)</span>" data-id="Estimasi omzet <span class='opt'>(opsional)</span>">Estimasi omzet <span class="opt">(opsional)</span></label>
+            <select name="omzet_bulanan">
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option>&lt; Rp 10 jt/bln</option><option>Rp 10–50 jt/bln</option><option>Rp 50–100 jt/bln</option><option>Rp 100–500 jt/bln</option><option>&gt; Rp 500 jt/bln</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-en="Bookkeeping system <span class='opt'>(optional)</span>" data-id="Sistem pembukuan <span class='opt'>(opsional)</span>">Sistem pembukuan <span class="opt">(opsional)</span></label>
+            <select name="sistem_pembukuan">
+              <option value="" disabled selected data-en="Choose…" data-id="Pilih…">Pilih…</option>
+              <option data-en="None yet" data-id="Belum ada">Belum ada</option>
+              <option data-en="Manual book" data-id="Buku manual">Buku manual</option>
+              <option>Excel / Spreadsheet</option>
+              <option data-en="Accounting software" data-id="Software akuntansi">Software akuntansi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-en="NPWP <span class='opt'>(optional)</span>" data-id="NPWP <span class='opt'>(opsional)</span>">NPWP <span class="opt">(opsional)</span></label>
+            <input type="text" name="npwp" placeholder="00.000.000.0-000.000">
+          </div>
+          <div class="field">
+            <label data-en="NIB <span class='opt'>(optional)</span>" data-id="NIB <span class='opt'>(opsional)</span>">NIB <span class="opt">(opsional)</span></label>
+            <input type="text" name="nib" placeholder="1234567890123456">
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 PILIH PAKET -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">04</span><span class="fblock-title" data-en="Choose a plan" data-id="Pilih Paket POS">Pilih Paket POS</span></div>
+        <div class="tier-row">
+          <button type="button" class="tier-opt" id="tier-free" onclick="selectTier('free')">
+            <span class="tier-opt-name">Free</span>
+            <span class="tier-opt-desc" data-en="Basic access — great for trying before you subscribe." data-id="Akses dasar — cocok untuk mencoba sebelum berlangganan.">Akses dasar — cocok untuk mencoba sebelum berlangganan.</span>
+          </button>
+          <button type="button" class="tier-opt active" id="tier-standard" onclick="selectTier('standard')">
+            <span class="tier-opt-name">Standard</span>
+            <span class="tier-opt-desc" data-en="Full features for 1 store — ideal for active SMEs." data-id="Fitur lengkap untuk 1 toko — ideal untuk UMKM aktif.">Fitur lengkap untuk 1 toko — ideal untuk UMKM aktif.</span>
+          </button>
+          <button type="button" class="tier-opt" id="tier-premium" onclick="selectTier('premium')">
+            <span class="tier-opt-name">Premium</span>
+            <span class="tier-opt-desc" data-en="Multi-store &amp; accounting reports — for larger scale." data-id="Multi-toko &amp; laporan akuntansi — untuk skala lebih besar.">Multi-toko &amp; laporan akuntansi — untuk skala lebih besar.</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 05 CATATAN -->
+      <div class="fblock">
+        <div class="fblock-head"><span class="fblock-num">05</span><span class="fblock-title" data-en="Notes" data-id="Catatan">Catatan</span></div>
+        <div class="field full">
+          <label data-en="Message / extra info <span class='opt'>(optional)</span>" data-id="Pesan / info tambahan <span class='opt'>(opsional)</span>">Pesan / info tambahan <span class="opt">(opsional)</span></label>
+          <textarea name="notes" placeholder="Ada informasi lain yang ingin Anda sampaikan?"></textarea>
+        </div>
+      </div>
+
+      <div class="form-foot">
+        <div class="form-err" id="posFormError" data-en="Something went wrong. Please try again, or message me on WhatsApp." data-id="Terjadi kesalahan. Coba lagi, atau hubungi saya via WhatsApp.">Terjadi kesalahan. Coba lagi, atau hubungi saya via WhatsApp.</div>
+        <button type="submit" class="submit-btn" id="posSubmitBtn" data-en="Send registration →" data-id="Kirim Pendaftaran →">Kirim Pendaftaran →</button>
+        <p class="form-note" data-en="Your data is used only for POS access. Not shared with third parties." data-id="Data Anda hanya digunakan untuk keperluan akses POS. Tidak dibagikan ke pihak ketiga.">Data Anda hanya digunakan untuk keperluan akses POS. Tidak dibagikan ke pihak ketiga.</p>
+      </div>
+    </form>
+
+    <!-- THANK YOU (POS) -->
+    <div class="thankyou" id="posThankyou">
+      <div class="thankyou-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2 data-en="Thank you for registering." data-id="Terima kasih telah mendaftar.">Terima kasih telah mendaftar.</h2>
+      <p data-en="Your registration has been received. Our admin team will contact you shortly on WhatsApp for the next steps." data-id="Formulir Anda telah kami terima. Tim admin kami akan segera menghubungi Anda melalui WhatsApp untuk langkah selanjutnya.">Formulir Anda telah kami terima. Tim admin kami akan segera menghubungi Anda melalui WhatsApp untuk langkah selanjutnya.</p>
+      <a href="index.html" data-en="Back to home" data-id="Kembali ke beranda">Kembali ke beranda</a>
+    </div>
+    </div><!-- /panel-pos -->
   </div>
 </section>
 
@@ -853,7 +1028,21 @@
       const lang = localStorage.getItem('adj_lang') || 'id';
       btn.disabled = true; btn.textContent = lang === 'en' ? 'Sending…' : 'Mengirim…';
       try {
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+        const fd = new FormData(form);
+        // Collapse the multiple "Kebutuhan" checkboxes into one readable line
+        const needs = Array.from(checks).map(x => x.value).join(', ');
+        fd.delete('Kebutuhan'); fd.set('Kebutuhan', needs);
+        // Reply-To = client's email (if given), so replies go straight to them
+        const clientEmail = (fd.get('Email') || '').toString().trim();
+        if (clientEmail) fd.set('replyto', clientEmail);
+        // Scannable subject: name (city) · needs
+        const nm = (fd.get('Nama lengkap') || '').toString().trim();
+        const kota = (fd.get('Kota') || '').toString().trim();
+        let subj = 'Konsultasi — ' + (nm || 'Tanpa nama');
+        if (kota) subj += ' (' + kota + ')';
+        if (needs) subj += ' · Butuh: ' + needs;
+        fd.set('subject', subj);
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
         const json = await res.json();
         if (!json.success) throw new Error(json.message || 'failed');
         form.style.display = 'none';
@@ -863,6 +1052,65 @@
       } catch (err) {
         btn.disabled = false; btn.textContent = lang === 'en' ? 'Send form →' : 'Kirim Formulir →';
         document.getElementById('formError').style.display = 'block';
+      }
+    });
+  })();
+
+  // ── FORM TABS ──
+  function switchFormTab(tab) {
+    document.querySelectorAll('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    document.getElementById('panel-jasa').classList.toggle('active', tab === 'jasa');
+    document.getElementById('panel-pos').classList.toggle('active', tab === 'pos');
+  }
+  // Deep-link: form.html?daftar=pos (or #pos) opens the POS tab directly
+  (function () {
+    const p = new URLSearchParams(location.search).get('daftar');
+    const wantPos = p === 'pos' || location.hash.toLowerCase() === '#pos';
+    if (wantPos) switchFormTab('pos');
+  })();
+
+  // ── POS: tier picker + "Lainnya" reveal ──
+  function selectTier(t) {
+    const el = document.getElementById('tierInput'); if (el) el.value = t;
+    ['free','standard','premium'].forEach(id => document.getElementById('tier-' + id).classList.toggle('active', id === t));
+  }
+  function handlePosBiz(val) {
+    const wrap = document.getElementById('posLainnya'), input = document.getElementById('posBizCustom');
+    if (val === 'Lainnya') { wrap.classList.add('show'); input.focus(); }
+    else { wrap.classList.remove('show'); input.value = ''; }
+  }
+
+  // ── POS SUBMIT (Masteroffice register endpoint) ──
+  (function () {
+    const form = document.getElementById('posForm');
+    const btn = document.getElementById('posSubmitBtn');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = document.getElementById('posFormError');
+      err.style.display = 'none';
+      const lang = localStorage.getItem('adj_lang') || 'id';
+      btn.disabled = true; btn.textContent = lang === 'en' ? 'Sending…' : 'Mengirim…';
+      try {
+        const d = Object.fromEntries(new FormData(form));
+        const bizType = d.business_type === 'Lainnya' ? (d.business_type_custom || 'Lainnya') : (d.business_type || null);
+        const res = await fetch('https://masteroffice.sterith.com/api/clients/register', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: d.nama, email: d.email, wa_number: d.wa,
+            store_name: d.store_name || null, business_type: bizType, store_address: d.store_address || null,
+            badan_usaha: d.badan_usaha || null, jumlah_karyawan: d.jumlah_karyawan || null,
+            omzet_bulanan: d.omzet_bulanan || null, sistem_pembukuan: d.sistem_pembukuan || null,
+            npwp: d.npwp || null, nib: d.nib || null, notes: d.notes || null, tier: d.tier || 'free', status: 'prospek',
+          }),
+        });
+        if (!res.ok) throw new Error('failed');
+        form.style.display = 'none';
+        document.getElementById('posThankyou').style.display = 'block';
+        const top = document.querySelector('.form-hero');
+        if (top) window.scrollTo({ top: top.offsetTop - 60, behavior: 'smooth' });
+      } catch (err2) {
+        btn.disabled = false; btn.textContent = lang === 'en' ? 'Send registration →' : 'Kirim Pendaftaran →';
+        document.getElementById('posFormError').style.display = 'block';
       }
     });
   })();
